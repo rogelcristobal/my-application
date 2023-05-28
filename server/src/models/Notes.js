@@ -6,4 +6,4 @@ const NotesSchema = new mongoose.Schema({
 })
 
 
-export const NotesModel = mongoose.model("saved-notes", NotesSchema)
+export const NotesModel = mongoose.model("note-collections", NotesSchema)
