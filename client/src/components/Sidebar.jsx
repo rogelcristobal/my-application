@@ -8,26 +8,44 @@ import {
 } from "react-icons/tb";
 
 import SidebarLink from "./SidebarLink";
-const Sidebar = () => {
+const Sidebar = ({data,loading})=> {
   const [state, setState] = React.useState(false);
-
   const handleToggleSidebar = () => {
     setState(!state);
   };
+  if(!loading){
+    console.log(data)
+  }
   return (
     <div
       className={`${
         state ? "w-[4.5rem]" : "w-[15.5rem]"
       } whitespace-nowrap relative thin-right-divider flex flex-col items-center justify-start  flex-shrink-0 bg-white h-full pb-4 pt-0`}
     >
-      <div className={`${state?' justify-center pl-2':' px-8 justify-start'} w-full thin-bottom-divider  relative flex items-center h-fit pb-6 pt-6  `}>
-        <div className={`bg-[#20304f] grid mr-3 rounded-full p-1.5 place-content-center ${state?'mr-0':'mr-3'}`}>
+      <div
+        className={`${
+          state ? " justify-center pl-0" : " px-6 justify-start"
+        } w-full thin-bottom-divider  relative flex items-center h-fit pb-8 pt-8  `}
+      >
+        <div
+          className={`bg-[#20304f] grid  rounded-full p-1.5 place-content-center ${
+            state ? "mr-0" : "mr-3"
+          }`}
+        >
           <TbEggs className="text-lg  text-white" />
         </div>
-        {!state&&<span className="  w-full text-[0.9rem] font-semibold">myProject</span>}
+        {!state && (
+          <span className="  w-full text-[0.9rem] font-semibold">
+            myProject
+          </span>
+        )}
+
+        {/* toggle btn */}
         <button
           onClick={handleToggleSidebar}
-          className={`absolute thin-box-divider hover:sample p-1.5 rounded-full -bottom-[14.5%] -right-[4%] cursor-pointer bg-white z-10 text-sm text-[#a7aac4] ${state?'-right-[17%] ':'-right-[4%] '}`}
+          className={`absolute thin-box-divider hover:sample p-1.5 rounded-full -bottom-[14.5%] -right-[4%] cursor-pointer bg-white z-10 text-sm text-[#a7aac4] ${
+            state ? "-right-[14%] " : "-right-[4%] "
+          }`}
         >
           <TbChevronLeft />
         </button>
@@ -39,31 +57,21 @@ const Sidebar = () => {
       )}
       <div
         className={`${
-          state ? "mt-6 items-center" :'items-start'
-        } flex px-6   w-full  justify-start flex-col`}
+          state ? "mt-6 items-center" : "items-start"
+        } flex px-5   w-full  justify-start flex-col`}
       >
-        {[
-          {
-            title: "dashboard",
-            icon: <TbLayoutGrid  />,
-            initialTrue: true,
-          },
-          {
-            title: "Collections",
-            icon: <TbFolder />,
-          },
-          {
-            title: "settings",
-            icon: <TbSettings2  />,
-          },
-        ].map((item, id) => (
-          <SidebarLink
-            sidebarState={state}
-            item={item}
-            key={id}
-            initialTrue={item.initialTrue ? true : undefined}
-          />
-        ))}
+        <SidebarLink sidebarState={state} title="Dashboard" icon={<TbLayoutGrid/>} />
+
+        <SidebarLink
+          sidebarState={state}
+          title="Collection"
+          icon={<TbFolder/>}
+          initialTrue
+        >
+          {loading && data?.data.map((item,id)=>(
+            <span>{item.collectionTitle}</span>
+          ))}
+        </SidebarLink>
       </div>
     </div>
   );
