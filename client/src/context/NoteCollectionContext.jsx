@@ -1,10 +1,24 @@
 import React from "react";
+import Axios from 'axios'
 const NoteCollectionContext = React.createContext();
+import { useQuery } from "@tanstack/react-query";
+export const NoteCollectionProvider = ({ USER_ID,children }) => {
 
-export const NoteCollectionProvider = ({ children }) => {
-  const [fetchedData,setData] = React.useState([])
+   const fetchNotes = async (value) => {
+    try {
+      const response = await Axios.get(
+        `http://localhost:3001/notes/user/${value}`
+      );
+      return response.data;
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  const { data, isLoading } = useQuery(["notes"], () =>
+    fetchNotes(USER_ID)
+  );
   return (
-    <NoteCollectionContext.Provider value={{setData,fetchedData}}>
+    <NoteCollectionContext.Provider value={{data,isLoading}}>
       {children}
     </NoteCollectionContext.Provider>
   );

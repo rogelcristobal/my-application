@@ -21,7 +21,7 @@ const Home = () => {
             <span className="text-[0.775rem] font-medium  tracking-wide text-[#757575]">
               Total notes
             </span>
-            <span className=" mt-0.5 tracking-tighter text-white font-plus text-[1.8rem] ">
+            <span className=" mt-0.5  text-white font-helveticaRoman text-[1.7rem] ">
               52
             </span>
           </div>

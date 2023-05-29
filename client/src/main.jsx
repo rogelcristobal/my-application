@@ -9,11 +9,9 @@ const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")).render(
   <QueryClientProvider client={queryClient}>
     <Router>
-      <NoteCollectionProvider>
         {/* <React.StrictMode> */}
         <App />
         {/* </React.StrictMode> */}
-      </NoteCollectionProvider>
     </Router>
   </QueryClientProvider>
 );

@@ -1,12 +1,18 @@
 import React from "react";
 import { TbLayoutGrid, TbChevronLeft, TbEggs, TbFolder } from "react-icons/tb";
-
+import NoteCollectionContext from "../context/NoteCollectionContext";
 import SidebarLink from "./SidebarLink";
 const Sidebar = () => {
   const [state, setState] = React.useState(false);
   const handleToggleSidebar = () => {
     setState(!state);
   };
+
+  const { data, isLoading } = React.useContext(NoteCollectionContext);
+  if (!isLoading) {
+    console.log(data.data);
+
+  }
 
   return (
     <div
@@ -21,7 +27,7 @@ const Sidebar = () => {
       >
         <div
           className={`bg-[#6360ea] grid  rounded-full p-[0.5rem] place-content-center ${
-            state ? "mr-0" : "mr-2.5"
+            state ? "mr-0" : "mr-3"
           }`}
         >
           <TbEggs className="text-lg  text-white" />
@@ -35,7 +41,7 @@ const Sidebar = () => {
         {/* toggle btn */}
         <button
           onClick={handleToggleSidebar}
-          className={`absolute hover:sample p-1.5 rounded-full -bottom-[14.5%]  cursor-pointer bg-[#292929] z-10 text-sm text-[#808088] right-0 translate-x-1/2 `}
+          className={`absolute hover:sample p-1.5 rounded-full -bottom-[14.5%]  cursor-pointer bg-[#292929] z-10 text-sm text-[#808088] hover:text-white right-0 translate-x-1/2 `}
         >
           <TbChevronLeft />
         </button>
@@ -62,6 +68,7 @@ const Sidebar = () => {
           title="Collection"
           icon={<TbFolder />}
           path="/collections"
+          count={data?.data.length}
         ></SidebarLink>
       </div>
     </div>
