@@ -26,12 +26,7 @@ function App() {
       <div className="h-screen w-full bg-[#171717] text-white flex items-start  justify-start relative">
         <Sidebar data={data} loading={isLoading}></Sidebar>
         <Routes>
-          <Route
-            path="/*"
-            element={
-              <Home />
-            }
-          />
+          <Route path="/*" element={<Home />} />
           <Route path="/collection" element={<Collections />}></Route>
         </Routes>
       </div>
