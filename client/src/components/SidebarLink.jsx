@@ -14,7 +14,7 @@ const SidebarLink = ({
   };
 
   return (
-    <NavLink to={`/${path}`} className="w-full">
+    <NavLink to={path} className="w-full">
       {({ isActive }) => (
         <>
           <button

@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route,Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Collections from "./pages/Collections";
@@ -22,15 +22,24 @@ function App() {
     fetchNotes("64696464da5bb77ea10861ac")
   );
   return (
-    <div className="h-full w-full font-plus ">
-      <div className="h-screen w-full bg-[#171717] text-white flex items-start  justify-start relative">
-        <Sidebar data={data} loading={isLoading}></Sidebar>
-        <Routes>
-          <Route path="/*" element={<Home />} />
-          <Route path="/collection" element={<Collections />}></Route>
-        </Routes>
-      </div>
-    </div>
+    <Routes>
+      <Route path="/login" element={<Login />}></Route>
+      <Route
+        path="/*" 
+        element={
+          <div className="h-full w-full font-plus ">
+            <div className="h-screen w-full bg-[#171717] text-white flex items-start  justify-start relative">
+              <Sidebar></Sidebar>
+              <Routes>
+                <Route path="/" element={<Navigate to="/dashboard" />}></Route>
+                <Route  path="/dashboard" element={<Home />} />
+                <Route path="/collections" element={<Collections />}></Route>
+              </Routes>
+            </div>
+          </div>
+        }
+      ></Route>
+    </Routes>
   );
 }
 

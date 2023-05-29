@@ -1,20 +1,13 @@
 import React from "react";
-import {
-  TbLayoutGrid,
-  TbChevronLeft,
-  TbEggs,
-  TbFolder,
-} from "react-icons/tb";
+import { TbLayoutGrid, TbChevronLeft, TbEggs, TbFolder } from "react-icons/tb";
 
 import SidebarLink from "./SidebarLink";
-const Sidebar = ({data,loading})=> {
+const Sidebar = () => {
   const [state, setState] = React.useState(false);
   const handleToggleSidebar = () => {
     setState(!state);
   };
-  if(!loading){
-    console.log(data)
-  }
+
   return (
     <div
       className={`${
@@ -57,17 +50,19 @@ const Sidebar = ({data,loading})=> {
           state ? "mt-12 items-center" : "items-start"
         } flex px-4   w-full  justify-start flex-col`}
       >
-        <SidebarLink path="dashboard" sidebarState={state} title="Dashboard" icon={<TbLayoutGrid/>} />
+        <SidebarLink
+          path="/dashboard"
+          sidebarState={state}
+          title="Dashboard"
+          icon={<TbLayoutGrid />}
+        />
 
         <SidebarLink
           sidebarState={state}
           title="Collection"
-          icon={<TbFolder/>}
-          path="collection"
-          
-        >
-         
-        </SidebarLink>
+          icon={<TbFolder />}
+          path="/collections"
+        ></SidebarLink>
       </div>
     </div>
   );
