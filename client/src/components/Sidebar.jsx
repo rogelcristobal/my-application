@@ -18,7 +18,7 @@ const Sidebar = ({data,loading})=> {
   return (
     <div
       className={`${
-        state ? "w-[4.5rem]" : "w-[15.5rem]"
+        state ? "w-[4.5rem]" : "w-[16rem]"
       } whitespace-nowrap relative thin-right-divider flex flex-col items-center justify-start  flex-shrink-0  h-full pb-4 pt-0`}
     >
       <div
@@ -43,7 +43,7 @@ const Sidebar = ({data,loading})=> {
         <button
           onClick={handleToggleSidebar}
           className={`absolute thin-box-divider hover:sample p-1.5 rounded-full -bottom-[14.5%] -right-[4%] cursor-pointer bg-white z-10 text-sm text-[#a7aac4] ${
-            state ? "-right-[0.725rem]" : "-right-[1rem] "
+            state ? "-right-[0.8rem]" : "-right-[1rem] "
           }`}
         >
           <TbChevronLeft />

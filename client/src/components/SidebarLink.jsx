@@ -20,8 +20,8 @@ const SidebarLink = ({ title, initialTrue, sidebarState,icon,children }) => {
       {!sidebarState && title}
       <div
         className={`${initialTrue ? "h-[80%]" : "h-0"} ${
-          sidebarState ? "-left-[1rem]" : "-left-[1rem]  "
-        } transition-all duration-75 w-[3.5px] rounded-r-xl absolute  top-1/2 -translate-y-1/2 bg-[#645cfc]`}
+          sidebarState ? "-right-[1rem]" : "-right-[1rem]  "
+        } transition-all duration-75 w-[3.5px] rounded-l-xl absolute  top-1/2 -translate-y-1/2 bg-[#645cfc]`}
       ></div>
     </button>
     <div className={`w-full ${children?'h-fit':'h-0'} flex flex-col `}>{children}</div>

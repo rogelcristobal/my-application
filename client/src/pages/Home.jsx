@@ -28,11 +28,11 @@ const Home = () => {
             element={
               <div className="h-full  pt-10 w-full flex flex-col items-start justify-start">
                 <div className="h-fit w-full flex  px-10 pb-6 flex-col">
-                  <span className="mb-3 font-semibold text-[0.9rem] text-[#645cfc]">Dashboard</span>
+                  <span className="mb-2 font-semibold text-[0.85rem] text-[#645cfc]">Dashboard</span>
                   <span className="font-semibold text-[1.5rem]">
                     Welcome, Admin!
                   </span>
-                  <span className="text-[0.9rem] font-normal  tracking-wide mt-1.5 text-[#00c4c4]">
+                  <span className="text-[0.85rem] font-normal  tracking-wide mt-1.5 text-[#00c4c4]">
                     Here's your data today.
                   </span>
                 </div>
