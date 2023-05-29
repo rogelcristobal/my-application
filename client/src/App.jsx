@@ -6,7 +6,7 @@ import Collections from "./pages/Collections";
 import { NoteCollectionProvider } from "./context/NoteCollectionContext";
 function App() {
   return (
-    <div className="h-full w-full font-inter ">
+    <div className="h-full w-full font-plus ">
       <NoteCollectionProvider>
         <Router>
           <Routes>

@@ -7,11 +7,14 @@ export default {
   theme: {
     extend: {
       fontFamily:{
-        "helvetica":["helvetica","sans-serif"],
-        "helvetica-bold":["helvetica-bold","sans-serif"],
-        "helvetica-boldOblique":["helvetica-boldOblique","sans-serif"],
-        "helvetica-oblique":["helvetica-oblique","sans-serif"],
-        "helvetica-roundedBold":["helvetica-roundedBold","sans-serif"],
+
+        "productRegular":["ProductSansRegular","sans-serif"], 
+        "productBold":["ProductSansBold","sans-serif"],
+
+        "helveticaRegular":["HelveticaNeueRoman", 'sans-serif'],
+        "helveticaThin":["HelveticaNeueThin", 'sans-serif'],
+        "helveticaBold":["HelveticaNeueBold", 'sans-serif'],
+        "helveticaBlack":["HelveticaNeueBlack", 'sans-serif'],
 
         "inter":["Inter", 'sans-serif'],
         "plus":["Plus Jakarta Sans", "sans-serif"] 

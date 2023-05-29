@@ -1,7 +1,6 @@
 import React from "react";
 import {
   TbLayoutGrid,
-  TbSettings2,
   TbChevronLeft,
   TbEggs,
   TbFolder,
@@ -20,22 +19,22 @@ const Sidebar = ({data,loading})=> {
     <div
       className={`${
         state ? "w-[4.5rem]" : "w-[15.5rem]"
-      } whitespace-nowrap relative thin-right-divider flex flex-col items-center justify-start  flex-shrink-0 bg-white h-full pb-4 pt-0`}
+      } whitespace-nowrap relative thin-right-divider flex flex-col items-center justify-start  flex-shrink-0  h-full pb-4 pt-0`}
     >
       <div
         className={`${
           state ? " justify-center pl-0" : " px-6 justify-start"
-        } w-full thin-bottom-divider  relative flex items-center h-fit pb-8 pt-8  `}
+        } w-full   relative flex thin-bottom-divider items-center h-fit pb-8 pt-8  `}
       >
         <div
-          className={`bg-[#20304f] grid  rounded-full p-1.5 place-content-center ${
+          className={`bg-[#142c4a] grid  rounded-full p-1.5 place-content-center ${
             state ? "mr-0" : "mr-3"
           }`}
         >
           <TbEggs className="text-lg  text-white" />
         </div>
         {!state && (
-          <span className="  w-full text-[0.9rem] font-semibold">
+          <span className="  w-full text-[1rem] font-semibold">
             myProject
           </span>
         )}
@@ -44,29 +43,29 @@ const Sidebar = ({data,loading})=> {
         <button
           onClick={handleToggleSidebar}
           className={`absolute thin-box-divider hover:sample p-1.5 rounded-full -bottom-[14.5%] -right-[4%] cursor-pointer bg-white z-10 text-sm text-[#a7aac4] ${
-            state ? "-right-[14%] " : "-right-[4%] "
+            state ? "-right-[0.725rem]" : "-right-[1rem] "
           }`}
         >
           <TbChevronLeft />
         </button>
       </div>
       {!state && (
-        <span className=" text-[0.695rem] font-medium w-full text-left px-8 text-[#a8adb7]/70 mt-6 mb-2">
-          Categories
+        <span className=" text-[0.695rem] font-medium w-full text-left px-4 text-[#00c4c4] mt-6 mb-2">
+          CATEGORIES
         </span>
       )}
       <div
         className={`${
           state ? "mt-6 items-center" : "items-start"
-        } flex px-5   w-full  justify-start flex-col`}
+        } flex px-4   w-full  justify-start flex-col`}
       >
-        <SidebarLink sidebarState={state} title="Dashboard" icon={<TbLayoutGrid/>} />
+        <SidebarLink sidebarState={state} title="Dashboard" icon={<TbLayoutGrid/>} initialTrue/>
 
         <SidebarLink
           sidebarState={state}
           title="Collection"
           icon={<TbFolder/>}
-          initialTrue
+          
         >
           {loading && data?.data.map((item,id)=>(
             <span>{item.collectionTitle}</span>
