@@ -19,22 +19,22 @@ const Sidebar = ({data,loading})=> {
     <div
       className={`${
         state ? "w-[4.5rem]" : "w-[16rem]"
-      } whitespace-nowrap relative thin-right-divider flex flex-col items-center justify-start  flex-shrink-0  h-full pb-4 pt-0`}
+      } whitespace-nowrap relative thin-right-divider border-dark-right bg-neutral-800/30 flex flex-col items-center justify-start  flex-shrink-0  h-full pb-4 pt-0`}
     >
       <div
         className={`${
-          state ? " justify-center pl-0" : " px-6 justify-start"
+          state ? " justify-center pl-0" : " px-4 justify-start"
         } w-full   relative flex thin-bottom-divider items-center h-fit pb-8 pt-8  `}
       >
         <div
-          className={`bg-[#142c4a] grid  rounded-full p-1.5 place-content-center ${
-            state ? "mr-0" : "mr-3"
+          className={`bg-[#6360ea] grid  rounded-full p-1.5 place-content-center ${
+            state ? "mr-0" : "mr-2.5"
           }`}
         >
           <TbEggs className="text-lg  text-white" />
         </div>
         {!state && (
-          <span className="  w-full text-[1rem] font-semibold">
+          <span className="  w-full text-[1rem] text-white font-semibold">
             myProject
           </span>
         )}
@@ -42,15 +42,15 @@ const Sidebar = ({data,loading})=> {
         {/* toggle btn */}
         <button
           onClick={handleToggleSidebar}
-          className={`absolute thin-box-divider hover:sample p-1.5 rounded-full -bottom-[14.5%] -right-[4%] cursor-pointer bg-white z-10 text-sm text-[#a7aac4] ${
-            state ? "-right-[0.8rem]" : "-right-[1rem] "
+          className={`absolute thin-box-divider border-dark hover:sample p-1.5 rounded-full -bottom-[14.5%] -right-[4%] cursor-pointer bg-[#171717] z-10 text-sm text-[#808088] ${
+            state ? "-right-[0.875rem]" : "-right-[1rem] "
           }`}
         >
           <TbChevronLeft />
         </button>
       </div>
       {!state && (
-        <span className=" text-[0.695rem] font-medium w-full text-left px-4 text-[#00c4c4] mt-6 mb-2">
+        <span className=" text-[0.695rem] font-semibold w-full text-left px-5 text-[#6a6a72] mt-6 mb-2">
           CATEGORIES
         </span>
       )}
