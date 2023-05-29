@@ -59,13 +59,14 @@ const Sidebar = ({data,loading})=> {
           state ? "mt-12 items-center" : "items-start"
         } flex px-4   w-full  justify-start flex-col`}
       >
-        <SidebarLink sidebarState={state} title="Dashboard" icon={<TbLayoutGrid/>} initialTrue/>
+        <SidebarLink sidebarState={state} title="Dashboard" icon={<TbLayoutGrid/>} />
 
         <SidebarLink
           sidebarState={state}
           title="Collection"
           icon={<TbFolder/>}
           path="/collection"
+          initialTrue
         >
          
         </SidebarLink>
