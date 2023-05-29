@@ -27,7 +27,7 @@ const Sidebar = ({data,loading})=> {
         } w-full   relative flex thin-bottom-divider items-center h-fit pb-8 pt-8  `}
       >
         <div
-          className={`bg-[#6360ea] grid  rounded-full p-1.5 place-content-center ${
+          className={`bg-[#6360ea] grid  rounded-full p-2 place-content-center ${
             state ? "mr-0" : "mr-2.5"
           }`}
         >
@@ -35,7 +35,7 @@ const Sidebar = ({data,loading})=> {
         </div>
         {!state && (
           <span className="  w-full text-[1rem] text-white font-semibold">
-            myProject
+            myProject v.1
           </span>
         )}
 
@@ -50,13 +50,13 @@ const Sidebar = ({data,loading})=> {
         </button>
       </div>
       {!state && (
-        <span className=" text-[0.695rem] font-semibold w-full text-left px-5 text-[#6a6a72] mt-6 mb-2">
+        <span className=" text-[0.695rem] font-semibold w-full text-left px-5 text-[#6a6a72] mt-6 mb-3">
           CATEGORIES
         </span>
       )}
       <div
         className={`${
-          state ? "mt-6 items-center" : "items-start"
+          state ? "mt-12 items-center" : "items-start"
         } flex px-4   w-full  justify-start flex-col`}
       >
         <SidebarLink sidebarState={state} title="Dashboard" icon={<TbLayoutGrid/>} initialTrue/>
@@ -65,11 +65,9 @@ const Sidebar = ({data,loading})=> {
           sidebarState={state}
           title="Collection"
           icon={<TbFolder/>}
-          
+          path="/collection"
         >
-          {loading && data?.data.map((item,id)=>(
-            <span>{item.collectionTitle}</span>
-          ))}
+         
         </SidebarLink>
       </div>
     </div>

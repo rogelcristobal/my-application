@@ -1,20 +1,24 @@
 import React from "react";
 
-const SidebarLink = ({ title, initialTrue, sidebarState,icon,children }) => {
+const SidebarLink = ({ title, initialTrue, sidebarState,icon,children ,path}) => {
   const [hoverState, setHOverState] = React.useState(false);
   const hoverToggle = () => {
     setHOverState(!hoverState);
   };
+  const handleClick=()=>{
+    alert(path)
+  }
   return (
     <>
-    <button
+    <button 
+      onClick={handleClick}
       onMouseEnter={hoverToggle}
       onMouseLeave={hoverToggle}
       className={`flex items-center gap-3 rounded-lg t text-[0.825rem] text-left   ${
         initialTrue ? "text-white bg-[#1e1e1e]  border-dark" : "text-[#808088] font-medium"
       } ${
         sidebarState ? " px-[1.2rem] py-2 justify-center" : " px-3 py-3"
-      } flex-shrink-0 font-medium   whitespace-nowrap  relative capitalize  mb-2 w-full`}
+      } flex-shrink-0 font-medium   whitespace-nowrap  relative capitalize  mb-2.5 w-full`}
     >
       <span className="text-[1.1rem] ">{icon}</span>
       {!sidebarState && title}
