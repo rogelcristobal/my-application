@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
-const NotesSchema = new mongoose.Schema({
+const NotesCollectionSchema = new mongoose.Schema({
     collectionTitle:{type:String,required:true},
     userID:{type: mongoose.Schema.Types.ObjectId, ref:"users", required:true}
 })
 
 
-export const NotesModel = mongoose.model("note-collections", NotesSchema)
+export const NotesCollectionModel = mongoose.model("note-collections", NotesCollectionSchema)

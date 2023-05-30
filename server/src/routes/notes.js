@@ -1,12 +1,12 @@
 import express from "express";
-import { NotesModel } from "../models/Notes.js";
+import { NotesCollectionModel } from "../models/NotesCollection.js";
 const router = express.Router();
-// adding notes
-router.post("/add-note", async (request, response) => {
+// adding note collection
+router.post("/", async (request, response) => {
   try {
     const { collectionTitle, userID } = request.body;
 
-    const newNote = new NotesModel({
+    const newNote = new NotesCollectionModel({
       collectionTitle: collectionTitle,
       userID: userID,
     });
@@ -18,11 +18,11 @@ router.post("/add-note", async (request, response) => {
     response.status(500).json({ error: "An error occurred" });
   }
 });
-// getting user notes
-router.get("/user/:userId", async (request, response) => {
+// getting user note collection
+router.get("/:userId", async (request, response) => {
   try {
     const userId = request.params.userId;
-    const notes = await NotesModel.find({ userID: userId });
+    const notes = await NotesCollectionModel.find({ userID: userId });
     response.status(200).json({ status: "success", data: notes });
   } catch (error) {
     response.status(500).json({

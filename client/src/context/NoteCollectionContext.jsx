@@ -7,7 +7,7 @@ export const NoteCollectionProvider = ({ USER_ID,children }) => {
    const fetchNotes = async (value) => {
     try {
       const response = await Axios.get(
-        `http://localhost:3001/notes/user/${value}`
+        `http://localhost:3001/collections/${value}`
       );
       return response.data;
     } catch (error) {
