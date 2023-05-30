@@ -8,4 +8,5 @@ const NoteSchema= new mongoose.Schema({
     collectionID:{type: mongoose.Schema.Types.ObjectId, ref:"note-collections", required: true}
 })
 
+
 export const NoteModel = mongoose.model("saved-notes", NoteSchema)
