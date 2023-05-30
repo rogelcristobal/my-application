@@ -5,11 +5,10 @@ import mongoose from "mongoose";
 const UserSchema = new mongoose.Schema({
     username:{type:String,required:true,unique:true},
     password:{type:String,required:true},
-    // savedNotes:[{type:mongoose.Schema.Types.ObjectId, ref: "saved-notes"}],
-    // noteCollections:[{type: mongoose.Schema.Types.ObjectId, ref: "note-collection"}]
+    noteCollections:[{type: mongoose.Schema.Types.ObjectId, ref: "note-collection"}]
 })
 
-
+// users -> noteCollection
 
 
 export const UserModel = mongoose.model("users", UserSchema)

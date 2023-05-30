@@ -9,6 +9,7 @@ router.post("/", async (request, response) => {
     const newNote = new NotesCollectionModel({
       collectionTitle: collectionTitle,
       userID: userID,
+      savedNotes: []
     });
     await newNote.save();
 
@@ -32,6 +33,8 @@ router.get("/:userId", async (request, response) => {
     });
   }
 });
+
+
 
 
 export { router as noteRouter };
