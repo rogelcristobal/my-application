@@ -7,8 +7,8 @@ const router = express.Router();
 // get all notes by current user
 router.post("/", async (request, response) => {
   try {
-    const { userID } = request.body;
-    const dashboardAllNotes = await NoteModel.find({ userID: userID });
+    const { uid } = request.body;
+    const dashboardAllNotes = await NoteModel.find({ uid: uid });
     response.status(200).json({ status: "success", data: dashboardAllNotes });
   } catch (error) {
     response.status(500).json({

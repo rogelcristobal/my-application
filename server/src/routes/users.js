@@ -2,6 +2,7 @@ import express from "express";
 import { UserModel } from "../models/Users.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import mongoose from "mongoose";
 const router = express.Router();
 
 // this will register a new user to the Users table
@@ -64,5 +65,25 @@ router.post("/login", async (request, response) => {
     });
   }
 });
+
+router.post("/register-new", async(request,response)=>{
+  try {
+    const {uid, email, noteCollections} = request.body
+    //checks if user already exist
+    const user = await UserModel.findOne({uid:uid})
+    if (user) {
+      return response.json({ message: "User already exist" });
+    }
+
+    const newUser = new UserModel({uid:uid,email,noteCollections})
+    
+
+    await newUser.save()
+    response.json({message:"new user created"})
+  } catch (error) {
+     response.json({ message: "error: ", error });
+  }
+})
+
 
 export { router as userRouter };

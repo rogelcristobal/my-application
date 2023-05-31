@@ -2,17 +2,18 @@ import express from "express";
 import { NotesCollectionModel } from "../models/NotesCollection.js";
 import { UserModel } from "../models/Users.js";
 import { NoteModel } from "../models/Note.js";
+import mongoose from "mongoose";
 
 const router = express.Router();
 
-// create new note collection
+// create new note collection (OK)
 router.post("/", async (request, response) => {
   try {
-    const { collectionTitle, userID } = request.body;
+    const { collectionTitle, uid } = request.body;
 
     const newNoteCollection = new NotesCollectionModel({
       collectionTitle: collectionTitle,
-      userID: userID,
+      uid: uid,
       savedNotes: [],
     });
     await newNoteCollection.save();
@@ -37,19 +38,19 @@ router.get("/:userId", async (request, response) => {
     });
   }
 });
-// add note
-router.post("/notes", async(request,response)=>{
+// create note 
+router.post("/add-note", async(request,response)=>{
   try {
-    const {collectionID,title,userID}= request.body
+    const {collectionID,uid,title}= request.body
 
     // create a new note first
     const newNote = new NoteModel({
-      collectionID:collectionID,title:title,userID:userID
+      collectionID:collectionID,title:title,uid:uid
     })
     await newNote.save()
     
-    // then find the collection you want to edit
-    const newNoteCollection = await NotesCollectionModel.findById("64759d2cfedbde8127e21304")
+    // then find the collection you want to edit/add the created note 
+    const newNoteCollection = await NotesCollectionModel.findById(collectionID)
     if (!newNoteCollection) {
       return response.status(404).json({ error: 'NotesCollection not found' });
     }
@@ -58,7 +59,7 @@ router.post("/notes", async(request,response)=>{
     newNoteCollection.savedNotes.push(newNote._id)
     await newNoteCollection.save()
     
-    response.json(newNoteCollection)
+    response.status(200).json({status:"success", data:newNoteCollection})
   } catch (error) {
     
   }
