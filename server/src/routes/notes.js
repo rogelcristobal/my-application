@@ -1,8 +1,6 @@
 import express from "express";
 import { NotesCollectionModel } from "../models/NotesCollection.js";
-import { UserModel } from "../models/Users.js";
 import { NoteModel } from "../models/Note.js";
-import mongoose from "mongoose";
 
 const router = express.Router();
 
@@ -38,7 +36,7 @@ router.get("/:userId", async (request, response) => {
     });
   }
 });
-// create note 
+// create note (OK)
 router.post("/add-note", async(request,response)=>{
   try {
     const {collectionID,uid,title}= request.body

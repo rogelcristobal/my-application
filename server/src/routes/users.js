@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 const router = express.Router();
 
 // this will register a new user to the Users table
-router.post("/register", async (req, res) => {
+router.post("/sample-register", async (req, res) => {
   try {
     // the api accepts two data
     const { username, password } = req.body;
@@ -34,7 +34,7 @@ router.post("/register", async (req, res) => {
   }
 });
 // login
-router.post("/login", async (request, response) => {
+router.post("/sample-login", async (request, response) => {
   try {
     // api accepts two data
     const { username, password } = request.body;
@@ -66,16 +66,16 @@ router.post("/login", async (request, response) => {
   }
 });
 
-router.post("/register-new", async(request,response)=>{
+router.post("/register", async(request,response)=>{
   try {
-    const {uid, email, noteCollections} = request.body
+    const {uid, email} = request.body
     //checks if user already exist
     const user = await UserModel.findOne({uid:uid})
     if (user) {
       return response.json({ message: "User already exist" });
     }
 
-    const newUser = new UserModel({uid:uid,email,noteCollections})
+    const newUser = new UserModel({uid:uid,email,noteCollections:[]})
     
 
     await newUser.save()
