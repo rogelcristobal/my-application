@@ -2,25 +2,31 @@ import React from "react";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
 import { auth } from "../firebase-config";
 import Axios from "axios";
 const Login = () => {
   const [currentUser, setCurrentUser] = React.useState({});
-  const [register, setRegister] = React.useState({
+  const [registerInput, setRegisterInput] = React.useState({
     email: "",
     password: "",
   });
+  const [logInInput, setLogInInput] = React.useState({
+    email: "",
+    password: "",
+  });
+
   const registerUser = async () => {
     try {
       const { user } = await createUserWithEmailAndPassword(
         auth,
-        register.email,
-        register.password
+        registerInput.email,
+        registerInput.password
       );
       console.log(user);
-
+      
       //  request storing uid and other data to the db
       if (user) {
         const response = await Axios.post(
@@ -31,14 +37,16 @@ const Login = () => {
           }
         );
         console.log(response.data);
-        logout()
+        logOutUser();
       }
+
+      setRegisterInput({email:"",password:""})
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  const logout = async () => {
+  const logOutUser = async () => {
     try {
       await auth.signOut();
       console.log("User signed out successfully");
@@ -46,7 +54,20 @@ const Login = () => {
       console.error("Error signing out:", error);
     }
   };
-  
+  const logInUser = async () => {
+    try {
+      const { user } = await signInWithEmailAndPassword(
+        auth,
+        logInInput.email,
+        logInInput.password
+      );
+      console.log(user);
+      setLogInInput({email:'',password:""})
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   React.useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
@@ -74,8 +95,8 @@ const Login = () => {
         type="text"
         placeholder="email"
         onChange={(e) =>
-          setRegister({
-            ...register,
+          setRegisterInput({
+            ...registerInput,
             email: e.target.value,
           })
         }
@@ -83,12 +104,10 @@ const Login = () => {
       <input
         className="sample ml-2"
         type="password"
-        name=""
-        id=""
         placeholder="password"
         onChange={(e) =>
-          setRegister({
-            ...register,
+          setRegisterInput({
+            ...registerInput,
             password: e.target.value,
           })
         }
@@ -98,11 +117,36 @@ const Login = () => {
       </button>
 
       <p>current user: {currentUser?.email}</p>
-      <button className="sample ml-2 p-1" onClick={logout}>
+      <button className="sample ml-2 p-1" onClick={logOutUser}>
         logout
       </button>
 
       <p className="mt-20">login</p>
+      <input
+        className="sample"
+        type="text"
+        placeholder="email"
+        onChange={(e) =>
+          setLogInInput({
+            ...logInInput ,
+            email: e.target.value,
+          })
+        }
+      />
+      <input
+        className="sample ml-2"
+        type="password"
+        placeholder="password"
+        onChange={(e) =>
+          setLogInInput({
+            ...logInInput ,
+            password: e.target.value,
+          })
+        }
+      />
+      <button className="sample ml-2 p-1" onClick={logInUser}>
+        log in
+      </button>
     </div>
   );
 };
