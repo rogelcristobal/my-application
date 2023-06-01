@@ -7,8 +7,9 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase-config";
 import Axios from "axios";
+import AuthContext from "../context/AuthContext";
 const Login = () => {
-  const [currentUser, setCurrentUser] = React.useState({});
+  const {currentUser} = React.useContext(AuthContext)
   const [registerInput, setRegisterInput] = React.useState({
     email: "",
     password: "",
@@ -26,7 +27,7 @@ const Login = () => {
         registerInput.password
       );
       console.log(user);
-      
+
       //  request storing uid and other data to the db
       if (user) {
         const response = await Axios.post(
@@ -40,7 +41,7 @@ const Login = () => {
         logOutUser();
       }
 
-      setRegisterInput({email:"",password:""})
+      setRegisterInput({ email: "", password: "" });
     } catch (error) {
       console.log(error.message);
     }
@@ -62,31 +63,31 @@ const Login = () => {
         logInInput.password
       );
       console.log(user);
-      setLogInInput({email:'',password:""})
+      setLogInInput({ email: "", password: "" });
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  React.useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        // User is signed in
-        console.log("User is signed in:", user);
-        // Perform actions for authenticated user
-        setCurrentUser(user);
-      } else {
-        // User is signed out
-        console.log("User is signed out");
-        // Perform actions for signed out user
-        setCurrentUser({});
-      }
-    });
+  // React.useEffect(() => {
+  //   const unsubscribe = auth.onAuthStateChanged((user) => {
+  //     if (user) {
+  //       // User is signed in
+  //       console.log("User is signed in:", user);
+  //       // Perform actions for authenticated user
+  //       setCurrentUser(user);
+  //     } else {
+  //       // User is signed out
+  //       console.log("User is signed out");
+  //       // Perform actions for signed out user
+  //       setCurrentUser({});
+  //     }
+  //   });
 
-    // Clean up the event listener when the component unmounts
-    return () => unsubscribe();
-  }, []);
-
+  //   // Clean up the event listener when the component unmounts
+  //   return () => unsubscribe();
+  // }, []);
+  console.log('onAuth',currentUser?.email)
   return (
     <div className="h-full">
       <p>register</p>
@@ -128,7 +129,7 @@ const Login = () => {
         placeholder="email"
         onChange={(e) =>
           setLogInInput({
-            ...logInInput ,
+            ...logInInput,
             email: e.target.value,
           })
         }
@@ -139,7 +140,7 @@ const Login = () => {
         placeholder="password"
         onChange={(e) =>
           setLogInInput({
-            ...logInInput ,
+            ...logInInput,
             password: e.target.value,
           })
         }
