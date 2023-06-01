@@ -2,12 +2,16 @@ import mongoose from "mongoose";
 
 
 // this structures how the data would looked like in the users table
+const schemaType = mongoose.Schema.Types
 const UserSchema = new mongoose.Schema({
-    username:{type:String,required:true,unique:true},
-    password:{type:String,required:true}
+    uid:{type: schemaType.String,required:true,unqique:true},
+    email:{type:schemaType.String,required:true},
+    // firstName:{type:schemaType.String,required:true},
+    // lastName:{type:schemaType.String,required:true},
+    noteCollections:[{type: schemaType.ObjectId, ref: "note-collection", required:true}]
 })
 
-
+// users -> noteCollection
 
 
 export const UserModel = mongoose.model("users", UserSchema)

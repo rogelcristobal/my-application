@@ -3,19 +3,31 @@
 @tailwind utilities;
 
 @layer components {
-  *{
+  * {
     /* @apply thin-box-divider */
   }
   ::-webkit-scrollbar {
-    width: 0.45rem; 
+    width: 0.45rem;
   }
 
   ::-webkit-scrollbar-thumb {
     @apply cursor-pointer bg-[#1a1c1e]/10 hover:bg-[#1a1c1e]/20 rounded-lg;
   }
-  .sample2 {
-    @apply border-[1px] bg-[#333545]/10;
+  .border-dark-right {
+    @apply border-r-[1px] border-neutral-100/10;
   }
+  .border-dark-left {
+    @apply border-l-[1px] border-neutral-100/10;
+  }
+  .border-dark-top {
+    @apply border-t-[1px] border-neutral-100/10;
+  }
+  .border-dark-bottom {
+    @apply border-b-[1px] border-neutral-100/10;
+  }
+    .border-dark {
+      @apply border-[1px] border-neutral-100/10;
+    }
   .sample {
     box-shadow: rgba(0, 0, 0, 0.03) 0px 6px 6px 0px,
       rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
@@ -51,32 +63,33 @@
   }
 
   /* fonts */
+
   @font-face {
-    font-family: "helvetica-bold";
-    src: url("./assets/fonts/Helvetica-Bold.ttf");
+    font-family: "ProductSansRegular";
+    src: url("./assets/fonts/ProductSansRegular.ttf");
   }
   @font-face {
-    font-family: "helvetica-boldOblique";
-    src: url("./assets/fonts/Helvetica-BoldOblique.ttf");
+    font-family: "ProductSansBold";
+    src: url("./assets/fonts/ProductSansBold.ttf");
   }
   @font-face {
-    font-family: "helvetica-compressed";
-    src: url("./assets/fonts/helvetica-compressed.otf");
+    font-family: "HelveticaNeueRoman";
+    src: url("./assets/fonts/HelveticaNeueRoman.otf");
   }
   @font-face {
-    font-family: "helvetica-light";
-    src: url("./assets/fonts/helvetica-light.ttf");
+    font-family: "HelveticaNeueMedium";
+    src: url("./assets/fonts/HelveticaNeueMedium.otf");
   }
   @font-face {
-    font-family: "helvetica-Oblique";
-    src: url("./assets/fonts/Helvetica-Oblique.ttf");
+    font-family: "HelveticaNeueBold";
+    src: url("./assets/fonts/HelveticaNeueBold.ttf");
   }
   @font-face {
-    font-family: "helvetica-roudedBold";
-    src: url(./assets/fonts/helvetica-rounded-bold.otf);
+    font-family: "HelveticaNeueThin";
+    src: url("./assets/fonts/HelveticaNeueThin.otf");
   }
   @font-face {
-    font-family: "helvetica";
-    src: url("./assets/fonts/Helvetica.ttf");
+    font-family: "HelveticaNeueBlack";
+    src: url("./assets/fonts/HelveticaNeueHeavy.otf");
   }
 }
