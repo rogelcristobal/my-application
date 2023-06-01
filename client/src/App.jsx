@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Collections from "./pages/Collections";
 import Sidebar from "./components/Sidebar";
 import { NoteCollectionProvider } from "./context/NoteCollectionContext";
+
 import AuthContext from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { auth } from "./firebase-config";
@@ -62,6 +63,7 @@ function App() {
       ></Route>
     </Routes>
     </>
+
   );
 }
 
