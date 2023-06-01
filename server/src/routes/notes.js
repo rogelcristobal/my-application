@@ -16,7 +16,7 @@ router.post("/", async (request, response) => {
     });
     await newNoteCollection.save();
 
-    response.json({ message: "data added!" });
+    response.json({ message: "data added!" ,data: newNoteCollection});
   } catch (error) {
     console.error(error);
     response.status(500).json({ error: "An error occurred" });

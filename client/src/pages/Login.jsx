@@ -1,6 +1,7 @@
 import React from 'react';
 import {createUserWithEmailAndPassword} from 'firebase/auth'
 import {auth} from '../firebase-config'
+import Axios from 'axios'
 const Login = () => {
 
   const [register,setRegister] = React.useState({
@@ -9,12 +10,17 @@ const Login = () => {
   })
   const registerUser=async()=>{
    try {
-     const user = await createUserWithEmailAndPassword(auth , register.email,register.password)
+     const {user} = await createUserWithEmailAndPassword(auth , register.email,register.password)
      console.log(user)
 
     //  request storing uid and other data to the db
+    const response = await Axios.post('http://localhost:3001/auth/register', {
+      uid:user.uid,
+      email:user.email
+    })
+    console.log(response.data)
    } catch (error) {
-    
+    console.log(error.message)
    }
   }
   return (
