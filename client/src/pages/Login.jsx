@@ -9,7 +9,9 @@ import { auth } from "../firebase-config";
 import Axios from "axios";
 import AuthContext from "../context/AuthContext";
 const Login = () => {
-  const {currentUser} = React.useContext(AuthContext)
+
+  const {currentUser, setCurrentUser} = React.useContext(AuthContext);
+
   const [registerInput, setRegisterInput] = React.useState({
     email: "",
     password: "",
@@ -83,6 +85,11 @@ const Login = () => {
   //       setCurrentUser({});
   //     }
   //   });
+
+
+  //   // Clean up the event listener when the component unmounts
+  //   return () => unsubscribe();
+  // }, []);
 
   //   // Clean up the event listener when the component unmounts
   //   return () => unsubscribe();
