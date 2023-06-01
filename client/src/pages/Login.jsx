@@ -7,8 +7,9 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase-config";
 import Axios from "axios";
+import AuthContext from "../context/AuthContext";
 const Login = () => {
-  const [currentUser, setCurrentUser] = React.useState({});
+  const {currentUser, setCurrentUser} = React.useContext(AuthContext);
   const [registerInput, setRegisterInput] = React.useState({
     email: "",
     password: "",
@@ -68,24 +69,24 @@ const Login = () => {
     }
   };
 
-  React.useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        // User is signed in
-        console.log("User is signed in:", user);
-        // Perform actions for authenticated user
-        setCurrentUser(user);
-      } else {
-        // User is signed out
-        console.log("User is signed out");
-        // Perform actions for signed out user
-        setCurrentUser({});
-      }
-    });
+  // React.useEffect(() => {
+  //   const unsubscribe = auth.onAuthStateChanged((user) => {
+  //     if (user) {
+  //       // User is signed in
+  //       console.log("User is signed in:", user);
+  //       // Perform actions for authenticated user
+  //       setCurrentUser(user);
+  //     } else {
+  //       // User is signed out
+  //       console.log("User is signed out");
+  //       // Perform actions for signed out user
+  //       setCurrentUser({});
+  //     }
+  //   });
 
-    // Clean up the event listener when the component unmounts
-    return () => unsubscribe();
-  }, []);
+  //   // Clean up the event listener when the component unmounts
+  //   return () => unsubscribe();
+  // }, []);
 
   return (
     <div className="h-full">
