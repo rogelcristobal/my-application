@@ -26,7 +26,7 @@ router.post("/", async(request,response)=>{
     user.noteCollections.push(newNoteCollection._id)
     await user.save()
     
-    response.status(200).json({status:"success",userID:user._id,email:user.email, collection:user.noteCollections})
+    response.status(200).json({status:"success",userID:user._id,email:user.email, collections:user.noteCollections})
   } catch (error) {
     response.status(500).json({
       status: "error",
@@ -36,7 +36,7 @@ router.post("/", async(request,response)=>{
   }
 })
 
-// create note 
+// create note (OK)
 router.post("/create-note", async(request,response)=>{
    try {
     const {userID,title,collectionID}= request.body
@@ -55,7 +55,7 @@ router.post("/create-note", async(request,response)=>{
     collection.savedNotes.push(newNote._id)
     await collection.save()
     
-    response.status(200).json({status:"success",collection:collection})
+    response.status(200).json({status:"success",userID:collection.userID,email:collection.email, savedNotes:collection.savedNotes})
   } catch (error) {
     response.status(500).json({
       status: "error",

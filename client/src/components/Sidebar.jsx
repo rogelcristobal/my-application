@@ -8,11 +8,11 @@ const Sidebar = () => {
     setState(!state);
   };
 
-  const { data, isLoading } = React.useContext(NoteCollectionContext);
-  if (!isLoading) {
-    console.log(data.data);
+  // const { data, isLoading } = React.useContext(NoteCollectionContext);
+  // if (!isLoading) {
+  //   console.log(data.data);
 
-  }
+  // }
 
   return (
     <div
@@ -68,7 +68,7 @@ const Sidebar = () => {
           title="Collection"
           icon={<TbFolder />}
           path="/collections"
-          count={data?.data.length}
+          count={0}
         ></SidebarLink>
       </div>
     </div>

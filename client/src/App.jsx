@@ -42,7 +42,7 @@ function App() {
          <ProtectedRoute userLoading={userLoading} currentUser={currentUser}>
            <div className="h-full w-full font-plus ">
             <div className="h-screen w-full bg-[#171717] text-white flex items-start  justify-start relative">
-              <NoteCollectionProvider USER_ID='QEO8pjVKkXeNjGy1LRFPCmi3UVS2'>
+              <NoteCollectionProvider USER_ID='65dqzbapFHPjDMa5ICa134U6WXO2'>
                 <Sidebar></Sidebar>
                 <Routes>
                   <Route
