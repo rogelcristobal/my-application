@@ -33,7 +33,7 @@ function App() {
   }, []);
   return (
     <>
-      <span className="fixed top-0 right-0 p-2 flex flex-col bg-white z-50">{currentUser?.email}</span>
+      {/* <span className="fixed top-0 right-0 p-2 flex flex-col bg-white z-50">{currentUser?.email}</span> */}
     <Routes>
       <Route path="/login" element={<Login />}></Route>
       <Route
