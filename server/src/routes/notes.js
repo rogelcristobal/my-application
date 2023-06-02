@@ -1,27 +1,72 @@
 import express from "express";
 import { NotesCollectionModel } from "../models/NotesCollection.js";
 import { NoteModel } from "../models/Note.js";
+import { UserModel } from "../models/Users.js";
 
 const router = express.Router();
 
 // create new note collection (OK)
-router.post("/", async (request, response) => {
+router.post("/", async(request,response)=>{
   try {
-    const { collectionTitle, uid } = request.body;
+    const {userID,title}= request.body
 
+    // find the user you want to edit/add the created collection 
+    const user = await UserModel.findById(userID)
+    if (!user) {
+      return response.status(404).json({ error: 'user not found' });
+    }
+    // create a new collection 
     const newNoteCollection = new NotesCollectionModel({
-      collectionTitle: collectionTitle,
-      uid: uid,
-      savedNotes: [],
-    });
-    await newNoteCollection.save();
+      userID:userID,collectionTitle:title,savedNotes:[]
+    })
+    await newNoteCollection.save()
+    
 
-    response.json({ message: "data added!" ,data: newNoteCollection});
+    //then savedNotes will contain the objectID of the note
+    user.noteCollections.push(newNoteCollection._id)
+    await user.save()
+    
+    response.status(200).json({status:"success",userID:user._id,email:user.email, collections:user.noteCollections})
   } catch (error) {
-    console.error(error);
-    response.status(500).json({ error: "An error occurred" });
+    response.status(500).json({
+      status: "error",
+      message: "An error occurred",
+      error: error.message,
+    });
   }
-});
+})
+
+// create note (OK)
+router.post("/create-note", async(request,response)=>{
+   try {
+    const {userID,title,collectionID}= request.body
+
+    // find the user you want to edit/add the created collection 
+    const collection = await NotesCollectionModel.findById(collectionID)
+    if (!collection) {
+      return response.status(404).json({ error: 'collection not found' });
+    }
+    // // create a new collection 
+    const newNote = new NoteModel({
+      userID:userID,title:title,collectionID:collectionID
+    })
+    await newNote.save()
+    
+    collection.savedNotes.push(newNote._id)
+    await collection.save()
+    
+    response.status(200).json({status:"success",userID:collection.userID,email:collection.email, savedNotes:collection.savedNotes})
+  } catch (error) {
+    response.status(500).json({
+      status: "error",
+      message: "An error occurred",
+      error: error.message,
+    });
+  }
+})
+
+
+
 // getting user note collection
 router.get("/:userId", async (request, response) => {
   try {
@@ -36,32 +81,6 @@ router.get("/:userId", async (request, response) => {
     });
   }
 });
-// create note (OK)
-router.post("/add-note", async(request,response)=>{
-  try {
-    const {collectionID,uid,title}= request.body
-
-    // create a new note first
-    const newNote = new NoteModel({
-      collectionID:collectionID,title:title,uid:uid
-    })
-    await newNote.save()
-    
-    // then find the collection you want to edit/add the created note 
-    const newNoteCollection = await NotesCollectionModel.findById(collectionID)
-    if (!newNoteCollection) {
-      return response.status(404).json({ error: 'NotesCollection not found' });
-    }
-
-    //then savedNotes will contain the objectID of the note
-    newNoteCollection.savedNotes.push(newNote._id)
-    await newNoteCollection.save()
-    
-    response.status(200).json({status:"success", data:newNoteCollection})
-  } catch (error) {
-    
-  }
-})
 
 
 

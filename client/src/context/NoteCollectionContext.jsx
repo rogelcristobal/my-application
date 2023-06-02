@@ -4,21 +4,21 @@ const NoteCollectionContext = React.createContext();
 import { useQuery } from "@tanstack/react-query";
 export const NoteCollectionProvider = ({ USER_ID,children }) => {
 
-   const fetchNotes = async (value) => {
-    try {
-      const response = await Axios.get(
-        `http://localhost:3001/collections/${value}`
-      );
-      return response.data;
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-  const { data, isLoading } = useQuery(["notes"], () =>
-    fetchNotes(USER_ID)
-  );
+  //  const fetchNotes = async (value) => {
+  //   try {
+  //     const response = await Axios.get(
+  //       `http://localhost:3001/dashboard/${value}`
+  //     );
+  //     return response.data;
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
+  // const { data, isLoading } = useQuery(["notes"], () =>
+  //   fetchNotes(USER_ID)
+  // );
   return (
-    <NoteCollectionContext.Provider value={{data,isLoading}}>
+    <NoteCollectionContext.Provider value={{}}>
       {children}
     </NoteCollectionContext.Provider>
   );

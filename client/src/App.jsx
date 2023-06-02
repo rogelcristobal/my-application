@@ -33,7 +33,7 @@ function App() {
   }, []);
   return (
     <>
-      <span className="fixed top-0 right-0 p-2 flex flex-col bg-white z-50">{currentUser?.email}</span>
+      {/* <span className="fixed top-0 right-0 p-2 flex flex-col bg-white z-50">{currentUser?.email}</span> */}
     <Routes>
       <Route path="/login" element={<Login />}></Route>
       <Route
@@ -42,7 +42,7 @@ function App() {
          <ProtectedRoute userLoading={userLoading} currentUser={currentUser}>
            <div className="h-full w-full font-plus ">
             <div className="h-screen w-full bg-[#171717] text-white flex items-start  justify-start relative">
-              <NoteCollectionProvider USER_ID='QEO8pjVKkXeNjGy1LRFPCmi3UVS2'>
+              <NoteCollectionProvider USER_ID='65dqzbapFHPjDMa5ICa134U6WXO2'>
                 <Sidebar></Sidebar>
                 <Routes>
                   <Route
