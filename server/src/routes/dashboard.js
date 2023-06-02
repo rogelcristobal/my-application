@@ -38,19 +38,6 @@ router.get("/:userID", async (request, response) => {
   }
 });
 
-router.get("/:userID/:collectionID", async (request, response) => {
-  try {
-    const { userID, collectionID } = request.params;
-    const collection = await NotesCollectionModel.findById(collectionID)
-      .populate("savedNotes") // populate the referencing field automatically
-      .lean(); // convert it to a js object
-    if (!collection) {
-      return response
-        .status(400)
-        .json({ message: "collection does not exist!" });
-    }
-    response.status(200).json({ message: "success", data: collection });
-  } catch (error) {}
-});
+
 
 export { router as dashboardRouter };
