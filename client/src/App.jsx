@@ -12,12 +12,12 @@ import { auth } from "./firebase-config";
 function App() {
   const {currentUser,setCurrentUser,userLoading,setUserLoading} = React.useContext(AuthContext)
    React.useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    auth.onAuthStateChanged((user) => {
       if (user) {
         // User is signed in
         console.log("User is signed in:", user);
         // Perform actions for authenticated user
-        setCurrentUser(user);
+        setCurrentUser({user});
         setUserLoading(false)
       } else {
         // User is signed out
@@ -27,9 +27,7 @@ function App() {
         setUserLoading(true)
       }
     });
-
-    // Clean up the event listener when the component unmounts
-    return () => unsubscribe();
+    
   }, []);
   return (
     <>

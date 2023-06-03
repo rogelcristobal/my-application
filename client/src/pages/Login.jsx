@@ -8,8 +8,9 @@ import {
 import { auth } from "../firebase-config";
 import Axios from "axios";
 import AuthContext from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
-
+  const navigate = useNavigate()
   const {currentUser, setCurrentUser} = React.useContext(AuthContext);
 
   const [registerInput, setRegisterInput] = React.useState({
@@ -39,6 +40,8 @@ const Login = () => {
           {
             uid: user.uid,
             email: user.email,
+            firstName:registerInput.firstName,
+            lastName:registerInput.lastName
           }
         );
         console.log(response.data);
@@ -66,7 +69,11 @@ const Login = () => {
         logInInput.email,
         logInInput.password
       );
-      console.log(user);
+      console.log('user logged in');
+      navigate('/dashboard')
+
+
+
       setLogInInput({ email: "", password: "" });
     } catch (error) {
       console.log(error.message);
@@ -74,7 +81,7 @@ const Login = () => {
   };
 
 
-  console.log('onAuth',currentUser?.email)
+  console.log('onAuth',currentUser)
   return (
     <div className="h-full">
       <p>register</p>
