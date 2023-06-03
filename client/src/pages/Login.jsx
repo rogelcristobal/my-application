@@ -15,6 +15,8 @@ const Login = () => {
   const [registerInput, setRegisterInput] = React.useState({
     email: "",
     password: "",
+    firstName:'',
+    lastName:'',
   });
   const [logInInput, setLogInInput] = React.useState({
     email: "",
@@ -71,29 +73,7 @@ const Login = () => {
     }
   };
 
-  // React.useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged((user) => {
-  //     if (user) {
-  //       // User is signed in
-  //       console.log("User is signed in:", user);
-  //       // Perform actions for authenticated user
-  //       setCurrentUser(user);
-  //     } else {
-  //       // User is signed out
-  //       console.log("User is signed out");
-  //       // Perform actions for signed out user
-  //       setCurrentUser({});
-  //     }
-  //   });
 
-
-  //   // Clean up the event listener when the component unmounts
-  //   return () => unsubscribe();
-  // }, []);
-
-  //   // Clean up the event listener when the component unmounts
-  //   return () => unsubscribe();
-  // }, []);
   console.log('onAuth',currentUser?.email)
   return (
     <div className="h-full">

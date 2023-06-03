@@ -21,8 +21,9 @@ router.get("/:userID", async (request, response) => {
       .lean();
 
     // just for getting the total notes of the user
-    const allNotes = await NoteModel.find({ userID: userID });
-    const totalNotes = allNotes.length;
+    // const allNotes = await NoteModel.find({ userID: userID });
+    // const totalNotes = allNotes.length;
+    const totalNotes = await NoteModel.count(userID)
 
     response.status(200).json({
       status: "sucess",
@@ -37,7 +38,5 @@ router.get("/:userID", async (request, response) => {
     });
   }
 });
-
-
 
 export { router as dashboardRouter };

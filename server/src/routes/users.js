@@ -68,16 +68,15 @@ const router = express.Router();
 
 router.post("/register", async(request,response)=>{
   try {
-    const {uid, email} = request.body
+    const {uid, email, firstName, lastName} = request.body
     //checks if user already exist
     const user = await UserModel.findOne({uid:uid})
     if (user) {
       return response.json({ message: "User already exist" });
     }
 
-    const newUser = new UserModel({uid:uid,email:email,noteCollections:[]})
+    const newUser = new UserModel({uid,email,firstName,lastName,noteCollections:[]})
     
-
     await newUser.save()
     response.json({message:"new user created",data: newUser})
   } catch (error) {
