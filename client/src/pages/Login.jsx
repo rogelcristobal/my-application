@@ -81,7 +81,6 @@ const Login = () => {
   };
 
 
-  console.log('onAuth',currentUser)
   return (
     <div className="h-full">
       <p>register</p>

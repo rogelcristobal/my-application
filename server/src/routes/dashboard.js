@@ -27,7 +27,8 @@ router.get("/:userID", async (request, response) => {
 
     response.status(200).json({
       status: "sucess",
-      collections: noteCollection,
+      user,
+  
       totalNotes: totalNotes,
     });
   } catch (error) {
