@@ -9,7 +9,7 @@ const router = express.Router();
 router.get("/:userID", async (request, response) => {
   try {
     const { userID } = request.params;
-    const user = await UserModel.findById(userID);
+    const user = await UserModel.findOne({uid:userID})
     if (!user) {
       return response.status(404).json({ error: "user not found" });
     }
@@ -21,14 +21,14 @@ router.get("/:userID", async (request, response) => {
       .lean();
 
     // just for getting the total notes of the user
-    const allNotes = await NoteModel.find({ userID: userID });
-    const totalNotes = allNotes.length;
-
-    response.status(200).json({
-      status: "sucess",
-      collections: noteCollection,
-      totalNotes: totalNotes,
-    });
+    // const allNotes = await NoteModel.find({ uid: uid });
+    // const totalNotes = allNotes.length;
+    const totalNotes = await NoteModel.count(userID)
+    
+    response.status(200).json(
+      {user,noteCollection,totalNotes}
+    );
+    // totalNotes: totalNotes,
   } catch (error) {
     response.status(500).json({
       status: "error",
@@ -37,7 +37,5 @@ router.get("/:userID", async (request, response) => {
     });
   }
 });
-
-
 
 export { router as dashboardRouter };

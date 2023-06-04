@@ -8,13 +8,16 @@ import {
 import { auth } from "../firebase-config";
 import Axios from "axios";
 import AuthContext from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
-
+  const navigate = useNavigate()
   const {currentUser, setCurrentUser} = React.useContext(AuthContext);
 
   const [registerInput, setRegisterInput] = React.useState({
     email: "",
     password: "",
+    firstName:'',
+    lastName:'',
   });
   const [logInInput, setLogInInput] = React.useState({
     email: "",
@@ -37,6 +40,8 @@ const Login = () => {
           {
             uid: user.uid,
             email: user.email,
+            firstName:registerInput.firstName,
+            lastName:registerInput.lastName
           }
         );
         console.log(response.data);
@@ -64,37 +69,18 @@ const Login = () => {
         logInInput.email,
         logInInput.password
       );
-      console.log(user);
+      console.log(`login success: ${user?.email}`);
+      navigate('/dashboard')
+
+
+
       setLogInInput({ email: "", password: "" });
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  // React.useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged((user) => {
-  //     if (user) {
-  //       // User is signed in
-  //       console.log("User is signed in:", user);
-  //       // Perform actions for authenticated user
-  //       setCurrentUser(user);
-  //     } else {
-  //       // User is signed out
-  //       console.log("User is signed out");
-  //       // Perform actions for signed out user
-  //       setCurrentUser({});
-  //     }
-  //   });
 
-
-  //   // Clean up the event listener when the component unmounts
-  //   return () => unsubscribe();
-  // }, []);
-
-  //   // Clean up the event listener when the component unmounts
-  //   return () => unsubscribe();
-  // }, []);
-  console.log('onAuth',currentUser?.email)
   return (
     <div className="h-full">
       <p>register</p>
@@ -117,6 +103,29 @@ const Login = () => {
           setRegisterInput({
             ...registerInput,
             password: e.target.value,
+          })
+        }
+      />
+      <br />
+      <input
+        className="sample"
+        type="text"
+        placeholder="firstname"
+        onChange={(e) =>
+          setRegisterInput({
+            ...registerInput,
+            firstName: e.target.value,
+          })
+        }
+      />
+      <input
+        className="sample ml-2"
+        type="text"
+        placeholder="lastname"
+        onChange={(e) =>
+          setRegisterInput({
+            ...registerInput,
+            lastName: e.target.value,
           })
         }
       />
