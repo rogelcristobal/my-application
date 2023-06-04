@@ -69,7 +69,7 @@ const Sidebar = () => {
           title="Collection"
           icon={<TbFolder />}
           path="/collections"
-          count={data?.user?.noteCollections.length}
+          count={data?.noteCollection.length}
         ></SidebarLink>
       </div>
     </div>

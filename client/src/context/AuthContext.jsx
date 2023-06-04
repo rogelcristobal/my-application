@@ -10,36 +10,25 @@ export const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = React.useState(null);
   const [userLoading, setUserLoading] = React.useState(true);
 
-  const [userData, setUserData] = React.useState(null);
-  const fetchData= async(uid)=>{
-    if(uid){
-      
-      try {
-      const res = await axios.get(`http://localhost:3001/dashboard/${uid}`)
-      return res.data
-
-    } catch (error) {
-     throw new Error('Error fetching user data');
-    }
-    }
-  }
+  const [data, setData] = React.useState(null);
+ 
   React.useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
         // User is signed in
         // Perform actions for authenticated user
-        setUserLoading(false);
         setCurrentUser(user);
+        setUserLoading(false);
 
-        // const res = await axios.get(`http://localhost:3001/dashboard/${user.uid}`)
-        // setUserData(res.data)
+        const res = await axios.get(`http://localhost:3001/dashboard/${user.uid}`)
+        setData(res.data)
 
 
       } else {
         // User is signed out
         // Perform actions for signed out user
         setCurrentUser({});
-        setUserData({})
+        setData({})
         setUserLoading(true);
       }
     });
@@ -47,12 +36,8 @@ export const AuthContextProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  const { data, isLoading, error } = useQuery(['user', currentUser?.uid], () => fetchData(currentUser?.uid), {
-    enabled: currentUser?.uid !== null,
-  });
 
-
-  if(!isLoading){
+  if(!userLoading){
     console.log(data)
   }
   

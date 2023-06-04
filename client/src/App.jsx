@@ -5,17 +5,10 @@ import Home from "./pages/Home";
 import Collections from "./pages/Collections";
 import Sidebar from "./components/Sidebar";
 import { NoteCollectionProvider } from "./context/NoteCollectionContext";
-import Axios from "axios";
 import AuthContext from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
-import axios from "axios";
 function App() {
-  const { currentUser, userLoading, data } =
-    React.useContext(AuthContext);
-
-  if (!userLoading) {
-    console.log("context", data);
-  }
+  const { currentUser, userLoading, data } = React.useContext(AuthContext);
 
   return (
     <Routes>

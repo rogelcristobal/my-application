@@ -21,7 +21,7 @@ const Home = () => {
       <button className="fixed top-0 p-1 bg-blue-500 text-white right-0" onClick={logOutUser}>log out</button>
       <div className="h-fit w-full flex  px-12 pb-6 flex-col">
         {/* <span className="mb-3 font-medium text-[0.85rem] text-[#6360ea]">Dashboard</span> */}
-        <span className="font-semibold capitalize text-[1.35rem]">Welcome, {data?.user?.firstName}.</span>
+        <span className="font-semibold capitalize text-[1.35rem]">Welcome, {data?.firstName}.</span>
         <span className="text-[0.775rem] font-medium  tracking-wide mt-2 text-[#808088]/70">
           Here's your data today.
         </span>
