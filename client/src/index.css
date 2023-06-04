@@ -9,7 +9,7 @@
   ::-webkit-scrollbar {
     width: 0.45rem;
   }
-
+ 
   ::-webkit-scrollbar-thumb {
     @apply cursor-pointer bg-[#1a1c1e]/10 hover:bg-[#1a1c1e]/20 rounded-lg;
   }

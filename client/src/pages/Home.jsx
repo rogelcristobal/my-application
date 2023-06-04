@@ -17,23 +17,23 @@ const Home = () => {
     }
   };
   return (
-    <div className="h-full  pt-12 w-full flex flex-col items-start relative justify-start">
-      <button className="fixed top-0 p-1 bg-blue-500 text-white right-0" onClick={logOutUser}>log out</button>
-      <div className="h-fit w-full flex  px-12 pb-6 flex-col">
+    <div className="h-full  pt-9 w-full flex flex-col items-start justify-start relative">
+      
+       <div className="h-fit w-full flex  px-9 pb-3 flex-col">
         {/* <span className="mb-3 font-medium text-[0.85rem] text-[#6360ea]">Dashboard</span> */}
-        <span className="font-semibold capitalize text-[1.35rem]">Welcome, {data?.firstName}.</span>
-        <span className="text-[0.775rem] font-medium  tracking-wide mt-2 text-[#808088]/70">
+        <span className="font-medium text-[1.35rem] capitalize">Welcome back, {data?.firstName}.</span>
+        <span className="text-[0.75rem] font-medium text-[#808088]/50 mt-6 ">
           Here's your data today.
         </span>
       </div>
 
-      <div className="px-12  w-full h-[calc(100%-8rem)] ">
-        <div className=" px-4 py-4 rounded-lg mt-0 cursor-pointer thin-box-divider bg-[#1e1e1e] flex flex-col h-fit w-60">
+      <div className="px-8   w-full h-[calc(100%-8rem)] ">
+        <div className="bg-white px-4 py-4 rounded-md mt-0 cursor-pointer  flex flex-col h-fit w-60">
           <div className=" flex flex-col w-fit">
-            <span className="text-[0.775rem] font-medium  tracking-wide text-[#757575]">
+            <span className="text-[0.775rem] font-medium  text-inherit">
               Total notes
             </span>
-            <span className=" mt-0.5  text-white font-medium text-[1.7rem] ">
+            <span className=" mt-0.5  text-inherit font-medium text-[1.7rem] ">
               {data?.totalNotes}
             </span>
           </div>
