@@ -2,8 +2,10 @@ import React from "react";
 import { TbLayoutGrid, TbChevronLeft, TbEggs, TbFolder } from "react-icons/tb";
 import NoteCollectionContext from "../context/NoteCollectionContext";
 import SidebarLink from "./SidebarLink";
+import AuthContext from "../context/AuthContext";
 const Sidebar = () => {
   const [state, setState] = React.useState(false);
+  const{data,userLoading} = React.useContext(AuthContext)
   const handleToggleSidebar = () => {
     setState(!state);
   };
@@ -13,7 +15,6 @@ const Sidebar = () => {
   //   console.log(data.data);
 
   // }
-
   return (
     <div
       className={`${
@@ -68,7 +69,7 @@ const Sidebar = () => {
           title="Collection"
           icon={<TbFolder />}
           path="/collections"
-          count={0}
+          count={data?.user?.noteCollections.length}
         ></SidebarLink>
       </div>
     </div>

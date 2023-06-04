@@ -1,15 +1,27 @@
 import React from "react";
 import Sidebar from "../components/Sidebar";
 import AuthContext from "../context/AuthContext";
+import { auth } from "../firebase-config";
+import { useNavigate } from "react-router-dom";
 Sidebar;
 const Home = () => {
-  const {currentUser}  = React.useContext(AuthContext)
-
+  const navigate = useNavigate()
+  const {data,userLoading}  = React.useContext(AuthContext)
+   const logOutUser = async () => {
+    try {
+      await auth.signOut();
+      console.log("User signed out successfully");
+      navigate('/login')
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
   return (
-    <div className="h-full  pt-12 w-full flex flex-col items-start justify-start">
+    <div className="h-full  pt-12 w-full flex flex-col items-start relative justify-start">
+      <button className="fixed top-0 p-1 bg-blue-500 text-white right-0" onClick={logOutUser}>log out</button>
       <div className="h-fit w-full flex  px-12 pb-6 flex-col">
         {/* <span className="mb-3 font-medium text-[0.85rem] text-[#6360ea]">Dashboard</span> */}
-        <span className="font-semibold text-[1.35rem]">Welcome, {currentUser.email}</span>
+        <span className="font-semibold capitalize text-[1.35rem]">Welcome, {data?.user?.firstName}.</span>
         <span className="text-[0.775rem] font-medium  tracking-wide mt-2 text-[#808088]/70">
           Here's your data today.
         </span>
@@ -22,7 +34,7 @@ const Home = () => {
               Total notes
             </span>
             <span className=" mt-0.5  text-white font-medium text-[1.7rem] ">
-              52
+              {data?.totalNotes}
             </span>
           </div>
         </div>

@@ -69,7 +69,7 @@ const Login = () => {
         logInInput.email,
         logInInput.password
       );
-      console.log('user logged in');
+      console.log(`login success: ${user?.email}`);
       navigate('/dashboard')
 
 
@@ -103,6 +103,29 @@ const Login = () => {
           setRegisterInput({
             ...registerInput,
             password: e.target.value,
+          })
+        }
+      />
+      <br />
+      <input
+        className="sample"
+        type="text"
+        placeholder="firstname"
+        onChange={(e) =>
+          setRegisterInput({
+            ...registerInput,
+            firstName: e.target.value,
+          })
+        }
+      />
+      <input
+        className="sample ml-2"
+        type="text"
+        placeholder="lastname"
+        onChange={(e) =>
+          setRegisterInput({
+            ...registerInput,
+            lastName: e.target.value,
           })
         }
       />
