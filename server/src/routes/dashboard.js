@@ -9,7 +9,7 @@ const router = express.Router();
 router.get("/:userID", async (request, response) => {
   try {
     const { userID } = request.params;
-    const user = await UserModel.findOne({uid:userID})
+    const user = await UserModel.findOne({ uid: userID });
     if (!user) {
       return response.status(404).json({ error: "user not found" });
     }
@@ -17,18 +17,22 @@ router.get("/:userID", async (request, response) => {
     const noteCollection = await NotesCollectionModel.find({
       _id: { $in: user.noteCollections },
     })
-      .populate("savedNotes")
-      .lean();
+      // .populate("savedNotes")
+      // .lean();
 
-    // just for getting the total notes of the user
-    // const allNotes = await NoteModel.find({ uid: uid });
-    // const totalNotes = allNotes.length;
-    const totalNotes = await NoteModel.count(userID)
-    
-    response.status(200).json(
-      {user,noteCollection,totalNotes}
-    );
-    // totalNotes: totalNotes,
+    const totalNotes = await NoteModel.count(userID);
+    const { _id, uid, email, firstName, lastName } = user;
+    response
+      .status(200)
+      .json({
+        _id,
+        uid,
+        email,
+        firstName,
+        lastName,
+        totalNotes,
+        noteCollection,
+      });
   } catch (error) {
     response.status(500).json({
       status: "error",
