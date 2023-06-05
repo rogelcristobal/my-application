@@ -27,7 +27,7 @@ const Home = () => {
         </span>
       </div>
 
-      <div className="px-8   w-full h-[calc(100%-8rem)] ">
+      <div className="px-8 w-full h-full ">
         <div className="bg-[#1e1f23] border-dark sample px-4 py-4 rounded-md mt-0 cursor-pointer  flex flex-col h-fit w-60">
           <div className=" flex flex-col w-fit">
             <span className="text-[0.775rem] font-inter  text-[#97999e]">
@@ -38,8 +38,6 @@ const Home = () => {
             </span>
           </div>
         </div>
-
-       
       </div>
       {/* content */}
     </div>

@@ -1,28 +1,30 @@
 import React from "react";
 import { TbLayoutGrid, TbChevronLeft, TbEggs, TbFolder } from "react-icons/tb";
-import NoteCollectionContext from "../context/NoteCollectionContext";
+import {motion, useAnimation} from 'framer-motion'
 import SidebarLink from "./SidebarLink";
 import AuthContext from "../context/AuthContext";
 const Sidebar = () => {
   const [state, setState] = React.useState(false);
-  const{data,userLoading} = React.useContext(AuthContext)
+  const { data } = React.useContext(AuthContext);
+  const sidebarControl = useAnimation()
   const handleToggleSidebar = () => {
     setState(!state);
+    if(state){
+      sidebarControl.start({width:"15rem"})
+    }else {
+      sidebarControl.start({ width: "4rem" }); 
+    }
   };
-
-  // const { data, isLoading } = React.useContext(NoteCollectionContext);
-  // if (!isLoading) {
-  //   console.log(data.data);
-
-  // }
+  
+  
   return (
-    <div
+    <motion.div
+      animate={sidebarControl} initial={{width:"15rem"}} transition={{duration:1}}
       className={`${
         state ? "w-[4rem]" : "w-[15rem]"
       } whitespace-nowrap border-dark-right relative bg-[#1e1f23]  h-full flex  flex-col  items-center justify-start  flex-shrink-0   `}
     >
       <div
-      
         className={`${
           state ? " " : "  "
         } w-full   relative flex flex-col items-center justify-start h-32 pb-8 pt-8  `}
@@ -41,12 +43,12 @@ const Sidebar = () => {
         )}
 
         {/* toggle btn */}
-        <button
+        <motion.button
           onClick={handleToggleSidebar}
-          className={`absolute  px-2 py-2 rounded-full bottom-0  bg-[#27282f]  cursor-pointer border-dark z-10 text-sm text-white  right-0 translate-x-1/2 `}
+          className={`absolute  px-2 py-2 rounded-full bottom-0  bg-[#27282f]  cursor-pointer border-dark z-10 text-xs text-white  right-0 translate-x-1/2 `}
         >
           <TbChevronLeft />
-        </button>
+        </motion.button>
       </div>
       {!state && (
         <span className=" text-[0.75rem]  w-full text-left px-5 text-gray-400/70  mt-4 mb-3">
@@ -55,9 +57,11 @@ const Sidebar = () => {
       )}
       <div
         className={`${
-          state ? "mt-11 px-2.5" : "px-2.5"
+          state ? "mt-[2.2rem] px-2.5" : "px-2.5"
         } flex   w-full items-center pt-1.5 justify-center flex-col`}
       >
+        {state && <div className="w-full border-dark-bottom mb-4"></div>}
+
         <SidebarLink
           path="/dashboard"
           sidebarState={state}
@@ -72,8 +76,9 @@ const Sidebar = () => {
           path="/collections"
           count={data?.noteCollection.length}
         ></SidebarLink>
+        <div className="w-full border-dark-bottom mt-4"></div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
