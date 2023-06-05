@@ -21,23 +21,25 @@ const Home = () => {
       
        <div className="h-fit w-full flex  px-9 pb-3 flex-col">
         {/* <span className="mb-3 font-medium text-[0.85rem] text-[#6360ea]">Dashboard</span> */}
-        <span className="font-medium text-[1.35rem] capitalize">Welcome back, {data?.firstName}.</span>
-        <span className="text-[0.75rem] font-medium text-[#808088]/50 mt-6 ">
+        <span className="font-inter text-[1.40rem] capitalize">Welcome, {data?.firstName}.</span>
+        <span className="text-[0.75rem] font-inter text-[#77787f] mt-4 ">
           Here's your data today.
         </span>
       </div>
 
       <div className="px-8   w-full h-[calc(100%-8rem)] ">
-        <div className="bg-white px-4 py-4 rounded-md mt-0 cursor-pointer  flex flex-col h-fit w-60">
+        <div className="bg-[#1e1f23] border-dark sample px-4 py-4 rounded-md mt-0 cursor-pointer  flex flex-col h-fit w-60">
           <div className=" flex flex-col w-fit">
-            <span className="text-[0.775rem] font-medium  text-inherit">
+            <span className="text-[0.775rem] font-inter  text-[#97999e]">
               Total notes
             </span>
-            <span className=" mt-0.5  text-inherit font-medium text-[1.7rem] ">
+            <span className="   text-inherit font-helveticaRegular text-[1.7rem] ">
               {data?.totalNotes}
             </span>
           </div>
         </div>
+
+       
       </div>
       {/* content */}
     </div>

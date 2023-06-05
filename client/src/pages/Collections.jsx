@@ -5,8 +5,8 @@ const Collections = ({data,isLoading}) => {
     <div className="h-full  pt-9 w-full flex flex-col items-start justify-start">
       <div className="h-fit w-full flex  px-9 pb-3 flex-col">
         {/* <span className="mb-3 font-medium text-[0.85rem] text-[#6360ea]">Dashboard</span> */}
-        <span className="font-medium text-[1.35rem] capitalize">collections</span>
-        <span className="text-[0.75rem] font-medium text-[#808088]/50 mt-6 ">
+        <span className="font-inter text-[1.40rem] ">Your collections</span>
+        <span className="text-[0.75rem] font-inter text-[#77787f] mt-4 ">
           Access your saved notes here.
         </span>
       </div>

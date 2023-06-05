@@ -14,19 +14,19 @@
     @apply cursor-pointer bg-[#1a1c1e]/10 hover:bg-[#1a1c1e]/20 rounded-lg;
   }
   .border-dark-right {
-    @apply border-r-[1px] border-neutral-100/10;
+    @apply border-r-[1px] border-[#323339]/50;
   }
   .border-dark-left {
-    @apply border-l-[1px] border-neutral-100/10;
+    @apply border-l-[1px] border-[#323339]/50;
   }
   .border-dark-top {
-    @apply border-t-[1px] border-neutral-100/10;
+    @apply border-t-[1px] border-[#323339]/50;
   }
   .border-dark-bottom {
-    @apply border-b-[1px] border-neutral-100/10;
+    @apply border-b-[1px] border-[#323339]/50;
   }
     .border-dark {
-      @apply border-[1px] border-neutral-100/10;
+      @apply border-[1px] border-[#323339]/50;
     }
   .sample {
     box-shadow: rgba(0, 0, 0, 0.03) 0px 6px 6px 0px,
