@@ -41,12 +41,12 @@ const Sidebar = () => {
         )}
 
         {/* toggle btn */}
-        {/* <button
+        <button
           onClick={handleToggleSidebar}
-          className={`absolute hover:sample p-1.5 rounded-full bottom-0   cursor-pointer thin-box-divider z-10 text-sm text-white bg-[#31b6f7] right-0 translate-x-1/2 `}
+          className={`absolute  px-2 py-2 rounded-full bottom-0  bg-[#27282f]  cursor-pointer border-dark z-10 text-sm text-white  right-0 translate-x-1/2 `}
         >
           <TbChevronLeft />
-        </button> */}
+        </button>
       </div>
       {!state && (
         <span className=" text-[0.75rem]  w-full text-left px-5 text-gray-400/70  mt-4 mb-3">
@@ -55,8 +55,8 @@ const Sidebar = () => {
       )}
       <div
         className={`${
-          state ? "mt-11 " : ""
-        } flex  px-4 w-full items-center justify-center flex-col`}
+          state ? "mt-11 px-2.5" : "px-2.5"
+        } flex   w-full items-center pt-1.5 justify-center flex-col`}
       >
         <SidebarLink
           path="/dashboard"
