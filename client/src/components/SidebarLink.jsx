@@ -16,12 +16,12 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full  rounded-lg relative  border-dark box-border h-[2.90rem] btn-sm btn border-0 ${isActive?'text-[#3b84fb] bg-[#f6fafc]/70 hover:bg-[#f6fafc]':'text-[#676d7c]  bg-transparent hover:bg-transparent'}
+          className={`w-full  rounded-lg relative  border-dark box-border h-[2.90rem] btn-sm btn  ${isActive?'text-[#e4e6e7] border-dark hover:border-dark bg-[#26272e]/60 hover:bg-[#26272e]':'text-[#676d7c] border-0 bg-transparent hover:bg-transparent'}
           ${sidebarState?'flex justify-center    ':'flex justify-center px-3.5'}
           `}
         >
           <div className=" h-fit flex justify-between items-center overflow-hidden w-full">
-            <div className="flex justify-start items-center  pl-0.5 max-w-[100%] font-semibold  text-[0.825rem] w-full capitalize gap-2">
+            <div className="flex justify-start items-center  pl-0.5 max-w-[100%] font-semibold  text-[0.8rem] w-full capitalize gap-2">
               <span className="text-[1rem]">{icon}</span>
               {!sidebarState&&
               <span className=" text-start w-full  overflow-hidden truncate"> {title}</span>}

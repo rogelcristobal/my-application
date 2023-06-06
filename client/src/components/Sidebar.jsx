@@ -22,7 +22,7 @@ const Sidebar = () => {
       animate={sidebarControl} initial={{width:"15.5rem"}} transition={{duration:0.3}}
       className={`${
         state ? "w-[4rem]" : "w-[15.5rem]"
-      } whitespace-nowrap  relative bg-[#ffffff]  h-full flex  flex-col  items-center justify-start  flex-shrink-0   `}
+      } whitespace-nowrap  relative bg-[#1e1f23] border-dark-right sample h-full flex  flex-col  items-center justify-start  flex-shrink-0   `}
     >
       <div
         className={`${
@@ -30,26 +30,27 @@ const Sidebar = () => {
         } w-full   relative flex  items-center justify-start h-28  pt-0  `}
       >
         <div
-          className={`bg-[#1f2125] grid   rounded-full p-[0.7rem] place-content-center ${
+          className={`bg-[#3180e9] grid   rounded-full p-[0.7rem] place-content-center ${
             state ? "mr-0" : "mr-0"
           }`}
         >
-          <TbEggs className="text-lg  text-white" />
+          <TbEggs className="text-lg  text-[#e4e6e7]" />
         </div>
         {!state && (
-          <span className="mt-0    w-fit text-start pl-3 whitespace-nowrap overflow-hidden text-[0.9rem] text-inherit font-semibold">
+          <span className="mt-0    w-fit text-start pl-2.5 whitespace-nowrap overflow-hidden text-[0.9rem] text-[#e4e6e7] font-semibold">
             My Project
           </span>
         )}
 
         {/* toggle btn */}
-        <motion.button
+        {/* <motion.button
           onClick={handleToggleSidebar}
-          className={`absolute  px-2 py-2 rounded-full bottom-3 sample bg-[#ffffff]  cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
+          className={`absolute  px-2 py-2 rounded-full bottom-3 sample bg-[#27282f]  cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
         >
           <TbChevronLeft />
-        </motion.button>
+        </motion.button> */}
       </div>
+      <div className="w-full border-dark-top mb-2"></div>
       {!state && (
         <span className=" text-[0.75rem] font-medium w-full text-left px-5 text-[#a0a6b1]  mt-4 mb-1.5">
           Menu
@@ -60,7 +61,7 @@ const Sidebar = () => {
           state ? "mt-[1.485rem] px-2.5" : "px-2.5"
         } flex   w-full items-center pt-1.5 justify-center flex-col`}
       >
-        {state && <div className="w-full h-1 thin-bottom-divider mb-4"></div>}
+        {/* {state && <div className="w-full  thin-bottom-divider mb-4"></div>} */}
 
         <SidebarLink
           path="/dashboard"
@@ -76,7 +77,6 @@ const Sidebar = () => {
           path="/collections"
           count={data?.noteCollection.length}
         ></SidebarLink>
-        <div className="w-full thin-top-divider h-1 mt-4"></div>
       </div>
     </motion.div>
   );
