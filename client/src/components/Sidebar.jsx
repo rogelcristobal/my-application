@@ -10,7 +10,7 @@ const Sidebar = () => {
   const handleToggleSidebar = () => {
     setState(!state);
     if(state){
-      sidebarControl.start({width:"15rem"})
+      sidebarControl.start({width:"15.5rem"})
     }else {
       sidebarControl.start({ width: "4rem" }); 
     }
@@ -19,15 +19,15 @@ const Sidebar = () => {
   
   return (
     <motion.div
-      animate={sidebarControl} initial={{width:"15rem"}} transition={{duration:1}}
+      animate={sidebarControl} initial={{width:"15.5rem"}} transition={{duration:0.3}}
       className={`${
-        state ? "w-[4rem]" : "w-[15rem]"
+        state ? "w-[4rem]" : "w-[15.5rem]"
       } whitespace-nowrap border-dark-right relative bg-[#1e1f23]  h-full flex  flex-col  items-center justify-start  flex-shrink-0   `}
     >
       <div
         className={`${
           state ? " " : "  "
-        } w-full   relative flex flex-col items-center justify-start h-32 pb-8 pt-8  `}
+        } w-full   relative flex flex-col items-center justify-start h-32  pt-8 px-2.5 `}
       >
         <div
           className={`bg-[#1f2125] grid border-[1px] border-solid border-neutral-600 rounded-full p-[0.7rem] place-content-center ${
@@ -37,7 +37,7 @@ const Sidebar = () => {
           <TbEggs className="text-lg  text-white" />
         </div>
         {!state && (
-          <span className=" mt-3 w-fit text-[0.8rem] text-white font-medium">
+          <span className="mt-3   w-full text-center whitespace-nowrap overflow-hidden text-[0.8rem] text-white font-medium">
             My Project
           </span>
         )}
@@ -45,7 +45,7 @@ const Sidebar = () => {
         {/* toggle btn */}
         <motion.button
           onClick={handleToggleSidebar}
-          className={`absolute  px-2 py-2 rounded-full bottom-0  bg-[#27282f]  cursor-pointer border-dark z-10 text-xs text-white  right-0 translate-x-1/2 `}
+          className={`absolute  px-2 py-2 rounded-full bottom-0  bg-[#27282f]  cursor-pointer  z-10 text-xs text-white  right-0 translate-x-1/2 `}
         >
           <TbChevronLeft />
         </motion.button>
@@ -57,7 +57,7 @@ const Sidebar = () => {
       )}
       <div
         className={`${
-          state ? "mt-[2.2rem] px-2.5" : "px-2.5"
+          state ? "mt-[1.825rem] px-2.5" : "px-2.5"
         } flex   w-full items-center pt-1.5 justify-center flex-col`}
       >
         {state && <div className="w-full border-dark-bottom mb-4"></div>}
