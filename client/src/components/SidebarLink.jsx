@@ -16,18 +16,18 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full  rounded-lg relative  border-dark box-border h-[2.90rem] btn-sm btn border-0 ${isActive?'text-white bg-[#292a30]/60 hover:bg-[#292a30]/60':'text-gray-400/70  bg-transparent hover:bg-[#15191e]/50'}
+          className={`w-full  rounded-lg relative  border-dark box-border h-[2.90rem] btn-sm btn border-0 ${isActive?'text-[#3b84fb] bg-[#f6fafc]/70 hover:bg-[#f6fafc]':'text-[#676d7c]  bg-transparent hover:bg-transparent'}
           ${sidebarState?'flex justify-center    ':'flex justify-center px-3.5'}
           `}
         >
           <div className=" h-fit flex justify-between items-center overflow-hidden w-full">
-            <div className="flex justify-start items-center  pl-0.5 max-w-[100%] font-normal text-[0.795rem] w-full capitalize gap-2">
+            <div className="flex justify-start items-center  pl-0.5 max-w-[100%] font-semibold  text-[0.825rem] w-full capitalize gap-2">
               <span className="text-[1rem]">{icon}</span>
               {!sidebarState&&
               <span className=" text-start w-full  overflow-hidden truncate"> {title}</span>}
             </div>
             {count&& !sidebarState&&
-            <span className="normal-case font-normal whitespace-nowrap text-[#fbfdfd]/50  text-[0.65rem]">23 new</span>
+            <span className="normal-case font-medium whitespace-nowrap text-[#a0a6b1]  text-[0.65rem]">23 new</span>
             }
           </div>
 
