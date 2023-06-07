@@ -157,6 +157,8 @@ router.delete("/note/:noteID", async (request, response) => {
 //     });
 //   }
 // });
+
+
 // search note insensitive
 router.get("/search/:query", async (request, response) => {
   try {

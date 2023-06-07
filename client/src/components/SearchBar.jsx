@@ -12,21 +12,21 @@ const SearchBar = () => {
     setState({ ...state, hover: !state.hover, focus: !state.focus });
   };
 
-  React.useEffect(() => {
-    const searchInput = async (phrase) => {
-      try {
-        const res = await Axios.get(
-          `http://localhost:3001/collections/search/${phrase}`
-        );
-        console.log(res.data.result);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    if (state.input) {
-      searchInput(state.input);
-    }
-  }, [state.input]);
+  // React.useEffect(() => {
+  //   const searchInput = async (phrase) => {
+  //     try {
+  //       const res = await Axios.get(
+  //         `http://localhost:3001/collections/search/${phrase}`
+  //       );
+  //       console.log(res.data.result);
+  //     } catch (error) {
+  //       console.log(error.message);
+  //     }
+  //   };
+  //   if (state.input) {
+  //     searchInput(state.input);
+  //   }
+  // }, [state.input]);
 
   React.useEffect(() => {
     const handleKeyDown = (event) => {
