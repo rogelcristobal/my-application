@@ -21,7 +21,7 @@ const Collections = ({ data, isLoading }) => {
         {/* {!isLoading&& data?.data.map((item,id)=>(
           <span>{item.collectionTitle}</span>
         ))} */}
-       
+    
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import {LuLayout, LuFolder,LuFlame,LuChevronsLeft} from 'react-icons/lu'
+import {LuLayout, LuFolder,LuFlame,LuChevronsLeft,LuCheckSquare,LuFileEdit} from 'react-icons/lu'
 import {motion, useAnimation} from 'framer-motion'
 import SidebarLink from "./SidebarLink";
 import AuthContext from "../context/AuthContext";
@@ -69,13 +69,26 @@ const Sidebar = () => {
           title="Dashboard"
           icon={<LuLayout />}
         />
-
+        <SidebarLink
+          sidebarState={state}
+          title="Blogs"
+          icon={<LuFileEdit />}
+          path="/"
+         
+        ></SidebarLink>
         <SidebarLink
           sidebarState={state}
           title="Collections"
           icon={<LuFolder />}
           path="/collections"
           count={data?.noteCollection.length}
+        ></SidebarLink>
+        <SidebarLink
+          sidebarState={state}
+          title="To do"
+          icon={<LuCheckSquare />}
+          path="/"
+          
         ></SidebarLink>
       </div>
     </motion.div>
