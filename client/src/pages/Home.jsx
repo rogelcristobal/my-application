@@ -18,9 +18,9 @@ const Home = () => {
   };
   return (
     <div className="h-full   w-full flex flex-col items-start justify-start relative">
-      
-       <div className="h-fit  w-full flex pt-8 px-10 pb-0 flex-col">
-        {/* <span className="mb-1.5 font-semibold text-[0.8rem]  text-[#3180e9]">Dashboard</span> */}
+     
+       <div className="h-fit  w-full flex pt-8 px-9 pb-0 flex-col">
+        <span className="mb-3 font-semibold text-[0.8rem]  text-[#a7a9ad]/70">Dashboard</span>
         <span className="font-plus text-[1.35rem] font-medium tracking-tight capitalize">Welcome,<span className="text-semibold  tracking-tight"> {data?.firstName} {data?.lastName}. </span></span>
         {/* <span className="text-[0.8rem] font-plus text-black mt-3 ">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, eos?
@@ -39,8 +39,8 @@ const Home = () => {
             </span>
           </div>
         </div>
-        <div className="mt-4">
-          <span className="text-[0.775rem] tracking-tight text-[#a7a9ad] font-medium ">Recently added </span>
+        <div className="mt-8">
+          <span className="text-[0.775rem] mb-3  text-[#a7a9ad]/70 font-semibold ">Recently added </span>
         </div>
       </div>
       {/* content */}

@@ -1,5 +1,5 @@
 import React from "react";
-import { TbLayoutGrid, TbChevronLeft, TbEggs, TbFolder } from "react-icons/tb";
+import {LuLayout, LuFolder,LuFlame} from 'react-icons/lu'
 import {motion, useAnimation} from 'framer-motion'
 import SidebarLink from "./SidebarLink";
 import AuthContext from "../context/AuthContext";
@@ -30,15 +30,15 @@ const Sidebar = () => {
         } w-full   relative flex  items-center justify-start h-28  pt-0  `}
       >
         <div
-          className={`bg-[#3180e9] grid   rounded-full p-[0.7rem] place-content-center ${
+          className={`border-dark grid bg-[#17181c]  rounded-full p-[0.7rem] place-content-center ${
             state ? "mr-0" : "mr-0"
           }`}
         >
-          <TbEggs className="text-lg  text-[#e4e6e7]" />
+          <LuFlame className="text-lg  text-[#e4e6e7]" />
         </div>
         {!state && (
           <span className="mt-0    w-fit text-start pl-2.5 whitespace-nowrap overflow-hidden text-[0.9rem] text-[#e4e6e7] font-semibold">
-            My Project
+            MyApplication
           </span>
         )}
 
@@ -67,13 +67,13 @@ const Sidebar = () => {
           path="/dashboard"
           sidebarState={state}
           title="Dashboard"
-          icon={<TbLayoutGrid />}
+          icon={<LuLayout />}
         />
 
         <SidebarLink
           sidebarState={state}
           title="Collections"
-          icon={<TbFolder />}
+          icon={<LuFolder />}
           path="/collections"
           count={data?.noteCollection.length}
         ></SidebarLink>
