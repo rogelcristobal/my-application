@@ -26,7 +26,7 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
         >
           <div className=" h-fit flex justify-between items-center overflow-hidden w-full">
             <div
-              className={`flex justify-start items-center   max-w-[100%] font-semibold  text-[0.8rem] w-full capitalize gap-2`}
+              className={`flex justify-start items-center   max-w-[100%] font-medium  text-[0.775rem] w-full capitalize gap-2`}
             >
               <span className="text-[1rem] mx-auto">{icon}</span>
               {!sidebarState && (
