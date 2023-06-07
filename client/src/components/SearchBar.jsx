@@ -1,5 +1,5 @@
 import React from "react";
-
+import Axios from "axios";
 import { LuSearch } from "react-icons/lu";
 const SearchBar = () => {
   const inputRef = React.useRef(null);
@@ -11,6 +11,22 @@ const SearchBar = () => {
   const hoverToggle = () => {
     setState({ ...state, hover: !state.hover, focus: !state.focus });
   };
+
+  React.useEffect(() => {
+    const searchInput = async (phrase) => {
+      try {
+        const res = await Axios.get(
+          `http://localhost:3001/collections/search/${phrase}`
+        );
+        console.log(res.data.result);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    if (state.input) {
+      searchInput(state.input);
+    }
+  }, [state.input]);
 
   React.useEffect(() => {
     const handleKeyDown = (event) => {
@@ -58,9 +74,15 @@ const SearchBar = () => {
         }`}
       />
 
-      { !state.input && (
-        <div class=" absolute text-[#a7a9ad]  items-center flex px-2  right-2 text-[0.7rem] top-1/2 -translate-y-1/2  gap-1.5">
-          <kbd className="kbd kbd-xs rounded p-0.5 text-[0.7rem] border-[#a7a9ad]/10 text-[#a7a9ad]/70 px-1">ctrl</kbd>+<kbd className="kbd kbd-xs rounded p-0.5 text-[0.7rem] border-[#a7a9ad]/10 text-[#a7a9ad]/70 px-1">k</kbd>
+      {!state.input && (
+        <div className=" absolute text-[#a7a9ad]  items-center flex px-2  right-2 text-[0.7rem] top-1/2 -translate-y-1/2  gap-1.5">
+          <kbd className="kbd kbd-xs rounded p-0.5 text-[0.7rem] border-[#a7a9ad]/10 text-[#a7a9ad]/70 px-1">
+            ctrl
+          </kbd>
+          +
+          <kbd className="kbd kbd-xs rounded p-0.5 text-[0.7rem] border-[#a7a9ad]/10 text-[#a7a9ad]/70 px-1">
+            k
+          </kbd>
         </div>
       )}
     </div>

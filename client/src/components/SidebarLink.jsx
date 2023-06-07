@@ -37,7 +37,7 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
               )}
             </div>
             {count && !sidebarState && (
-              <div class=" absolute text-[#a7a9ad] badge  flex px-2 font-normal  right-1.5 border-0 normal-case text-[0.7rem] top-1/2 -translate-y-1/2 badge-sm bg-[#26272e]/60">
+              <div className=" absolute text-[#a7a9ad] badge  flex px-2 font-normal  right-1.5 border-0 normal-case text-[0.7rem] top-1/2 -translate-y-1/2 badge-sm bg-[#26272e]/60">
                 32 new
               </div>
             )}
