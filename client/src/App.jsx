@@ -5,17 +5,10 @@ import Home from "./pages/Home";
 import Collections from "./pages/Collections";
 import Sidebar from "./components/Sidebar";
 import { NoteCollectionProvider } from "./context/NoteCollectionContext";
-import Axios from "axios";
 import AuthContext from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
-import axios from "axios";
 function App() {
-  const { currentUser, userLoading, data } =
-    React.useContext(AuthContext);
-
-  if (!userLoading) {
-    console.log("context", data);
-  }
+  const { currentUser, userLoading, data } = React.useContext(AuthContext);
 
   return (
     <Routes>
@@ -24,8 +17,8 @@ function App() {
         path="/*"
         element={
           <ProtectedRoute userLoading={userLoading} currentUser={currentUser}>
-            <div className="h-full w-full font-plus ">
-              <div className="h-screen w-full bg-[#171717] text-white flex items-start  justify-start relative">
+            <div className="h-full w-full ">
+              <div className="h-screen w-full bg-[#17181c] font-plus  text-[#e4e6e7] flex items-start  justify-start relative">
                 <NoteCollectionProvider USER_ID="65dqzbapFHPjDMa5ICa134U6WXO2">
                   <Sidebar></Sidebar>
                   <Routes>

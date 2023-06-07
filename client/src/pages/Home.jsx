@@ -3,6 +3,7 @@ import Sidebar from "../components/Sidebar";
 import AuthContext from "../context/AuthContext";
 import { auth } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
+import {LuHelpCircle} from 'react-icons/lu'
 Sidebar;
 const Home = () => {
   const navigate = useNavigate()
@@ -17,26 +18,30 @@ const Home = () => {
     }
   };
   return (
-    <div className="h-full  pt-12 w-full flex flex-col items-start relative justify-start">
-      <button className="fixed top-0 p-1 bg-blue-500 text-white right-0" onClick={logOutUser}>log out</button>
-      <div className="h-fit w-full flex  px-12 pb-6 flex-col">
-        {/* <span className="mb-3 font-medium text-[0.85rem] text-[#6360ea]">Dashboard</span> */}
-        <span className="font-semibold capitalize text-[1.35rem]">Welcome, {data?.user?.firstName}.</span>
-        <span className="text-[0.775rem] font-medium  tracking-wide mt-2 text-[#808088]/70">
-          Here's your data today.
-        </span>
+    <div className="h-full   w-full flex flex-col items-start justify-start relative">
+     
+       <div className="h-fit  w-full flex pt-8 px-9 pb-0 flex-col">
+        <span className="mb-3 font-semibold text-[0.8rem]  text-[#a7a9ad]/70">Dashboard</span>
+        <span className="font-plus text-[1.45rem] font-medium tracking-tight capitalize">Welcome,<span className="text-semibold  tracking-tight"> {data?.firstName} {data?.lastName}. </span></span>
+        {/* <span className="text-[0.8rem] font-plus text-black mt-3 ">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, eos?
+        </span> */}
       </div>
 
-      <div className="px-12  w-full h-[calc(100%-8rem)] ">
-        <div className=" px-4 py-4 rounded-lg mt-0 cursor-pointer thin-box-divider bg-[#1e1e1e] flex flex-col h-fit w-60">
-          <div className=" flex flex-col w-fit">
-            <span className="text-[0.775rem] font-medium  tracking-wide text-[#757575]">
-              Total notes
-            </span>
-            <span className=" mt-0.5  text-white font-medium text-[1.7rem] ">
-              {data?.totalNotes}
+      <div className="px-8 w-full h-full pt-6">
+        {/* <div className=" border-dark-top mb-6"></div> */}
+        <div className="border-dark px-0 bg-[#1e1f23]  rounded-md mt-0 cursor-pointer  flex flex-col justify-start min-h-[6rem] w-60">
+          <div className=" flex  flex-col px-4 py-3 w-full">
+            <span className="text-[0.785rem] flex items-center gap-2 font-plus font-medium text-[#97999e]">
+              Total notes <LuHelpCircle />
             </span>
           </div>
+            <span className="px-4 pt-0 pb-2   text-inherit font-helveticaRegular text-[1.7rem] ">
+              32
+            </span>
+        </div>
+        <div className="mt-8">
+          <span className="text-[0.775rem] mb-3  text-[#a7a9ad]/70 font-semibold ">Recently added </span>
         </div>
       </div>
       {/* content */}

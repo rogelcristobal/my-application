@@ -42,22 +42,31 @@ router.post("/", async (request, response) => {
   }
 });
 
-// delete collection 
-router.delete("/:collectionID",async (request, response) => {
+// delete collection (OK)
+router.delete("/:collectionID", async (request, response) => {
   try {
-    const {collectionID} = request.params
-    const collection = await NotesCollectionModel.findById(collectionID)
-    if(!collection){
-      return response.status(404).json({message:"collection does not exist!"})
+    const { collectionID } = request.params;
+    const collection = await NotesCollectionModel.findById(collectionID);
+    if (!collection) {
+      return response
+        .status(404)
+        .json({ message: "collection does not exist!" });
     }
-    const deleteNote = await NoteModel.deleteMany({ _id: { $in: collection.savedNotes}})
-    const deleteCollection = await NotesCollectionModel.findByIdAndDelete(collectionID)
-    await UserModel.findOneAndUpdate({}, {$pull: {noteCollections:collectionID}})
-  
+    const deleteNote = await NoteModel.deleteMany({
+      _id: { $in: collection.savedNotes },
+    });
+    const deleteCollection = await NotesCollectionModel.findByIdAndDelete(
+      collectionID
+    );
+    await UserModel.findOneAndUpdate(
+      {},
+      { $pull: { noteCollections: collectionID } }
+    );
+
     response.status(200).json({
       status: "success",
-      deletedCollection:deleteCollection,
-      deletedNotes: deleteNote.deletedCount
+      deletedCollection: deleteCollection,
+      deletedNotes: deleteNote.deletedCount,
     });
   } catch (error) {
     response.status(500).json({
@@ -105,15 +114,17 @@ router.post("/note", async (request, response) => {
   }
 });
 
-// delete note
-router.delete("/note/:noteID",async(request,response)=>{
+// delete note (OK)
+router.delete("/note/:noteID", async (request, response) => {
   try {
-    const {noteID} = request.params
-    const deleteNote = await NoteModel.findByIdAndDelete(noteID)
-    if(!deleteNote){
-      return response.status(404).json({message:"note does not exist!"})
+    const { noteID } = request.params;
+    const deleteNote = await NoteModel.findByIdAndDelete(noteID);
+    if (!deleteNote) {
+      return response.status(404).json({ message: "note does not exist!" });
     }
-    response.status(200).json({message:`successfully deleted`, deletedNote:deleteNote})
+    response
+      .status(200)
+      .json({ message: `successfully deleted`, deletedNote: deleteNote });
   } catch (error) {
     response.status(500).json({
       status: "error",
@@ -121,6 +132,51 @@ router.delete("/note/:noteID",async(request,response)=>{
       error: error.message,
     });
   }
-})
+});
+
+
+
+
+
+//search note sensitive
+// router.get("/search/:query", async (request, response) => {
+//   try {
+//     const { query } = request.params;
+
+//     const searchNote = await NoteModel.find({$text:{$search: query }})
+//     if(searchNote.length === 0){
+//       return response.status(400).json({message:"note not found"})
+//     }
+
+//     response.status(200).json({status:200,result:searchNote})
+//   } catch (error) {
+//     response.status(500).json({
+//       status: "error",
+//       message: "An error occurred",
+//       error: error.message,
+//     });
+//   }
+// });
+// search note insensitive
+router.get("/search/:query", async (request, response) => {
+  try {
+    const { query } = request.params;
+
+    const searchNote = await NoteModel.find({title :{$regex: query, $options: "i" }})
+    if(searchNote.length === 0){
+      response.status(200).json({ status: 200, result: searchNote });
+    }
+
+    response.status(200).json({status:200,result:searchNote})
+  } catch (error) {
+    response.status(500).json({
+      status: "error",
+      message: "An error occurred",
+      error: error.message,
+    });
+  }
+});
+
+// not search every letter
 
 export { router as noteRouter };

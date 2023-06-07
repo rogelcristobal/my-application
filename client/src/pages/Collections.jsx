@@ -1,20 +1,27 @@
 import React from "react";
-import Sidebar from "../components/Sidebar";
-const Collections = ({data,isLoading}) => {
+import SearchBar from "../components/SearchBar";
+const Collections = ({ data, isLoading }) => {
   return (
-    <div className="h-full  pt-10 w-full flex flex-col items-start justify-start">
-       <div className="h-fit w-full flex  px-10 pb-6 flex-col">
-        {/* <span className="mb-3 font-medium text-[0.85rem] text-[#6360ea]">Dashboard</span> */}
-        <span className="font-medium text-[1.35rem]">Collections</span>
-        <span className="text-[0.775rem] font-medium  tracking-wide mt-2 text-[#808088]/70">
-          Access your saved notes here.
-        </span>
+    <div className="h-full   w-full flex flex-col items-start justify-start">
+      <div className="w-full flex-shrink-0  flex items-center justify-start px-8 focus: py-4 border-dark-bottom">
+        <SearchBar />
       </div>
-      <div className="px-9  w-full h-full ">
+      <div className="h-fit  w-full flex pt-8 px-8 pb-0 flex-col">
+        <span className="mb-3 font-semibold text-[0.8rem] text-[#a7a9ad]/70">
+          Collections
+        </span>
+        <span className="font-plus text-[1.325rem] font-medium  capitalize">
+          <span className="text-semibold  "> </span>
+        </span>
+        {/* <span className="text-[0.8rem] font-plus text-black mt-3 ">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, eos?
+        </span> */}
+      </div>
+      <div className="px-7  w-full h-full ">
         {/* {!isLoading&& data?.data.map((item,id)=>(
           <span>{item.collectionTitle}</span>
         ))} */}
-        
+    
       </div>
     </div>
   );
