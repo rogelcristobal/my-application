@@ -5,11 +5,11 @@ const SearchBar = () => {
   const inputRef = React.useRef(null);
   const [state, setState] = React.useState({
     hover: false,
-    focus:false,
+    focus: false,
     input: "",
   });
   const hoverToggle = () => {
-    setState({ ...state, hover: !state.hover,focus:!state.focus });
+    setState({ ...state, hover: !state.hover, focus: !state.focus });
   };
 
   React.useEffect(() => {
@@ -17,12 +17,12 @@ const SearchBar = () => {
       if (event.ctrlKey && event.key === "k") {
         event.preventDefault();
         inputRef.current.focus();
-        setState({ ...state, hover: !state.hover ,focus:!state.focus});
+        setState({ ...state, hover: !state.hover, focus: !state.focus });
       }
     };
     const handleClickOutside = (event) => {
       if (inputRef.current && !inputRef.current.contains(event.target)) {
-        setState({ ...state, hover: false ,focus:false});
+        setState({ ...state, hover: false, focus: false });
       }
     };
 
@@ -41,7 +41,7 @@ const SearchBar = () => {
         type="text"
         onMouseEnter={hoverToggle}
         onMouseLeave={hoverToggle}
-        placeholder="Search document here"
+        placeholder="Search..."
         onChange={(e) =>
           setState({
             ...state,
@@ -58,9 +58,9 @@ const SearchBar = () => {
         }`}
       />
 
-      {!state.hover&& !state.input&&(
-        <div class=" absolute text-[#a7a9ad] badge  flex px-2  right-4 text-[0.7rem] top-1/2 -translate-y-1/2 badge-sm bg-[#26272e]/60">
-          Ctrl + k
+      { !state.input && (
+        <div class=" absolute text-[#a7a9ad]  items-center flex px-2  right-2 text-[0.7rem] top-1/2 -translate-y-1/2  gap-1.5">
+          <kbd className="kbd kbd-xs rounded p-0.5 text-[0.7rem] border-[#a7a9ad]/10 text-[#a7a9ad]/70 px-1">ctrl</kbd>+<kbd className="kbd kbd-xs rounded p-0.5 text-[0.7rem] border-[#a7a9ad]/10 text-[#a7a9ad]/70 px-1">k</kbd>
         </div>
       )}
     </div>

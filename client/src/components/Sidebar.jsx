@@ -1,5 +1,5 @@
 import React from "react";
-import {LuLayout, LuFolder,LuFlame} from 'react-icons/lu'
+import {LuLayout, LuFolder,LuFlame,LuChevronsLeft} from 'react-icons/lu'
 import {motion, useAnimation} from 'framer-motion'
 import SidebarLink from "./SidebarLink";
 import AuthContext from "../context/AuthContext";
@@ -30,7 +30,7 @@ const Sidebar = () => {
         } w-full   relative flex  items-center justify-start h-28  pt-0  `}
       >
         <div
-          className={`border-dark grid bg-[#17181c]  rounded-full p-[0.7rem] place-content-center ${
+          className={`border-dark grid bg-[#17181c] cursor-pointer  rounded-full p-[0.7rem] place-content-center ${
             state ? "mr-0" : "mr-0"
           }`}
         >
@@ -45,9 +45,9 @@ const Sidebar = () => {
         {/* toggle btn */}
         {/* <motion.button
           onClick={handleToggleSidebar}
-          className={`absolute  px-2 py-2 rounded-full bottom-3 sample bg-[#27282f]  cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
+          className={`absolute  px-2 py-2 rounded-full -bottom-4 border-dark sample bg-[#1e1f23] hover:bg-[#27282f]  cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
         >
-          <TbChevronLeft />
+          <LuChevronsLeft />
         </motion.button> */}
       </div>
       <div className="w-full border-dark-top mb-2"></div>

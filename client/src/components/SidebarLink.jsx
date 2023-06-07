@@ -7,28 +7,40 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
   };
 
   return (
-    <NavLink
-      to={path}
-      role="link"
-      className="w-full   mb-1.5 "
-    >
+    <NavLink to={path} role="link" className="w-full   mb-1.5 ">
       {({ isActive }) => (
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full  rounded-lg relative  border-dark box-border h-[2.90rem] btn-sm btn  ${isActive?'text-[#e4e6e7] border-dark hover:border-dark bg-[#26272e]/60 hover:bg-[#26272e]':'text-[#676d7c] border-0 bg-transparent hover:bg-transparent'}
-          ${sidebarState?'flex justify-center    ':'flex justify-center px-3.5'}
+          className={`w-full  rounded-lg relative  border-dark box-border h-[2.80rem] btn-sm btn  ${
+            isActive
+              ? "text-[#e4e6e7] border-dark hover:border-dark bg-[#26272e]/60 hover:bg-[#26272e]"
+              : "text-[#676d7c] border-0 bg-transparent hover:bg-transparent"
+          }
+          ${
+            sidebarState
+              ? "flex justify-center    "
+              : "flex justify-center px-3.5"
+          }
           `}
         >
           <div className=" h-fit flex justify-between items-center overflow-hidden w-full">
-            <div className="flex justify-start items-center  pl-0.5 max-w-[100%] font-semibold  text-[0.8rem] w-full capitalize gap-2">
-              <span className="text-[1rem]">{icon}</span>
-              {!sidebarState&&
-              <span className=" text-start w-full  overflow-hidden truncate"> {title}</span>}
+            <div
+              className={`flex justify-start items-center   max-w-[100%] font-semibold  text-[0.8rem] w-full capitalize gap-2`}
+            >
+              <span className="text-[1rem] mx-auto">{icon}</span>
+              {!sidebarState && (
+                <span className=" text-start w-full  overflow-hidden truncate">
+                  {" "}
+                  {title}
+                </span>
+              )}
             </div>
-            {count&& !sidebarState&&
-            <span className="normal-case font-medium whitespace-nowrap text-[#a0a6b1]  text-[0.65rem]">23 new</span>
-            }
+            {count && !sidebarState && (
+              <div class=" absolute text-[#a7a9ad] badge  flex px-2 font-normal  right-1.5 border-0 normal-case text-[0.7rem] top-1/2 -translate-y-1/2 badge-sm bg-[#26272e]/60">
+                32 new
+              </div>
+            )}
           </div>
 
           {/* <div
