@@ -1,5 +1,5 @@
 import React from "react";
-import {LuLayout, LuFolder,LuFlower,LuChevronsLeft,LuCheckSquare,LuFileEdit} from 'react-icons/lu'
+import {LuLayout, LuFolder,LuFlower,LuChevronLeft,LuCheckSquare,LuFileEdit} from 'react-icons/lu'
 import {motion, useAnimation} from 'framer-motion'
 import SidebarLink from "./SidebarLink";
 import AuthContext from "../context/AuthContext";
@@ -47,7 +47,7 @@ const Sidebar = () => {
           onClick={handleToggleSidebar}
           className={`absolute  px-2.5 py-2.5 rounded-full -bottom-4 bg-[#1e1f23] hover:bg-[#27282f]  cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
         >
-          <LuChevronsLeft />
+          <LuChevronLeft />
         </motion.button>
       </div>
       <div className="w-full  mb-2 mt-4"></div>
