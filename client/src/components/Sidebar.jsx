@@ -1,5 +1,5 @@
 import React from "react";
-import {LuLayout, LuFolder,LuFlame,LuChevronsLeft,LuCheckSquare,LuFileEdit} from 'react-icons/lu'
+import {LuLayout, LuFolder,LuFlower,LuChevronLeft,LuCheckSquare,LuFileEdit} from 'react-icons/lu'
 import {motion, useAnimation} from 'framer-motion'
 import SidebarLink from "./SidebarLink";
 import AuthContext from "../context/AuthContext";
@@ -22,46 +22,46 @@ const Sidebar = () => {
       animate={sidebarControl} initial={{width:"15.5rem"}} transition={{duration:0.3}}
       className={`${
         state ? "w-[4rem]" : "w-[15.5rem]"
-      } whitespace-nowrap  relative bg-[#1e1f23] border-dark-right sample h-full flex  flex-col  items-center justify-start  flex-shrink-0   `}
+      } whitespace-nowrap  relative bg-[#1e1f23]  sample h-full flex  flex-col  items-center justify-start  flex-shrink-0   `}
     >
       <div
         className={`${
-          state ? "px-2.5" : " px-6 "
-        } w-full   relative flex  items-center justify-start h-28  pt-0  `}
+          state ? "px-3" : " px-4  "
+        } w-full   relative flex  items-center justify-start h-24  pt-0  `}
       >
         <div
-          className={`border-dark grid bg-[#17181c] cursor-pointer  rounded-full p-[0.7rem] place-content-center ${
+          className={`border-dark grid cursor-pointer  rounded-full p-[0.5rem] place-content-center ${
             state ? "mr-0" : "mr-0"
           }`}
         >
-          <LuFlame className="text-lg  text-[#e4e6e7]" />
+          <LuFlower className="text-lg  text-[#e4e6e7]" />
         </div>
         {!state && (
-          <span className="mt-0    w-fit text-start pl-2.5 whitespace-nowrap overflow-hidden text-[0.9rem] text-[#e4e6e7] font-semibold">
-            MyApplication
+          <span className="mt-0    w-fit text-start pl-2 whitespace-nowrap overflow-hidden text-[0.95rem] text-[#e4e6e7] font-semibold">
+            NoteStack
           </span>
         )}
 
         {/* toggle btn */}
-        {/* <motion.button
+        <motion.button
           onClick={handleToggleSidebar}
-          className={`absolute  px-2 py-2 rounded-full -bottom-4 border-dark sample bg-[#1e1f23] hover:bg-[#27282f]  cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
+          className={`absolute  px-2.5 py-2.5 rounded-full -bottom-4 bg-[#1e1f23] hover:bg-[#27282f]  cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
         >
-          <LuChevronsLeft />
-        </motion.button> */}
+          <LuChevronLeft />
+        </motion.button>
       </div>
-      <div className="w-full border-dark-top mb-2"></div>
-      {!state && (
-        <span className=" text-[0.75rem] font-medium w-full text-left px-5 text-[#a0a6b1]  mt-4 mb-1.5">
-          Menu
-        </span>
-      )}
+      <div className="w-full  mb-2 mt-4"></div>
       <div
         className={`${
-          state ? "mt-[1.485rem] px-2.5" : "px-2.5"
-        } flex   w-full items-center pt-1.5 justify-center flex-col`}
-      >
+          state ? "mt-[1.485rem] px-2" : "px-3"
+        } flex   w-full items-center  pt-1.5 justify-center flex-col`}
+        >
         {/* {state && <div className="w-full  thin-bottom-divider mb-4"></div>} */}
+        {!state && (
+          <span className=" px-2 text-[0.75rem] font-medium w-full text-left  text-[#a0a6b1]  mb-1.5">
+            Menu
+          </span>
+        )}
 
         <SidebarLink
           path="/dashboard"
@@ -69,13 +69,7 @@ const Sidebar = () => {
           title="Dashboard"
           icon={<LuLayout />}
         />
-        <SidebarLink
-          sidebarState={state}
-          title="Blogs"
-          icon={<LuFileEdit />}
-          path="/"
-         
-        ></SidebarLink>
+       
         <SidebarLink
           sidebarState={state}
           title="Collections"
@@ -83,13 +77,7 @@ const Sidebar = () => {
           path="/collections"
           count={data?.noteCollection.length}
         ></SidebarLink>
-        <SidebarLink
-          sidebarState={state}
-          title="To do"
-          icon={<LuCheckSquare />}
-          path="/"
-          
-        ></SidebarLink>
+       
       </div>
     </motion.div>
   );

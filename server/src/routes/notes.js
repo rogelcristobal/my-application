@@ -1,7 +1,8 @@
-import express, { request } from "express";
+import express from "express";
 import { NotesCollectionModel } from "../models/NotesCollection.js";
 import { NoteModel } from "../models/Note.js";
 import { UserModel } from "../models/Users.js";
+import mongoose from "mongoose";
 
 const router = express.Router();
 
@@ -80,12 +81,13 @@ router.delete("/:collectionID", async (request, response) => {
 // create note (OK)
 router.post("/note", async (request, response) => {
   try {
-    const { userID, title, collectionID } = request.body;
+    const { userID, title, collectionID,content } = request.body;
 
     const newNote = new NoteModel({
       userID: userID,
       title: title,
       collectionID: collectionID,
+      content:content
     });
     await newNote.save();
 
@@ -134,7 +136,25 @@ router.delete("/note/:noteID", async (request, response) => {
   }
 });
 
+// search note insensitive
+router.get("/search/:query", async (request, response) => {
+  try {
+    const { query } = request.params;
 
+    const searchNote = await NoteModel.find({title :{$regex: query, $options: "i" }})
+    if(searchNote.length === 0){
+      response.status(200).json({ status: 200, result: searchNote });
+    }
+
+    response.status(200).json({status:200,result:searchNote})
+  } catch (error) {
+    response.status(500).json({
+      status: "error",
+      message: "An error occurred",
+      error: error.message,
+    });
+  }
+});
 
 
 
@@ -157,25 +177,9 @@ router.delete("/note/:noteID", async (request, response) => {
 //     });
 //   }
 // });
-// search note insensitive
-router.get("/search/:query", async (request, response) => {
-  try {
-    const { query } = request.params;
 
-    const searchNote = await NoteModel.find({title :{$regex: query, $options: "i" }})
-    if(searchNote.length === 0){
-      response.status(200).json({ status: 200, result: searchNote });
-    }
 
-    response.status(200).json({status:200,result:searchNote})
-  } catch (error) {
-    response.status(500).json({
-      status: "error",
-      message: "An error occurred",
-      error: error.message,
-    });
-  }
-});
+
 
 // not search every letter
 

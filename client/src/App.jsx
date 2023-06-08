@@ -18,7 +18,7 @@ function App() {
         element={
           <ProtectedRoute userLoading={userLoading} currentUser={currentUser}>
             <div className="h-full w-full ">
-              <div className="h-screen w-full bg-[#17181c] font-plus  text-[#e4e6e7] flex items-start  justify-start relative">
+              <div className="h-screen w-full bg-[#17181c] font-plus  text-[#ffffff] flex items-start  justify-start relative">
                 <NoteCollectionProvider USER_ID="65dqzbapFHPjDMa5ICa134U6WXO2">
                   <Sidebar></Sidebar>
                   <Routes>

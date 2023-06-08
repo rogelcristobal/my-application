@@ -15,7 +15,7 @@ router.post("/register", async(request,response)=>{
       return response.json({ message: "User already exist" });
     }
 
-    const newUser = new UserModel({uid,email,firstName,lastName,noteCollections:[]})
+    const newUser = new UserModel({uid,email,firstName,lastName,noteCollections:[],todoCollections:[]})
     
     await newUser.save()
     response.json({message:"new user created",data: newUser})
