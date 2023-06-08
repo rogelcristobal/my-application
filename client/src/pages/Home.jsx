@@ -21,8 +21,8 @@ const Home = () => {
     <div className="h-full   w-full flex flex-col items-start justify-start relative">
      
        <div className="h-fit  w-full flex pt-8 px-9 pb-0 flex-col">
-        <span className="mb-3 font-semibold text-[0.8rem]  text-[#a7a9ad]/70">Dashboard</span>
-        <span className="font-plus text-[1.45rem] font-medium tracking-tight capitalize">Welcome,<span className="text-semibold  tracking-tight"> {data?.firstName} {data?.lastName}. </span></span>
+        <span className="mb-2 font-semediummibold text-[0.8rem]  text-[#a7a9ad]/70">Dashboard</span>
+        <span className="font-plus text-[1.3rem] font-medium tracking-tight capitalize">Welcome,<span className="text-semibold  tracking-tight"> {data?.firstName} {data?.lastName}. </span></span>
         {/* <span className="text-[0.8rem] font-plus text-black mt-3 ">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, eos?
         </span> */}
@@ -30,7 +30,7 @@ const Home = () => {
 
       <div className="px-8 w-full h-full pt-6">
         {/* <div className=" border-dark-top mb-6"></div> */}
-        <div className="border-dark px-0 bg-[#1e1f23]  rounded-md mt-0 cursor-pointer  flex flex-col justify-start min-h-[6rem] w-60">
+        <div className=" px-0 bg-[#1e1f23]  rounded-md mt-0 cursor-pointer  flex flex-col justify-start min-h-[6rem] w-60">
           <div className=" flex  flex-col px-4 py-3 w-full">
             <span className="text-[0.785rem] flex items-center gap-2 font-plus font-medium text-[#97999e]">
               Total notes <LuHelpCircle />
@@ -41,7 +41,7 @@ const Home = () => {
             </span>
         </div>
         <div className="mt-8">
-          <span className="text-[0.775rem] mb-3  text-[#a7a9ad]/70 font-semibold ">Recently added </span>
+          <span className="text-[0.775rem] mb-3  text-[#a7a9ad]/70 font-medium ">Recently added </span>
         </div>
       </div>
       {/* content */}

@@ -3,11 +3,11 @@ import SearchBar from "../components/SearchBar";
 const Collections = ({ data, isLoading }) => {
   return (
     <div className="h-full   w-full flex flex-col items-start justify-start">
-      <div className="w-full flex-shrink-0  flex items-center justify-start px-8 focus: py-4 border-dark-bottom">
+      <div className="w-full flex-shrink-0 pt-8 flex items-center justify-start px-6 focus: py-4 ">
         <SearchBar />
       </div>
-      <div className="h-fit  w-full flex pt-8 px-8 pb-0 flex-col">
-        <span className="mb-3 font-semibold text-[0.8rem] text-[#a7a9ad]/70">
+      <div className="h-fit  w-full flex pt-2 px-8 pb-0 flex-col">
+        <span className="mb-3 font-medium text-[0.8rem] text-[#a7a9ad]/70">
           Collections
         </span>
         <span className="font-plus text-[1.325rem] font-medium  capitalize">
