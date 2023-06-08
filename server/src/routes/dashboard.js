@@ -17,8 +17,8 @@ router.get("/:userID", async (request, response) => {
     const noteCollection = await NotesCollectionModel.find({
       _id: { $in: user.noteCollections },
     })
-      // .populate("savedNotes")
-      // .lean();
+      .populate("savedNotes")
+      .lean();
 
     const totalNotes = await NoteModel.count(userID);
     const { _id, uid, email, firstName, lastName } = user;

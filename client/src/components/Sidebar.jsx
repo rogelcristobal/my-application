@@ -45,7 +45,7 @@ const Sidebar = () => {
         {/* toggle btn */}
         <motion.button
           onClick={handleToggleSidebar}
-          className={`absolute  px-2 py-2 rounded-full -bottom-4 border-dark sample bg-[#1e1f23] hover:bg-[#27282f]  cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
+          className={`absolute  px-2.5 py-2.5 rounded-full -bottom-4 bg-[#1e1f23] hover:bg-[#27282f]  cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
         >
           <LuChevronsLeft />
         </motion.button>

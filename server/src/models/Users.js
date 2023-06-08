@@ -8,7 +8,8 @@ const UserSchema = new mongoose.Schema({
     email:{type:schemaType.String,required:true},
     firstName:{type:schemaType.String,required:true},
     lastName:{type:schemaType.String,required:true},
-    noteCollections:[{type: schemaType.ObjectId, ref: "note-collection", required:true}]
+    noteCollections:[{type: schemaType.ObjectId, ref: "note-collection", required:true}],
+    todoCollections:[{type:schemaType.ObjectId, ref: "todos", required:true}]
 })
 
 // users -> noteCollection
