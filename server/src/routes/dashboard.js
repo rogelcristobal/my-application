@@ -7,11 +7,11 @@ import { TodoCollectionModel } from "../models/TodosCollections.js";
 import { TodoModel } from "../models/Todos.js";
 const router = express.Router();
 
-// get all collection by current user _id
+// get all collection by current uid
 router.get("/:userID", async (request, response) => {
   try {
     const { userID } = request.params;
-    const user = await UserModel.findById(userID);
+    const user = await UserModel.findOne({uid:userID});
     if (!user) {
       return response.status(404).json({ error: "user not found" });
     }
@@ -29,8 +29,8 @@ router.get("/:userID", async (request, response) => {
       .lean();
       
  
-    const totalTodos = await TodoModel.countDocuments({userID})
-    const totalNotes = await NoteModel.countDocuments({userID})
+    // const totalTodos = await TodoModel.countDocuments({userID})
+    // const totalNotes = await NoteModel.countDocuments({uid:userID})
     const { _id, uid, email, firstName, lastName} = user;
     response
       .status(200)
@@ -40,8 +40,8 @@ router.get("/:userID", async (request, response) => {
         email,
         firstName,
         lastName,
-        totalNotes,
-        totalTodos,
+        // totalNotes,
+        // totalTodos,
         noteCollection,
         todoCollection
         
