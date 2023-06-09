@@ -82,7 +82,7 @@ const Login = () => {
 
 
   return (
-    <div className="h-full">
+    <div className="h-full container mx-auto ">
       <p>register</p>
       <input
         className="sample"
@@ -129,12 +129,12 @@ const Login = () => {
           })
         }
       />
-      <button className="sample ml-2 p-1" onClick={registerUser}>
+      <button className="sample ml-2 p-1 bg-blue-500 text-white rounded-md" onClick={registerUser}>
         sign in
       </button>
 
       <p>current user: {currentUser?.email}</p>
-      <button className="sample ml-2 p-1" onClick={logOutUser}>
+      <button className="sample ml-2 p-1 bg-red-500 text-white rounded-md" onClick={logOutUser}>
         logout
       </button>
 
@@ -161,7 +161,7 @@ const Login = () => {
           })
         }
       />
-      <button className="sample ml-2 p-1" onClick={logInUser}>
+      <button className="sample ml-2 p-1 bg-green-500 text-white rounded-md" onClick={logInUser}>
         log in
       </button>
     </div>

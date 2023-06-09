@@ -11,49 +11,48 @@ export const AuthContextProvider = ({ children }) => {
   const [userLoading, setUserLoading] = React.useState(true);
 
   const [data, setData] = React.useState(null);
- 
+
   React.useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
         // User is signed in
         // Perform actions for authenticated user
         setCurrentUser(user);
-
-        try {
-          const res = await axios.get(`http://localhost:3001/dashboard/${user.uid}`);
-          setData(res.data);
-        } catch (error) {
-          // Handle error if the request fails
-          console.error("Error fetching user data:", error);
-        }
         
-        setUserLoading(false);
-
-      } else {
-        // User is signed out
+        try {
+          const res = await axios.get(
+            `http://localhost:3001/dashboard/${user.uid}`
+            );
+            setData(res.data);
+            setUserLoading(false);
+          } catch (error) {
+            // Handle error if the request fails
+            console.error("Error fetching user data:", error);
+            setUserLoading(false);
+          }
+        } else {
+          // User is signed out
         // Perform actions for signed out user
-        setCurrentUser({});
-        setData({})
-        setUserLoading(true);
+        setCurrentUser(null);
+        setData({});
+        setUserLoading(false);
+        
       }
     });
     // Clean up the event listener when the component unmounts
     return () => unsubscribe();
   }, []);
 
-
-  if(!userLoading){
-    console.log(data)
+  if (!userLoading) {
+    console.log("userDBconnected", data);
   }
-  
 
   return (
     <AuthContext.Provider
       value={{
         currentUser, // user auth in firebase
-        userLoading, 
+        userLoading,
         data, // user data from mdb that match uid with firebase/auth
-        
       }}
     >
       {children}
