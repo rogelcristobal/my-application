@@ -18,7 +18,7 @@ function App() {
       <Route
         path="/*"
         element={
-          <ProtectedRoute userLoading={userLoading} currentUser={currentUser}>
+          <ProtectedRoute userLoading={userLoading} currentUser={data}>
             <div className="h-full w-full ">
               <div className="h-screen w-full bg-[#17181c] font-plus  text-[#ffffff] flex items-start  justify-start relative">
                   <Sidebar></Sidebar>

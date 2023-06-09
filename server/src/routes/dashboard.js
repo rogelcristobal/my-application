@@ -7,7 +7,7 @@ import { TodoCollectionModel } from "../models/TodosCollections.js";
 import { TodoModel } from "../models/Todos.js";
 const router = express.Router();
 
-// get all collection by current uid
+// get all collection by current uid (from firebase)
 router.get("/:userID", async (request, response) => {
   try {
     const { userID } = request.params;

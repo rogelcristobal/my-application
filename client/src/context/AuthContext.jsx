@@ -17,24 +17,29 @@ export const AuthContextProvider = ({ children }) => {
       if (user) {
         // User is signed in
         // Perform actions for authenticated user
-        setCurrentUser(user);
-        setUserLoading(false);
-        
         try {
+          // this will fetch the data of the user that will be used all over the app
           const res = await axios.get(`http://localhost:3001/dashboard/${user.uid}`);
           setData(res.data);
+          setCurrentUser(user);
+          
+          setUserLoading(false);
+          
+          
         } catch (error) {
           // Handle error if the request fails
           console.error("Error fetching user data:", error);
         }
         
-
+        
       } else {
         // User is signed out
         // Perform actions for signed out user
         setCurrentUser({});
         setData({})
-        setUserLoading(true);
+        // setUserLoading(true);
+
+        
       }
     });
     // Clean up the event listener when the component unmounts
@@ -42,10 +47,10 @@ export const AuthContextProvider = ({ children }) => {
   }, []);
 
 
-  if(userLoading){
-    console.log('loading')
-  }else{
+  if(!userLoading){
     console.log("currentUser",data)
+  }else{
+    console.log('loading')
   }
   
 
