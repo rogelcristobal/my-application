@@ -29,8 +29,8 @@ router.get("/:userID", async (request, response) => {
       .lean();
       
  
-    // const totalTodos = await TodoModel.countDocuments({userID})
-    // const totalNotes = await NoteModel.countDocuments({uid:userID})
+    const totalTodos = await TodoModel.countDocuments({userID:user._id})
+    const totalNotes = await NoteModel.countDocuments({userID:user._id})
     const { _id, uid, email, firstName, lastName} = user;
     response
       .status(200)
@@ -40,8 +40,8 @@ router.get("/:userID", async (request, response) => {
         email,
         firstName,
         lastName,
-        // totalNotes,
-        // totalTodos,
+        totalNotes,
+        totalTodos,
         noteCollection,
         todoCollection
         
