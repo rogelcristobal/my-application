@@ -20,7 +20,7 @@ const Home = () => {
   };
   return (
     <div className="h-full   w-full flex flex-col items-start justify-start relative">
-      <div className="w-full flex-shrink-0  pt-6 flex items-center justify-between px-8 py-3 ">
+      {/* <div className="w-full flex-shrink-0  pt-6 flex items-center justify-between px-8 py-3 ">
         <SearchBar />
         <div
           className={`bg-[#1e1f23] grid cursor-pointer  rounded-full h-10 w-10 place-content-center 
@@ -28,21 +28,18 @@ const Home = () => {
         >
           <span className="uppercase text-[0.9rem]">{data?.firstName.split("")[0]}</span>
         </div>
-      </div>
-       <div className="h-fit  w-full flex pt-2 px-9 pb-0 flex-col">
+      </div> */}
+       <div className="h-fit  w-full flex pt-8 px-10 pb-0 flex-col">
         
 
         
         {/* can be nested route? */}
-        <span className="font-plus mt-2 text-[1.4rem] font-medium tracking-tight capitalize">Welcome,<span className="text-semibold  tracking-tight"> {data?.firstName} {data?.lastName}. </span></span>
+        <span className="font-plus mt-2 text-[1.4rem] font-medium  capitalize">Welcome,<span className="text-semibold "> {data?.firstName} {data?.lastName}. </span></span>
         <span className="mt-6 font-semediummibold text-[0.8rem]  text-[#a7a9ad]/70">Dashboard</span>
-        {/* <span className="text-[0.8rem] font-plus text-black mt-3 ">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, eos?
-        </span> */}
+ 
       </div>
 
-      <div className="px-8 w-full h-full pt-4">
-        {/* <div className=" border-dark-top mb-6"></div> */}
+      <div className="px-9 w-full h-full pt-4">
         <div className=" px-0 bg-[#1e1f23]  rounded-md mt-0 cursor-pointer  flex flex-col justify-start min-h-[6rem] w-60">
           <div className=" flex  flex-col px-4 py-3 w-full">
             <span className="text-[0.785rem] flex items-center gap-2 font-plus font-medium text-[#97999e]">

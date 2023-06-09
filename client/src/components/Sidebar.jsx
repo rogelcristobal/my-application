@@ -1,25 +1,34 @@
 import React from "react";
-import {LuLayout, LuFolder,LuFlower,LuChevronLeft,LuCheckSquare,LuFileEdit} from 'react-icons/lu'
-import {motion, useAnimation} from 'framer-motion'
+import {
+  LuLayout,
+  LuFolder,
+  LuFlower,
+  LuChevronLeft,
+  LuListChecks,
+  LuEdit3,
+  LuSettings,
+} from "react-icons/lu";
+import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
 import AuthContext from "../context/AuthContext";
 const Sidebar = () => {
   const [state, setState] = React.useState(false);
   const { data } = React.useContext(AuthContext);
-  const sidebarControl = useAnimation()
+  const sidebarControl = useAnimation();
   const handleToggleSidebar = () => {
     setState(!state);
-    if(state){
-      sidebarControl.start({width:"15.5rem"})
-    }else {
-      sidebarControl.start({ width: "4rem" }); 
+    if (state) {
+      sidebarControl.start({ width: "15.5rem" });
+    } else {
+      sidebarControl.start({ width: "4rem" });
     }
   };
-  
-  
+
   return (
     <motion.div
-      animate={sidebarControl} initial={{width:"15.5rem"}} transition={{duration:0.3}}
+      animate={sidebarControl}
+      initial={{ width: "15.5rem" }}
+      transition={{ duration: 0.3 }}
       className={`${
         state ? "w-[4rem]" : "w-[15.5rem]"
       } whitespace-nowrap  relative bg-[#1e1f23]  sample h-full flex  flex-col  items-center justify-start  flex-shrink-0   `}
@@ -50,34 +59,62 @@ const Sidebar = () => {
           <LuChevronLeft />
         </motion.button>
       </div>
-      <div className="w-full  mb-2 mt-4"></div>
-      <div
-        className={`${
-          state ? "mt-[1.485rem] px-2" : "px-3"
-        } flex   w-full items-center  pt-1.5 justify-center flex-col`}
+      <div className="w-full h-full flex flex-col justify-between items-start"> 
+        <div
+          className={`${
+            state ? "mt-[3rem] px-2 " : "px-3 mt-6"
+          } flex   w-full items-center   pt-1.5 justify-center flex-col`}
         >
-        {/* {state && <div className="w-full  thin-bottom-divider mb-4"></div>} */}
-        {!state && (
-          <span className=" px-2 text-[0.75rem] font-medium w-full text-left  text-[#a0a6b1]  mb-1.5">
-            Menu
-          </span>
-        )}
-
-        <SidebarLink
-          path="/dashboard"
-          sidebarState={state}
-          title="Dashboard"
-          icon={<LuLayout />}
-        />
-       
-        <SidebarLink
-          sidebarState={state}
-          title="Collections"
-          icon={<LuFolder />}
-          path="/collections"
-          count={data?.noteCollection.length}
-        ></SidebarLink>
-       
+          {!state && (
+            <span className=" px-2 text-[0.75rem] font-medium w-full text-left  text-[#a0a6b1]  mb-1.5">
+              Menu
+            </span>
+          )}
+          {[
+            { path: "/dashboard", title: "dashboard", icon: <LuLayout /> },
+            {
+              path: "/collections",
+              title: "collections",
+              icon: <LuFolder />,
+              count: data?.noteCollection.length,
+            },
+            { path: "/todos", title: "todos", icon: <LuListChecks /> },
+            { path: "/blogs", title: "Blogs", icon: <LuEdit3 /> },
+          ].map((item, id) => (
+            <SidebarLink
+              path={item.path}
+              sidebarState={state}
+              title={item.title}
+              icon={item.icon}
+              count={item?.count}
+            />
+          ))}
+          {/* <div className="w-full  border-dark-top mt-3"></div> */}
+        </div>
+        {/* settings buttons */}
+        <div
+          className={`${
+            state ? " px-2 " : "px-3 "
+          } flex   w-full items-center mt-4  pb-6 justify-center flex-col`}
+        >
+          {/* {!state && (
+            <span className=" px-2 text-[0.75rem] font-medium w-full text-left  text-[#a0a6b1]  mb-1.5">
+              Account
+            </span>
+          )} */}
+          {[{ path: "/settings", title: "settings", icon: <LuSettings /> }].map(
+            (item, id) => (
+              <SidebarLink
+                path={item.path}
+                sidebarState={state}
+                title={item.title}
+                icon={item.icon}
+                count={item?.count}
+              />
+            )
+          )}
+          
+        </div>
       </div>
     </motion.div>
   );

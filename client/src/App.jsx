@@ -7,6 +7,8 @@ import Sidebar from "./components/Sidebar";
 import { NoteCollectionProvider } from "./context/NoteCollectionContext";
 import AuthContext from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Todos from "./pages/Todos";
+import Blogs from "./pages/Blogs";
 function App() {
   const { currentUser, userLoading, data } = React.useContext(AuthContext);
 
@@ -31,6 +33,15 @@ function App() {
                       path="/collections"
                       element={<Collections />}
                     ></Route>
+                    <Route
+                      path="/Todos"
+                      element={<Todos />}
+                    ></Route>
+                      <Route
+                      path="/Blogs"
+                      element={<Blogs />}
+                    ></Route>
+                    
                   </Routes>
                 </NoteCollectionProvider>
               </div>
