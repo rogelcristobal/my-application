@@ -36,7 +36,7 @@ const Sidebar = () => {
       <div
         className={`${
           state ? "px-3" : " px-4  "
-        } w-full   relative flex  items-center justify-start h-24  pt-0  `}
+        } w-full   relative flex  items-center justify-start h-32    `}
       >
         <div
           className={`border-dark grid cursor-pointer  rounded-full p-[0.5rem] place-content-center ${
@@ -59,7 +59,7 @@ const Sidebar = () => {
           <LuChevronLeft />
         </motion.button>
       </div>
-      <div className="w-full h-full flex flex-col justify-between items-start"> 
+      <div className="w-full h-full flex flex-col justify-between items-start">
         <div
           className={`${
             state ? "mt-[3rem] px-2 " : "px-3 mt-6"
@@ -76,12 +76,13 @@ const Sidebar = () => {
               path: "/collections",
               title: "collections",
               icon: <LuFolder />,
-              count: data?.noteCollection.length,
+              count: data?.noteCollection?.length,
             },
             { path: "/todos", title: "todos", icon: <LuListChecks /> },
             { path: "/blogs", title: "Blogs", icon: <LuEdit3 /> },
           ].map((item, id) => (
             <SidebarLink
+            key={id}
               path={item.path}
               sidebarState={state}
               title={item.title}
@@ -105,6 +106,7 @@ const Sidebar = () => {
           {[{ path: "/settings", title: "settings", icon: <LuSettings /> }].map(
             (item, id) => (
               <SidebarLink
+                key={id}
                 path={item.path}
                 sidebarState={state}
                 title={item.title}
@@ -113,7 +115,6 @@ const Sidebar = () => {
               />
             )
           )}
-          
         </div>
       </div>
     </motion.div>

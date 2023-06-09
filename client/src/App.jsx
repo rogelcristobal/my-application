@@ -11,7 +11,7 @@ import Todos from "./pages/Todos";
 import Blogs from "./pages/Blogs";
 function App() {
   const { currentUser, userLoading, data } = React.useContext(AuthContext);
-
+ 
   return (
     <Routes>
       <Route path="/login" element={<Login />}></Route>
@@ -21,7 +21,6 @@ function App() {
           <ProtectedRoute userLoading={userLoading} currentUser={currentUser}>
             <div className="h-full w-full ">
               <div className="h-screen w-full bg-[#17181c] font-plus  text-[#ffffff] flex items-start  justify-start relative">
-                <NoteCollectionProvider USER_ID="65dqzbapFHPjDMa5ICa134U6WXO2">
                   <Sidebar></Sidebar>
                   <Routes>
                     <Route
@@ -43,7 +42,6 @@ function App() {
                     ></Route>
                     
                   </Routes>
-                </NoteCollectionProvider>
               </div>
             </div>
           </ProtectedRoute>

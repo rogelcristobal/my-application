@@ -18,11 +18,16 @@ export const AuthContextProvider = ({ children }) => {
         // User is signed in
         // Perform actions for authenticated user
         setCurrentUser(user);
+
+        try {
+          const res = await axios.get(`http://localhost:3001/dashboard/${user.uid}`);
+          setData(res.data);
+        } catch (error) {
+          // Handle error if the request fails
+          console.error("Error fetching user data:", error);
+        }
+        
         setUserLoading(false);
-
-        const res = await axios.get(`http://localhost:3001/dashboard/${user.uid}`)
-        setData(res.data)
-
 
       } else {
         // User is signed out
@@ -45,9 +50,9 @@ export const AuthContextProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        currentUser,
-        userLoading,
-        data,
+        currentUser, // user auth in firebase
+        userLoading, 
+        data, // user data from mdb that match uid with firebase/auth
         
       }}
     >

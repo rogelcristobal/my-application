@@ -11,7 +11,7 @@ router.post("/", async (request, response) => {
   try {
     const { userID, title } = request.body;
 
-    // create a new collection
+    // create a new collection 
     const newNoteCollection = new NotesCollectionModel({
       userID: userID,
       collectionTitle: title,
@@ -32,7 +32,7 @@ router.post("/", async (request, response) => {
       status: "success",
       userID: user._id,
       email: user.email,
-      createdCollections: newNoteCollection,
+      createdCollection: newNoteCollection,
     });
   } catch (error) {
     response.status(500).json({
@@ -79,9 +79,10 @@ router.delete("/:collectionID", async (request, response) => {
 });
 
 // create note (OK)
-router.post("/note", async (request, response) => {
+router.post("/:collectionID", async (request, response) => {
   try {
-    const { userID, title, collectionID,content } = request.body;
+    const { userID, title, content } = request.body;
+    const { collectionID} = request.params
 
     const newNote = new NoteModel({
       userID: userID,

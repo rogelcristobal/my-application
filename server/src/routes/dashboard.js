@@ -3,6 +3,8 @@ import express from "express";
 import { NoteModel } from "../models/Note.js";
 import { UserModel } from "../models/Users.js";
 import { NotesCollectionModel } from "../models/NotesCollection.js";
+import { TodoCollectionModel } from "../models/TodosCollections.js";
+import { TodoModel } from "../models/Todos.js";
 const router = express.Router();
 
 // get all collection by current user
@@ -20,8 +22,15 @@ router.get("/:userID", async (request, response) => {
       .populate("savedNotes")
       .lean();
 
+      const todoCollection = await TodoCollectionModel.find({
+      _id: { $in: user.todoCollections },
+    })
+      .populate("todos")
+      .lean();
+
     const totalNotes = await NoteModel.count(userID);
-    const { _id, uid, email, firstName, lastName } = user;
+    const totalTodos = await TodoModel.count(userID)
+    const { _id, uid, email, firstName, lastName} = user;
     response
       .status(200)
       .json({
@@ -31,7 +40,10 @@ router.get("/:userID", async (request, response) => {
         firstName,
         lastName,
         totalNotes,
+        totalTodos,
         noteCollection,
+        todoCollection
+        
       });
   } catch (error) {
     response.status(500).json({
