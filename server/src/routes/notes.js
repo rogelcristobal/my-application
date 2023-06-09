@@ -2,14 +2,15 @@ import express from "express";
 import { NotesCollectionModel } from "../models/NotesCollection.js";
 import { NoteModel } from "../models/Note.js";
 import { UserModel } from "../models/Users.js";
-import mongoose from "mongoose";
+
 
 const router = express.Router();
 
 // create new note collection (OK)
-router.post("/", async (request, response) => {
+router.post("/:userID", async (request, response) => {
   try {
-    const { userID, title } = request.body;
+    const {title} = request.body;
+    const {userID} = request.params
 
     // create a new collection 
     const newNoteCollection = new NotesCollectionModel({
@@ -59,6 +60,7 @@ router.delete("/:collectionID", async (request, response) => {
     const deleteCollection = await NotesCollectionModel.findByIdAndDelete(
       collectionID
     );
+    // deletes all instance of this collection in every user, though only the user created this has the access
     await UserModel.findOneAndUpdate(
       {},
       { $pull: { noteCollections: collectionID } }
@@ -79,10 +81,10 @@ router.delete("/:collectionID", async (request, response) => {
 });
 
 // create note (OK)
-router.post("/:collectionID", async (request, response) => {
+router.post("/:userID/:collectionID", async (request, response) => {
   try {
-    const { userID, title, content } = request.body;
-    const { collectionID} = request.params
+    const { title, content } = request.body;
+    const { collectionID,userID} = request.params
 
     const newNote = new NoteModel({
       userID: userID,
