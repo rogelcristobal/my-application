@@ -11,7 +11,7 @@ import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
   const navigate = useNavigate()
-  const {currentUser, setCurrentUser} = React.useContext(AuthContext);
+  const {data} = React.useContext(AuthContext);
 
   const [registerInput, setRegisterInput] = React.useState({
     email: "",
@@ -31,7 +31,6 @@ const Login = () => {
         registerInput.email,
         registerInput.password
       );
-      console.log(user);
 
       //  request storing uid and other data to the db
       if (user) {
@@ -44,7 +43,6 @@ const Login = () => {
             lastName:registerInput.lastName
           }
         );
-        console.log(response.data);
         logOutUser();
       }
 
@@ -57,7 +55,6 @@ const Login = () => {
   const logOutUser = async () => {
     try {
       await auth.signOut();
-      console.log("User signed out successfully");
     } catch (error) {
       console.error("Error signing out:", error);
     }
@@ -69,7 +66,6 @@ const Login = () => {
         logInInput.email,
         logInInput.password
       );
-      console.log(`login success: ${user?.email}`);
       navigate('/dashboard')
 
 
@@ -133,7 +129,7 @@ const Login = () => {
         sign in
       </button>
 
-      <p>current user: {currentUser?.email}</p>
+      <p>current user: {data?.email}</p>
       <button className="sample ml-2  p-1 bg-red-500 text-white rounded-md" onClick={logOutUser}>
         logout
       </button>
