@@ -1,7 +1,7 @@
 import React from "react";
 import SearchBar from "../components/SearchBar";
 import AuthContext from "../context/AuthContext";
-const Collections = () => {
+const Todos = () => {
   const { data, userLoading } = React.useContext(AuthContext);
   // if(!userLoading){
   //   console.log()
@@ -21,7 +21,7 @@ const Collections = () => {
 
 
         {/* can be nested route? */}
-        <span className="mb-4 font-semediummibold text-[0.8rem]  text-[#a7a9ad]/70">Collections</span>
+        <span className="mb-4 font-semediummibold text-[0.8rem]  text-[#a7a9ad]/70">Todos</span>
         <span className="font-plus text-[1.325rem] font-medium  capitalize">
           <span className="text-semibold  "> </span>
         </span>
@@ -38,4 +38,4 @@ const Collections = () => {
   );
 };
 
-export default Collections;
+export default Todos;

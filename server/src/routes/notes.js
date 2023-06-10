@@ -2,16 +2,17 @@ import express from "express";
 import { NotesCollectionModel } from "../models/NotesCollection.js";
 import { NoteModel } from "../models/Note.js";
 import { UserModel } from "../models/Users.js";
-import mongoose from "mongoose";
+
 
 const router = express.Router();
 
 // create new note collection (OK)
-router.post("/", async (request, response) => {
+router.post("/:userID", async (request, response) => {
   try {
-    const { userID, title } = request.body;
+    const {title} = request.body;
+    const {userID} = request.params
 
-    // create a new collection
+    // create a new collection 
     const newNoteCollection = new NotesCollectionModel({
       userID: userID,
       collectionTitle: title,
@@ -32,7 +33,7 @@ router.post("/", async (request, response) => {
       status: "success",
       userID: user._id,
       email: user.email,
-      createdCollections: newNoteCollection,
+      createdCollection: newNoteCollection,
     });
   } catch (error) {
     response.status(500).json({
@@ -48,26 +49,25 @@ router.delete("/:collectionID", async (request, response) => {
   try {
     const { collectionID } = request.params;
     const collection = await NotesCollectionModel.findById(collectionID);
-    if (!collection) {
-      return response
-        .status(404)
-        .json({ message: "collection does not exist!" });
+    
+    // find the collection
+    if(!collection){
+      return response.status(400).json({message:"collection not found!"})
     }
-    const deleteNote = await NoteModel.deleteMany({
-      _id: { $in: collection.savedNotes },
-    });
-    const deleteCollection = await NotesCollectionModel.findByIdAndDelete(
-      collectionID
-    );
-    await UserModel.findOneAndUpdate(
-      {},
-      { $pull: { noteCollections: collectionID } }
-    );
+
+    // removes the notes inside the collection
+    const deleteNotes = await NoteModel.deleteMany({_id: { $in: collection.savedNotes}})
+
+    //remove the collection instance in all users updateMany({filter},{action})
+    await UserModel.updateMany({noteCollections:collectionID}, {$pull: {noteCollections:collectionID}})
+
+    //finally deletes the collection
+    const deleteCollection = await NotesCollectionModel.findByIdAndDelete(collectionID)
 
     response.status(200).json({
       status: "success",
       deletedCollection: deleteCollection,
-      deletedNotes: deleteNote.deletedCount,
+      deletedNotes: deleteNotes.deletedCount,
     });
   } catch (error) {
     response.status(500).json({
@@ -79,9 +79,10 @@ router.delete("/:collectionID", async (request, response) => {
 });
 
 // create note (OK)
-router.post("/note", async (request, response) => {
+router.post("/:userID/:collectionID", async (request, response) => {
   try {
-    const { userID, title, collectionID,content } = request.body;
+    const { title, content } = request.body;
+    const { collectionID,userID} = request.params
 
     const newNote = new NoteModel({
       userID: userID,
@@ -117,13 +118,20 @@ router.post("/note", async (request, response) => {
 });
 
 // delete note (OK)
-router.delete("/note/:noteID", async (request, response) => {
+router.delete("/:collectionID/:noteID", async (request, response) => {
   try {
-    const { noteID } = request.params;
-    const deleteNote = await NoteModel.findByIdAndDelete(noteID);
-    if (!deleteNote) {
-      return response.status(404).json({ message: "note does not exist!" });
+    const { collectionID,noteID } = request.params;
+    
+    
+    //find the note instance and delete
+    const deleteNote = await NoteModel.findByIdAndDelete(noteID)
+    if(!deleteNote){
+      return response.status(400).json({message:"note not found"})
     }
+    
+    // delete the instance of note in its collection
+    await NotesCollectionModel.findByIdAndUpdate(collectionID, {$pull: {savedNotes:noteID}})
+
     response
       .status(200)
       .json({ message: `successfully deleted`, deletedNote: deleteNote });
@@ -136,7 +144,7 @@ router.delete("/note/:noteID", async (request, response) => {
   }
 });
 
-// search note insensitive
+// search note insensitive (OK)
 router.get("/search/:query", async (request, response) => {
   try {
     const { query } = request.params;

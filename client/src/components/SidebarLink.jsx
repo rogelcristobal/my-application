@@ -26,7 +26,7 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
         >
           <div className=" h-full flex justify-between items-center overflow-hidden w-full">
             <div
-              className={`flex justify-start items-center   h-full font-medium  text-[0.775rem] w-full capitalize gap-2 ${!sidebarState?'max-w-[75%] ':'max-w-[100%]'}`}
+              className={`flex justify-start items-center   h-full font-medium  text-[0.775rem] w-full capitalize gap-3 ${!sidebarState?'max-w-[75%] ':'max-w-[100%]'}`}
             >
               <span className="text-[1rem] mx-auto">{icon}</span>
               {!sidebarState && (
@@ -36,9 +36,9 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
                 </span>
               )}
             </div>
-            {count && !sidebarState && (
+            {count > 0 && !sidebarState && (
               <div className=" absolute text-[#a7a9ad] badge  flex px-2 font-normal  right-1.5 border-0 normal-case text-[0.7rem] top-1/2 -translate-y-1/2 badge-sm bg-[#26272e]/60">
-                32 new
+                {count}
               </div>
             )}
           </div>
