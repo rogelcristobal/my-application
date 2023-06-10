@@ -49,27 +49,25 @@ router.delete("/:collectionID", async (request, response) => {
   try {
     const { collectionID } = request.params;
     const collection = await NotesCollectionModel.findById(collectionID);
-    if (!collection) {
-      return response
-        .status(404)
-        .json({ message: "collection does not exist!" });
+    
+    // find the collection
+    if(!collection){
+      return response.status(400).json({message:"collection not found!"})
     }
-    const deleteNote = await NoteModel.deleteMany({
-      _id: { $in: collection.savedNotes },
-    });
-    const deleteCollection = await NotesCollectionModel.findByIdAndDelete(
-      collectionID
-    );
-    // deletes all instance of this collection in every user, though only the user created this has the access
-    await UserModel.findOneAndUpdate(
-      {},
-      { $pull: { noteCollections: collectionID } }
-    );
+
+    // removes the notes inside the collection
+    const deleteNotes = await NoteModel.deleteMany({_id: { $in: collection.savedNotes}})
+
+    //remove the collection instance in all users updateMany({filter},{action})
+    await UserModel.updateMany({noteCollections:collectionID}, {$pull: {noteCollections:collectionID}})
+
+    //finally deletes the collection
+    const deleteCollection = await NotesCollectionModel.findByIdAndDelete(collectionID)
 
     response.status(200).json({
       status: "success",
       deletedCollection: deleteCollection,
-      deletedNotes: deleteNote.deletedCount,
+      deletedNotes: deleteNotes.deletedCount,
     });
   } catch (error) {
     response.status(500).json({
@@ -120,13 +118,20 @@ router.post("/:userID/:collectionID", async (request, response) => {
 });
 
 // delete note (OK)
-router.delete("/note/:noteID", async (request, response) => {
+router.delete("/:collectionID/:noteID", async (request, response) => {
   try {
-    const { noteID } = request.params;
-    const deleteNote = await NoteModel.findByIdAndDelete(noteID);
-    if (!deleteNote) {
-      return response.status(404).json({ message: "note does not exist!" });
+    const { collectionID,noteID } = request.params;
+    
+    
+    //find the note instance and delete
+    const deleteNote = await NoteModel.findByIdAndDelete(noteID)
+    if(!deleteNote){
+      return response.status(400).json({message:"note not found"})
     }
+    
+    // delete the instance of note in its collection
+    await NotesCollectionModel.findByIdAndUpdate(collectionID, {$pull: {savedNotes:noteID}})
+
     response
       .status(200)
       .json({ message: `successfully deleted`, deletedNote: deleteNote });
@@ -139,7 +144,7 @@ router.delete("/note/:noteID", async (request, response) => {
   }
 });
 
-// search note insensitive
+// search note insensitive (OK)
 router.get("/search/:query", async (request, response) => {
   try {
     const { query } = request.params;

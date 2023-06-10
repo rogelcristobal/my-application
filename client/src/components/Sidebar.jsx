@@ -36,7 +36,7 @@ const Sidebar = () => {
       <div
         className={`${
           state ? "px-3" : " px-4  "
-        } w-full   relative flex  items-center justify-start h-32    `}
+        } w-full   relative flex  items-center justify-start  pt-10 pb-12   `}
       >
         <div
           className={`border-dark grid cursor-pointer  rounded-full p-[0.5rem] place-content-center ${
@@ -46,7 +46,7 @@ const Sidebar = () => {
           <LuFlower className="text-lg  text-[#e4e6e7]" />
         </div>
         {!state && (
-          <span className="mt-0    w-fit text-start pl-2 whitespace-nowrap overflow-hidden text-[0.95rem] text-[#e4e6e7] font-semibold">
+          <span className="mt-0    w-fit text-start pl-2 whitespace-nowrap overflow-hidden text-[0.95rem] text-[#e4e6e7] font-medium">
             NoteStack
           </span>
         )}

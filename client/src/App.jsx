@@ -13,14 +13,16 @@ function App() {
   const { currentUser, userLoading, data } = React.useContext(AuthContext);
  
   return (
+    <div className="h-screen w-full bg-[#17181c] font-plus  text-[#ffffff]">
+      
     <Routes>
       <Route path="/login" element={<Login />}></Route>
       <Route
         path="/*"
         element={
           <ProtectedRoute userLoading={userLoading} currentUser={data}>
-            <div className="h-full w-full ">
-              <div className="h-screen w-full bg-[#17181c] font-plus  text-[#ffffff] flex items-start  justify-start relative">
+            
+              <div className="h-full w-full  flex items-start  justify-start relative">
                   <Sidebar></Sidebar>
                   <Routes>
                     <Route
@@ -43,11 +45,13 @@ function App() {
                     
                   </Routes>
               </div>
-            </div>
+            
           </ProtectedRoute>
         }
       ></Route>
     </Routes>
+    
+    </div>
   );
 }
 

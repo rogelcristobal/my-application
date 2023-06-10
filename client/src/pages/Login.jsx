@@ -82,10 +82,10 @@ const Login = () => {
 
 
   return (
-    <div className="h-full container mx-auto ">
+    <div className="h-full p-12 font-inter bg-[#17181c] text-white mx-auto ">
       <p>register</p>
       <input
-        className="sample"
+        className="sample text-black "
         type="text"
         placeholder="email"
         onChange={(e) =>
@@ -96,7 +96,7 @@ const Login = () => {
         }
       />
       <input
-        className="sample ml-2"
+        className="sample ml-2 text-black "
         type="password"
         placeholder="password"
         onChange={(e) =>
@@ -108,7 +108,7 @@ const Login = () => {
       />
       <br />
       <input
-        className="sample"
+        className="sample text-black "
         type="text"
         placeholder="firstname"
         onChange={(e) =>
@@ -119,7 +119,7 @@ const Login = () => {
         }
       />
       <input
-        className="sample ml-2"
+        className="sample  ml-2 text-black "
         type="text"
         placeholder="lastname"
         onChange={(e) =>
@@ -129,18 +129,18 @@ const Login = () => {
           })
         }
       />
-      <button className="sample ml-2 p-1 bg-blue-500 text-white rounded-md" onClick={registerUser}>
+      <button className="sample ml-2  p-1 bg-blue-500 text-white rounded-md" onClick={registerUser}>
         sign in
       </button>
 
       <p>current user: {currentUser?.email}</p>
-      <button className="sample ml-2 p-1 bg-red-500 text-white rounded-md" onClick={logOutUser}>
+      <button className="sample ml-2  p-1 bg-red-500 text-white rounded-md" onClick={logOutUser}>
         logout
       </button>
 
       <p className="mt-20">login</p>
       <input
-        className="sample"
+        className="sample text-black "
         type="text"
         placeholder="email"
         onChange={(e) =>
@@ -151,7 +151,7 @@ const Login = () => {
         }
       />
       <input
-        className="sample ml-2"
+        className="sample ml-2 text-black"
         type="password"
         placeholder="password"
         onChange={(e) =>

@@ -17,13 +17,13 @@ export const AuthContextProvider = ({ children }) => {
       if (user) {
         // User is signed in
         // Perform actions for authenticated user
+        setUserLoading(false);
         try {
           // this will fetch the data of the user that will be used all over the app
           const res = await axios.get(`http://localhost:3001/dashboard/${user.uid}`);
           setData(res.data);
           setCurrentUser(user);
           
-          setUserLoading(false);
           
           
         } catch (error) {

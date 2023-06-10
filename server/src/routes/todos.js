@@ -37,6 +37,42 @@ router.post("/:userID", async (request, response) => {
     });
   }
 });
+
+// delete todo collection (OK)
+router.delete("/:collectionID", async(request,response)=>{
+ try {
+    const { collectionID } = request.params
+    const collection = await TodoCollectionModel.findById(collectionID)
+    if(!collection){
+      return response.status(400).json({message:"collection not found"})
+    }
+    // delete first the todos within the collection
+    const deleteNotesInCollection = await TodoModel.deleteMany({
+      _id: { $in:collection.todos } 
+    }) 
+
+    // remove the collection in users table
+    await UserModel.updateMany({todoCollections:collectionID}, {$pull: {todoCollections:collectionID}})
+
+    // finally , deletes the todo collection
+    const deleteCollection = await TodoCollectionModel.findByIdAndDelete(collectionID)
+
+    response.status(200).json({
+      status: "success",
+      deletedCollection: deleteCollection,
+      deletedTodos: deleteNotesInCollection.deletedCount,
+    });
+
+
+ } catch (error) {
+   response.status(500).json({
+      status: "error",
+      message: "An error occurred",
+      error: error.message,
+    });
+ }
+})
+
 // create todo (OK)
 router.post("/:userID/:collectionID", async (request, response) => {
   try {
@@ -65,5 +101,29 @@ router.post("/:userID/:collectionID", async (request, response) => {
     });
   }
 });
+
+// delete todo
+router.delete("/:collectionID/:todoID",async (request,response)=>{
+  try {
+    const {collectionID,todoID} = request.params
+
+    //find the todo 
+    const deleteTodo = await TodoModel.findByIdAndDelete(todoID)
+    if(!deleteTodo){
+      return response.status(400).json({message:"todo not found"})
+    }
+
+    //delete the instance of the todo on its collection
+    await TodoCollectionModel.findByIdAndUpdate(collectionID, {$pull: {todos:todoID}})
+
+    response.status(200).json({status:"success",deletedTodo:deleteTodo})
+  } catch (error) {
+     response.status(500).json({
+      status: "error",
+      message: "An error occurred",
+      error: error.message,
+    });
+  }
+})
 
 export { router as toDoRouter };
