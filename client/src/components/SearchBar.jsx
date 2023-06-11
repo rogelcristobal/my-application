@@ -51,7 +51,7 @@ const SearchBar = () => {
     };
   }, [inputRef]);
   return (
-    <div className="max-w-[23rem] w-full relative ">
+    <div className="max-w-[23rem] w-full relative bg-transparent">
       <input
         ref={inputRef}
         type="text"
@@ -64,7 +64,7 @@ const SearchBar = () => {
             input: e.target.value,
           })
         }
-        className={`input  input-ghost relative placeholder:text-[#a7a9ad]/70 w-full input-sm  placeholder:text-[0.785rem] h-[2.7rem] pl-11 max-w-sm focus:bg-[#1e1f23] placeholder:font-medium  cursor cursor-pointer focus:outline-none ${
+        className={`input  input-ghost relative rounded-lg placeholder:text-[#a7a9ad]/70 w-full input-sm  placeholder:text-[0.785rem] h-[2.7rem] pl-11 max-w-sm focus:bg-[#1e1f23] placeholder:font-medium  cursor cursor-pointer focus:outline-none ${
           state.hover ? "bg-[#1e1f23] " : "bg-[#1e1f23]/50"
         }`}
       />
@@ -76,11 +76,11 @@ const SearchBar = () => {
 
       {!state.input && (
         <div className=" absolute text-[#a7a9ad]  items-center flex px-2  right-2 text-[0.7rem] top-1/2 -translate-y-1/2  gap-1.5">
-          <kbd className="kbd kbd-xs rounded p-0.5 text-[0.7rem] border-[#a7a9ad]/10 text-[#a7a9ad]/70 px-1">
+          <kbd className="kbd kbd-xs bg-[#1e1f23] rounded p-0.5 text-[0.7rem] border-[#a7a9ad]/10 text-[#a7a9ad]/70 px-1">
             ctrl
           </kbd>
           +
-          <kbd className="kbd kbd-xs rounded p-0.5 text-[0.7rem] border-[#a7a9ad]/10 text-[#a7a9ad]/70 px-1">
+          <kbd className="kbd kbd-xs bg-[#1e1f23] rounded p-0.5 text-[0.7rem] border-[#a7a9ad]/10 text-[#a7a9ad]/70 px-1">
             k
           </kbd>
         </div>

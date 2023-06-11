@@ -53,6 +53,7 @@ const Home = () => {
         <div className="mt-6">
           <span className="text-[0.775rem] mb-3  text-[#a7a9ad]/70   font-medium ">Recently added </span>
         </div>
+        
       </div>
       {/* content */}
     </div>
