@@ -27,26 +27,26 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      initial={{ width: "15.5rem" }}
+      initial={{ width: "16.5rem" }}
       transition={{ duration: 0.3 }}
       className={`${
         state ? "w-[4rem]" : "w-[16rem]"
-      } whitespace-nowrap  relative bg-[#1e1f23]  sample h-full flex  flex-col  items-center justify-start  flex-shrink-0   `}
+      } whitespace-nowrap  relative bg-white shadow-lg  h-full flex  flex-col  items-center justify-start  flex-shrink-0   `}
     >
       <div
         className={`${
-          state ? "px-3" : " px-4  "
-        } w-full   relative flex  items-center justify-start  pt-10 pb-12   `}
+          state ? "px-[0.8rem]" : " px-6  "
+        } w-full   relative flex  items-center justify-start  pt-10 pb-8   `}
       >
         <div
-          className={`border-dark grid cursor-pointer  rounded-full p-[0.5rem] place-content-center ${
+          className={` grid cursor-pointer  rounded-full p-[0.5rem] place-content-center ${
             state ? "mr-0" : "mr-0"
           }`}
         >
-          <LuFlower className="text-lg  text-[#e4e6e7]" />
+          <LuFlower className="text-lg  text-inherit" />
         </div>
         {!state && (
-          <span className="mt-0    w-fit text-start pl-2 whitespace-nowrap overflow-hidden text-[0.95rem] text-[#e4e6e7] font-medium">
+          <span className="mt-0    w-fit text-start pl-2.5 whitespace-nowrap overflow-hidden text-[0.95rem]  font-medium">
             NoteStack
           </span>
         )}
@@ -54,7 +54,7 @@ const Sidebar = () => {
         {/* toggle btn */}
         <motion.button
           onClick={handleToggleSidebar}
-          className={`absolute  px-2.5 py-2.5 rounded-full -bottom-4 bg-[#1e1f23] hover:bg-[#27282f]  cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
+          className={`absolute  px-2.5 py-2.5 rounded-full -bottom-4   cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
         >
           <LuChevronLeft />
         </motion.button>
@@ -62,11 +62,12 @@ const Sidebar = () => {
       <div className="w-full h-full flex flex-col justify-between items-start">
         <div
           className={`${
-            state ? "mt-[3rem] px-2 " : "px-3 mt-6"
+            state ? "mt-[1rem] px-3 " : "px-4 mt-4"
           } flex   w-full items-center   pt-1.5 justify-center flex-col`}
         >
+          
           {!state && (
-            <span className=" px-2 text-[0.75rem] font-medium w-full text-left  text-[#a0a6b1]  mb-1.5">
+            <span className=" px-2 text-[0.75rem] font-medium w-full text-left    mb-1.5">
               Menu
             </span>
           )}
@@ -90,7 +91,7 @@ const Sidebar = () => {
               count={item?.count}
             />
           ))}
-          {/* <div className="w-full  border-dark-top mt-3"></div> */}
+          <div className="w-full  thin-top-divider h-[0.1rem] mt-3"></div>
         </div>
         {/* settings buttons */}
         <div
