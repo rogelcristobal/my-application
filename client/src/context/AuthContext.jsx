@@ -7,60 +7,40 @@ import { useQueries, useQuery } from "@tanstack/react-query";
 const AuthContext = React.createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = React.useState(null);
-  const [userLoading, setUserLoading] = React.useState(true);
-
   const [data, setData] = React.useState(null);
- 
+    const [loading, setloading] = React.useState(true);
+
   React.useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      setloading(true)
       if (user) {
-        // User is signed in
-        // Perform actions for authenticated user
-        setUserLoading(false);
+
         try {
-          // this will fetch the data of the user that will be used all over the app
-          const res = await axios.get(`http://localhost:3001/dashboard/${user.uid}`);
-          setData(res.data);
-          setCurrentUser(user);
-          
-          
+          const response = await axios.get(
+            `http://localhost:3001/dashboard/${user.uid}`
+          );
+          setData(response.data);
+          setloading(false)
           
         } catch (error) {
-          // Handle error if the request fails
-          console.error("Error fetching user data:", error);
+          console.log(error);
         }
         
-        
       } else {
-        // User is signed out
-        // Perform actions for signed out user
-        setCurrentUser({});
-        setData({})
-        // setUserLoading(true);
-
-        
+        setData(null)
+        setloading(false)
       }
+     
     });
-    // Clean up the event listener when the component unmounts
     return () => unsubscribe();
   }, []);
-
-
-  if(!userLoading){
-    console.log("currentUser",data)
-  }else{
-    console.log('loading')
-  }
-  
 
   return (
     <AuthContext.Provider
       value={{
-        currentUser, // user auth in firebase
-        userLoading, 
+        // user auth in firebase
+        loading,
         data, // user data from mdb that match uid with firebase/auth
-        
       }}
     >
       {children}

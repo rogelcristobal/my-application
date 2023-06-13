@@ -10,47 +10,37 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Todos from "./pages/Todos";
 import Blogs from "./pages/Blogs";
 function App() {
-  const { currentUser, userLoading, data } = React.useContext(AuthContext);
- 
+  const { data,loading } = React.useContext(AuthContext);
+  if (loading) {
+    console.log('loading');
+  }else if(!data){
+    console.log('user logged out')
+  }else{
+    console.log(data)
+  }
   return (
-    <div className="h-screen w-full bg-[#17181c] font-plus  text-[#ffffff]">
-      
-    <Routes>
-      <Route path="/login" element={<Login />}></Route>
-      <Route
-        path="/*"
-        element={
-          <ProtectedRoute userLoading={userLoading} currentUser={data}>
-            
+    <div className="h-screen w-full bg-white font-inter  text-[#112437]">
+      <Routes>
+        <Route path="/login" element={<Login />}></Route>
+        <Route
+          path="/*"
+          element={
               <div className="h-full w-full  flex items-start  justify-start relative">
-                  <Sidebar></Sidebar>
-                  <Routes>
-                    <Route
-                      path="/"
-                      element={<Navigate to="/dashboard" />}
-                    ></Route>
-                    <Route path="/dashboard" element={<Home />} />
-                    <Route
-                      path="/collections"
-                      element={<Collections />}
-                    ></Route>
-                    <Route
-                      path="/Todos"
-                      element={<Todos />}
-                    ></Route>
-                      <Route
-                      path="/Blogs"
-                      element={<Blogs />}
-                    ></Route>
-                    
-                  </Routes>
+                <Sidebar></Sidebar>
+                <Routes>
+                  <Route
+                    path="/"
+                    element={<Navigate to="/dashboard" />}
+                  ></Route>
+                  <Route path="/dashboard" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+                  <Route path="/collections" element={<Collections />}></Route>
+                  <Route path="/Todos" element={<Todos />}></Route>
+                  <Route path="/Blogs" element={<Blogs />}></Route>
+                </Routes>
               </div>
-            
-          </ProtectedRoute>
-        }
-      ></Route>
-    </Routes>
-    
+          }
+        ></Route>
+      </Routes>
     </div>
   );
 }
