@@ -14,8 +14,8 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
           onMouseLeave={hoverToggle}
           className={`w-full  rounded-lg relative  border-0 box-border  btn-sm btn  ${
             isActive
-              ? "text-inherit   bg-[#f1f1f1]/50 hover:bg-[#f1f1f1]"
-              : "text-inherit  bg-transparent hover:bg-transparent"
+              ? "text-inherit   bg-slate-100/50 hover:bg-slate-100/80"
+              : "text-[#444653]  bg-transparent hover:bg-transparent"
           }
           ${
             sidebarState

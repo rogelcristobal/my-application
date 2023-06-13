@@ -38,12 +38,12 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="px-9 w-full  h-full pt-2">
+      <div className="px-9 w-full  h-full pt-6">
         {/* text-[#a7a9ad]/80 */}
         <span className="mt-4 font-medium text-[0.85rem]   ">
           Dashboard
         </span>
-        <div className=" grid grid-flow-col grid-cols-4 w-fit gap-4">
+        <div className=" grid grid-flow-col grid-cols-4 w-fit gap-2">
           <div className=" px-4 py-3.5   bg-white  rounded-lg mt-3 cursor-pointer items-center  flex  justify-start h-fit gap-4 w-52">
             <div className="p-3 rounded-full text-[#4c74fc] bg-[#4c74fc]/10  ">
               <LuFile />

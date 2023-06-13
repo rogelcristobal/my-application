@@ -25,7 +25,7 @@ function App() {
         <Route
           path="/*"
           element={
-              <div className="h-full w-full  flex items-start  justify-start relative">
+              <div className="h-full w-full   flex items-start  justify-start relative">
                 <Sidebar></Sidebar>
                 <Routes>
                   <Route
