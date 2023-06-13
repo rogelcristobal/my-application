@@ -27,7 +27,7 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      initial={{ width: "16.5rem" }}
+      initial={{ width: "16rem" }}
       transition={{ duration: 0.3 }}
       className={`${
         state ? "w-[4rem]" : "w-[16rem]"
@@ -38,18 +38,20 @@ const Sidebar = () => {
           state ? "px-[0.8rem]" : " px-6  "
         } w-full   relative flex  items-center justify-start  pt-10 pb-8   `}
       >
-        <div
-          className={` grid cursor-pointer  rounded-full p-[0.5rem] place-content-center ${
-            state ? "mr-0" : "mr-0"
-          }`}
-        >
-          <LuFlower className="text-lg  text-inherit" />
+        <div className=" flex items-center justify-center">
+          <div
+            className={` grid cursor-pointer  rounded-full p-[0.5rem] place-content-center ${
+              state ? "mr-0" : "mr-0"
+            }`}
+          >
+            <LuFlower className="text-xl  text-inherit" />
+          </div>
+          {!state && (
+            <span className="mt-0 relative   w-fit text-start pl-2.5 whitespace-nowrap overflow-hidden text-[1rem]  font-medium">
+              NoteStack
+            </span>
+          )}
         </div>
-        {!state && (
-          <span className="mt-0    w-fit text-start pl-2.5 whitespace-nowrap overflow-hidden text-[0.95rem]  font-medium">
-            NoteStack
-          </span>
-        )}
 
         {/* toggle btn */}
         <motion.button
@@ -65,7 +67,6 @@ const Sidebar = () => {
             state ? "mt-[1rem] px-3 " : "px-4 mt-4"
           } flex   w-full items-center   pt-1.5 justify-center flex-col`}
         >
-          
           {!state && (
             <span className=" px-2 text-[0.75rem] font-medium w-full text-left    mb-1.5">
               Menu
@@ -83,7 +84,7 @@ const Sidebar = () => {
             { path: "/blogs", title: "Blogs", icon: <LuEdit3 /> },
           ].map((item, id) => (
             <SidebarLink
-            key={id}
+              key={id}
               path={item.path}
               sidebarState={state}
               title={item.title}

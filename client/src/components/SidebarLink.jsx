@@ -14,7 +14,7 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
           onMouseLeave={hoverToggle}
           className={`w-full  rounded-lg relative  border-0 box-border  btn-sm btn  ${
             isActive
-              ? "text-inherit   bg-[#f1f1f1]/30 hover:bg-[#f1f1f1]/30"
+              ? "text-inherit   bg-[#f1f1f1]/50 hover:bg-[#f1f1f1]"
               : "text-inherit  bg-transparent hover:bg-transparent"
           }
           ${
@@ -28,7 +28,7 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
             <div
               className={`flex justify-start items-center   h-full font-medium  text-[0.8rem] w-full capitalize gap-3 ${!sidebarState?'max-w-[75%] ':'max-w-[100%]'}`}
             >
-              <span className="text-[0.9rem] mx-auto">{icon}</span>
+              <span className={`text-[0.9rem] mx-auto ${isActive&&'text-[#4c74fc]'}`}>{icon}</span>
               {!sidebarState && (
                 <span className="flex items-center text-start w-full h-full overflow-x-hidden  truncate">
                   
