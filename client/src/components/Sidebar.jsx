@@ -2,11 +2,12 @@ import React from "react";
 import {
   LuLayout,
   LuFolder,
-  LuFlower,
+  LuFlame,
   LuChevronLeft,
   LuListChecks,
   LuEdit3,
   LuSettings,
+  LuFile
 } from "react-icons/lu";
 import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
@@ -31,24 +32,26 @@ const Sidebar = () => {
       transition={{ duration: 0.3 }}
       className={`${
         state ? "w-[4rem]" : "w-[16rem]"
-      } whitespace-nowrap  relative bg-white shadow-lg  h-full flex  flex-col  items-center justify-start  flex-shrink-0   `}
+      } whitespace-nowrap  relative bg-white   h-full flex  flex-col  items-center justify-start  flex-shrink-0   `}
     >
       <div
         className={`${
           state ? "px-[0.8rem]" : " px-6  "
-        } w-full   relative flex  items-center justify-start  pt-10 pb-8   `}
+        } w-full   relative flex  items-center justify-center  pt-8 pb-10   `}
       >
-        <div className=" flex items-center justify-center">
+        <div className=" flex-col flex items-center justify-center">
           <div
-            className={` grid cursor-pointer  rounded-full p-[0.5rem] place-content-center ${
+            className={` grid cursor-pointer relative rounded-lg p-[0.6rem] place-content-center ${
               state ? "mr-0" : "mr-0"
             }`}
           >
-            <LuFlower className="text-xl  text-inherit" />
+            <LuFlame className="text-[1.5rem]  text-[#4c74fc]" />
+          
           </div>
           {!state && (
-            <span className="mt-0 relative   w-fit text-start pl-2.5 whitespace-nowrap overflow-hidden text-[1rem]  font-medium">
+            <span className="mt-0 relative   w-fit text-start pl-0 whitespace-nowrap overflow-hidden text-[0.925rem]  font-medium">
               NoteStack
+              <div></div>
             </span>
           )}
         </div>
@@ -64,11 +67,11 @@ const Sidebar = () => {
       <div className="w-full h-full flex flex-col justify-between items-start">
         <div
           className={`${
-            state ? "mt-[1rem] px-3 " : "px-4 mt-4"
-          } flex   w-full items-center   pt-1.5 justify-center flex-col`}
+            state ? "mt-[1rem] px-3 " : "px-4 mt-0"
+          } flex   w-full items-center   pt-0 justify-center flex-col`}
         >
           {!state && (
-            <span className=" px-2 text-[0.75rem] font-medium w-full text-left    mb-1.5">
+            <span className=" px-2 text-[0.7rem] font-medium w-full text-left  uppercase text-[#696e79]  mb-3">
               Menu
             </span>
           )}
@@ -92,7 +95,7 @@ const Sidebar = () => {
               count={item?.count}
             />
           ))}
-          <div className="w-full  thin-top-divider h-[0.1rem] mt-3"></div>
+          <div className="w-full  thin-top-divider h-[0.1rem] mt-4"></div>
         </div>
         {/* settings buttons */}
         <div

@@ -14,8 +14,8 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
           onMouseLeave={hoverToggle}
           className={`w-full  rounded-lg relative  border-0 box-border  btn-sm btn  ${
             isActive
-              ? "text-inherit   bg-[#f1f1f1]/50 hover:bg-[#f1f1f1]"
-              : "text-inherit  bg-transparent hover:bg-transparent"
+              ? "text-inherit   bg-slate-100/50 hover:bg-slate-100/80"
+              : "text-[#444653]  bg-transparent hover:bg-transparent"
           }
           ${
             sidebarState
@@ -30,7 +30,7 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
             >
               <span className={`text-[0.9rem] mx-auto ${isActive&&'text-[#4c74fc]'}`}>{icon}</span>
               {!sidebarState && (
-                <span className="flex items-center text-start w-full h-full overflow-x-hidden  truncate">
+                <span className="flex items-center tracking-wide text-start w-full h-full overflow-x-hidden  truncate">
                   
                   {title}
                 </span>
@@ -44,9 +44,9 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
           </div>
 
           {/* <div
-            className={`${isActive ? "h-[230%]" : "h-0"} ${
-              sidebarState ? "-left-[0.6rem]" : "-left-[1.5rem]  "
-            } transition-all duration-75 w-[3px] rounded-r-xl absolute  top-1/2 -translate-y-1/2 bg-[#486de9]`}
+            className={`${isActive ? "h-[100%]" : "h-0"} ${
+              sidebarState ? "-left-[0.75rem]" : "-left-[1rem]  "
+            } transition-all duration-75 w-[3px] rounded-r-xl absolute  top-1/2 -translate-y-1/2 bg-[#4c74fc]`}
           ></div> */}
         </div>
       )}

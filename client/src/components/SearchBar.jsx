@@ -64,8 +64,8 @@ const SearchBar = () => {
             input: e.target.value,
           })
         }
-        className={`input  input-ghost relative rounded-lg placeholder:text-[#a7a9ad]/70 w-full input-sm  placeholder:text-[0.785rem] h-[2.7rem] pl-11 max-w-sm focus:bg-[#1e1f23] placeholder:font-medium  cursor cursor-pointer focus:outline-none ${
-          state.hover ? "bg-[#f1f1f1]" : "bg-[#f1f1f1]/50"
+        className={`input  input-ghost relative rounded-lg placeholder:text-[#a7a9ad]/70 w-full input-sm  placeholder:text-[0.785rem] h-[2.5rem] pl-11 max-w-sm focus:bg-[#1e1f23] placeholder:font-medium  cursor cursor-pointer focus:outline-none ${
+          state.hover ? "bg-white" : "bg-white"
         }`}
       />
       <LuSearch
@@ -74,7 +74,7 @@ const SearchBar = () => {
         }`}
       />
 
-      {!state.input && (
+      {/* {!state.input && (
         <div className=" absolute text-[#a7a9ad]  items-center flex px-2  right-2 text-[0.7rem] top-1/2 -translate-y-1/2  gap-1">
           <kbd className="kbd kbd-xs bg-white shadow rounded p-0.5 text-[0.7rem]  text-[#a7a9ad]/70 px-1">
             ctrl
@@ -84,7 +84,7 @@ const SearchBar = () => {
             k
           </kbd>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
