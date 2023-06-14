@@ -2,11 +2,12 @@ import React from "react";
 import {
   LuLayout,
   LuFolder,
-  LuFlower,
+  LuFlame,
   LuChevronLeft,
   LuListChecks,
   LuEdit3,
   LuSettings,
+  LuFile
 } from "react-icons/lu";
 import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
@@ -31,23 +32,24 @@ const Sidebar = () => {
       transition={{ duration: 0.3 }}
       className={`${
         state ? "w-[4rem]" : "w-[16rem]"
-      } whitespace-nowrap  relative    h-full flex  flex-col  items-center justify-start  flex-shrink-0   `}
+      } whitespace-nowrap  relative bg-white   h-full flex  flex-col  items-center justify-start  flex-shrink-0   `}
     >
       <div
         className={`${
           state ? "px-[0.8rem]" : " px-6  "
-        } w-full   relative flex  items-center justify-start  pt-10 pb-10   `}
+        } w-full   relative flex  items-center justify-center  pt-8 pb-10   `}
       >
-        <div className=" flex items-center justify-center">
+        <div className=" flex-col flex items-center justify-center">
           <div
-            className={` grid cursor-pointer thin-box-divider rounded-lg p-[0.6rem] place-content-center ${
+            className={` grid cursor-pointer relative rounded-lg p-[0.6rem] place-content-center ${
               state ? "mr-0" : "mr-0"
             }`}
           >
-            <LuFlower className="text-lg  text-[#4c74fc] " />
+            <LuFlame className="text-[1.5rem]  text-[#4c74fc]" />
+          
           </div>
           {!state && (
-            <span className="mt-0 relative   w-fit text-start pl-2 whitespace-nowrap overflow-hidden text-[1rem]  font-medium">
+            <span className="mt-0 relative   w-fit text-start pl-0 whitespace-nowrap overflow-hidden text-[0.925rem]  font-medium">
               NoteStack
               <div></div>
             </span>
