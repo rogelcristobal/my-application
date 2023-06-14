@@ -30,7 +30,7 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
             >
               <span className={`text-[0.9rem] mx-auto ${isActive&&'text-[#4c74fc]'}`}>{icon}</span>
               {!sidebarState && (
-                <span className="flex items-center text-start w-full h-full overflow-x-hidden  truncate">
+                <span className="flex items-center tracking-wide text-start w-full h-full overflow-x-hidden  truncate">
                   
                   {title}
                 </span>
@@ -44,9 +44,9 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
           </div>
 
           {/* <div
-            className={`${isActive ? "h-[230%]" : "h-0"} ${
-              sidebarState ? "-left-[0.6rem]" : "-left-[1.5rem]  "
-            } transition-all duration-75 w-[3px] rounded-r-xl absolute  top-1/2 -translate-y-1/2 bg-[#486de9]`}
+            className={`${isActive ? "h-[100%]" : "h-0"} ${
+              sidebarState ? "-left-[0.75rem]" : "-left-[1rem]  "
+            } transition-all duration-75 w-[3px] rounded-r-xl absolute  top-1/2 -translate-y-1/2 bg-[#4c74fc]`}
           ></div> */}
         </div>
       )}
