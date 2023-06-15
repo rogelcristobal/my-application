@@ -43,11 +43,11 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
             )}
           </div>
 
-          {/* <div
+          <div
             className={`${isActive ? "h-[100%]" : "h-0"} ${
               sidebarState ? "-left-[0.75rem]" : "-left-[1rem]  "
             } transition-all duration-75 w-[3px] rounded-r-xl absolute  top-1/2 -translate-y-1/2 bg-[#4c74fc]`}
-          ></div> */}
+          ></div>
         </div>
       )}
     </NavLink>

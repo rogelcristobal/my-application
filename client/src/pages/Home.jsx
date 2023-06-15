@@ -29,14 +29,15 @@ const Home = () => {
     <div className="h-full  w-full flex flex-col items-start justify-start relative">
       <div className=" h-full overflow-y-scroll w-full">
         <div className="h-fit  w-full flex   pb-3 items-start flex-col justify-start">
-          <div className="text-[#696e79]/70 w-full py-4 pt-4  px-8  flex items-center justify-start   thin-bottom-divider ">
+          <div className="text-[#696e79]/70 w-full py-4 pt-6  px-8  flex items-center justify-start ">
             <SearchBar />
           </div>
-          <div className="mt-6 flex flex-col w-fit max-w-lg px-9">
-            <span className="view  text-[1.47rem] font-medium  capitalize">
+          <div className="mt-3 flex flex-col w-fit max-w-lg px-9">
+             {/* <span className="mb-2 font-medium view text-[0.8rem] text-[#4c74fc]">Dashboard</span> */}
+            <span className="view  text-[1.45rem] font-medium  capitalize">
               Welcome,{" "}
               <span className="">
-                {data?.firstName} {data?.lastName}.
+                {data?.firstName} {data?.lastName}
               </span>
               {/* Dashboard */}
             </span>
@@ -47,7 +48,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="px-9 w-full  h-[120%] pt-6">
+        <div className="px-9 w-full  h-[120%] pt-8 ">
           {/* text-[#a7a9ad]/80 */}
           <span className=" font-medium view text-[0.85rem]">Dashboard</span>
           <div className=" grid grid-flow-col grid-cols-4 w-fit gap-4 mt-4">

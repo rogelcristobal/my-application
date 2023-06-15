@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  LuLayout,
+  LuLayoutDashboard,
   LuFolder,
   LuFeather,
   LuChevronLeft,
@@ -45,11 +45,10 @@ const Sidebar = () => {
               state ? "mr-0" : "mr-0"
             }`}
           >
-            <LuFeather className="text-[1.35rem] text-[#4c74fc]" />
-          
+            <LuFeather className="text-[1.3rem] text-[#4c74fc]" />
           </div>
           {!state && (
-            <span className="mt-0 relative   w-fit text-start pl-0 whitespace-nowrap overflow-hidden text-[0.925rem]  font-medium">
+            <span className="mt-2 relative   w-fit text-start pl-0 whitespace-nowrap overflow-hidden text-[0.925rem]  font-medium">
               NoteStack
               <div></div>
             </span>
@@ -76,7 +75,7 @@ const Sidebar = () => {
             </span>
           )}
           {[
-            { path: "/dashboard", title: "dashboard", icon: <LuLayout /> },
+            { path: "/dashboard", title: "dashboard", icon: <LuLayoutDashboard /> },
             {
               path: "/collections",
               title: "collections",
