@@ -2,7 +2,7 @@ import React from "react";
 import {
   LuLayout,
   LuFolder,
-  LuFlame,
+  LuFeather,
   LuChevronLeft,
   LuListChecks,
   LuEdit3,
@@ -37,15 +37,15 @@ const Sidebar = () => {
       <div
         className={`${
           state ? "px-[0.8rem]" : " px-6  "
-        } w-full   relative flex  items-center justify-center  pt-8 pb-10   `}
+        } w-full   relative flex view items-center justify-center  pt-8 pb-10   `}
       >
-        <div className=" flex-col flex items-center justify-center">
+        <div className="view flex-col flex items-center justify-center">
           <div
-            className={` grid cursor-pointer relative rounded-lg p-[0.6rem] place-content-center ${
+            className={`view grid cursor-pointer relative rounded-lg p-[0.6rem] place-content-center ${
               state ? "mr-0" : "mr-0"
             }`}
           >
-            <LuFlame className="text-[1.5rem]  text-[#4c74fc]" />
+            <LuFeather className="text-[1.35rem] text-[#4c74fc]" />
           
           </div>
           {!state && (

@@ -7,7 +7,9 @@
     /* @apply thin-box-divider */
   }
   
-
+  .view{
+    @apply thin-box-divider
+  }
   ::-webkit-scrollbar {
     width: 0.45rem;
   }
