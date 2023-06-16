@@ -32,7 +32,7 @@ const Sidebar = () => {
       transition={{ duration: 0.3 }}
       className={`${
         state ? "w-[4rem]" : "w-[16rem]"
-      } whitespace-nowrap  relative bg-white   h-full flex  flex-col  items-center justify-start  flex-shrink-0   `}
+      } whitespace-nowrap  relative bg-white view  h-full flex  flex-col  items-center justify-start  flex-shrink-0   `}
     >
       <div
         className={`${
@@ -56,12 +56,12 @@ const Sidebar = () => {
         </div>
 
         {/* toggle btn */}
-        <motion.button
+        {/* <motion.button
           onClick={handleToggleSidebar}
           className={`absolute  px-2.5 py-2.5 rounded-full -bottom-4   cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
         >
           <LuChevronLeft />
-        </motion.button>
+        </motion.button> */}
       </div>
       <div className="w-full h-full flex flex-col justify-between items-start">
         <div
@@ -94,7 +94,7 @@ const Sidebar = () => {
               count={item?.count}
             />
           ))}
-          <div className="w-full  thin-top-divider h-[0.1rem] mt-4"></div>
+          {/* <div className="w-full  thin-top-divider h-[0.1rem] mt-4"></div> */}
         </div>
         {/* settings buttons */}
         <div

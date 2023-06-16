@@ -64,7 +64,7 @@ const SearchBar = () => {
             input: e.target.value,
           })
         }
-        className={`input placeholder:font-inter input-ghost relative rounded-lg placeholder:text-[#a7a9ad]/70 w-full input-sm  placeholder:text-[0.8rem] h-[2.5rem] pl-11 max-w-sm focus:bg-white placeholder:font-normal focus:text-inherit text-inherit cursor cursor-pointer  focus:outline-none ${
+        className={`input placeholder:font-inter input-ghost relative rounded-lg placeholder:text-[#a7a9ad]/70 w-full input-sm  placeholder:text-[0.8rem] h-[2.5rem] pl-11 max-w-sm focus:bg-white placeholder:font-normal focus:text-inherit  cursor cursor-pointer  focus:outline-none ${
           state.hover ? "bg-white" : "bg-white"
         }`}
       />
