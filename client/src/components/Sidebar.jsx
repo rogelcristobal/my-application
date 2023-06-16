@@ -37,18 +37,18 @@ const Sidebar = () => {
       <div
         className={`${
           state ? "px-[0.8rem]" : " px-6  "
-        } w-full   relative flex view items-center justify-center  pt-8 pb-10   `}
+        } w-full   relative flex view items-center justify-start  pt-8 pb-10   `}
       >
-        <div className="view flex-col flex items-center justify-center">
+        <div className="view flex items-center justify-center">
           <div
             className={`view grid cursor-pointer relative rounded-lg p-[0.6rem] place-content-center ${
               state ? "mr-0" : "mr-0"
             }`}
           >
-            <LuFeather className="text-[1.3rem] text-[#4c74fc]" />
+            <LuFeather className="text-[1.3rem]  text-[#347ae2]" />
           </div>
           {!state && (
-            <span className="mt-2 relative   w-fit text-start pl-0 whitespace-nowrap overflow-hidden text-[0.925rem]  font-medium">
+            <span className="mt-1 relative   w-fit text-start pl-0 whitespace-nowrap overflow-hidden text-[0.925rem]  font-medium">
               NoteStack
               <div></div>
             </span>

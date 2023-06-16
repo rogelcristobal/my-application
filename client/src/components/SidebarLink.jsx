@@ -28,7 +28,8 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
             <div
               className={`flex justify-start items-center   h-full font-medium  text-[0.8rem] w-full capitalize gap-3 ${!sidebarState?'max-w-[75%] ':'max-w-[100%]'}`}
             >
-              <span className={`text-[0.9rem] mx-auto ${isActive&&'text-[#347ae2]'}`}>{icon}</span>
+              {/* text-[#347ae2] */}
+              <span className={`text-[0.9rem] mx-auto ${isActive&&' text-[#347ae2]'}`}>{icon}</span>
               {!sidebarState && (
                 <span className="flex items-center tracking-wide text-start w-full h-full overflow-x-hidden  truncate">
                   
