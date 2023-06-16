@@ -29,7 +29,7 @@ const Home = () => {
     <div className="h-full  w-full flex flex-col items-start justify-start relative">
       <div className=" h-full overflow-y-scroll w-full">
         <div className="h-fit w-full flex   pb-6 items-start flex-col justify-start">
-          <div className="text-[#696e79]/70 w-full  py-3   pt-6  px-6  flex items-center justify-start ">
+          <div className="text-[#696e79]/70 w-full  py-3   pt-6  px-8  flex items-center justify-start ">
             <SearchBar />
           </div>
           <div className="view flex flex-col pt-4 w-fit max-w-lg px-8">
@@ -51,7 +51,7 @@ const Home = () => {
 
         <div className="px-8 w-full  h-[120%]  pt-4">
           {/* text-[#a7a9ad]/80 */}
-          <span className=" font-medium view text-[0.875rem] text-[#696e79]">Dashboard</span>
+          <span className=" font-medium view text-[0.875rem] text-[#696e79]">Overview</span>
           <div className=" grid grid-flow-col grid-cols-4 w-fit gap-4 mt-4">
             {[
               {
@@ -94,9 +94,9 @@ const Home = () => {
           </div>
           {/* recent */}
           <div className="mt-5 view">
-            {/* <span className=" font-medium text-[0.8rem] mb-4 text-[#696e79]  view  font-inter ">
+            <span className=" font-medium text-[0.8rem] mb-4 text-[#696e79]  view  font-inter ">
               Recently added
-            </span> */}
+            </span>
             <div className="w-[27rem]  bg-white rounded-lg h-[70vh] mt-4"></div>
           </div>
         </div>

@@ -45,7 +45,7 @@ const Sidebar = () => {
               state ? "mr-0" : "mr-0"
             }`}
           >
-            <LuFeather className="text-[1.3rem]  text-[#347ae2]" />
+            <LuFeather className="text-[1.3rem] text-[#347ae2]" />
           </div>
           {!state && (
             <span className="mt-1 relative   w-fit text-start pl-0 whitespace-nowrap overflow-hidden text-[0.925rem]  font-medium">
@@ -56,18 +56,18 @@ const Sidebar = () => {
         </div>
 
         {/* toggle btn */}
-        {/* <motion.button
+        <motion.button
           onClick={handleToggleSidebar}
           className={`absolute  px-2.5 py-2.5 rounded-full -bottom-4   cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
         >
           <LuChevronLeft />
-        </motion.button> */}
+        </motion.button>
       </div>
-      <div className="w-full h-full flex flex-col justify-between items-start">
+      <div className="w-full h-full  flex flex-col justify-start items-start">
         <div
           className={`${
-            state ? "mt-[1rem] px-3 " : "px-4 mt-0"
-          } flex   w-full items-center   pt-0 justify-center flex-col`}
+            state ? "mt-[2rem] px-3 " : "px-4 mt-[2rem]"
+          } flex   w-full items-center view  pt-0 justify-center flex-col`}
         >
           {!state && (
             <span className=" px-2 text-[0.7rem] font-medium w-full text-left  uppercase text-[#696e79]  mb-3">
@@ -97,7 +97,9 @@ const Sidebar = () => {
           {/* <div className="w-full  thin-top-divider h-[0.1rem] mt-4"></div> */}
         </div>
         {/* settings buttons */}
-        <div
+       
+      </div>
+       <div
           className={`${
             state ? " px-2 " : "px-3 "
           } flex   w-full items-center mt-4  pb-6 justify-center flex-col`}
@@ -120,7 +122,6 @@ const Sidebar = () => {
             )
           )}
         </div>
-      </div>
     </motion.div>
   );
 };

@@ -15,7 +15,7 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
           className={`w-full  rounded-lg relative  border-0 box-border  btn-sm btn  ${
             isActive
               ? "text-inherit   bg-slate-100/50 hover:bg-slate-100/80"
-              : "text-[#444653]  bg-transparent hover:bg-transparent"
+              : "text-[#696e79]/70  bg-transparent hover:bg-transparent"
           }
           ${
             sidebarState
