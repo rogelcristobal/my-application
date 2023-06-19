@@ -7,6 +7,7 @@ import {
   RiQuestionLine,
   RiFile2Line,
   RiCheckboxMultipleLine,
+  RiMore2Fill
 } from "react-icons/ri";
 import { RiMailLine } from "react-icons/ri";
 import SearchBar from "../components/SearchBar";
@@ -26,12 +27,12 @@ const Home = () => {
 
   return (
     <div className="h-full  w-full flex flex-col items-start justify-start relative">
-      <div className=" h-full overflow-y-scroll px-12 w-full">
+      <div className=" h-full overflow-y-scroll px-10 w-full">
         <div className="h-fit  w-full flex   pb-4 items-start flex-col justify-start">
           {/* <div className="text-[#696e79]/70 w-full  py-3   pt-6  px-10  flex items-center justify-start ">
             <SearchBar />
           </div> */}
-          <div className="view flex flex-col pt-10 w-fit max-w-lg ">
+          <div className="view flex flex-col pt-12 w-fit max-w-lg ">
             {/* text-[#347ae2] */}
             {/* <span className="mb-2 font-medium view text-[0.8rem] ">Dashboard</span> */}
             <span className="view  text-[1.3rem] font-medium  capitalize">
@@ -44,9 +45,10 @@ const Home = () => {
         </div>
 
         <div className=" w-full  h-[120%]  pt-0">
-          <div className="mt-4 view">
+          <div className="mt-2 view">
             <span className=" font-medium view text-[0.785rem] text-[#696e79]/60">
-              <span className="font-semibold text-[#696e79]">Dashboard</span> Overview
+              <span className="font-medium text-[#696e79]">Dashboard</span>{" "}
+              Overview
             </span>
             <div className=" grid grid-flow-col grid-cols-4 w-fit gap-4 mt-4">
               {[
@@ -56,7 +58,7 @@ const Home = () => {
                   icon: <RiFile2Line />,
                 },
                 {
-                  description: "Total todos",
+                  description: "Completed Todos",
                   data: data?.totalTodos,
                   icon: <RiCheckboxMultipleLine />,
                 },
@@ -67,22 +69,25 @@ const Home = () => {
                 >
                   {/* text-[#347ae2] */}
                   <div
-                    className=" 
-                 rounded-full text-[1.1rem] text-[#86868a] "
+                    className=" view w-full flex justify-between items-center text-[1.1rem] text-[#86868a] "
                   >
-                    {item.icon}
+                    {item.icon} 
                   </div>
 
                   <div className="flex flex-col items-start view h-full justify-end  w-full">
                     {/* text-[#a7a9ad] */}
 
-                    <span className=" pt-0 pb-0   text-inherit  text-[1.6rem] ">
-                      {item.data}
+                    <span className=" pt-0 pb-0 text-inherit view w-full flex justify-start gap-1 items-end text-[1.35rem] ">
+                      {id === 0 ? 25 : item.data}{" "}
+                      {/* {id === 1 ? (
+                        <span className="text-[0.8rem] font-medium text-[#76767c]">
+                          32
+                        </span>
+                      ) : null} */}
                     </span>
                     <div className=" flex  flex-col   w-full">
                       <span className="text-[0.785rem] text-[#76767c] font-medium  flex items-center gap-2  ">
-                        {item.description}{" "}
-                        <RiQuestionLine className="" />
+                        {item.description} <RiQuestionLine className="" />
                       </span>
                     </div>
                   </div>

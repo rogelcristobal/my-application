@@ -37,7 +37,7 @@ const Sidebar = () => {
     >
       <div
         className={`${
-          state ? "px-[0.8rem]" : " px-3  "
+          state ? "px-[0.5rem]" : " px-4  "
         } w-full   relative flex view items-center justify-start  pt-8 pb-10   `}
       >
         <div className="view flex items-center justify-center">
@@ -67,7 +67,7 @@ const Sidebar = () => {
       <div className="w-full h-full  flex flex-col justify-start items-start">
         <div
           className={`${
-            state ? "mt-[1rem] px-3 " : "px-3 mt-[1rem]"
+            state ? "mt-[2rem] px-0 " : "px-3.5 mt-[2rem]"
           } flex   w-full items-center view  pt-0 justify-center flex-col`}
         >
           {!state && (
