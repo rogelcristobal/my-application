@@ -14,24 +14,32 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
           onMouseLeave={hoverToggle}
           className={`w-full  rounded-lg relative  border-0 box-border  btn-sm btn  ${
             isActive
-              ? "text-inherit   bg-slate-100/50 hover:bg-slate-100/80"
-              : "text-[#444653]  bg-transparent hover:bg-transparent"
+              ? "text-inherit  bg-transparent hover:bg-transparent"
+              : "text-[#696e79]/70  bg-transparent hover:bg-transparent"
           }
           ${
             sidebarState
               ? "flex justify-center    h-[2.5rem]"
-              : "flex justify-center px-3.5 h-[2.75rem]"
+              : "flex justify-center px-3.5 h-[2.5rem]"
           }
           `}
         >
           <div className=" h-full flex justify-between items-center overflow-hidden w-full">
             <div
-              className={`flex justify-start items-center   h-full font-medium  text-[0.8rem] w-full capitalize gap-3 ${!sidebarState?'max-w-[75%] ':'max-w-[100%]'}`}
+              className={`flex justify-start items-center   h-full font-medium   w-full capitalize gap-3 ${
+                !sidebarState ? "max-w-[75%] " : "max-w-[100%]"
+              }`}
             >
-              <span className={`text-[0.9rem] mx-auto ${isActive&&'text-[#4c74fc]'}`}>{icon}</span>
+              {/*  */}
+              <span
+                className={`text-[1rem] mx-auto ${
+                  isActive && " "
+                }`}
+              >
+                {icon}
+              </span>
               {!sidebarState && (
-                <span className="flex items-center tracking-wide text-start w-full h-full overflow-x-hidden  truncate">
-                  
+                <span className="flex items-center text-[0.825rem] tracking-wide text-start w-full h-full overflow-x-hidden  truncate font-normal">
                   {title}
                 </span>
               )}
@@ -43,11 +51,11 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
             )}
           </div>
 
-          {/* <div
+          <div
             className={`${isActive ? "h-[100%]" : "h-0"} ${
-              sidebarState ? "-left-[0.75rem]" : "-left-[1rem]  "
-            } transition-all duration-75 w-[3px] rounded-r-xl absolute  top-1/2 -translate-y-1/2 bg-[#4c74fc]`}
-          ></div> */}
+              sidebarState ? "-right-[0.75rem]" : "-right-[2rem]  "
+            } transition-all duration-75 w-[2px] text-blue-500 rounded-l-xl absolute  top-1/2 -translate-y-1/2 `}
+          ></div>
         </div>
       )}
     </NavLink>

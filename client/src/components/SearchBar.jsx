@@ -51,7 +51,7 @@ const SearchBar = () => {
     };
   }, [inputRef]);
   return (
-    <div className="max-w-[23rem] w-full relative bg-transparent">
+    <div className="max-w-[23rem] w-full relative  rounded-lg">
       <input
         ref={inputRef}
         type="text"
@@ -64,13 +64,13 @@ const SearchBar = () => {
             input: e.target.value,
           })
         }
-        className={`input  input-ghost relative rounded-lg placeholder:text-[#a7a9ad]/70 w-full input-sm  placeholder:text-[0.785rem] h-[2.5rem] pl-11 max-w-sm focus:bg-[#1e1f23] placeholder:font-medium  cursor cursor-pointer focus:outline-none ${
-          state.hover ? "bg-white" : "bg-white"
+        className={`input  placeholder:font-inter input-ghost relative  placeholder:text-[#696e79]/70 w-full input-sm  placeholder:text-[0.8rem] h-[2.7rem] pl-11 max-w-sm focus:bg-white placeholder:font-normal focus:text-inherit  cursor cursor-pointer  focus:outline-none ${
+          state.hover ? "bg-white" : "bg-white "
         }`}
       />
       <LuSearch
         className={`absolute   text-md top-1/2 -translate-y-1/2 ml-4 ${
-          state.hover ? "text-[#a7a9ad]" : "text-[#a7a9ad]/70"
+          state.hover ? "text-[#696e79]/70" : "text-[#696e79]/70"
         }`}
       />
 
