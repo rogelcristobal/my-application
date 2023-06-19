@@ -29,21 +29,17 @@ const Collections = () => {
   }
   return (
    <div className="h-full  w-full flex flex-col items-start justify-start relative">
-      <div className=" h-full overflow-y-scroll w-full">
-        <div className="h-fit  w-full flex pt-9  pb-3 items-start flex-col justify-start">
-          <div className="text-[#696e79]/70 py-2 pt-0 mb-6 px-8  flex items-center justify-start  w-full  ">
-          <SearchBar />
-        </div>
-         
-        </div>
-
-        <div className="px-8 w-full  h-[120%] pt-4">
-          {/* text-[#a7a9ad]/80 */}
-          <span className=" font-medium text-[0.85rem]"></span>
-        
-          {/* recent */}
-          <div className="mt-4">
-           
+      <div className=" h-full overflow-y-scroll px-12 w-full">
+        <div className="h-fit  w-full flex   pb-4 items-start flex-col justify-start">
+          {/* <div className="text-[#696e79]/70 w-full  py-3   pt-6  px-10  flex items-center justify-start ">
+            <SearchBar />
+          </div> */}
+          <div className="view flex flex-col pt-10 w-fit max-w-lg ">
+            {/* text-[#347ae2] */}
+            {/* <span className="mb-2 font-medium view text-[0.8rem] ">Dashboard</span> */}
+            <span className="view  text-[1.3rem] font-medium  capitalize">
+            Collections
+            </span>
           </div>
         </div>
       </div>

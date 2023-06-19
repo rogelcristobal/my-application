@@ -19,13 +19,13 @@ function App() {
     console.log(data)
   }
   return (
-    <div className="h-screen w-full bg-white font-inter  text-[#0f172a]">
+    <div className="h-screen w-full bg-[#1d1b22] font-inter  text-[#dcdcde]">
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route
           path="/*"
           element={
-              <div className="h-full w-full bg-slate-100/50  flex items-start  justify-start relative">
+              <div className="h-full w-full   flex items-start  justify-start relative">
                 <Sidebar></Sidebar>
                 <Routes>
                   <Route
