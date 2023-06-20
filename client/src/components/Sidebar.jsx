@@ -73,8 +73,8 @@ const Sidebar = () => {
           } flex   w-full items-center view  pt-0 justify-center flex-col`}
         >
           {!state && (
-            <span className=" px-2 text-[0.7rem] font-normal w-full text-left  uppercase text-[#696e79]  mb-3">
-              Menu
+            <span className=" px-2 text-[0.7rem] font-normal w-full text-left  uppercase text-[#696e79]  mb-2">
+              General
             </span>
           )}
           {[
