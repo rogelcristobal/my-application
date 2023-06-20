@@ -32,7 +32,7 @@ const Sidebar = () => {
       initial={{ width: "16rem" }}
       transition={{ duration: 0.3 }}
       className={`${
-        state ? "w-[4rem]" : "w-[16rem]"
+        state ? "w-[4rem]" : "w-[15.5rem]"
       } whitespace-nowrap  relative bg-[#26262e] view  h-full flex  flex-col  items-center justify-start  flex-shrink-0   `}
     >
       <div
@@ -57,17 +57,19 @@ const Sidebar = () => {
         </div>
 
         {/* toggle btn */}
-        <motion.button
+        {/* bg-[#1d1b22] */}
+        {/* <motion.button
           onClick={handleToggleSidebar}
-          className={`absolute  px-2.5 py-2.5 rounded-full -bottom-4   cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
+          className={`absolute  h-[1.6rem] w-[1.6rem] grid place-content-center bg-[#26262e] rounded-full -bottom-2   cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
         >
           <LuChevronLeft />
         </motion.button>
+        <div className="absolute  h-[2.4rem] w-[2.4rem] grid place-content-center bg-[#1d1b22] rounded-full -bottom-3.5   cursor-pointer  z-8 text-xs text-inherit  -right-5 translate-x-1/"></div> */}
       </div>
       <div className="w-full h-full  flex flex-col justify-start items-start">
         <div
           className={`${
-            state ? "mt-[2rem] px-0 " : "px-3.5 mt-[2rem]"
+            state ? "mt-[1.5rem] px-0 " : "px-3.5 mt-[1.5rem]"
           } flex   w-full items-center view  pt-0 justify-center flex-col`}
         >
           {!state && (

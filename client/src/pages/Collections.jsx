@@ -2,7 +2,7 @@ import React from "react";
 import AuthContext from "../context/AuthContext";
 import axios from "axios";
 import SearchBar from "../components/SearchBar";
-import { RiFolder2Line,RiMore2Fill } from "react-icons/ri";
+import { RiFolder2Line, RiMore2Fill } from "react-icons/ri";
 const Collections = () => {
   const { data, loading } = React.useContext(AuthContext);
 
@@ -33,52 +33,36 @@ const Collections = () => {
   return (
     <div className="h-full  w-full flex flex-col items-start justify-start relative">
       <div className=" h-full overflow-y-scroll px-10 w-full">
-        <div className="h-auto  w-full flex  border-dark-bottom pb-4 items-start flex-col justify-start">
+        <div className="h-fit  w-full flex   pb-4 items-start flex-col justify-start">
           {/* <div className="text-[#696e79]/70 w-full  py-3   pt-6  px-10  flex items-center justify-start ">
             <SearchBar />
           </div> */}
-          <div className="view flex flex-col pt-12 w-fit max-w-lg ">
+          <div className="view flex flex-col pt-10 w-fit max-w-lg ">
             {/* text-[#347ae2] */}
-            {/* <span className="mb-2 font-medium view text-[0.8rem] ">Dashboard</span> */}
-            <span className="view  text-[1.2rem] font-medium  capitalize">
-               collections
+            <span className="view  text-[1.3rem] font-medium  capitalize">
+             Collections
             </span>
+            {/* <span className="mt-2.5 font-medium view text-[0.875rem] text-[#696e79]">
+              View your created notes here.
+            </span> */}
           </div>
         </div>
-        <div className="mt-4   view">
-          <span className=" font-medium view text-[0.785rem] text-[#696e79]/60">
-            <span className="font-medium text-[#696e79]">
-              All Collections
-            </span>
-          </span>
 
-          <div className="view h-fit w-fit grid-cols-3 grid-flow-row-dense grid  gap-4 mt-4">
-            {Array.from({ length: 4 }).map((item, id) => (
-              <div key={id} className="bg-[#26262e] items-start cursor-pointer flex  justify-start flex-col p-4 h-28 w-[15rem]  rounded-lg">
-                <div className=" view w-full flex justify-between items-center text-[1.1rem] text-[#86868a] ">
-                  <RiFolder2Line />
-                  <RiMore2Fill className="text-[#76767c]/40 hover:text-[#76767c]"/>
-                </div>
-                <div className="flex flex-col items-start view h-full justify-end mt-4 w-full">
-                  <span className="  text-inherit view w-full flex justify-start gap-1 items-end text-[0.85rem] ">
-                    Lorem, ipsum.
-                  </span>
-                  <div className=" flex  flex-col mt-0.5  w-full">
-                    <span className="text-[0.75rem] text-[#76767c] font-medium  flex items-center gap-2  ">
-                      0 files.
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="mt-4 view">
-           <span className=" font-medium view text-[0.785rem] text-[#696e79]/60">
-            <span className="font-medium text-[#696e79]">
-              All Files
+        <div className=" w-full  h-[120%]  pt-2">
+          <div className=" view">
+            <span className=" font-medium view text-[0.8rem] text-[#696e79]">
+              Note collections
             </span>
-          </span>
+            <div className=" grid grid-flow-col grid-cols-4 w-fit gap-3 mt-4">
+              {loading&& <span>loading</span>}
+            </div>
+          </div>
+          {/* recent */}
+          <div className="mt-4 view">
+            <span className=" font-medium text-[0.8rem] mb-4 text-[#696e79]  view  font-inter ">
+              Recently added
+            </span>
+          </div>
         </div>
       </div>
     </div>

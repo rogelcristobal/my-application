@@ -19,7 +19,7 @@ function App() {
     console.log(data)
   }
   return (
-    <div className="h-screen w-full bg-[#1d1b22] font-inter  text-[#dcdcde]">
+    <div className="h-screen w-full bg-[#1d1b22] font-inter  text-slate-100">
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route
