@@ -70,7 +70,7 @@ const Collections = () => {
                  <button onClick={addCollectionToggle} className="btn bg-inherit hover:bg-inherit btn-sm view hover:view normal-case font-normal h-10">Add collection</button>
               ) : (
                 currentUser.noteCollection.map((item, id) => (
-                  <div className="view h-32  w-56 rounded-lg cursor-pointer flex flex-col item-start justify-end p-3" key={id}>
+                  <div className="view h-32  w-56 rounded-lg cursor-pointer flex flex-col item-start justify-end p-3 bg-[#ffffff]" key={id}>
                     <span className="font-normal text-sm">{item.collectionTitle}</span>
                     <span></span>
                   </div>

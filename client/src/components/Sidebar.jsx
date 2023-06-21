@@ -1,12 +1,13 @@
 import React from "react";
 import {
-  LuHome,
+  LuLayoutDashboard,
   LuFolder,
   LuFeather,
   LuChevronLeft,
   LuListChecks,
   LuEdit3,
   LuSettings,
+  LuGitlab
 } from "react-icons/lu";
 import {RiLoader3Fill,RiFolder3Line,RiCheckboxMultipleLine,RiDraftLine,RiListSettingsLine} from 'react-icons/ri'
 import { RiHome5Line,RiFolderFill,RiCheckboxMultipleFill,RiDraftFill ,RiListSettingsFill} from "react-icons/ri";
@@ -20,7 +21,7 @@ const Sidebar = () => {
   const handleToggleSidebar = () => {
     setState(!state);
     if (state) {
-      sidebarControl.start({ width: "15.5rem" });
+      sidebarControl.start({ width: "16rem" });
     } else {
       sidebarControl.start({ width: "4rem" });
     }
@@ -32,13 +33,13 @@ const Sidebar = () => {
       initial={{ width: "16rem" }}
       transition={{ duration: 0.3 }}
       className={`${
-        state ? "w-[4rem]" : "w-[15.5rem]"
-      } whitespace-nowrap  relative  view  h-full flex  flex-col  items-center justify-start  flex-shrink-0   `}
+        state ? "w-[4rem]" : "w-[16rem]"
+      } whitespace-nowrap  relative  view  h-full flex bg-white flex-col thin-right-divider items-center justify-start  flex-shrink-0   `}
     >
       <div
         className={`${
           state ? "px-[0.5rem]" : " px-4  "
-        } w-full   relative flex view items-center justify-start  pt-8 pb-10   `}
+        } w-full   relative flex view items-center justify-start  pt-8 pb-10   text-[#74838a]`}
       >
         <div className="view flex items-center justify-center">
           <div
@@ -46,7 +47,7 @@ const Sidebar = () => {
               state ? "mr-0" : "mr-0"
             }`}
           >
-            <RiLoader3Fill className="text-[1.3rem] " />
+            <LuGitlab className="text-[1.3rem] " />
           </div>
           {!state && (
             <span className="mt-1 relative   w-fit text-start pl-0 whitespace-nowrap overflow-hidden text-[0.95rem]  font-medium">
@@ -58,14 +59,14 @@ const Sidebar = () => {
 
         {/* toggle btn */}
         {/* bg-[#1d1b22] */}
-        <motion.button
+        {/* <motion.button
           onClick={handleToggleSidebar}
           className={`absolute  h-[2.285rem] w-[2.285rem] p-1 view rounded-full -bottom-2   cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
         >
           <div className="view rounded-full h-full grid place-content-center w-full">
             <LuChevronLeft />
           </div>
-        </motion.button>
+        </motion.button> */}
        
       </div>
       <div className="w-full h-full  flex flex-col justify-start items-start">
@@ -75,20 +76,20 @@ const Sidebar = () => {
           } flex   w-full items-center view  pt-0 justify-center flex-col`}
         >
           {!state && (
-            <span className=" px-2 text-[0.7rem] font-normal w-full text-left  uppercase text-[#696e79]  mb-2">
+            <span className=" px-2 text-[0.8rem] font-medium w-full text-left  Capitalize text-[#a3adb3]  mb-2">
               General
             </span>
           )}
           {[
-            { path: "/dashboard", title: "dashboard", icon: <RiHome5Line /> },
+            { path: "/dashboard", title: "dashboard", icon: <LuLayoutDashboard /> },
             {
               path: "/collections",
               title: "collections",
               icon: <RiFolder3Line />,
               count: currentUser?.noteCollection?.length,
             },
-            { path: "/todos", title: "todos", icon: <RiCheckboxMultipleLine /> },
-            { path: "/blogs", title: "Blogs", icon: <RiDraftLine /> },
+            { path: "/todos", title: "todos", icon: <LuListChecks /> },
+            { path: "/blogs", title: "Blogs", icon: <LuEdit3 /> },
           ].map((item, id) => (
             <SidebarLink
               key={id}
@@ -105,7 +106,7 @@ const Sidebar = () => {
       </div>
       <div
         className={`${
-          state ? " px-2 " : "px-3 "
+          state ? " px-2 " : "px-3.5 "
         } flex   w-full items-center mt-4  pb-6 justify-center flex-col`}
       >
         {/* {!state && (
@@ -113,7 +114,7 @@ const Sidebar = () => {
               Account
             </span>
           )} */}
-        {[{ path: "/settings", title: "settings", icon: <RiListSettingsLine /> }].map(
+        {[{ path: "/settings", title: "settings", icon: <LuSettings /> }].map(
           (item, id) => (
             <SidebarLink
               key={id}

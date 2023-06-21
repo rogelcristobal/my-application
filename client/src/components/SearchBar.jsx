@@ -51,7 +51,7 @@ const SearchBar = () => {
     };
   }, [inputRef]);
   return (
-    <div className="max-w-[23rem] w-full relative  rounded-lg">
+    <div className="max-w-[23rem] w-full relative thin-box-divider rounded-lg">
       <input
         ref={inputRef}
         type="text"
