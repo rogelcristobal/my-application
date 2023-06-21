@@ -4,8 +4,10 @@ import AuthContext from "../context/AuthContext";
 const ProtectedRoute = ({ children }) => {
 
   const {data,loading} = React.useContext(AuthContext)
-  if(loading&&!data){
-    return <Navigate to="/login" replace/>
+  if(loading){
+    return <div>loading</div>
+  }else if(!loading&&!data){
+    return <Navigate to='/login' replace/>
   }else if(!loading&&data){
     return children
   }
