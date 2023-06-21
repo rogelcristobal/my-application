@@ -7,7 +7,7 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
   };
 
   return (
-    <NavLink to={path} role="link" className="w-full   mb-1">
+    <NavLink to={path} role="link" className="w-full  view mb-1">
       {({ isActive }) => (
         <div
           onMouseEnter={hoverToggle}
@@ -20,7 +20,7 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
           ${
             sidebarState
               ? "flex justify-center    h-[2.5rem]"
-              : "flex justify-center px-3.5 h-[2.5rem]"
+              : "flex justify-center px-2 h-[2.7rem]"
           }
           `}
         >
@@ -39,23 +39,23 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
                 {icon}
               </span>
               {!sidebarState && (
-                <span className="flex items-center text-[0.825rem] tracking-wide text-start w-full h-full overflow-x-hidden  truncate font-normal">
+                <span className="flex items-center text-[0.8rem] tracking-wide text-start w-full h-full overflow-x-hidden  truncate font-normal">
                   {title}
                 </span>
               )}
             </div>
             {count > 0 && !sidebarState && (
-              <div className=" absolute text-[#a7a9ad] badge  flex px-2 font-normal  right-1.5 border-0 normal-case text-[0.7rem] top-1/2 -translate-y-1/2 badge-sm bg-[#26272e]/60">
+              <div className=" absolute text-[#a7a9ad] badge  flex px-2 font-normal  right-1.5 border-0 bg-transparent normal-case text-[0.7rem] top-1/2 -translate-y-1/2 badge-sm ">
                 {count}
               </div>
             )}
           </div>
 
-          <div
+          {/* <div
             className={`${isActive ? "h-[100%]" : "h-0"} ${
-              sidebarState ? "-right-[0.75rem]" : "-right-[2rem]  "
-            } transition-all duration-75 w-[2px] text-blue-500 rounded-l-xl absolute  top-1/2 -translate-y-1/2 `}
-          ></div>
+              sidebarState ? "left-[0rem]" : "-left-[0.4rem]  "
+            } transition-all duration-75 w-[1px] bg-[#86868a]  rounded-l-xl absolute  top-1/2 -translate-y-1/2 `}
+          ></div> */}
         </div>
       )}
     </NavLink>

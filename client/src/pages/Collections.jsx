@@ -2,10 +2,11 @@ import React from "react";
 import AuthContext from "../context/AuthContext";
 import axios from "axios";
 import SearchBar from "../components/SearchBar";
-import { RiFolder2Line,RiMore2Fill } from "react-icons/ri";
+import { RiFolder2Line, RiMore2Fill } from "react-icons/ri";
+import AddCollectionModal from "../components/AddCollectionModal";
 const Collections = () => {
-  const { data, loading } = React.useContext(AuthContext);
-
+  const { currentUser, userDataLoading } = React.useContext(AuthContext);
+  const [addCollectionModalState ,setAddCollectionModalState] = React.useState(false)
   const createCollection = async () => {
     try {
       const response = await axios.post(
@@ -30,57 +31,60 @@ const Collections = () => {
       console.log(error);
     }
   };
+
+  const addCollectionToggle=()=>{
+    setAddCollectionModalState(!addCollectionModalState)
+  }
+
   return (
-    <div className="h-full  w-full flex flex-col items-start justify-start relative">
+    <div className="h-full w-full flex flex-col items-start justify-start relative">
       <div className=" h-full overflow-y-scroll px-10 w-full">
-        <div className="h-auto  w-full flex  border-dark-bottom pb-4 items-start flex-col justify-start">
+        <div className="h-fit  w-full flex   pb-4 items-start flex-col justify-start">
           {/* <div className="text-[#696e79]/70 w-full  py-3   pt-6  px-10  flex items-center justify-start ">
             <SearchBar />
           </div> */}
-          <div className="view flex flex-col pt-12 w-fit max-w-lg ">
+          <div className="view flex flex-col pt-10 w-fit max-w-lg ">
             {/* text-[#347ae2] */}
-            {/* <span className="mb-2 font-medium view text-[0.8rem] ">Dashboard</span> */}
-            <span className="view  text-[1.2rem] font-medium  capitalize">
-               collections
+            <span className="view  text-[1.3rem] font-medium  capitalize">
+              Collections
             </span>
+            {/* <span className="mt-2.5 font-medium view text-[0.875rem] text-[#696e79]">
+              View your created notes here.
+            </span> */}
           </div>
         </div>
-        <div className="mt-4   view">
-          <span className=" font-medium view text-[0.785rem] text-[#696e79]/60">
-            <span className="font-medium text-[#696e79]">
-              All Collections
-            </span>
-          </span>
 
-          <div className="view h-fit w-fit grid-cols-3 grid-flow-row-dense grid  gap-4 mt-4">
-            {Array.from({ length: 4 }).map((item, id) => (
-              <div key={id} className="bg-[#26262e] items-start cursor-pointer flex  justify-start flex-col p-4 h-28 w-[15rem]  rounded-lg">
-                <div className=" view w-full flex justify-between items-center text-[1.1rem] text-[#86868a] ">
-                  <RiFolder2Line />
-                  <RiMore2Fill className="text-[#76767c]/40 hover:text-[#76767c]"/>
-                </div>
-                <div className="flex flex-col items-start view h-full justify-end mt-4 w-full">
-                  <span className="  text-inherit view w-full flex justify-start gap-1 items-end text-[0.85rem] ">
-                    Lorem, ipsum.
-                  </span>
-                  <div className=" flex  flex-col mt-0.5  w-full">
-                    <span className="text-[0.75rem] text-[#76767c] font-medium  flex items-center gap-2  ">
-                      0 files.
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="mt-4 view">
-           <span className=" font-medium view text-[0.785rem] text-[#696e79]/60">
-            <span className="font-medium text-[#696e79]">
-              All Files
+        <div className=" w-full view h-auto">
+          <div className="w-full h-full">
+           <div className="flex items-center justify-between">
+             <span className=" font-medium view text-[0.8rem] text-[#696e79]">
+              All files
             </span>
-          </span>
+            <button onClick={addCollectionToggle} className="btn bg-inherit hover:bg-inherit btn-sm view hover:view normal-case font-normal h-10">Add collection</button>
+
+           </div>
+            <div className=" h-fit w-fit view p-2 grid grid-flow-col grid-cols-4 gap-3 mt-2">
+              {userDataLoading ? (
+                <p>loading collections</p>
+              ) : currentUser.noteCollection.length == 0 ? (
+                 <button onClick={addCollectionToggle} className="btn bg-inherit hover:bg-inherit btn-sm view hover:view normal-case font-normal h-10">Add collection</button>
+              ) : (
+                currentUser.noteCollection.map((item, id) => (
+                  <div className="view h-32  w-56 rounded-lg cursor-pointer flex flex-col item-start justify-end p-3" key={id}>
+                    <span className="font-normal text-sm">{item.collectionTitle}</span>
+                    <span></span>
+                  </div>
+                ))
+              )}
+             
+            </div>
+          </div>
         </div>
       </div>
+       {addCollectionModalState&&
+          <AddCollectionModal />
+       }
+      
     </div>
   );
 };

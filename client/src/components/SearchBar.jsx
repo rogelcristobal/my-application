@@ -64,12 +64,12 @@ const SearchBar = () => {
             input: e.target.value,
           })
         }
-        className={`input  placeholder:font-inter input-ghost relative  placeholder:text-[#696e79]/70 w-full input-sm  placeholder:text-[0.8rem] h-[2.7rem] pl-11 max-w-sm focus:bg-white placeholder:font-normal focus:text-inherit  cursor cursor-pointer  focus:outline-none ${
-          state.hover ? "bg-white" : "bg-white "
+        className={`input  placeholder:font-inter input-ghost relative placeholder:text-[#696e79]/70 w-full input-sm  placeholder:text-[0.8rem] h-[2.5rem] pl-11 max-w-sm focus:bg-white placeholder:font-normal focus:text-inherit  cursor cursor-pointer  focus:outline-none ${
+          state.hover ? "bg-transparent" : "bg-transparent "
         }`}
       />
       <LuSearch
-        className={`absolute   text-md top-1/2 -translate-y-1/2 ml-4 ${
+        className={`absolute   text-md top-1/2 -translate-y-1/2 ml-3 ${
           state.hover ? "text-[#696e79]/70" : "text-[#696e79]/70"
         }`}
       />

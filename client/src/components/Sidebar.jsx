@@ -15,7 +15,7 @@ import SidebarLink from "./SidebarLink";
 import AuthContext from "../context/AuthContext";
 const Sidebar = () => {
   const [state, setState] = React.useState(false);
-  const { data } = React.useContext(AuthContext);
+  const { currentUser } = React.useContext(AuthContext);
   const sidebarControl = useAnimation();
   const handleToggleSidebar = () => {
     setState(!state);
@@ -32,8 +32,8 @@ const Sidebar = () => {
       initial={{ width: "16rem" }}
       transition={{ duration: 0.3 }}
       className={`${
-        state ? "w-[4rem]" : "w-[16rem]"
-      } whitespace-nowrap  relative bg-[#26262e] view  h-full flex  flex-col  items-center justify-start  flex-shrink-0   `}
+        state ? "w-[4rem]" : "w-[15.5rem]"
+      } whitespace-nowrap  relative  view  h-full flex  flex-col  items-center justify-start  flex-shrink-0   `}
     >
       <div
         className={`${
@@ -57,22 +57,26 @@ const Sidebar = () => {
         </div>
 
         {/* toggle btn */}
+        {/* bg-[#1d1b22] */}
         <motion.button
           onClick={handleToggleSidebar}
-          className={`absolute  px-2.5 py-2.5 rounded-full -bottom-4   cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
+          className={`absolute  h-[2.285rem] w-[2.285rem] p-1 view rounded-full -bottom-2   cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
         >
-          <LuChevronLeft />
+          <div className="view rounded-full h-full grid place-content-center w-full">
+            <LuChevronLeft />
+          </div>
         </motion.button>
+       
       </div>
       <div className="w-full h-full  flex flex-col justify-start items-start">
         <div
           className={`${
-            state ? "mt-[2rem] px-0 " : "px-3.5 mt-[2rem]"
+            state ? "mt-[1.5rem] px-0 " : "px-3.5 mt-[1.5rem]"
           } flex   w-full items-center view  pt-0 justify-center flex-col`}
         >
           {!state && (
-            <span className=" px-2 text-[0.7rem] font-normal w-full text-left  uppercase text-[#696e79]  mb-3">
-              Menu
+            <span className=" px-2 text-[0.7rem] font-normal w-full text-left  uppercase text-[#696e79]  mb-2">
+              General
             </span>
           )}
           {[
@@ -81,7 +85,7 @@ const Sidebar = () => {
               path: "/collections",
               title: "collections",
               icon: <RiFolder3Line />,
-              count: data?.noteCollection?.length,
+              count: currentUser?.noteCollection?.length,
             },
             { path: "/todos", title: "todos", icon: <RiCheckboxMultipleLine /> },
             { path: "/blogs", title: "Blogs", icon: <RiDraftLine /> },

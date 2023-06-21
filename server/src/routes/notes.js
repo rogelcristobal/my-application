@@ -5,6 +5,24 @@ import { UserModel } from "../models/Users.js";
 
 
 const router = express.Router();
+//get all notes
+router.get('/:userID/:collectionID',async(request,response)=>{
+  try {
+    const {collectionID,userID} = request.params
+    const user = await UserModel.findById(userID)
+    if(!user){
+      return response.status(400).json({message:'user not foud!'})
+    }
+    const notes = await NotesCollectionModel.find({ _id: { $in: user.noteCollections }})
+    response.status(200).json({status:'success',data:notes})
+  } catch (error) {
+     response.status(500).json({
+      status: "error",
+      message: "An error occurred",
+      error: error.message,
+    });
+  }
+})
 
 // create new note collection (OK)
 router.post("/:userID", async (request, response) => {

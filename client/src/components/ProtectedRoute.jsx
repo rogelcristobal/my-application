@@ -6,9 +6,9 @@ const ProtectedRoute = ({ children }) => {
   const {data,loading} = React.useContext(AuthContext)
   if(loading){
     return <div>loading</div>
-  }if(!loading && !data){
-    return <Navigate to="/login" replace/>
-  }else{
+  }else if(!loading&&!data){
+    return <Navigate to='/login' replace/>
+  }else if(!loading&&data){
     return children
   }
   

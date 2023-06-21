@@ -9,22 +9,32 @@ import AuthContext from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Todos from "./pages/Todos";
 import Blogs from "./pages/Blogs";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase-config";
 function App() {
-  const { data,loading } = React.useContext(AuthContext);
-  if (loading) {
-    console.log('loading');
-  }else if(!data){
-    console.log('user logged out')
-  }else{
-    console.log(data)
-  }
+  const { setData, data, setLoading } = React.useContext(AuthContext);
+  React.useEffect(() => {
+    setLoading(true);
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setData(user);
+      } else {
+        setData(null);
+      }
+      setLoading(false); // Set loading state to false once authentication state is determined
+    });
+    return () => unsubscribe();
+  }, []);
+  
+
   return (
-    <div className="h-screen w-full bg-[#1d1b22] font-inter  text-[#dcdcde]">
+    <div className="h-screen w-full bg-[#1d1b22] font-inter  text-slate-100">
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route
           path="/*"
           element={
+            <ProtectedRoute>
               <div className="h-full w-full   flex items-start  justify-start relative">
                 <Sidebar></Sidebar>
                 <Routes>
@@ -32,12 +42,13 @@ function App() {
                     path="/"
                     element={<Navigate to="/dashboard" />}
                   ></Route>
-                  <Route path="/dashboard" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+                  <Route path="/dashboard" element={<Home />} />
                   <Route path="/collections" element={<Collections />}></Route>
                   <Route path="/Todos" element={<Todos />}></Route>
                   <Route path="/Blogs" element={<Blogs />}></Route>
                 </Routes>
               </div>
+            </ProtectedRoute>
           }
         ></Route>
       </Routes>
