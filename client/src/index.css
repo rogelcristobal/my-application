@@ -8,8 +8,10 @@
   }
   
   .view{
-    /* @apply thin-box-divider */
-    @apply border-dark
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px; */
+    /* @apply shadow-sm */
+    /* @apply border-dark */
+    /* @apply thin-box-divider  */
   }
   ::-webkit-scrollbar {
     width: 0.45rem;
