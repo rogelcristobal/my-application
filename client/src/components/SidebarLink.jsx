@@ -20,7 +20,7 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
           ${
             sidebarState
               ? "flex justify-center    h-[2.5rem]"
-              : "flex justify-center px-3.5 h-[2.7rem]"
+              : "flex justify-center px-2 h-[2.7rem]"
           }
           `}
         >

@@ -7,40 +7,44 @@ import { useQueries, useQuery } from "@tanstack/react-query";
 const AuthContext = React.createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const [data, setData] = React.useState(null);
-    const [loading, setloading] = React.useState(true);
+  const [data, setData] = React.useState(null); //firebase auth
+  const [currentUser, setCurrentUser] = React.useState(null);
+  const [loading, setLoading] = React.useState(true);
+  const [userDataLoading, setuserDataLoading] = React.useState(true);
 
   React.useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
-      setloading(true)
-      if (user) {
-
+    const fetchData = async () => {
+      if (data) {
         try {
           const response = await axios.get(
-            `http://localhost:3001/dashboard/${user.uid}`
+            `http://localhost:3001/dashboard/${data?.uid}`
           );
-          setData(response.data);
-          setloading(false)
-          
+          setCurrentUser(response.data);
+          setuserDataLoading(false);
         } catch (error) {
           console.log(error);
         }
-        
-      } else {
-        setData(null)
-        setloading(false)
       }
-     
-    });
-    return () => unsubscribe();
-  }, []);
+    };
 
+    fetchData();
+
+    return () => {
+      fetchData();
+      setCurrentUser(null)
+      setuserDataLoading(true);
+    };
+  }, [data]);
   return (
     <AuthContext.Provider
       value={{
-        // user auth in firebase
+        setData,
+        currentUser,
+        setCurrentUser,
+        userDataLoading,
         loading,
-        data, // user data from mdb that match uid with firebase/auth
+        setLoading,
+        data,
       }}
     >
       {children}

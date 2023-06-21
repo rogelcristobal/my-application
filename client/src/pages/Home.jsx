@@ -14,7 +14,7 @@ import SearchBar from "../components/SearchBar";
 Sidebar;
 const Home = () => {
   const navigate = useNavigate();
-  const { data, loading } = React.useContext(AuthContext);
+  const { currentUser,userDataLoading } = React.useContext(AuthContext);
   const logOutUser = async () => {
     try {
       await auth.signOut();
@@ -24,6 +24,12 @@ const Home = () => {
       console.error("Error signing out:", error);
     }
   };
+
+  if(!userDataLoading){
+   
+    console.log('monggodb:',currentUser)
+  }
+  
 
   return (
     <div className="h-full  w-full flex flex-col items-start justify-start relative">
@@ -35,9 +41,9 @@ const Home = () => {
                 Welcome,
               </span>
               <span className="">
-                {data?.firstName} {data?.lastName}
+                {currentUser?.firstName} {currentUser?.lastName}
               </span>
-              <span className="normal-case mt-1.5 flex items-center  gap-2 font-medium text-[#696e79]/70 text-[0.75rem]"><LuMail />{data.email}</span>
+              {/* <span className="normal-case mt-1.5 flex items-center  gap-2 font-medium text-[#696e79]/70 text-[0.75rem]"><LuMail />{currentUser?.email}</span> */}
             </span>
           </div>
         </div>
@@ -54,12 +60,12 @@ const Home = () => {
               {[
                 {
                   description: "Total notes",
-                  data: data?.totalNotes,
+                  // data: currentUser?.totalNotes,
                   icon: <RiFile2Line />,
                 },
                 {
                   description: "Total Todos",
-                  data: data?.totalTodos,
+                  // data: currentUser?.totalTodos,
                   icon: <RiCheckboxMultipleLine />,
                 },
               ].map((item, id) => (

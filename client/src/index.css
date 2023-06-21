@@ -9,7 +9,7 @@
   
   .view{
     /* @apply thin-box-divider */
-    /* @apply border-dark */
+    @apply border-dark
   }
   ::-webkit-scrollbar {
     width: 0.45rem;

@@ -53,16 +53,14 @@ const Collections = () => {
             <span className=" font-medium view text-[0.8rem] text-[#696e79]">
               Note collections
             </span>
-            <div className=" grid grid-flow-col grid-cols-4 w-fit gap-3 mt-4">
-              {loading&& <span>loading</span>}
-            </div>
+           
           </div>
           {/* recent */}
-          <div className="mt-4 view">
+          {/* <div className="mt-4 view">
             <span className=" font-medium text-[0.8rem] mb-4 text-[#696e79]  view  font-inter ">
               Recently added
             </span>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
