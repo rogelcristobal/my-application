@@ -15,7 +15,7 @@ import SidebarLink from "./SidebarLink";
 import AuthContext from "../context/AuthContext";
 const Sidebar = () => {
   const [state, setState] = React.useState(false);
-  const { data } = React.useContext(AuthContext);
+  const { currentUser } = React.useContext(AuthContext);
   const sidebarControl = useAnimation();
   const handleToggleSidebar = () => {
     setState(!state);
@@ -60,11 +60,13 @@ const Sidebar = () => {
         {/* bg-[#1d1b22] */}
         <motion.button
           onClick={handleToggleSidebar}
-          className={`absolute  h-[1.6rem] w-[1.6rem] grid place-content-center bg-[#26262e] rounded-full -bottom-2   cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
+          className={`absolute  h-[2.285rem] w-[2.285rem] p-1 view rounded-full -bottom-2   cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
         >
-          <LuChevronLeft />
+          <div className="view rounded-full h-full grid place-content-center w-full">
+            <LuChevronLeft />
+          </div>
         </motion.button>
-        <div className="absolute  h-[2.4rem] w-[2.4rem] grid place-content-center bg-[#1d1b22] rounded-full -bottom-3.5   cursor-pointer  z-8 text-xs text-inherit  -right-5 translate-x-1/"></div>
+       
       </div>
       <div className="w-full h-full  flex flex-col justify-start items-start">
         <div
@@ -83,7 +85,7 @@ const Sidebar = () => {
               path: "/collections",
               title: "collections",
               icon: <RiFolder3Line />,
-              count: data?.noteCollection?.length,
+              count: currentUser?.noteCollection?.length,
             },
             { path: "/todos", title: "todos", icon: <RiCheckboxMultipleLine /> },
             { path: "/blogs", title: "Blogs", icon: <RiDraftLine /> },

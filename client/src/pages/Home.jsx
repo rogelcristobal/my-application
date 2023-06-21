@@ -71,7 +71,7 @@ const Home = () => {
               ].map((item, id) => (
                 <div
                   key={id}
-                  className=" px-4 py-4   bg-[#26262e]/80  rounded-lg m cursor-pointer items-center  flex  justify-start  min-h-[5rem] gap-2 w-52"
+                  className=" px-4 py-4   bg-[#26262e]/40  rounded-lg m cursor-pointer items-center  flex  justify-start  min-h-[5rem] gap-2 w-52"
                 >
                   <div className="flex flex-col items-start view h-full justify-end  w-full">
                     {/* text-[#a7a9ad] */}

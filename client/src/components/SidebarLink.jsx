@@ -7,7 +7,7 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
   };
 
   return (
-    <NavLink to={path} role="link" className="w-full   mb-1">
+    <NavLink to={path} role="link" className="w-full  view mb-1">
       {({ isActive }) => (
         <div
           onMouseEnter={hoverToggle}
@@ -45,7 +45,7 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
               )}
             </div>
             {count > 0 && !sidebarState && (
-              <div className=" absolute text-[#a7a9ad] badge  flex px-2 font-normal  right-1.5 border-0 normal-case text-[0.7rem] top-1/2 -translate-y-1/2 badge-sm bg-[#26272e]/60">
+              <div className=" absolute text-[#a7a9ad] badge  flex px-2 font-normal  right-1.5 border-0 bg-transparent normal-case text-[0.7rem] top-1/2 -translate-y-1/2 badge-sm ">
                 {count}
               </div>
             )}
