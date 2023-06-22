@@ -12,15 +12,15 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full  rounded-lg relative  border-0 box-border  btn-sm btn  ${
+          className={`w-full  rounded-md relative  border-0 box-border  btn-sm btn  ${
             isActive
-              ? "text-inherit bg-[#f9f9f9] hover:bg-[#f9f9f9]"
-              : "text-[#a3adb3]  bg-transparent hover:bg-transparent"
+              ? "text-[#aeafb2] bg-[#1b1b1b] hover:bg-[#1b1b1b]"
+              : "text-[#616569]  bg-transparent hover:bg-transparent"
           }
           ${
             sidebarState
               ? "flex justify-center    h-[2.5rem]"
-              : "flex justify-center px-4 h-[2.7rem]"
+              : "flex justify-center px-5 h-[2.7rem]"
           }
           `}
         >
@@ -32,14 +32,14 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
             >
               {/*  */}
               <span
-                className={`text-[1.1rem] mx-auto ${
+                className={`text-[1rem] mx-auto ${
                   isActive && " "
                 }`}
               >
                 {icon}
               </span>
               {!sidebarState && (
-                <span className="flex items-center text-[0.825rem]  text-start w-full h-full overflow-x-hidden  truncate font-medium">
+                <span className="flex items-center text-[0.8rem]  text-start w-full h-full overflow-x-hidden  truncate font-medium">
                   {title}
                 </span>
               )}
@@ -51,11 +51,11 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
             )}
           </div>
 
-          <div
+          {/* <div
             className={`${isActive ? "h-[100%]" : "h-0"} ${
-              sidebarState ? "right-[0rem]" : "-right-[0.8rem]  "
-            } transition-all duration-75 w-[1px] bg-[#204e69]  rounded-l-xl absolute  top-1/2 -translate-y-1/2 `}
-          ></div>
+              sidebarState ? "right-[0rem]" : "-right-[1rem]  "
+            } transition-all duration-75 w-[0.1rem] bg-[#616569]/50  rounded-l-xl absolute  top-1/2 -translate-y-1/2 `}
+          ></div> */}
         </div>
       )}
     </NavLink>

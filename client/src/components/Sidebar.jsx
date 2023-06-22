@@ -34,24 +34,24 @@ const Sidebar = () => {
       transition={{ duration: 0.3 }}
       className={`${
         state ? "w-[4rem]" : "w-[16rem]"
-      } whitespace-nowrap  relative  view  h-full flex bg-white flex-col thin-right-divider items-center justify-start  flex-shrink-0   `}
+      } whitespace-nowrap  relative  view  h-full flex  flex-col  items-center justify-start  flex-shrink-0  border-dark-right `}
     >
       <div
         className={`${
-          state ? "px-[0.5rem]" : " px-4  "
-        } w-full   relative flex view items-center justify-start  pt-8 pb-10   text-[#74838a]`}
+          state ? "px-[0.5rem] " :" px-4  "
+        } w-full   relative flex view items-center justify-start  pt-8 pb-8   text-white`}
       >
         <div className="view flex items-center justify-center">
           <div
-            className={`view grid cursor-pointer relative rounded-lg p-[0.6rem] place-content-center ${
+            className={`view grid  cursor-pointer relative rounded-lg p-[0.6rem] place-content-center ${
               state ? "mr-0" : "mr-0"
             }`}
           >
             <LuGitlab className="text-[1.3rem] " />
           </div>
           {!state && (
-            <span className="mt-1 relative   w-fit text-start pl-0 whitespace-nowrap overflow-hidden text-[0.95rem]  font-medium">
-              NoteStack
+            <span className=" relative   w-fit text-start ml-2 whitespace-nowrap overflow-hidden text-[0.925rem]  font-medium">
+              WhiteSpace
               <div></div>
             </span>
           )}
@@ -72,11 +72,11 @@ const Sidebar = () => {
       <div className="w-full h-full  flex flex-col justify-start items-start">
         <div
           className={`${
-            state ? "mt-[1.5rem] px-0 " : "px-3.5 mt-[1.5rem]"
-          } flex   w-full items-center view  pt-0 justify-center flex-col`}
+            state ? " px-0 mt-4" :"px-3.5 mt-4"
+          } flex   w-full items-center view  pt-3 justify-center flex-col`}
         >
           {!state && (
-            <span className=" px-2 text-[0.8rem] font-medium w-full text-left  Capitalize text-[#a3adb3]  mb-2">
+            <span className=" px-2 text-[0.8rem] font-medium w-full text-left  Capitalize text-[#616569]  mb-2">
               General
             </span>
           )}
