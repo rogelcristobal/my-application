@@ -21,7 +21,7 @@ const AddCollectionModal = () => {
       const response = await axios.post(
         `http://localhost:3001/collections/`,
         { title: input.title, description: input.description },
-      headers 
+      {headers} 
       );
       console.log(response.data);
     } catch (error) {}
