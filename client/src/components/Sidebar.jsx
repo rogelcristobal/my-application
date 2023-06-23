@@ -69,7 +69,7 @@ const Sidebar = () => {
       <div className="w-full h-full  flex flex-col justify-start items-start">
         <div
           className={`${
-            state ? " px-0 mt-6" :"px-3 mt-4"
+            state ? " px-0 mt-10" :"px-3 mt-10"
           } flex   w-full items-center view  py-3 justify-center flex-col`}
         >
           {!state && (
