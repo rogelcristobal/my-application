@@ -3,8 +3,17 @@ import { NotesCollectionModel } from "../models/NotesCollection.js";
 import { NoteModel } from "../models/Note.js";
 import { UserModel } from "../models/Users.js";
 
-
 const router = express.Router();
+
+
+
+
+const extractUserID = (req,res, next) => {
+  req.userID = req.get('userID')
+  next();
+};
+
+
 //get all notes
 router.get('/:userID/:collectionID',async(request,response)=>{
   try {
@@ -25,10 +34,10 @@ router.get('/:userID/:collectionID',async(request,response)=>{
 })
 
 // create new note collection (OK)
-router.post("/:userID", async (request, response) => {
+router.post("/", extractUserID, async (request, response) => {
   try {
     const {title, description} = request.body;
-    const {userID} = request.params
+     const userID = request.userID;
 
     // create a new collection 
     const newNoteCollection = new NotesCollectionModel({

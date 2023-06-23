@@ -9,14 +9,20 @@ const AddCollectionModal = () => {
     description: "",
   });
   const { currentUser } = React.useContext(AuthContext);
+
+  const headers = {
+    userID: currentUser._id,
+    "Content-Type": "application/json",
+  };
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `http://localhost:3001/collections/${currentUser._id}`,
-        { title: input.title, description: input.description }
+        `http://localhost:3001/collections/`,
+        { title: input.title, description: input.description },
+      headers 
       );
-      // console.log(input)
       console.log(response.data);
     } catch (error) {}
 
@@ -31,7 +37,6 @@ const AddCollectionModal = () => {
       <form
         onSubmit={handleSubmit}
         className="view p-2 mt-2 flex flex-col w-full gap-6"
-        
       >
         <div className="w-full flex flex-col">
           <label htmlFor=""> title</label>

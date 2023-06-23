@@ -40,8 +40,8 @@ const Collections = () => {
             <span>no collections to show</span>
           ) : (
             currentUser.noteCollection.map((item, id) => (
-              <div className="h-24 flex  view w-60" key={id}>
-               <div className="view flex flex-col w-full item-start justify-end">
+              <div className="h-24 flex cursor-pointer view w-60" key={id}>
+               <div className="view flex flex-col w-full text-sm item-start justify-end">
                  <span>{item.collectionTitle}</span>
                 <span>{item.description}</span>
                </div>
