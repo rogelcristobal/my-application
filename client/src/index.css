@@ -6,20 +6,21 @@
   * {
     /* @apply thin-box-divider */
   }
-  
-  .view{
+
+  .view {
     /* box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px; */
     /* @apply shadow-sm */
     /* @apply border-dark */
-    /* @apply thin-box-divider  */
+    @apply thin-box-divider 
   }
   ::-webkit-scrollbar {
     width: 0.45rem;
   }
- 
+
   ::-webkit-scrollbar-thumb {
     @apply cursor-pointer bg-[#1a1c1e]/10 hover:bg-[#1a1c1e]/20 rounded-lg;
   }
+  
   .border-dark-right {
     @apply border-r-[1px] border-[#323339]/50;
   }
@@ -32,9 +33,9 @@
   .border-dark-bottom {
     @apply border-b-[1px] border-[#323339]/50;
   }
-    .border-dark {
-      @apply border-[1px] border-[#323339]/50;
-    }
+  .border-dark {
+    @apply border-[1px] border-[#323339]/50;
+  }
   .sample {
     box-shadow: rgba(0, 0, 0, 0.03) 0px 6px 6px 0px,
       rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
@@ -71,32 +72,5 @@
 
   /* fonts */
 
-  @font-face {
-    font-family: "ProductSansRegular";
-    src: url("./assets/fonts/ProductSansRegular.ttf");
-  }
-  @font-face {
-    font-family: "ProductSansBold";
-    src: url("./assets/fonts/ProductSansBold.ttf");
-  }
-  @font-face {
-    font-family: "HelveticaNeueRoman";
-    src: url("./assets/fonts/HelveticaNeueRoman.otf");
-  }
-  @font-face {
-    font-family: "HelveticaNeueMedium";
-    src: url("./assets/fonts/HelveticaNeueMedium.otf");
-  }
-  @font-face {
-    font-family: "HelveticaNeueBold";
-    src: url("./assets/fonts/HelveticaNeueBold.ttf");
-  }
-  @font-face {
-    font-family: "HelveticaNeueThin";
-    src: url("./assets/fonts/HelveticaNeueThin.otf");
-  }
-  @font-face {
-    font-family: "HelveticaNeueBlack";
-    src: url("./assets/fonts/HelveticaNeueHeavy.otf");
-  }
+ 
 }

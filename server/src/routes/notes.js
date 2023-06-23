@@ -27,13 +27,14 @@ router.get('/:userID/:collectionID',async(request,response)=>{
 // create new note collection (OK)
 router.post("/:userID", async (request, response) => {
   try {
-    const {title} = request.body;
+    const {title, description} = request.body;
     const {userID} = request.params
 
     // create a new collection 
     const newNoteCollection = new NotesCollectionModel({
       userID: userID,
       collectionTitle: title,
+      description:description,
       savedNotes: [],
     });
     await newNoteCollection.save();

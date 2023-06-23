@@ -14,38 +14,33 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
           onMouseLeave={hoverToggle}
           className={`w-full  rounded-md relative  border-0 box-border  btn-sm btn  ${
             isActive
-              ? "text-[#aeafb2] bg-[#1b1b1b] hover:bg-[#1b1b1b]"
-              : "text-[#616569]  bg-transparent hover:bg-transparent"
+              ? "text-inherit bg-transparent hover:bg-transparent"
+              : "text-inherit  bg-transparent hover:bg-transparent"
           }
-          ${
-            sidebarState
-              ? "flex justify-center    h-[2.5rem]"
-              : "flex justify-center px-5 h-[2.7rem]"
-          }
+          ${sidebarState ? "flex justify-center   " : "flex justify-center "}
           `}
         >
           <div className=" h-full flex justify-between items-center overflow-hidden w-full">
             <div
-              className={`flex justify-start items-center   h-full font-medium   w-full capitalize gap-3 ${
+              className={`flex justify-start items-center   h-full font-normal   w-full capitalize gap-3 ${
                 !sidebarState ? "max-w-[75%] " : "max-w-[100%]"
               }`}
             >
-              {/*  */}
-              <span
+              {/* <span
                 className={`text-[1rem] mx-auto ${
                   isActive && " "
                 }`}
               >
                 {icon}
-              </span>
+              </span> */}
               {!sidebarState && (
-                <span className="flex items-center text-[0.8rem]  text-start w-full h-full overflow-x-hidden  truncate font-medium">
+                <span className="flex items-center text-[0.85rem] font-normal  text-start w-full h-full overflow-x-hidden  truncate ">
                   {title}
                 </span>
               )}
             </div>
             {count > 0 && !sidebarState && (
-              <div className=" absolute text-[#a7a9ad] badge  flex px-2 font-normal  right-1.5 border-0 bg-transparent normal-case text-[0.7rem] top-1/2 -translate-y-1/2 badge-sm ">
+              <div className=" absolute badge font-inter  flex px-2 font-medium  right-1.5 border-0 bg-transparent  text-[0.725rem] top-1/2 -translate-y-1/2 badge-sm ">
                 {count}
               </div>
             )}
