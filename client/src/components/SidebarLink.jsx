@@ -12,50 +12,45 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full  rounded-lg relative  border-0 box-border  btn-sm btn  ${
+          className={`w-full  rounded-md relative  border-0 box-border  btn-sm btn  ${
             isActive
-              ? "text-inherit bg-[#f9f9f9] hover:bg-[#f9f9f9]"
-              : "text-[#a3adb3]  bg-transparent hover:bg-transparent"
+              ? "text-inherit bg-transparent hover:bg-transparent"
+              : "text-inherit  bg-transparent hover:bg-transparent"
           }
-          ${
-            sidebarState
-              ? "flex justify-center    h-[2.5rem]"
-              : "flex justify-center px-4 h-[2.7rem]"
-          }
+          ${sidebarState ? "flex justify-center   " : "flex justify-center "}
           `}
         >
           <div className=" h-full flex justify-between items-center overflow-hidden w-full">
             <div
-              className={`flex justify-start items-center   h-full font-medium   w-full capitalize gap-3 ${
+              className={`flex justify-start items-center   h-full font-normal   w-full capitalize gap-3 ${
                 !sidebarState ? "max-w-[75%] " : "max-w-[100%]"
               }`}
             >
-              {/*  */}
-              <span
-                className={`text-[1.1rem] mx-auto ${
+              {/* <span
+                className={`text-[1rem] mx-auto ${
                   isActive && " "
                 }`}
               >
                 {icon}
-              </span>
+              </span> */}
               {!sidebarState && (
-                <span className="flex items-center text-[0.825rem]  text-start w-full h-full overflow-x-hidden  truncate font-medium">
+                <span className="flex items-center text-[0.85rem] font-normal  text-start w-full h-full overflow-x-hidden  truncate ">
                   {title}
                 </span>
               )}
             </div>
             {count > 0 && !sidebarState && (
-              <div className=" absolute text-[#a7a9ad] badge  flex px-2 font-normal  right-1.5 border-0 bg-transparent normal-case text-[0.7rem] top-1/2 -translate-y-1/2 badge-sm ">
+              <div className=" absolute badge font-inter  flex px-2 font-medium  right-1.5 border-0 bg-transparent  text-[0.725rem] top-1/2 -translate-y-1/2 badge-sm ">
                 {count}
               </div>
             )}
           </div>
 
-          <div
+          {/* <div
             className={`${isActive ? "h-[100%]" : "h-0"} ${
-              sidebarState ? "right-[0rem]" : "-right-[0.8rem]  "
-            } transition-all duration-75 w-[1px] bg-[#204e69]  rounded-l-xl absolute  top-1/2 -translate-y-1/2 `}
-          ></div>
+              sidebarState ? "right-[0rem]" : "-right-[1rem]  "
+            } transition-all duration-75 w-[0.1rem] bg-[#616569]/50  rounded-l-xl absolute  top-1/2 -translate-y-1/2 `}
+          ></div> */}
         </div>
       )}
     </NavLink>

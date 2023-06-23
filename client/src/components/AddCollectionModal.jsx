@@ -9,12 +9,19 @@ const AddCollectionModal = () => {
     description: "",
   });
   const { currentUser } = React.useContext(AuthContext);
+
+  const headers = {
+    userID: currentUser._id,
+    "Content-Type": "application/json",
+  };
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `http://localhost:3001/collections/${currentUser._id}`,
-        { title: input.title }
+        `http://localhost:3001/collections/`,
+        { title: input.title, description: input.description },
+      {headers} 
       );
       console.log(response.data);
     } catch (error) {}
@@ -25,12 +32,11 @@ const AddCollectionModal = () => {
     });
   };
   return (
-    <div className="fixed left-4 z-50 p-3 bg-[#1d1b22] top-1/2 -translate-y-1/2 h-[30rem] w-80 view text-sm">
+    <div className="fixed left-1/2 -translate-x-1/2 z-50 p-3 bg-white top-1/2 -translate-y-1/2 h-fit w-80 view text-sm">
       <span className="view"> create new collection</span>
       <form
         onSubmit={handleSubmit}
         className="view p-2 mt-2 flex flex-col w-full gap-6"
-        action=""
       >
         <div className="w-full flex flex-col">
           <label htmlFor=""> title</label>

@@ -10,10 +10,12 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+
 app.use("/auth", userRouter);
 app.use("/collections", noteRouter)
 app.use("/dashboard", dashboardRouter)
 app.use("/todos", toDoRouter)
+
 
 mongoose.connect(
   "mongodb+srv://rogelcristobal:eraserheads1011@notes.5jayhma.mongodb.net/notes?retryWrites=true&w=majority"
