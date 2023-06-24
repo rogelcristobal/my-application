@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import { userRouter } from "./routes/users.js";
-import { noteRouter } from "./routes/notes.js";
+import { collectionsRouter } from "./routes/notes.js";
 import { dashboardRouter } from "./routes/dashboard.js";
 import { toDoRouter } from "./routes/todos.js";
 const app = express();
@@ -10,9 +10,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-
+// userId = mongoose obectID
+// uid = firebase uid
 app.use("/auth", userRouter);
-app.use("/collections", noteRouter)
+app.use("/collections", collectionsRouter)
 app.use("/dashboard", dashboardRouter)
 app.use("/todos", toDoRouter)
 

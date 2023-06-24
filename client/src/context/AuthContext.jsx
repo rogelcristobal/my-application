@@ -1,40 +1,46 @@
 import axios from "axios";
-import { onAuthStateChanged } from "firebase/auth";
 import React from "react";
-import { auth } from "../firebase-config";
-import { useQueries, useQuery } from "@tanstack/react-query";
 
 const AuthContext = React.createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [data, setData] = React.useState(null); //firebase auth
-  const [currentUser, setCurrentUser] = React.useState(null);
+  const [currentUser, setCurrentUser] = React.useState(null); // context for connecting user in db
   const [loading, setLoading] = React.useState(true);
   const [userDataLoading, setuserDataLoading] = React.useState(true);
 
-  React.useEffect(() => {
-    const fetchData = async () => {
-      if (data) {
-        try {
-          const response = await axios.get(
-            `http://localhost:3001/dashboard/${data?.uid}`
-          );
-          setCurrentUser(response.data);
-          setuserDataLoading(false);
-        } catch (error) {
-          console.log(error);
-        }
+
+  // pass the firebase UID to the header
+  //  !!only in this component
+  const headers = {
+    firebaseUID: data?.uid,
+    "Content-Type": "application/json",
+  };
+
+  const fetchData = async () => {
+    if (data) {
+      try {
+        const response = await axios.get(
+          `http://localhost:3001/dashboard/`,{headers}
+        );
+        setCurrentUser(response.data);
+        // waiting for the data to fully fetched
+        setuserDataLoading(false);
+      } catch (error) {
+        console.log(error);
       }
-    };
+    }
+  };
 
+  React.useEffect(() => {
     fetchData();
-
     return () => {
       fetchData();
-      setCurrentUser(null)
+      setCurrentUser(null);
       setuserDataLoading(true);
     };
   }, [data]);
+
   return (
     <AuthContext.Provider
       value={{

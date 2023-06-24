@@ -3,38 +3,44 @@ import { NotesCollectionModel } from "../models/NotesCollection.js";
 import { NoteModel } from "../models/Note.js";
 import { UserModel } from "../models/Users.js";
 
-const router = express.Router();
-
-
-
-
+//extract userID from headers
 const extractUserID = (req,res, next) => {
+  // this is how to get the header req.userID or request.userID based on your param
   req.userID = req.get('userID')
   next();
 };
 
-
-//get all notes
-router.get('/:userID/:collectionID',async(request,response)=>{
+// collections/
+const collectionsRouter = express.Router();
+// get all collections (OK)
+collectionsRouter.get('/', extractUserID, async(request,response)=>{
   try {
-    const {collectionID,userID} = request.params
+    const userID =  request.userID
     const user = await UserModel.findById(userID)
+    .populate('noteCollections')           // populate the collection
+    .populate({                            // populates the nested data within userModel
+    path: 'noteCollections',
+    populate: {
+      path: 'savedNotes',
+    },
+  })
     if(!user){
-      return response.status(400).json({message:'user not foud!'})
+      return response.status(404).json({message:'user not found or does not exist!'})
     }
-    const notes = await NotesCollectionModel.find({ _id: { $in: user.noteCollections }})
-    response.status(200).json({status:'success',data:notes})
+    // const noteCollections = await NotesCollectionModel.find({
+    //   _id: {$in: user.noteCollections}
+    // }) 
+    response.status(200).json({message:"success", data: user.noteCollections})
   } catch (error) {
-     response.status(500).json({
+    response.status(500).json({
       status: "error",
       message: "An error occurred",
       error: error.message,
     });
   }
 })
-
 // create new note collection (OK)
-router.post("/", extractUserID, async (request, response) => {
+collectionsRouter.post("/", extractUserID, async (request, response) => {
   try {
     const {title, description} = request.body;
      const userID = request.userID;
@@ -71,9 +77,8 @@ router.post("/", extractUserID, async (request, response) => {
     });
   }
 });
-
 // delete collection (OK)
-router.delete("/:collectionID", async (request, response) => {
+collectionsRouter.delete("/:collectionID", async (request, response) => {
   try {
     const { collectionID } = request.params;
     const collection = await NotesCollectionModel.findById(collectionID);
@@ -106,11 +111,19 @@ router.delete("/:collectionID", async (request, response) => {
   }
 });
 
+
+
+
+
+
+// collections/notes/
+const noteRouter = express.Router()
 // create note (OK)
-router.post("/:userID/:collectionID", async (request, response) => {
+noteRouter.post("/:collectionID/", extractUserID, async (request, response) => {
   try {
     const { title, content } = request.body;
-    const { collectionID,userID} = request.params
+    const { collectionID} = request.params
+    const userID = request.userID
 
     const newNote = new NoteModel({
       userID: userID,
@@ -144,9 +157,8 @@ router.post("/:userID/:collectionID", async (request, response) => {
     });
   }
 });
-
 // delete note (OK)
-router.delete("/:collectionID/:noteID", async (request, response) => {
+noteRouter.delete("/:collectionID/:noteID", async (request, response) => {
   try {
     const { collectionID,noteID } = request.params;
     
@@ -171,9 +183,8 @@ router.delete("/:collectionID/:noteID", async (request, response) => {
     });
   }
 });
-
 // search note insensitive (OK)
-router.get("/search/:query", async (request, response) => {
+noteRouter.get("/search/:query", async (request, response) => {
   try {
     const { query } = request.params;
 
@@ -192,6 +203,35 @@ router.get("/search/:query", async (request, response) => {
   }
 });
 
+
+
+
+
+
+collectionsRouter.use('/notes', noteRouter)
+
+export { collectionsRouter as collectionsRouter };
+
+
+
+//get all notes
+// router.get('/:userID/:collectionID',async(request,response)=>{
+//   try {
+//     const {collectionID,userID} = request.params
+//     const user = await UserModel.findById(userID)
+//     if(!user){
+//       return response.status(400).json({message:'user not foud!'})
+//     }
+//     const notes = await NotesCollectionModel.find({ _id: { $in: user.noteCollections }})
+//     response.status(200).json({status:'success',data:notes})
+//   } catch (error) {
+//      response.status(500).json({
+//       status: "error",
+//       message: "An error occurred",
+//       error: error.message,
+//     });
+//   }
+// })
 
 
 //search note sensitive
@@ -213,10 +253,3 @@ router.get("/search/:query", async (request, response) => {
 //     });
 //   }
 // });
-
-
-
-
-// not search every letter
-
-export { router as noteRouter };

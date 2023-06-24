@@ -4,16 +4,20 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Collections from "./pages/Collections";
 import Sidebar from "./components/Sidebar";
-import { NoteCollectionProvider } from "./context/NoteCollectionContext";
 import AuthContext from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Todos from "./pages/Todos";
 import Blogs from "./pages/Blogs";
-import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase-config";
+import { QueryClient } from "@tanstack/react-query";
 function App() {
+  const queryClient = new QueryClient()
   const { setData, data, setLoading } = React.useContext(AuthContext);
   const { currentUser, userDataLoading } = React.useContext(AuthContext);
+  
+
+
+
   React.useEffect(() => {
     setLoading(true);
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -26,6 +30,11 @@ function App() {
     });
     return () => unsubscribe();
   }, []);
+
+
+
+
+
 
   const navigate = useNavigate();
   const logOutUser = async () => {

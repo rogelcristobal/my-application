@@ -7,7 +7,7 @@ const Collections = () => {
   const [addCollectionModalState, setAddCollectionModalState] =
     React.useState(false);
   
-
+  
   const deleteCollection = async (id) => {
     try {
       const response = await axios.delete(
@@ -27,7 +27,7 @@ const Collections = () => {
     <div className="h-full w-full flex flex-col items-start justify-start relative">
       <div className=" h-full overflow-y-scroll px-10 pt-10 w-full">
        
-        <div className=" w-full view h-full space-y-3 p-3">
+        <div className=" w-full view h-full space-y-3 p-4">
           <button
             onClick={addCollectionToggle}
             className="text-xs view w-fit h-fit p-2"
@@ -41,9 +41,10 @@ const Collections = () => {
           ) : (
             currentUser.noteCollection.map((item, id) => (
               <div className="h-24 flex cursor-pointer view w-60" key={id}>
-               <div className="view flex flex-col w-full text-sm item-start justify-end">
+               <div className="view flex flex-col w-full text-normal item-start justify-end">
                  <span>{item.collectionTitle}</span>
-                <span className="text-gray-400">{item.description}</span>
+                <span className="text-sm">{item.description}</span>
+                <span className="text-gray-400 text-sm"> {item.savedNotes.length} files</span>
                </div>
                 <button
                   onClick={() => deleteCollection(item._id)}

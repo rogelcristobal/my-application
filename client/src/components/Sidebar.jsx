@@ -1,13 +1,8 @@
 import React from "react";
 import {
-  LuLayoutDashboard,
-  LuFolder,
-  LuFeather,
-  LuChevronLeft,
   LuListChecks,
   LuEdit3,
   LuSettings,
-  LuGitlab
 } from "react-icons/lu";
 import {TbFolder,TbLayoutGrid,} from 'react-icons/tb'
 import { motion, useAnimation } from "framer-motion";
