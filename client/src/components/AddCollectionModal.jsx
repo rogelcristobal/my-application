@@ -1,29 +1,25 @@
 import axios from "axios";
-import { m } from "framer-motion";
 import React from "react";
 import AuthContext from "../context/AuthContext";
-
 const AddCollectionModal = () => {
   const [input, setInput] = React.useState({
     title: "",
     description: "",
   });
-  const { currentUser } = React.useContext(AuthContext);
-
+  const {currentUser} = React.useContext(AuthContext)
   const headers = {
     userID: currentUser._id,
     "Content-Type": "application/json",
   };
- 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
+      await axios.post(
         `http://localhost:3001/collections/`,
         { title: input.title, description: input.description },
       {headers} 
       );
-      console.log(response.data);
+      
     } catch (error) {}
 
     setInput({

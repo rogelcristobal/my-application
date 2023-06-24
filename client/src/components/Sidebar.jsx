@@ -1,13 +1,8 @@
 import React from "react";
 import {
-  LuLayoutDashboard,
-  LuFolder,
-  LuFeather,
-  LuChevronLeft,
   LuListChecks,
   LuEdit3,
   LuSettings,
-  LuGitlab
 } from "react-icons/lu";
 import {TbFolder,TbLayoutGrid,} from 'react-icons/tb'
 import { motion, useAnimation } from "framer-motion";
@@ -15,7 +10,7 @@ import SidebarLink from "./SidebarLink";
 import AuthContext from "../context/AuthContext";
 const Sidebar = () => {
   const [state, setState] = React.useState(false);
-  const { currentUser } = React.useContext(AuthContext);
+  const { currentUser,userDataLoading } = React.useContext(AuthContext);
   const sidebarControl = useAnimation();
   const handleToggleSidebar = () => {
     setState(!state);
@@ -25,6 +20,7 @@ const Sidebar = () => {
       sidebarControl.start({ width: "4rem" });
     }
   };
+  console.log(currentUser)
 
   return (
     <motion.div
