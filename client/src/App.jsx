@@ -47,9 +47,9 @@ function App() {
     }
   };
 
-  if (!userDataLoading) {
-    console.log("monggodb:", currentUser);
-  }
+  // if (!userDataLoading) {
+  //   console.log("monggodb:", currentUser);
+  // }
 
   return (
     <div className="h-screen w-full bg-[#ffffff] font-inter  text-black">

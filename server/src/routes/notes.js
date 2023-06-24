@@ -118,7 +118,7 @@ collectionsRouter.delete("/:collectionID", async (request, response) => {
 
 // collections/notes/
 const noteRouter = express.Router()
-// create note (OK)
+// create note 
 noteRouter.post("/:collectionID/", extractUserID, async (request, response) => {
   try {
     const { title, content } = request.body;
@@ -157,12 +157,10 @@ noteRouter.post("/:collectionID/", extractUserID, async (request, response) => {
     });
   }
 });
-// delete note (OK)
+// delete note 
 noteRouter.delete("/:collectionID/:noteID", async (request, response) => {
   try {
     const { collectionID,noteID } = request.params;
-    
-    
     //find the note instance and delete
     const deleteNote = await NoteModel.findByIdAndDelete(noteID)
     if(!deleteNote){

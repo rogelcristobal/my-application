@@ -14,12 +14,12 @@ const AddCollectionModal = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
+      await axios.post(
         `http://localhost:3001/collections/`,
         { title: input.title, description: input.description },
       {headers} 
       );
-      console.log(response.data);
+      
     } catch (error) {}
 
     setInput({
