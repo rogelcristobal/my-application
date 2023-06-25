@@ -6,7 +6,7 @@ import { UserModel } from "../models/Users.js";
 //extract userID from headers
 const extractUserID = (req,res, next) => {
   // this is how to get the header req.userID or request.userID based on your param
-  req.userID = req.get('userID')
+  req.userID = req.header('userID')
   next();
 };
 
