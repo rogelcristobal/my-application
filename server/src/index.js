@@ -1,12 +1,15 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import http from 'http';
+import { Server } from 'socket.io';
+
 import { userRouter } from "./routes/users.js";
 import { collectionsRouter } from "./routes/notes.js";
 import { dashboardRouter } from "./routes/dashboard.js";
 import { toDoRouter } from "./routes/todos.js";
 const app = express();
-
+const server = http.createServer(app)
 app.use(express.json());
 app.use(cors());
 
@@ -27,3 +30,4 @@ app.listen(port, () => {
   console.log(`server-started at port: ${port}`);
 });
 
+// socketIO
