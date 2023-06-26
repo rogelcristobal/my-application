@@ -8,9 +8,9 @@ import { io } from "socket.io-client";
 
 const Collections = () => {
   const socket = io("http://localhost:3001");
-  const { currentUser } = React.useContext(AuthContext);
+  const { currentUser, setCurrentUser } = React.useContext(AuthContext);
   const [addCollectionModalState, setAddCollectionModalState] =
-  React.useState(false);
+    React.useState(false);
   const queryClient = new QueryClient();
   const [collections, setCollections] = React.useState([]);
 
@@ -20,19 +20,18 @@ const Collections = () => {
   };
   // get data from api
   const fetchData = async () => {
-   try {
-     if (currentUser) {
-      const { data } = await axios.get("http://localhost:3001/collections/", {
-        headers,
-      });
-      return data.data;
+    try {
+      if (currentUser) {
+        const { data } = await axios.get("http://localhost:3001/collections/", {
+          headers,
+        });
+        return data.data;
+      }
+      return {};
+    } catch (error) {
+      console.log(error);
     }
-    return {};
-   } catch (error) {
-      console.log(error)
-   }
   };
-
 
   const { isLoading } = useQuery(["userData"], fetchData, {
     enabled: !!currentUser?._id,
@@ -49,21 +48,38 @@ const Collections = () => {
     }
   }, [currentUser?._id]);
 
-
-
   // socket event handler
   React.useEffect(() => {
+    // deleteCollection
     socket.on("deleteNoteCollection", (data) => {
       console.log("event: deleteNoteCollection", data);
       setCollections((prevCollections) =>
         prevCollections.filter((c) => c._id !== data._id)
       );
+
+      setCurrentUser((prevUser)=>({
+        ...prevUser,
+        noteCollections: prevUser.noteCollections.filter((collection)=>(
+          collection._id !== data._id
+        ))
+      }))
     });
+    // addcollection
+    socket.on("addNoteCollection", (data) => {
+      console.log("event: addNoteCollection", data);
+      setCollections((prevCollections) => [...prevCollections, data]);
+      //  update the currentUser (which used in the whole app)
+      //  with the added collection
+      setCurrentUser((prevUser) => ({
+        ...prevUser,
+        noteCollections: [...prevUser.noteCollections, data],
+      }));
+    });
+
     return () => {
       socket.disconnect();
     };
   }, []);
-
 
   // ui event handlers
   const deleteCollection = async (id) => {
@@ -74,7 +90,6 @@ const Collections = () => {
       console.log(error);
     }
   };
-
 
   // toggle the modal
   const addCollectionToggle = () => {
@@ -116,7 +131,7 @@ const Collections = () => {
           )}
         </div>
       </div>
-      {addCollectionModalState && <AddCollectionModal />}
+      {addCollectionModalState && <AddCollectionModal collections />}
     </div>
   );
 };

@@ -8,7 +8,9 @@ import {TbFolder,TbLayoutGrid,} from 'react-icons/tb'
 import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
 import AuthContext from "../context/AuthContext";
+import { io } from "socket.io-client";
 const Sidebar = () => {
+  const socket = io('http://localhost:3001')
   const [state, setState] = React.useState(false);
   const { currentUser,userDataLoading } = React.useContext(AuthContext);
   const sidebarControl = useAnimation();
@@ -22,6 +24,11 @@ const Sidebar = () => {
   };
   console.log(currentUser)
 
+
+  // React.useState(()=>{
+  //   socket.on('')
+  //   return()=>socket.disconnect()
+  // },[])
   return (
     <motion.div
       animate={sidebarControl}
@@ -79,7 +86,7 @@ const Sidebar = () => {
               path: "/collections",
               title: "collections",
               icon: <TbFolder />,
-              count: currentUser?.noteCollection?.length,
+              count: currentUser?.noteCollections?.length,
             },
             { path: "/todos", title: "todos", icon: <LuListChecks /> },
             { path: "/blogs", title: "Blogs", icon: <LuEdit3 /> },
@@ -110,7 +117,7 @@ const Sidebar = () => {
               sidebarState={state}
               title={item.title}
               icon={item.icon}
-              count={item?.count}
+             
             />
           )
         )}

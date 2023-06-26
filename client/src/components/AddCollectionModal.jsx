@@ -1,8 +1,10 @@
 import axios from "axios";
 import React from "react";
 import AuthContext from "../context/AuthContext";
+import { io } from "socket.io-client";
+const AddCollectionModal = ({collections}) => {
+  const socket = io("http://localhost:3001");
 
-const AddCollectionModal = () => {
   const [input, setInput] = React.useState({
     title: "",
     description: "",
@@ -15,11 +17,13 @@ const AddCollectionModal = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
+      const data = await axios.post(
         `http://localhost:3001/collections/`,
         { title: input.title, description: input.description },
       {headers} 
       );
+
+      socket.emit('addNoteCollection',data)
       
     } catch (error) {}
 
