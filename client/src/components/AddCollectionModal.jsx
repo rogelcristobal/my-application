@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import AuthContext from "../context/AuthContext";
+
 const AddCollectionModal = () => {
   const [input, setInput] = React.useState({
     title: "",
