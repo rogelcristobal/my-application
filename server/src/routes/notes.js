@@ -2,6 +2,7 @@ import express from "express";
 import { NotesCollectionModel } from "../models/NotesCollection.js";
 import { NoteModel } from "../models/Note.js";
 import { UserModel } from "../models/Users.js";
+import {io} from '../index.js'
 
 //extract userID from headers
 const extractUserID = (req,res, next) => {
@@ -63,6 +64,7 @@ collectionsRouter.post("/", extractUserID, async (request, response) => {
       return response.status(404).json({ error: "user not found" });
     }
 
+
     response.status(200).json({
       status: "success",
       userID: user._id,
@@ -96,6 +98,8 @@ collectionsRouter.delete("/:collectionID", async (request, response) => {
 
     //finally deletes the collection
     const deleteCollection = await NotesCollectionModel.findByIdAndDelete(collectionID)
+
+    io.emit('deleteNoteCollection', deleteCollection);
 
     response.status(200).json({
       status: "success",

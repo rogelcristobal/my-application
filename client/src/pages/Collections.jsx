@@ -3,29 +3,43 @@ import AuthContext from "../context/AuthContext";
 import axios from "axios";
 import AddCollectionModal from "../components/AddCollectionModal";
 import { QueryClient, useQuery } from "@tanstack/react-query";
+
+import { io } from "socket.io-client";
+
 const Collections = () => {
+  const socket = io("http://localhost:3001");
   const { currentUser } = React.useContext(AuthContext);
   const [addCollectionModalState, setAddCollectionModalState] =
-    React.useState(false);
+  React.useState(false);
+  const queryClient = new QueryClient();
+  const [collections, setCollections] = React.useState([]);
 
   const headers = {
     userID: currentUser?._id,
     "Content-Type": "application/json",
   };
-
-  const queryClient = new QueryClient();
+  // get data from api
   const fetchData = async () => {
-    if (currentUser) {
-      const {data} = await axios.get("http://localhost:3001/collections/", {
+   try {
+     if (currentUser) {
+      const { data } = await axios.get("http://localhost:3001/collections/", {
         headers,
       });
       return data.data;
     }
     return {};
+   } catch (error) {
+      console.log(error)
+   }
   };
 
-  const { data, isLoading } = useQuery(["userData"], fetchData, {
+
+  const { isLoading } = useQuery(["userData"], fetchData, {
     enabled: !!currentUser?._id,
+    // once fetchData true set returned data to the state
+    onSuccess: (data) => {
+      setCollections(data);
+    },
   });
 
   React.useEffect(() => {
@@ -36,16 +50,33 @@ const Collections = () => {
   }, [currentUser?._id]);
 
 
+
+  // socket event handler
+  React.useEffect(() => {
+    socket.on("deleteNoteCollection", (data) => {
+      console.log("event: deleteNoteCollection", data);
+      setCollections((prevCollections) =>
+        prevCollections.filter((c) => c._id !== data._id)
+      );
+    });
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+
+
+  // ui event handlers
   const deleteCollection = async (id) => {
     try {
-      await axios.delete(
-        `http://localhost:3001/collections/${id}`
-      );
+      await axios.delete(`http://localhost:3001/collections/${id}`);
+      socket.emit("deleteNoteCollection", id);
     } catch (error) {
       console.log(error);
     }
   };
 
+
+  // toggle the modal
   const addCollectionToggle = () => {
     setAddCollectionModalState(!addCollectionModalState);
   };
@@ -62,10 +93,10 @@ const Collections = () => {
           </button>
           {isLoading ? (
             <span>loading data</span>
-          ) : data?.length == 0 ? (
+          ) : collections?.length === 0 ? (
             <span>no collections to show</span>
           ) : (
-            data?.map((item, id) => (
+            collections?.map((item, id) => (
               <div className="h-24 flex cursor-pointer view w-60" key={id}>
                 <div className="view flex flex-col w-full text-normal item-start justify-end">
                   <span>{item.collectionTitle}</span>
