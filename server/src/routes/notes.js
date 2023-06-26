@@ -64,6 +64,7 @@ collectionsRouter.post("/", extractUserID, async (request, response) => {
       return response.status(404).json({ error: "user not found" });
     }
 
+    io.emit('addNoteCollection', newNoteCollection)
 
     response.status(200).json({
       status: "success",

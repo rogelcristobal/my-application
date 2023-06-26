@@ -53,12 +53,23 @@ const Collections = () => {
 
   // socket event handler
   React.useEffect(() => {
+    // deleteCollection
     socket.on("deleteNoteCollection", (data) => {
       console.log("event: deleteNoteCollection", data);
       setCollections((prevCollections) =>
         prevCollections.filter((c) => c._id !== data._id)
       );
     });
+    
+
+    // addcollection
+    socket.on('addNoteCollection',(data)=>{
+      console.log("event: addNoteCollection", data)
+      setCollections((prevCollections)=>
+      [...prevCollections, data]
+      )
+    })
+
     return () => {
       socket.disconnect();
     };
@@ -116,7 +127,7 @@ const Collections = () => {
           )}
         </div>
       </div>
-      {addCollectionModalState && <AddCollectionModal />}
+      {addCollectionModalState && <AddCollectionModal collections/>}
     </div>
   );
 };
