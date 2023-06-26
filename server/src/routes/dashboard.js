@@ -25,12 +25,7 @@ router.get("/", extractFirebaseUID ,async (request, response) => {
     }
    
 
-    
-
-    //same as this
-    const todoCollection = await TodoCollectionModel.find({
-      _id: { $in: user.todoCollections },
-    })
+   
     //   .populate("todos")
     //   .lean();
       

@@ -63,6 +63,9 @@ collectionsRouter.post("/", extractUserID, async (request, response) => {
     if (!user) {
       return response.status(404).json({ error: "user not found" });
     }
+    // const userCollectionCount = await NotesCollectionModel.find({
+    //   _id: {$in: }
+    // })
 
     io.emit('addNoteCollection', newNoteCollection)
 
@@ -71,6 +74,7 @@ collectionsRouter.post("/", extractUserID, async (request, response) => {
       userID: user._id,
       email: user.email,
       createdCollection: newNoteCollection,
+      user
     });
   } catch (error) {
     response.status(500).json({

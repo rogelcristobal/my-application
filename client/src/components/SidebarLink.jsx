@@ -39,8 +39,8 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
                 </span>
               )}
             </div>
-            {count > 0 && !sidebarState && (
-              <div className=" absolute badge font-inter  flex px-2 font-medium  right-1.5 border-0 bg-transparent  text-[0.725rem] top-1/2 -translate-y-1/2 badge-sm ">
+            {count > 0  && (
+              <div className="  view font-inter  flex px-2 font-medium    text-[0.725rem]  ">
                 {count}
               </div>
             )}
