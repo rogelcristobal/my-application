@@ -22,13 +22,7 @@ const Sidebar = () => {
       sidebarControl.start({ width: "4rem" });
     }
   };
-  console.log(currentUser)
 
-
-  // React.useState(()=>{
-  //   socket.on('')
-  //   return()=>socket.disconnect()
-  // },[])
   return (
     <motion.div
       animate={sidebarControl}
