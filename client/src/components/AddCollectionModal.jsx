@@ -4,7 +4,7 @@ import AuthContext from "../context/AuthContext";
 import { io } from "socket.io-client";
 const AddCollectionModal = ({collections}) => {
   const socket = io("http://localhost:3001");
-
+ 
   const [input, setInput] = React.useState({
     title: "",
     description: "",

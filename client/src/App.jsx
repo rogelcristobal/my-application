@@ -9,18 +9,22 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Todos from "./pages/Todos";
 import Blogs from "./pages/Blogs";
 import { auth } from "./firebase-config";
-import { QueryClient } from "@tanstack/react-query";
+import { updateLoading } from "./features/user/userSlice";
+import {useDispatch, useSelector} from 'react-redux'
+
 function App() {
-  const queryClient = new QueryClient()
-  const { setData, data, setLoading } = React.useContext(AuthContext);
+  const sample = useSelector((state)=>state.user.userLoading)
+ 
+  const { setData, setLoading } = React.useContext(AuthContext);
   const { currentUser, userDataLoading } = React.useContext(AuthContext);
   
 
 
-
   React.useEffect(() => {
     setLoading(true);
+    
     const unsubscribe = auth.onAuthStateChanged((user) => {
+
       if (user) {
         setData(user);
       } else {
@@ -52,7 +56,8 @@ function App() {
   // }
 
   return (
-    <div className="h-screen w-full bg-[#ffffff] font-inter  text-black">
+    <div className="h-screen w-full bg-[#ffffff] font-inter  text-black relative">
+     
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route

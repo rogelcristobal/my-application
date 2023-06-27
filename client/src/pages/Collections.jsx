@@ -102,14 +102,14 @@ const Collections = () => {
         <div className=" w-full view h-full space-y-3 p-4">
           <button
             onClick={addCollectionToggle}
-            className="text-xs view w-fit h-fit p-2"
+            className="text-sm view w-fit h-fit p-2"
           >
             create collection
           </button>
           {isLoading ? (
             <span>loading data</span>
           ) : collections?.length === 0 ? (
-            <span>no collections to show</span>
+            <p>no collections to show</p>
           ) : (
             collections?.map((item, id) => (
               <div className="h-24 flex cursor-pointer view w-60" key={id}>
