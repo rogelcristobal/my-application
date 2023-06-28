@@ -1,18 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice ,createAsyncThunk} from "@reduxjs/toolkit";
 
 const initialState = {
-  currentUser: null,
-  userLoading: true,
+  firebaseCurrentUser: null,
+  firebaseCurrentUserLoading: true,
 };
+
+
 export const firebaseCurrentuserSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
     updateUser: (state, action) => {
-      state.currentUser = action.payload;
+      state.firebaseCurrentUser = action.payload;
     },
     updateLoading: (state, action) => {
-      state.userLoading = action.payload;
+      state.firebaseCurrentUserLoading = action.payload;
     },
   },
 });

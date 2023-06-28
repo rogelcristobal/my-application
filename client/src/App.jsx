@@ -8,18 +8,60 @@ import AuthContext from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Todos from "./pages/Todos";
 import Blogs from "./pages/Blogs";
+import axios from "axios";
 import { auth } from "./firebase-config";
 import {
   updateLoading,
   updateUser,
 } from "./features/user/firebaseCurrentUserSlice";
 import { useDispatch, useSelector } from "react-redux";
-
 function App() {
-  const { currentUser, userDataLoading } = React.useContext(AuthContext);
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
+  const firebaseCurrentUser = useSelector((state)=>state.user.firebaseCurrentUser)
+  const { currentUser, userDataLoading } = React.useContext(AuthContext);
+
+
+
+
+  const headers = {
+    firebaseUID: firebaseCurrentUser?.uid,
+    "Content-Type": "application/json",
+  };
+  
+  // React.useEffect(() => {
+  //   const fetchData = async () => {
+  //   if (firebaseCurrentUser) {
+  //     try {
+  //       const response = await axios.get(
+  //         `http://localhost:3001/dashboard/`,{headers}
+  //         );
+          
+        
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+  // };
+  //   return () => {
+  //     fetchData();
+  //   };
+  // }, [firebaseCurrentUser]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const logOutUser = async () => {
     try {
       await auth.signOut();
@@ -29,7 +71,6 @@ function App() {
       console.error("Error signing out:", error);
     }
   };
-
   React.useEffect(() => {
     dispatch(updateLoading(true));
     const unsubscribe = auth.onAuthStateChanged((user) => {

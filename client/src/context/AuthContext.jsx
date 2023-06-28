@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 const AuthContext = React.createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const currentuser = useSelector((state)=>state.user.currentUser) //firebase auth
+  const firebaseCurrentUser = useSelector((state)=>state.user.firebaseCurrentUser) //firebase auth
   const [currentUser, setCurrentUser] = React.useState(null); // context for connecting user in db
   const [userDataLoading, setuserDataLoading] = React.useState(true);
 
@@ -12,18 +12,17 @@ export const AuthContextProvider = ({ children }) => {
   // pass the firebase UID to the header
   //  !!only in this component
   const headers = {
-    firebaseUID: currentuser?.uid,
+    firebaseUID: firebaseCurrentUser?.uid,
     "Content-Type": "application/json",
   };
 
   const fetchData = async () => {
-    if (currentuser) {
+    if (firebaseCurrentUser) {
       try {
         const response = await axios.get(
           `http://localhost:3001/dashboard/`,{headers}
           );
           setCurrentUser(response.data);
-        // waiting for the data to fully fetched
         setuserDataLoading(false);
       } catch (error) {
         console.log(error);
@@ -38,7 +37,7 @@ export const AuthContextProvider = ({ children }) => {
       setCurrentUser(null);
       setuserDataLoading(true);
     };
-  }, [currentuser]);
+  }, [firebaseCurrentUser]);
 
   return (
     <AuthContext.Provider
