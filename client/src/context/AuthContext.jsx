@@ -5,7 +5,6 @@ const AuthContext = React.createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const currentuser = useSelector((state)=>state.user.currentUser) //firebase auth
-  const [loading, setLoading] = React.useState(true);
   const [currentUser, setCurrentUser] = React.useState(null); // context for connecting user in db
   const [userDataLoading, setuserDataLoading] = React.useState(true);
 
