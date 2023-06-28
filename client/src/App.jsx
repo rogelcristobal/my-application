@@ -24,10 +24,13 @@ function App() {
 
 
 
-  const headers = {
-    firebaseUID: firebaseCurrentUser?.uid,
-    "Content-Type": "application/json",
-  };
+  console.log(firebaseCurrentUser)
+
+
+  // const headers = {
+  //   firebaseUID: firebaseCurrentUser?.uid,
+  //   "Content-Type": "application/json",
+  // };
   
   // React.useEffect(() => {
   //   const fetchData = async () => {
