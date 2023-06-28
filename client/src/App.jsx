@@ -9,36 +9,34 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Todos from "./pages/Todos";
 import Blogs from "./pages/Blogs";
 import { auth } from "./firebase-config";
-import { updateLoading } from "./features/user/userSlice";
-import {useDispatch, useSelector} from 'react-redux'
+import { updateLoading, updateUser } from "./features/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
-  const sample = useSelector((state)=>state.user.userLoading)
- 
-  const { setData, setLoading } = React.useContext(AuthContext);
   const { currentUser, userDataLoading } = React.useContext(AuthContext);
-  
-
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
-    setLoading(true);
-    
+    dispatch(updateLoading(true));
     const unsubscribe = auth.onAuthStateChanged((user) => {
-
       if (user) {
-        setData(user);
+        const transformedUserData = {
+          uid: user.uid,
+          email: user.email,
+          createdAt: user.metadata.creationTime,
+          lastLoginTime: user.metadata.lastSignInTime,
+          provider: user.providerId,
+          emailVerified: user.emailVerified,
+        };
+        dispatch(updateUser(transformedUserData));
       } else {
-        setData(null);
+        dispatch(updateUser(null));
       }
-      setLoading(false); // Set loading state to false once authentication state is determined
+      // Set loading state to false once authentication state is determined
+      dispatch(updateLoading(false));
     });
     return () => unsubscribe();
   }, []);
-
-
-
-
-
 
   const navigate = useNavigate();
   const logOutUser = async () => {
@@ -50,14 +48,8 @@ function App() {
       console.error("Error signing out:", error);
     }
   };
-
-  // if (!userDataLoading) {
-  //   console.log("monggodb:", currentUser);
-  // }
-
   return (
     <div className="h-screen w-full bg-[#ffffff] font-inter  text-black relative">
-     
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route
