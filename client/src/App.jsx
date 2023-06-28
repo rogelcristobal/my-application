@@ -9,12 +9,26 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Todos from "./pages/Todos";
 import Blogs from "./pages/Blogs";
 import { auth } from "./firebase-config";
-import { updateLoading, updateUser } from "./features/user/userSlice";
+import {
+  updateLoading,
+  updateUser,
+} from "./features/user/firebaseCurrentUserSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 function App() {
   const { currentUser, userDataLoading } = React.useContext(AuthContext);
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+  const logOutUser = async () => {
+    try {
+      await auth.signOut();
+      console.log("User signed out successfully");
+      navigate("/login");
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
 
   React.useEffect(() => {
     dispatch(updateLoading(true));
@@ -38,16 +52,6 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  const navigate = useNavigate();
-  const logOutUser = async () => {
-    try {
-      await auth.signOut();
-      console.log("User signed out successfully");
-      navigate("/login");
-    } catch (error) {
-      console.error("Error signing out:", error);
-    }
-  };
   return (
     <div className="h-screen w-full bg-[#ffffff] font-inter  text-black relative">
       <Routes>
