@@ -5,6 +5,7 @@ import { UserModel } from "../models/Users.js";
 import { NotesCollectionModel } from "../models/NotesCollection.js";
 import { TodoCollectionModel } from "../models/TodosCollections.js";
 import { TodoModel } from "../models/Todos.js";
+import { DateTime } from "luxon";
 const router = express.Router();
 
 //extract userID from headers
@@ -25,6 +26,7 @@ router.get("/", extractFirebaseUID ,async (request, response) => {
     }
    
 
+    
    
     //   .populate("todos")
     //   .lean();
@@ -36,6 +38,7 @@ router.get("/", extractFirebaseUID ,async (request, response) => {
     response
       .status(200)
       .json({
+ 
         _id,
         email,
         firstName,

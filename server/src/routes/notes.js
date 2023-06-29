@@ -3,7 +3,7 @@ import { NotesCollectionModel } from "../models/NotesCollection.js";
 import { NoteModel } from "../models/Note.js";
 import { UserModel } from "../models/Users.js";
 import {io} from '../index.js'
-
+import { DateTime } from "luxon";
 //extract userID from headers
 const extractUserID = (req,res, next) => {
   // this is how to get the header req.userID or request.userID based on your param
@@ -40,6 +40,7 @@ collectionsRouter.get('/', extractUserID, async(request,response)=>{
     });
   }
 })
+
 // create new note collection (OK)
 collectionsRouter.post("/", extractUserID, async (request, response) => {
   try {
@@ -126,19 +127,24 @@ collectionsRouter.delete("/:collectionID", async (request, response) => {
 
 
 // collections/notes/
-const noteRouter = express.Router()
+// const noteRouter = express.Router()
+// collectionsRouter.use('/notes', noteRouter)
+
+
 // create note 
-noteRouter.post("/:collectionID/", extractUserID, async (request, response) => {
+collectionsRouter.post("/:collectionID/notes", extractUserID, async (request, response) => {
   try {
     const { title, content } = request.body;
     const { collectionID} = request.params
     const userID = request.userID
 
+    
     const newNote = new NoteModel({
       userID: userID,
       title: title,
       collectionID: collectionID,
-      content:content
+      content:content,
+      
     });
     await newNote.save();
 
@@ -152,7 +158,10 @@ noteRouter.post("/:collectionID/", extractUserID, async (request, response) => {
       return response.status(404).json({ message: "collection not found" });
     }
 
+    const createdAt = DateTime.fromJSDate(newNote.createdAt).setZone('Asia/Manila').toFormat('yyyy-MM-dd HH:mm:ss')
+    
     response.status(200).json({
+      createdAt,
       status: "success",
       userID: collection.userID,
       email: collection.email,
@@ -166,8 +175,11 @@ noteRouter.post("/:collectionID/", extractUserID, async (request, response) => {
     });
   }
 });
+
+
+
 // delete note 
-noteRouter.delete("/:collectionID/:noteID", async (request, response) => {
+collectionsRouter.delete("/:collectionID/:noteID", async (request, response) => {
   try {
     const { collectionID,noteID } = request.params;
     //find the note instance and delete
@@ -190,8 +202,11 @@ noteRouter.delete("/:collectionID/:noteID", async (request, response) => {
     });
   }
 });
+
+
+
 // search note insensitive (OK)
-noteRouter.get("/search/:query", async (request, response) => {
+collectionsRouter.get("/search/:query", async (request, response) => {
   try {
     const { query } = request.params;
 
@@ -213,9 +228,6 @@ noteRouter.get("/search/:query", async (request, response) => {
 
 
 
-
-
-collectionsRouter.use('/notes', noteRouter)
 
 export { collectionsRouter as collectionsRouter };
 

@@ -32,16 +32,11 @@ function App() {
     if (!firebaseCurrentUserIsLoading) {
       dispatch(fetchUser(firebaseCurrentUser?.uid));
     }
-    return () => {
-      dispatch(fetchUser(null));
-    };
-  }, [dispatch, firebaseCurrentUser]);
+  
+  }, [dispatch, firebaseCurrentUser?.uid]);
 
   // debug purpose
-  // if (!userDataLoading && currentUser) {
-  //   console.log(currentUser);
-  // }
-
+ 
   const logOutUser = async () => {
     try {
       await auth.signOut();
