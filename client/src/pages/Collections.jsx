@@ -5,7 +5,7 @@ import { QueryClient, useQuery } from "@tanstack/react-query";
 import { useSelector, useDispatch } from "react-redux";
 import { io } from "socket.io-client";
 import {
-  deleteCurrentUserCollectionByID,
+  deleteCurrentUserCollection,
   addCurrentUserCollection,
 } from "../features/user/currentUserSlice";
 const Collections = () => {
@@ -61,9 +61,9 @@ const Collections = () => {
       setCollections((prevCollections) =>
         prevCollections.filter((c) => c._id !== data._id)
       );
+      // const notesToBeDeleted = data.savedNotes
+      // const newData = data.savedNotes.filter((item)=> !currentUser. )
 
-      // update the currentUserState
-      dispatch(deleteCurrentUserCollectionByID(data._id));
     });
     // addcollection
     socket.on("addNoteCollection", (data) => {
@@ -71,7 +71,7 @@ const Collections = () => {
       setCollections((prevCollections) => [...prevCollections, data]);
       //  update the currentUser (which used in the whole app)
       //  with the added collection
-      dispatch(addCurrentUserCollection(data));
+
     });
     return () => {
       socket.disconnect();

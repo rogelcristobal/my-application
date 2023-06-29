@@ -28,11 +28,13 @@ export const currentUserSlice = createSlice({
   name: "currentUser",
   initialState,
   reducers: {
-    deleteCurrentUserCollectionByID:(state,action)=>{
+    deleteCurrentUserCollection:(state,action)=>{
+      console.log(action.payload)
+      
       const newData = {
         ...state.data,
         noteCollections:state.data.noteCollections.filter((collection)=>(
-          collection._id !== action.payload
+          collection._id !== action.payload._id
         ))
       }
       state.data = newData
@@ -65,5 +67,5 @@ export const currentUserSlice = createSlice({
   },
 });
 
-export const {deleteCurrentUserCollectionByID,addCurrentUserCollection} = currentUserSlice.actions;
+export const {deleteCurrentUserCollection,addCurrentUserCollection} = currentUserSlice.actions;
 export default currentUserSlice.reducer;

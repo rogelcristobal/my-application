@@ -39,44 +39,44 @@ collectionsRouter.get('/', extractUserID, async(request,response)=>{
       error: error.message,
     });
   }
-})
+  })
 
-// create new note collection (OK)
-collectionsRouter.post("/", extractUserID, async (request, response) => {
-  try {
-    const {title, description} = request.body;
-     const userID = request.userID;
+  // create new note collection (OK)
+  collectionsRouter.post("/", extractUserID, async (request, response) => { 
+    try {
+      const {title, description} = request.body;
+      const userID = request.userID;
 
-    // create a new collection 
-    const newNoteCollection = new NotesCollectionModel({
-      userID: userID,
-      collectionTitle: title,
-      description:description,
-      savedNotes: [],
-    });
-    await newNoteCollection.save();
+      // create a new collection 
+      const newNoteCollection = new NotesCollectionModel({
+        userID: userID,
+        collectionTitle: title,
+        description:description,
+        savedNotes: [],
+      });
+      await newNoteCollection.save();
 
-    // find the user you want to edit/add the created collection
-    const user = await UserModel.findByIdAndUpdate(userID, {
-      $push: { noteCollections: newNoteCollection._id },
-    });
-    //  return an error if user does not exist
-    if (!user) {
-      return response.status(404).json({ error: "user not found" });
-    }
-    // const userCollectionCount = await NotesCollectionModel.find({
-    //   _id: {$in: }
-    // })
+      // find the user you want to edit/add the created collection
+      const user = await UserModel.findByIdAndUpdate(userID, {
+        $push: { noteCollections: newNoteCollection._id },
+      });
+      //  return an error if user does not exist
+      if (!user) {
+        return response.status(404).json({ error: "user not found" });
+      }
+      // const userCollectionCount = await NotesCollectionModel.find({
+      //   _id: {$in: }
+      // })
 
-    io.emit('addNoteCollection', newNoteCollection)
+      io.emit('addNoteCollection', newNoteCollection)
 
-    response.status(200).json({
-      status: "success",
-      userID: user._id,
-      email: user.email,
-      createdCollection: newNoteCollection,
-      user
-    });
+      response.status(200).json({
+        status: "success",
+        userID: user._id,
+        email: user.email,
+        createdCollection: newNoteCollection,
+        user
+      });
   } catch (error) {
     response.status(500).json({
       status: "error",
@@ -138,14 +138,18 @@ collectionsRouter.post("/:collectionID/notes", extractUserID, async (request, re
     const { collectionID} = request.params
     const userID = request.userID
 
-    
+    const  createdAt = DateTime.local().setZone('Asia/Manila').toJSDate()
+    // use in the front-end
+    // const formattedTime = DateTime.fromJSDate(createdAt).setZone('Asia/Manila').toFormat('yyyy-MM-dd hh:mm:ss a')
+   
     const newNote = new NoteModel({
       userID: userID,
       title: title,
       collectionID: collectionID,
       content:content,
-      
+      createdAt
     });
+    
     await newNote.save();
 
     const collection = await NotesCollectionModel.findByIdAndUpdate(
@@ -158,14 +162,14 @@ collectionsRouter.post("/:collectionID/notes", extractUserID, async (request, re
       return response.status(404).json({ message: "collection not found" });
     }
 
-    const createdAt = DateTime.fromJSDate(newNote.createdAt).setZone('Asia/Manila').toFormat('yyyy-MM-dd HH:mm:ss')
+    // convert time to philippine time
+    // const createdAt = DateTime.fromJSDate(newNote.createdAt).setZone('Asia/Manila').toFormat('yyyy-MM-dd hh:mm:ss a');
+    
     
     response.status(200).json({
-      createdAt,
       status: "success",
-      userID: collection.userID,
-      email: collection.email,
       createdNote: newNote,
+      
     });
   } catch (error) {
     response.status(500).json({

@@ -28,13 +28,9 @@ function App() {
   const currentUser = useSelector((state) => state.currentUser.data);
   const userDataLoading = useSelector((state) => state.currentUser.loading);
 
-  React.useEffect(() => {
-    if (!firebaseCurrentUserIsLoading) {
-      dispatch(fetchUser(firebaseCurrentUser?.uid));
-    }
-  
-  }, [dispatch, firebaseCurrentUser?.uid]);
 
+
+//  if(!userDataLoading) console.log(currentUser)
   // debug purpose
  
   const logOutUser = async () => {
@@ -46,6 +42,8 @@ function App() {
       console.error("Error signing out:", error);
     }
   };
+
+  // this is for storing firebase user credential to the state
   React.useEffect(() => {
     dispatch(updateFirebaseCurrentUserIsLoading(true));
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -67,6 +65,16 @@ function App() {
     });
     return () => unsubscribe();
   }, []);
+
+
+  // this stores the currentUser that will be used in entire app
+  //  via firebase uid(which is its only purpose)
+  React.useEffect(() => {
+    if (!firebaseCurrentUserIsLoading) {
+      dispatch(fetchUser(firebaseCurrentUser?.uid));
+    }
+  
+  }, [dispatch, firebaseCurrentUser?.uid]);
 
   return (
     <div className="h-screen w-full bg-[#ffffff] font-inter  text-black relative">

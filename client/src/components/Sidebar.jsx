@@ -1,18 +1,16 @@
 import React from "react";
-import {
-  LuListChecks,
-  LuEdit3,
-  LuSettings,
-} from "react-icons/lu";
-import {TbFolder,TbLayoutGrid,} from 'react-icons/tb'
+import { LuListChecks, LuEdit3, LuSettings } from "react-icons/lu";
+import { TbFolder, TbLayoutGrid } from "react-icons/tb";
 import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
 import { io } from "socket.io-client";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteCurrentUserCollection } from "../features/user/currentUserSlice";
 const Sidebar = () => {
-  const socket = io('http://localhost:3001')
+  const socket = io("http://localhost:3001");
   const [state, setState] = React.useState(false);
-  const  currentUser  = useSelector(state=>state.currentUser.data)
+  const currentUserLoading = useSelector((state) => state.currentUser.loading);
+  const currentUser = useSelector((state) => state.currentUser.data);
   const sidebarControl = useAnimation();
   const handleToggleSidebar = () => {
     setState(!state);
@@ -22,6 +20,29 @@ const Sidebar = () => {
       sidebarControl.start({ width: "4rem" });
     }
   };
+
+  const [collections, setCollections] = React.useState([]);
+  React.useEffect(() => {
+    if(!currentUserLoading){
+      setCollections(currentUser);
+    }
+  }, [currentUserLoading]);
+
+  React.useEffect(() => {
+    // listen to events
+    socket.on("deleteNoteCollection", (data) => {
+      console.log(collections);
+       
+
+      // deleteCurrentUserCollection
+      // setUserStates({
+      //   ...userStates,
+      //   collectionLen: x
+
+      // })
+    });
+    return () => socket.disconnect();
+  }, []);
 
   return (
     <motion.div
@@ -34,7 +55,7 @@ const Sidebar = () => {
     >
       <div
         className={`${
-          state ? "px-[0.5rem] " :" px-3  "
+          state ? "px-[0.5rem] " : " px-3  "
         } w-full   relative flex view  items-center justify-start  pt-8 pb-8   `}
       >
         <div className="view flex items-center justify-center">
@@ -42,8 +63,7 @@ const Sidebar = () => {
             className={`view grid  cursor-pointer relative rounded-lg p-[0.6rem] place-content-center ${
               state ? "mr-0" : "mr-0"
             }`}
-          >
-             </div>
+          ></div>
           {!state && (
             <span className=" relative   w-fit text-start ml-0.5 whitespace-nowrap overflow-hidden text-sm font-normal">
               app_name
@@ -61,12 +81,11 @@ const Sidebar = () => {
             <LuChevronLeft />
           </div>
         </motion.button> */}
-       
       </div>
       <div className="w-full h-full  flex flex-col justify-start items-start">
         <div
           className={`${
-            state ? " px-0 mt-10" :"px-3 mt-10"
+            state ? " px-0 mt-10" : "px-3 mt-10"
           } flex   w-full items-center view  py-3 justify-center flex-col`}
         >
           {!state && (
@@ -80,7 +99,8 @@ const Sidebar = () => {
               path: "/collections",
               title: "collections",
               icon: <TbFolder />,
-              count: currentUser?.noteCollections?.length,
+              // count: collections?.noteCollections?.length,
+              loading: currentUserLoading,
             },
             { path: "/todos", title: "todos", icon: <LuListChecks /> },
             { path: "/blogs", title: "Blogs", icon: <LuEdit3 /> },
@@ -92,9 +112,9 @@ const Sidebar = () => {
               title={item.title}
               icon={item.icon}
               count={item?.count}
+              loading={item?.loading}
             />
           ))}
-          
         </div>
       </div>
       <div
@@ -102,7 +122,6 @@ const Sidebar = () => {
           state ? " px-2 " : "px-3.5 "
         } flex   w-full items-center mt-4  pb-6 justify-center flex-col`}
       >
-       
         {[{ path: "/settings", title: "settings", icon: <LuSettings /> }].map(
           (item, id) => (
             <SidebarLink
@@ -111,7 +130,6 @@ const Sidebar = () => {
               sidebarState={state}
               title={item.title}
               icon={item.icon}
-             
             />
           )
         )}
