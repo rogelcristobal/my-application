@@ -4,66 +4,43 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Collections from "./pages/Collections";
 import Sidebar from "./components/Sidebar";
-import AuthContext from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Todos from "./pages/Todos";
 import Blogs from "./pages/Blogs";
-import axios from "axios";
 import { auth } from "./firebase-config";
 import {
-  updateLoading,
-  updateUser,
+  updateFirebaseCurrentUserIsLoading,
+  updateFirebaseCurrentUser,
 } from "./features/user/firebaseCurrentUserSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchUser } from "./features/user/currentUserSlice";
+
 function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const firebaseCurrentUser = useSelector((state)=>state.user.firebaseCurrentUser)
-  const { currentUser, userDataLoading } = React.useContext(AuthContext);
+  const firebaseCurrentUser = useSelector(
+    (state) => state.user.firebaseCurrentUser
+  );
+  const firebaseCurrentUserIsLoading = useSelector(
+    (state) => state.user.firebaseCurrentUserIsLoading
+  );
 
+  const currentUser = useSelector((state) => state.currentUser.data);
+  const userDataLoading = useSelector((state) => state.currentUser.loading);
 
+  React.useEffect(() => {
+    if (!firebaseCurrentUserIsLoading) {
+      dispatch(fetchUser(firebaseCurrentUser?.uid));
+    }
+    return () => {
+      dispatch(fetchUser(null));
+    };
+  }, [dispatch, firebaseCurrentUser]);
 
-
-  console.log(firebaseCurrentUser)
-
-
-  // const headers = {
-  //   firebaseUID: firebaseCurrentUser?.uid,
-  //   "Content-Type": "application/json",
-  // };
-  
-  // React.useEffect(() => {
-  //   const fetchData = async () => {
-  //   if (firebaseCurrentUser) {
-  //     try {
-  //       const response = await axios.get(
-  //         `http://localhost:3001/dashboard/`,{headers}
-  //         );
-          
-        
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  // };
-  //   return () => {
-  //     fetchData();
-  //   };
-  // }, [firebaseCurrentUser]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // debug purpose
+  // if (!userDataLoading && currentUser) {
+  //   console.log(currentUser);
+  // }
 
   const logOutUser = async () => {
     try {
@@ -75,7 +52,7 @@ function App() {
     }
   };
   React.useEffect(() => {
-    dispatch(updateLoading(true));
+    dispatch(updateFirebaseCurrentUserIsLoading(true));
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         const transformedUserData = {
@@ -86,12 +63,12 @@ function App() {
           provider: user.providerId,
           emailVerified: user.emailVerified,
         };
-        dispatch(updateUser(transformedUserData));
+        dispatch(updateFirebaseCurrentUser(transformedUserData));
       } else {
-        dispatch(updateUser(null));
+        dispatch(updateFirebaseCurrentUser(null));
       }
       // Set loading state to false once authentication state is determined
-      dispatch(updateLoading(false));
+      dispatch(updateFirebaseCurrentUserIsLoading(false));
     });
     return () => unsubscribe();
   }, []);
@@ -115,14 +92,14 @@ function App() {
                         {userDataLoading ? (
                           <span>loading</span>
                         ) : (
-                          `${currentUser.firstName} ${currentUser.lastName}`
+                          `${currentUser?.firstName} ${currentUser?.lastName}`
                         )}
                       </span>
                       <span className="text-sm">
                         {userDataLoading ? (
                           <span>loading</span>
                         ) : (
-                          currentUser.email
+                          currentUser?.email
                         )}
                       </span>
                     </div>

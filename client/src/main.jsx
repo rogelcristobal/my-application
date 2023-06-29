@@ -7,17 +7,14 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { store } from "./features/store.js";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
-import { AuthContextProvider } from "./context/AuthContext.jsx";
 const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <QueryClientProvider client={queryClient}>
       <Router>
-        <AuthContextProvider>
           {/* <React.StrictMode> */}
           <App />
           {/* </React.StrictMode> */}
-        </AuthContextProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </Router>
     </QueryClientProvider>

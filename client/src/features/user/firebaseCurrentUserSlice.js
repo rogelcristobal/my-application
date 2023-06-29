@@ -10,13 +10,13 @@ export const firebaseCurrentuserSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    updateUser: (state, action) => {
+    updateFirebaseCurrentUser: (state, action) => {
       return{
         ...state,
         firebaseCurrentUser: action.payload
       }
     },
-    updateLoading: (state, action) => {
+    updateFirebaseCurrentUserIsLoading: (state, action) => {
        return{
         ...state,
         firebaseCurrentUserLoading: action.payload
@@ -25,5 +25,5 @@ export const firebaseCurrentuserSlice = createSlice({
   },
 });
 
-export const { updateUser, updateLoading } = firebaseCurrentuserSlice.actions;
+export const { updateFirebaseCurrentUser, updateFirebaseCurrentUserIsLoading } = firebaseCurrentuserSlice.actions;
 export default firebaseCurrentuserSlice.reducer;

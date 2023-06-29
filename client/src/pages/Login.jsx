@@ -5,11 +5,11 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase-config";
 import Axios from "axios";
-import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Login = () => {
   const navigate = useNavigate()
-  const {data} = React.useContext(AuthContext);
+  const data = useSelector(state=>state.user.firebaseCurrentUser)
 
   const [registerInput, setRegisterInput] = React.useState({
     email: "",

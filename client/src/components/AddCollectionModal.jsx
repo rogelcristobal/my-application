@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
-import AuthContext from "../context/AuthContext";
 import { io } from "socket.io-client";
+import { useSelector } from "react-redux";
 const AddCollectionModal = ({collections}) => {
   const socket = io("http://localhost:3001");
  
@@ -9,9 +9,9 @@ const AddCollectionModal = ({collections}) => {
     title: "",
     description: "",
   });
-  const {currentUser} = React.useContext(AuthContext)
+  const currentUser = useSelector(state=>state.currentUser.data)
   const headers = {
-    userID: currentUser._id,
+    userID: currentUser?._id,
     "Content-Type": "application/json",
   };
   const handleSubmit = async (e) => {
