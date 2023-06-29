@@ -11,16 +11,15 @@ const Home = () => {
         <div className=" w-full  view h-[120%] p-4 mt-4">
           <div className="gap-4 w-fit grid grid-flow-col">
 
-            <div className="view h-fit flex items-start flex-col justify-end p-4 w-52">
-              <span className={`text-sm `}>total notes</span>
-
-               {userDataLoading ? <p>Loading...</p> : <p>Data Loaded</p>}
-            </div>
 
             <div className="view h-fit flex items-start flex-col justify-end p-4 w-52">
               <span className={`text-sm `}>total notes</span>
 
-              <p>{currentUser?.totalNotes}</p>
+              {userDataLoading ? (
+                  <span>loading</span>
+                ) : (
+                  currentUser?.totalNotes
+                )}
             </div>
 
             <div className="view h-fit flex items-start flex-col justify-end p-4 w-52">
