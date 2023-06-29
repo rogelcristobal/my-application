@@ -1,17 +1,15 @@
 import React from "react";
 import {
   createUserWithEmailAndPassword,
-  onAuthStateChanged,
   signInWithEmailAndPassword,
-  signOut,
 } from "firebase/auth";
 import { auth } from "../firebase-config";
 import Axios from "axios";
-import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Login = () => {
   const navigate = useNavigate()
-  const {data} = React.useContext(AuthContext);
+  const data = useSelector(state=>state.user.firebaseCurrentUser)
 
   const [registerInput, setRegisterInput] = React.useState({
     email: "",
@@ -34,7 +32,7 @@ const Login = () => {
 
       //  request storing uid and other data to the db
       if (user) {
-        const response = await Axios.post(
+        await Axios.post(
           "http://localhost:3001/auth/register",
           {
             uid: user.uid,
@@ -61,15 +59,12 @@ const Login = () => {
   };
   const logInUser = async () => {
     try {
-      const { user } = await signInWithEmailAndPassword(
+      await signInWithEmailAndPassword(
         auth,
         logInInput.email,
         logInInput.password
       );
       navigate('/dashboard')
-
-
-
       setLogInInput({ email: "", password: "" });
     } catch (error) {
       console.log(error.message);

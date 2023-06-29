@@ -1,17 +1,18 @@
-import React, { useEffect } from "react";
-import AuthContext from "../context/AuthContext";
+import React from "react";
 import axios from "axios";
 import AddCollectionModal from "../components/AddCollectionModal";
 import { QueryClient, useQuery } from "@tanstack/react-query";
-
+import { useSelector,useDispatch } from "react-redux";
 import { io } from "socket.io-client";
-
+import {deleteCurrentUserCollectionByID,addCurrentUserCollection} from '../features/user/currentUserSlice'
 const Collections = () => {
   const socket = io("http://localhost:3001");
-  const { currentUser, setCurrentUser } = React.useContext(AuthContext);
+  const currentUser  = useSelector((state)=>state.currentUser.data)
   const [addCollectionModalState, setAddCollectionModalState] =
     React.useState(false);
   const queryClient = new QueryClient();
+  const dispatch = useDispatch()
+  
   const [collections, setCollections] = React.useState([]);
 
   const headers = {
@@ -52,17 +53,16 @@ const Collections = () => {
   React.useEffect(() => {
     // deleteCollection
     socket.on("deleteNoteCollection", (data) => {
+     
       console.log("event: deleteNoteCollection", data);
+     
       setCollections((prevCollections) =>
         prevCollections.filter((c) => c._id !== data._id)
       );
+    
+       // update the currentUserState
+      dispatch(deleteCurrentUserCollectionByID(data._id))
 
-      setCurrentUser((prevUser)=>({
-        ...prevUser,
-        noteCollections: prevUser.noteCollections.filter((collection)=>(
-          collection._id !== data._id
-        ))
-      }))
     });
     // addcollection
     socket.on("addNoteCollection", (data) => {
@@ -70,16 +70,16 @@ const Collections = () => {
       setCollections((prevCollections) => [...prevCollections, data]);
       //  update the currentUser (which used in the whole app)
       //  with the added collection
-      setCurrentUser((prevUser) => ({
-        ...prevUser,
-        noteCollections: [...prevUser.noteCollections, data],
-      }));
-    });
 
+      dispatch(addCurrentUserCollection(data))
+
+    });
     return () => {
       socket.disconnect();
     };
   }, []);
+
+
 
   // ui event handlers
   const deleteCollection = async (id) => {
@@ -102,14 +102,14 @@ const Collections = () => {
         <div className=" w-full view h-full space-y-3 p-4">
           <button
             onClick={addCollectionToggle}
-            className="text-xs view w-fit h-fit p-2"
+            className="text-sm view w-fit h-fit p-2"
           >
             create collection
           </button>
           {isLoading ? (
             <span>loading data</span>
           ) : collections?.length === 0 ? (
-            <span>no collections to show</span>
+            <p>no collections to show</p>
           ) : (
             collections?.map((item, id) => (
               <div className="h-24 flex cursor-pointer view w-60" key={id}>

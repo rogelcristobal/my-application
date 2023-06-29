@@ -4,39 +4,44 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Collections from "./pages/Collections";
 import Sidebar from "./components/Sidebar";
-import AuthContext from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Todos from "./pages/Todos";
 import Blogs from "./pages/Blogs";
 import { auth } from "./firebase-config";
-import { QueryClient } from "@tanstack/react-query";
+import {
+  updateFirebaseCurrentUserIsLoading,
+  updateFirebaseCurrentUser,
+} from "./features/user/firebaseCurrentUserSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUser } from "./features/user/currentUserSlice";
+
 function App() {
-  const queryClient = new QueryClient()
-  const { setData, data, setLoading } = React.useContext(AuthContext);
-  const { currentUser, userDataLoading } = React.useContext(AuthContext);
-  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const firebaseCurrentUser = useSelector(
+    (state) => state.user.firebaseCurrentUser
+  );
+  const firebaseCurrentUserIsLoading = useSelector(
+    (state) => state.user.firebaseCurrentUserIsLoading
+  );
 
-
+  const currentUser = useSelector((state) => state.currentUser.data);
+  const userDataLoading = useSelector((state) => state.currentUser.loading);
 
   React.useEffect(() => {
-    setLoading(true);
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        setData(user);
-      } else {
-        setData(null);
-      }
-      setLoading(false); // Set loading state to false once authentication state is determined
-    });
-    return () => unsubscribe();
-  }, []);
+    if (!firebaseCurrentUserIsLoading) {
+      dispatch(fetchUser(firebaseCurrentUser?.uid));
+    }
+    return () => {
+      dispatch(fetchUser(null));
+    };
+  }, [dispatch, firebaseCurrentUser]);
 
+  // debug purpose
+  // if (!userDataLoading && currentUser) {
+  //   console.log(currentUser);
+  // }
 
-
-
-
-
-  const navigate = useNavigate();
   const logOutUser = async () => {
     try {
       await auth.signOut();
@@ -46,13 +51,30 @@ function App() {
       console.error("Error signing out:", error);
     }
   };
-
-  // if (!userDataLoading) {
-  //   console.log("monggodb:", currentUser);
-  // }
+  React.useEffect(() => {
+    dispatch(updateFirebaseCurrentUserIsLoading(true));
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        const transformedUserData = {
+          uid: user.uid,
+          email: user.email,
+          createdAt: user.metadata.creationTime,
+          lastLoginTime: user.metadata.lastSignInTime,
+          provider: user.providerId,
+          emailVerified: user.emailVerified,
+        };
+        dispatch(updateFirebaseCurrentUser(transformedUserData));
+      } else {
+        dispatch(updateFirebaseCurrentUser(null));
+      }
+      // Set loading state to false once authentication state is determined
+      dispatch(updateFirebaseCurrentUserIsLoading(false));
+    });
+    return () => unsubscribe();
+  }, []);
 
   return (
-    <div className="h-screen w-full bg-[#ffffff] font-inter  text-black">
+    <div className="h-screen w-full bg-[#ffffff] font-inter  text-black relative">
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route
@@ -70,14 +92,14 @@ function App() {
                         {userDataLoading ? (
                           <span>loading</span>
                         ) : (
-                          `${currentUser.firstName} ${currentUser.lastName}`
+                          `${currentUser?.firstName} ${currentUser?.lastName}`
                         )}
                       </span>
                       <span className="text-sm">
                         {userDataLoading ? (
                           <span>loading</span>
                         ) : (
-                          currentUser.email
+                          currentUser?.email
                         )}
                       </span>
                     </div>

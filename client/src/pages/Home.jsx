@@ -1,8 +1,9 @@
 import React from "react";
-import AuthContext from "../context/AuthContext";
+import { useSelector } from "react-redux";
 
 const Home = () => {
-  const { currentUser, userDataLoading } = React.useContext(AuthContext);
+  const currentUser = useSelector(state=>state.currentUser.data)
+  const userDataLoading = useSelector(state=>state.currentUser.loading)
 
   return (
     <div className="h-full  w-full flex flex-col items-start justify-start relative">

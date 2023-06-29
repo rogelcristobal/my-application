@@ -7,12 +7,12 @@ import {
 import {TbFolder,TbLayoutGrid,} from 'react-icons/tb'
 import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
-import AuthContext from "../context/AuthContext";
 import { io } from "socket.io-client";
+import { useSelector } from "react-redux";
 const Sidebar = () => {
   const socket = io('http://localhost:3001')
   const [state, setState] = React.useState(false);
-  const { currentUser,userDataLoading } = React.useContext(AuthContext);
+  const  currentUser  = useSelector(state=>state.currentUser.data)
   const sidebarControl = useAnimation();
   const handleToggleSidebar = () => {
     setState(!state);
@@ -22,13 +22,7 @@ const Sidebar = () => {
       sidebarControl.start({ width: "4rem" });
     }
   };
-  console.log(currentUser)
 
-
-  // React.useState(()=>{
-  //   socket.on('')
-  //   return()=>socket.disconnect()
-  // },[])
   return (
     <motion.div
       animate={sidebarControl}
