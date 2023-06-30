@@ -20,7 +20,7 @@ router.get("/", extractFirebaseUID ,async (request, response) => {
   try {
     const firebaseUID = request.firebaseUID
     // find the user via userID from the header extracted
-    const user = await UserModel.findOne({uid:firebaseUID}).populate('noteCollections').populate('todoCollections')
+    const user = await UserModel.findOne({uid:firebaseUID})
     if (!user) {
       return response.status(404).json({ error: "user not found" });
     }

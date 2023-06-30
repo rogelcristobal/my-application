@@ -37,16 +37,16 @@ const Collections = () => {
     }
   };
 
+  // once fetchData true set returned data to the state
   const { isLoading } = useQuery(["userData"], fetchData, {
     enabled: !!currentUser?._id,
-    // once fetchData true set returned data to the state
     onSuccess: (data) => {
       setCollections(data);
     },
   });
 
+  // Trigger the query only when currentUser._id becomes available
   React.useEffect(() => {
-    // Trigger the query only when currentUser._id becomes available
     if (currentUser?._id) {
       queryClient.invalidateQueries("userData");
     }
@@ -57,14 +57,26 @@ const Collections = () => {
     // deleteCollection
     socket.on("deleteNoteCollection", (data) => {
       console.log("event: deleteNoteCollection", data);
-      dispatch(deleteCurrentUserCollection(data))
+
+      //  update the currentUser (which used in the whole app)
+      //  with the added collection
+      dispatch(deleteCurrentUserCollection(data));
+
+      //update state on this component
+      setCollections((prevCollections) =>
+        prevCollections?.filter((c) => c._id !== data._id)
+      );
     });
     // addcollection
     socket.on("addNoteCollection", (data) => {
       console.log("event: addNoteCollection", data);
+
       //  update the currentUser (which used in the whole app)
       //  with the added collection
-      dispatch(addCurrentUserCollection(data))
+      dispatch(addCurrentUserCollection(data)); 
+
+      //update state on this component
+      setCollections((prevCollections) => [...prevCollections, data]); 
     });
     return () => {
       socket.disconnect();
@@ -98,10 +110,10 @@ const Collections = () => {
           </button>
           {isLoading ? (
             <span>loading data</span>
-          ) : currentUser?.noteCollections.length === 0 ? (
+          ) : collections?.length === 0 ? (
             <p>no collections to show</p>
           ) : (
-            currentUser?.noteCollections?.map((item, id) => (
+            collections?.map((item, id) => (
               <div className="h-24 flex cursor-pointer view w-60" key={id}>
                 <div className="view flex flex-col w-full text-normal item-start justify-end">
                   <span>{item.collectionTitle}</span>

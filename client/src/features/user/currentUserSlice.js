@@ -18,8 +18,8 @@ export const fetchUser = createAsyncThunk(
         headers,
       });
       return response.data;
-    }else{
-      return null
+    } else {
+      return null;
     }
   }
 );
@@ -28,27 +28,24 @@ export const currentUserSlice = createSlice({
   name: "currentUser",
   initialState,
   reducers: {
-    deleteCurrentUserCollection:(state,action)=>{
-      console.log(action.payload)
-      
+    deleteCurrentUserCollection: (state, action) => {
       const newData = {
         ...state.data,
-        noteCollections:state.data.noteCollections.filter((collection)=>(
-          collection._id !== action.payload._id
-        ))
-      }
-      state.data = newData
+        noteCollections: state.data.noteCollections.filter(
+          (collection) => collection !== action.payload._id
+        ),
+      };
+      state.data = newData;
       state.loading = false;
     },
-    addCurrentUserCollection:(state,action)=>{
-      const newData={
+    addCurrentUserCollection: (state, action) => {
+      const newData = {
         ...state.data,
-        noteCollections: [...state.data.noteCollections,action.payload]
-      }
-      state.data = newData
+        noteCollections: [...state.data.noteCollections, action.payload._id],
+      };
+      state.data = newData;
       state.loading = false;
-    }
-
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -67,5 +64,6 @@ export const currentUserSlice = createSlice({
   },
 });
 
-export const {deleteCurrentUserCollection,addCurrentUserCollection} = currentUserSlice.actions;
+export const { deleteCurrentUserCollection, addCurrentUserCollection } =
+  currentUserSlice.actions;
 export default currentUserSlice.reducer;
