@@ -5,7 +5,7 @@ import { QueryClient, useQuery } from "@tanstack/react-query";
 import { useSelector, useDispatch } from "react-redux";
 import { io } from "socket.io-client";
 import {
-  deleteCurrentUserCollectionByID,
+  deleteCurrentUserCollection,
   addCurrentUserCollection,
 } from "../features/user/currentUserSlice";
 const Collections = () => {
@@ -37,16 +37,16 @@ const Collections = () => {
     }
   };
 
+  // once fetchData true set returned data to the state
   const { isLoading } = useQuery(["userData"], fetchData, {
     enabled: !!currentUser?._id,
-    // once fetchData true set returned data to the state
     onSuccess: (data) => {
       setCollections(data);
     },
   });
 
+  // Trigger the query only when currentUser._id becomes available
   React.useEffect(() => {
-    // Trigger the query only when currentUser._id becomes available
     if (currentUser?._id) {
       queryClient.invalidateQueries("userData");
     }
@@ -57,21 +57,26 @@ const Collections = () => {
     // deleteCollection
     socket.on("deleteNoteCollection", (data) => {
       console.log("event: deleteNoteCollection", data);
+      
+      //  update the currentUser (which used in the whole app)
+      //  with the added collection
+      dispatch(deleteCurrentUserCollection(data));
 
+      //update state on this component
       setCollections((prevCollections) =>
-        prevCollections.filter((c) => c._id !== data._id)
+        prevCollections?.filter((c) => c._id !== data._id)
       );
-
-      // update the currentUserState
-      dispatch(deleteCurrentUserCollectionByID(data._id));
     });
     // addcollection
     socket.on("addNoteCollection", (data) => {
       console.log("event: addNoteCollection", data);
-      setCollections((prevCollections) => [...prevCollections, data]);
+      setAddCollectionModalState(false)
       //  update the currentUser (which used in the whole app)
       //  with the added collection
-      dispatch(addCurrentUserCollection(data));
+      dispatch(addCurrentUserCollection(data)); 
+
+      //update state on this component
+      setCollections((prevCollections) => [...prevCollections, data]); 
     });
     return () => {
       socket.disconnect();
@@ -116,6 +121,7 @@ const Collections = () => {
                   <span className="text-gray-400 text-sm">
                     {item.savedNotes.length} files
                   </span>
+                
                 </div>
                 <button
                   onClick={() => deleteCollection(item._id)}

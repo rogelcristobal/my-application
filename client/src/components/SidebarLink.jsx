@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
+const SidebarLink = ({ title, sidebarState, loading, count, path }) => {
   const [hoverState, setHOverState] = React.useState(false);
   const hoverToggle = () => {
     setHOverState(!hoverState);
@@ -39,11 +39,15 @@ const SidebarLink = ({ title, sidebarState, icon, count, path }) => {
                 </span>
               )}
             </div>
-            {count > 0  && (
+            {loading?
+            <span className="text-sm">loading</span>
+            :count > 0  && (
               <div className="  view font-inter  flex px-2 font-medium    text-[0.725rem]  ">
                 {count}
               </div>
-            )}
+            )
+            
+            }
           </div>
 
           {/* <div
