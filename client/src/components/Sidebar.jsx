@@ -1,5 +1,5 @@
 import React from "react";
-import { LuListChecks, LuEdit3, LuSettings } from "react-icons/lu";
+import { LuListChecks, LuEdit3, LuSettings ,LuChevronLeft} from "react-icons/lu";
 import { TbFolder, TbLayoutGrid } from "react-icons/tb";
 import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
@@ -26,7 +26,7 @@ const Sidebar = () => {
       transition={{ duration: 0.3 }}
       className={`${
         state ? "w-[4rem]" : "w-[16rem]"
-      } whitespace-nowrap  relative  view  h-full flex  flex-col  items-center justify-start  flex-shrink-0`}
+      } whitespace-nowrap  relative  view  h-full flex  flex-col bg-white items-center justify-start  flex-shrink-0`}
     >
       <div
         className={`${
@@ -38,24 +38,25 @@ const Sidebar = () => {
             className={`view grid  cursor-pointer relative rounded-lg p-[0.6rem] place-content-center ${
               state ? "mr-0" : "mr-0"
             }`}
-          ></div>
+          >
+            <LuSettings />
+          </div>
           {!state && (
-            <span className=" relative   w-fit text-start ml-0.5 whitespace-nowrap overflow-hidden text-sm font-normal">
-              app_name
-              <div></div>
+            <span className=" relative   w-fit text-start ml-0.5 whitespace-nowrap overflow-hidden text-lg font-semibold">
+              NoteStack
             </span>
           )}
         </div>
 
         {/* toggle btn */}
-        {/* <motion.button
+        <motion.button
           onClick={handleToggleSidebar}
-          className={`absolute  h-[2.285rem] w-[2.285rem] p-1 view rounded-full -bottom-2   cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
+          className={`absolute  h-[2.2rem] w-[2.2rem] bg-[#faf9fc] p-1 view rounded-full -bottom-2   cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
         >
-          <div className="view rounded-full h-full grid place-content-center w-full">
+          <div className="view rounded-full h-full bg-white hover:bg-[#4490e7]/10 grid place-content-center w-full">
             <LuChevronLeft />
           </div>
-        </motion.button> */}
+        </motion.button>
       </div>
       <div className="w-full h-full  flex flex-col justify-start items-start">
         <div
@@ -64,7 +65,7 @@ const Sidebar = () => {
           } flex   w-full items-center view  py-3 justify-center flex-col`}
         >
           {!state && (
-            <span className=" px-3 text-[0.8rem] font-medium w-full text-left  Capitalize   mb-2">
+            <span className=" px-3 text-[0.775rem] font-medium w-full text-[#8f9bab] text-left  Capitalize   mb-2">
               General
             </span>
           )}

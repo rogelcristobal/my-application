@@ -50,7 +50,7 @@ const Collections = () => {
     if (currentUser?._id) {
       queryClient.invalidateQueries("userData");
     }
-  }, [currentUser?._id]);
+  }, [currentUser]);
 
   // socket event handler
   React.useEffect(() => {
@@ -100,25 +100,26 @@ const Collections = () => {
 
   return (
     <div className="h-full w-full flex flex-col items-start justify-start relative">
-      <div className=" h-full overflow-y-scroll px-10 pt-10 w-full">
-        <div className=" w-full view h-full space-y-3 p-4">
-          <button
+      <div className=" h-full overflow-y-scroll px-12 pt-2 w-full">
+        {/* <span className="text-[0.8rem] font-medium text-[#8b95a3]"> Lorem ipsum, dolor sit amet consectetur adipisicing.</span> */}
+        <div className="mt-3 w-full view h-full space-y-3 ">
+          {/* <button
             onClick={addCollectionToggle}
-            className="text-sm view w-fit h-fit p-2"
+            className="text-[0.8rem] view w-fit bg-[#7b56e0] font-normal text-white rounded-md h-fit p-2.5 px-4"
           >
-            create collection
-          </button>
+            Add collection
+          </button> */}
           {isLoading ? (
             <span>loading data</span>
           ) : collections?.length === 0 ? (
-            <p>no collections to show</p>
+            <p className="text-[#8f9bab] text-[0.95rem]">No collections to show</p>
           ) : (
             collections?.map((item, id) => (
-              <div className="h-24 flex cursor-pointer view w-60" key={id}>
-                <div className="view flex flex-col w-full text-normal item-start justify-end">
-                  <span>{item.collectionTitle}</span>
+              <div className="min-h-[6.775rem] flex cursor-pointer rounded-lg p-4 view bg-white w-72" key={id}>
+                <div className="view flex flex-col w-full text-normal item-start justify-between ">
+                  <span className="font-semibold text-[0.95rem]">{item.collectionTitle}</span>
                   <span className="text-sm">{item.description}</span>
-                  <span className="text-gray-400 text-sm">
+                  <span className="text-[#8b95a3] text-[0.8rem]">
                     {item.savedNotes.length} files
                   </span>
                 

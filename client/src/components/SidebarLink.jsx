@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-const SidebarLink = ({ title, sidebarState, loading, count, path }) => {
+const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
   const [hoverState, setHOverState] = React.useState(false);
   const hoverToggle = () => {
     setHOverState(!hoverState);
@@ -12,10 +12,10 @@ const SidebarLink = ({ title, sidebarState, loading, count, path }) => {
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full  rounded-md relative  border-0 box-border  btn-sm btn  ${
+          className={`w-full  rounded-md relative  border-0 box-border h-10 btn-sm btn  ${
             isActive
-              ? "text-inherit bg-transparent hover:bg-transparent"
-              : "text-inherit  bg-transparent hover:bg-transparent"
+              ? "text-inherit bg-[#f9f9fb] hover:bg-transparent"
+              : "text-[#8f9bab]  bg-transparent hover:bg-transparent"
           }
           ${sidebarState ? "flex justify-center   " : "flex justify-center "}
           `}
@@ -26,15 +26,15 @@ const SidebarLink = ({ title, sidebarState, loading, count, path }) => {
                 !sidebarState ? "max-w-[75%] " : "max-w-[100%]"
               }`}
             >
-              {/* <span
-                className={`text-[1rem] mx-auto ${
-                  isActive && " "
+              <span
+                className={`text-[1rem]   mx-auto ${
+                  isActive && "text-[#653dd3]"
                 }`}
               >
                 {icon}
-              </span> */}
+              </span>
               {!sidebarState && (
-                <span className="flex items-center text-[0.85rem] font-normal  text-start w-full h-full overflow-x-hidden  truncate ">
+                <span className="flex items-center text-[0.85rem] font-medium  text-start w-full h-full overflow-x-hidden  truncate ">
                   {title}
                 </span>
               )}
