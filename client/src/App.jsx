@@ -24,7 +24,6 @@ function App() {
   const firebaseCurrentUserIsLoading = useSelector(
     (state) => state.user.firebaseCurrentUserIsLoading
   );
-
   const currentUser = useSelector((state) => state.currentUser.data);
   const userDataLoading = useSelector((state) => state.currentUser.loading);
 
@@ -70,6 +69,8 @@ function App() {
   // this stores the currentUser that will be used in entire app
   //  via firebase uid(which is its only purpose)
   React.useEffect(() => {
+
+    
     if (!firebaseCurrentUserIsLoading) {
       dispatch(fetchUser(firebaseCurrentUser?.uid));
     }

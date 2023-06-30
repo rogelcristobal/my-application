@@ -10,45 +10,53 @@ const router = express.Router();
 
 //extract userID from headers
 
-const extractFirebaseUID = (req,res, next) => {
-  req.firebaseUID = req.get('firebaseUID')
+const extractFirebaseUID = (req, res, next) => {
+  req.firebaseUID = req.get("firebaseUID");
   next();
 };
 
 // get all collection by current uid (from firebase)
-router.get("/", extractFirebaseUID ,async (request, response) => {
+router.get("/", extractFirebaseUID, async (request, response) => {
   try {
-    const firebaseUID = request.firebaseUID
+    const firebaseUID = request.firebaseUID;
     // find the user via userID from the header extracted
-    const user = await UserModel.findOne({uid:firebaseUID})
+    const user = await UserModel.findOne({ uid: firebaseUID });
     if (!user) {
       return response.status(404).json({ error: "user not found" });
     }
-   
 
-    
-   
     //   .populate("todos")
     //   .lean();
-      
+
     // simple document count
-    const totalTodos = await TodoModel.countDocuments({userID:user._id})
-    const totalNotes = await NoteModel.countDocuments({userID:user._id})
-    const { _id, email, firstName, lastName,noteCollections,todoCollections} = user;
-    response
-      .status(200)
-      .json({
- 
-        _id,
-        email,
-        firstName,
-        lastName,
-        totalNotes,
-        totalTodos,
-        noteCollections,
-        todoCollections
-        
-      });
+    const totalTodos = await TodoModel.countDocuments({ userID: user._id });
+    const totalNotes = await NoteModel.countDocuments({ userID: user._id });
+    const {
+      _id,
+      email,
+      firstName,
+      lastName,
+      noteCollections,
+      todoCollections,
+      createdAt,
+      lastLoginTime,
+      provider,
+      emailVerified,
+    } = user;
+    response.status(200).json({
+      _id,
+      email,
+      firstName,
+      lastName,
+      totalNotes,
+      totalTodos,
+      noteCollections,
+      todoCollections,
+      createdAt,
+      lastLoginTime,
+      provider,
+      emailVerified,
+    });
   } catch (error) {
     response.status(500).json({
       status: "error",

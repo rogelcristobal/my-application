@@ -12,6 +12,7 @@ export const fetchUser = createAsyncThunk(
     if (uid) {
       const headers = {
         firebaseUID: uid,
+        
         "Content-Type": "application/json",
       };
       const response = await axios.get(`http://localhost:3001/dashboard/`, {

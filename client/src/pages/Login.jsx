@@ -32,13 +32,18 @@ const Login = () => {
 
       //  request storing uid and other data to the db
       if (user) {
+        console.log(user)
         await Axios.post(
           "http://localhost:3001/auth/register",
           {
             uid: user.uid,
             email: user.email,
             firstName:registerInput.firstName,
-            lastName:registerInput.lastName
+            lastName:registerInput.lastName,
+            createdAt: user.metadata.creationTime,
+            lastLoginTime: user.metadata.lastSignInTime,
+            provider: user.providerId,
+            emailVerified: user.emailVerified,
           }
         );
         logOutUser();

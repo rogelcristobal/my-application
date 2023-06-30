@@ -5,33 +5,45 @@ import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 const router = express.Router();
 
-
-router.post("/register", async(request,response)=>{
+router.post("/register", async (request, response) => {
   try {
-    const {uid, email, firstName, lastName} = request.body
+    const {
+      uid,
+      email,
+      firstName,
+      lastName,
+      createdAt,
+      lastLoginTime,
+      provider,
+      emailVerified,
+    } = request.body;
     //checks if user already exist
-    const user = await UserModel.findOne({uid:uid})
+    const user = await UserModel.findOne({ uid: uid });
     if (user) {
       return response.json({ message: "User already exist" });
     }
 
-    const newUser = new UserModel({uid,email,firstName,lastName,noteCollections:[],todoCollections:[]})
-    
-    await newUser.save()
-    response.json({message:"new user created",data: newUser})
-  } catch (error) {
-     response.json({ message: "error: ", error });
-  }
-})
+    const newUser = new UserModel({
+      uid,
+      email,
+      firstName,
+      lastName,
+      createdAt,
+      lastLoginTime,
+      provider,
+      emailVerified,
+      noteCollections: [],
+      todoCollections: [],
+    });
 
+    await newUser.save();
+    response.json({ message: "new user created", data: newUser });
+  } catch (error) {
+    response.json({ message: "error: ", error });
+  }
+});
 
 export { router as userRouter };
-
-
-
-
-
-
 
 // this will register a new user to the Users table
 // router.post("/sample-register", async (req, res) => {
@@ -40,7 +52,7 @@ export { router as userRouter };
 //     const { username, password } = req.body;
 
 //     check if the creating user already exist in the Users table
-//     const user = await UserModel.findOne({ username: username }); 
+//     const user = await UserModel.findOne({ username: username });
 
 //     user exist? u cant create existing user
 //     if (user) {
