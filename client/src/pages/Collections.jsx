@@ -57,7 +57,7 @@ const Collections = () => {
     // deleteCollection
     socket.on("deleteNoteCollection", (data) => {
       console.log("event: deleteNoteCollection", data);
-
+      
       //  update the currentUser (which used in the whole app)
       //  with the added collection
       dispatch(deleteCurrentUserCollection(data));
@@ -70,7 +70,7 @@ const Collections = () => {
     // addcollection
     socket.on("addNoteCollection", (data) => {
       console.log("event: addNoteCollection", data);
-
+      setAddCollectionModalState(false)
       //  update the currentUser (which used in the whole app)
       //  with the added collection
       dispatch(addCurrentUserCollection(data)); 
@@ -121,6 +121,7 @@ const Collections = () => {
                   <span className="text-gray-400 text-sm">
                     {item.savedNotes.length} files
                   </span>
+                
                 </div>
                 <button
                   onClick={() => deleteCollection(item._id)}

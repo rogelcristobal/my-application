@@ -18,7 +18,7 @@ const Sidebar = () => {
     }
   };
 
-  console.log("sidebar",currentUser)
+  // console.log("sidebar",currentUser)
   return (
     <motion.div
       animate={sidebarControl}
