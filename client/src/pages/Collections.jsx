@@ -57,21 +57,14 @@ const Collections = () => {
     // deleteCollection
     socket.on("deleteNoteCollection", (data) => {
       console.log("event: deleteNoteCollection", data);
-
-      setCollections((prevCollections) =>
-        prevCollections.filter((c) => c._id !== data._id)
-      );
-      // const notesToBeDeleted = data.savedNotes
-      // const newData = data.savedNotes.filter((item)=> !currentUser. )
-
+      dispatch(deleteCurrentUserCollection(data))
     });
     // addcollection
     socket.on("addNoteCollection", (data) => {
       console.log("event: addNoteCollection", data);
-      setCollections((prevCollections) => [...prevCollections, data]);
       //  update the currentUser (which used in the whole app)
       //  with the added collection
-
+      dispatch(addCurrentUserCollection(data))
     });
     return () => {
       socket.disconnect();
@@ -105,10 +98,10 @@ const Collections = () => {
           </button>
           {isLoading ? (
             <span>loading data</span>
-          ) : collections?.length === 0 ? (
+          ) : currentUser?.noteCollections.length === 0 ? (
             <p>no collections to show</p>
           ) : (
-            collections?.map((item, id) => (
+            currentUser?.noteCollections?.map((item, id) => (
               <div className="h-24 flex cursor-pointer view w-60" key={id}>
                 <div className="view flex flex-col w-full text-normal item-start justify-end">
                   <span>{item.collectionTitle}</span>

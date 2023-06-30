@@ -3,11 +3,8 @@ import { LuListChecks, LuEdit3, LuSettings } from "react-icons/lu";
 import { TbFolder, TbLayoutGrid } from "react-icons/tb";
 import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
-import { io } from "socket.io-client";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteCurrentUserCollection } from "../features/user/currentUserSlice";
+import { useSelector } from "react-redux";
 const Sidebar = () => {
-  const socket = io("http://localhost:3001");
   const [state, setState] = React.useState(false);
   const currentUserLoading = useSelector((state) => state.currentUser.loading);
   const currentUser = useSelector((state) => state.currentUser.data);
@@ -21,28 +18,6 @@ const Sidebar = () => {
     }
   };
 
-  const [collections, setCollections] = React.useState([]);
-  React.useEffect(() => {
-    if(!currentUserLoading){
-      setCollections(currentUser);
-    }
-  }, [currentUserLoading]);
-
-  React.useEffect(() => {
-    // listen to events
-    socket.on("deleteNoteCollection", (data) => {
-      console.log(collections);
-       
-
-      // deleteCurrentUserCollection
-      // setUserStates({
-      //   ...userStates,
-      //   collectionLen: x
-
-      // })
-    });
-    return () => socket.disconnect();
-  }, []);
 
   return (
     <motion.div
@@ -99,7 +74,7 @@ const Sidebar = () => {
               path: "/collections",
               title: "collections",
               icon: <TbFolder />,
-              // count: collections?.noteCollections?.length,
+              count: currentUser?.noteCollections?.length,
               loading: currentUserLoading,
             },
             { path: "/todos", title: "todos", icon: <LuListChecks /> },
