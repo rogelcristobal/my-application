@@ -11,7 +11,7 @@
     /* box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px; */
     /* @apply shadow-sm */
     /* @apply border-dark */
-    /* @apply thin-box-divider  */
+    /* @apply thin-box-divider; */
   }
   ::-webkit-scrollbar {
     width: 0.45rem;
@@ -20,21 +20,21 @@
   ::-webkit-scrollbar-thumb {
     @apply cursor-pointer bg-[#1a1c1e]/10 hover:bg-[#1a1c1e]/20 rounded-lg;
   }
-  
+
   .border-dark-right {
-    @apply border-r-[1px] border-[#323339]/50;
+    @apply border-r-[1px] border-neutral-500/10;
   }
   .border-dark-left {
-    @apply border-l-[1px] border-[#323339]/50;
+    @apply border-l-[1px] border-neutral-500/10;
   }
   .border-dark-top {
-    @apply border-t-[1px] border-[#323339]/50;
+    @apply border-t-[1px] border-neutral-500/10;
   }
   .border-dark-bottom {
-    @apply border-b-[1px] border-[#323339]/50;
+    @apply border-b-[1px] border-neutral-500/10;
   }
   .border-dark {
-    @apply border-[1px] border-[#323339]/50;
+    @apply border-[1px] border-neutral-500/10;
   }
   .sample {
     box-shadow: rgba(0, 0, 0, 0.03) 0px 6px 6px 0px,
@@ -72,5 +72,20 @@
 
   /* fonts */
 
- 
+  @font-face {
+    font-family: "PassengerSans-Regular";
+    src: url("./assets/fonts/PassengerSans-Regular.otf");
+  }
+  @font-face {
+    font-family: "PassengerSans-Medium";
+    src: url("./assets/fonts/PassengerSans-Medium.otf");
+  }
+  @font-face {
+    font-family: "PassengerSans-Bold";
+    src: url("./assets/fonts/PassengerSans-Bold.otf");
+  }
+  @font-face {
+    font-family: "PassengerSans-Semibold";
+    src: url("./assets/fonts/PassengerSans-Semibold.otf");
+  }
 }

@@ -7,34 +7,36 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
   };
 
   return (
-    <NavLink to={path} role="link" className="w-full  view mb-1">
+    <NavLink to={path} role="link" className="w-full  view mb-0.5">
       {({ isActive }) => (
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full  rounded-md relative  border-0 box-border h-10 btn-sm btn  ${
+          className={`w-full font-normal rounded-md relative  border-0 box-border h-10 btn-sm btn  ${
             isActive
-              ? "text-inherit bg-[#f9f9fb] hover:bg-transparent"
-              : "text-[#8f9bab]  bg-transparent hover:bg-transparent"
+              ? "text-white bg-[#2c2c2c] hover:bg-[#2c2c2c]"
+              
+              // ? "text-white bg-transparent hover:bg-transparent"
+              : "text-[#9a9a9a] bg-transparent hover:bg-transparent"
           }
           ${sidebarState ? "flex justify-center   " : "flex justify-center "}
           `}
         >
           <div className=" h-full flex justify-between items-center overflow-hidden w-full">
             <div
-              className={`flex justify-start items-center   h-full font-normal   w-full capitalize gap-3 ${
+              className={`flex justify-start items-center   h-full    w-full capitalize gap-3 ${
                 !sidebarState ? "max-w-[75%] " : "max-w-[100%]"
               }`}
             >
-              <span
+              {/* <span
                 className={`text-[1rem]   mx-auto ${
-                  isActive && "text-[#653dd3]"
+                  isActive && ""
                 }`}
               >
                 {icon}
-              </span>
+              </span> */}
               {!sidebarState && (
-                <span className="flex items-center text-[0.85rem] font-medium  text-start w-full h-full overflow-x-hidden  truncate ">
+                <span className="flex items-center text-[0.8rem]   text-start w-full h-full overflow-x-hidden  truncate ">
                   {title}
                 </span>
               )}
@@ -42,7 +44,7 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
             {loading?
             <span className="text-sm">loading</span>
             :count > 0  && (
-              <div className="  view font-inter  flex px-2 font-medium    text-[0.725rem]  ">
+              <div className="  view font-inter  flex px-2    text-[0.725rem]  ">
                 {count}
               </div>
             )

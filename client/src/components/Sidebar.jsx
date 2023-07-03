@@ -12,7 +12,7 @@ const Sidebar = () => {
   const handleToggleSidebar = () => {
     setState(!state);
     if (state) {
-      sidebarControl.start({ width: "16rem" });
+      sidebarControl.start({ width: "15.5rem" });
     } else {
       sidebarControl.start({ width: "4rem" });
     }
@@ -22,50 +22,50 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      initial={{ width: "16rem" }}
+      initial={{ width: "15.5rem" }}
       transition={{ duration: 0.3 }}
       className={`${
-        state ? "w-[4rem]" : "w-[16rem]"
-      } whitespace-nowrap  relative  view  h-full flex  flex-col bg-white items-center justify-start  flex-shrink-0`}
+        state ? "w-[4rem]" : "w-[15.5rem]"
+      } whitespace-nowrap  relative border-dark-right h-full flex  flex-col  items-center justify-start  flex-shrink-0`}
     >
       <div
         className={`${
           state ? "px-[0.5rem] " : " px-3  "
-        } w-full   relative flex view  items-center justify-start  pt-8 pb-8   `}
+        } w-full   relative flex   items-center justify-start   py-4   `}
       >
-        <div className="view flex items-center justify-center">
-          <div
+        <div className=" flex items-center justify-center">
+          {/* <div
             className={`view grid  cursor-pointer relative rounded-lg p-[0.6rem] place-content-center ${
               state ? "mr-0" : "mr-0"
             }`}
           >
             <LuSettings />
-          </div>
-          {!state && (
-            <span className=" relative   w-fit text-start ml-0.5 whitespace-nowrap overflow-hidden text-lg font-semibold">
-              NoteStack
+          </div> */}
+          {/* {!state && (
+            <span className=" relative   w-fit text-start ml-3 whitespace-nowrap overflow-hidden text-md ">
+              WhiteSpace
             </span>
-          )}
+          )} */}
         </div>
 
         {/* toggle btn */}
-        <motion.button
+        {/* <motion.button
           onClick={handleToggleSidebar}
-          className={`absolute  h-[2.2rem] w-[2.2rem] bg-[#faf9fc] p-1 view rounded-full -bottom-2   cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
+          className={`absolute  h-[2.2rem] w-[2.2rem]  p-1  rounded-full -bottom-2   cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
         >
-          <div className="view rounded-full h-full bg-white hover:bg-[#4490e7]/10 grid place-content-center w-full">
+          <div className="view rounded-full h-full grid place-content-center w-full">
             <LuChevronLeft />
           </div>
-        </motion.button>
+        </motion.button> */}
       </div>
-      <div className="w-full h-full  flex flex-col justify-start items-start">
+      <div className="w-full h-full mt-8 flex flex-col border-dark-top justify-start items-start">
         <div
           className={`${
-            state ? " px-0 mt-10" : "px-3 mt-10"
-          } flex   w-full items-center view  py-3 justify-center flex-col`}
+            state ? " px-0 " : "px-3 "
+          } flex   w-full items-center   py-3 justify-center flex-col`}
         >
           {!state && (
-            <span className=" px-3 text-[0.775rem] font-medium w-full text-[#8f9bab] text-left  Capitalize   mb-2">
+            <span className=" px-3 text-[0.775rem]  w-full  text-left  Capitalize   mb-2">
               General
             </span>
           )}

@@ -78,35 +78,35 @@ function App() {
   }, [dispatch, firebaseCurrentUser?.uid]);
 
   return (
-    <div className="h-screen w-full bg-[#faf9fc] font-inter  text-[#1b2149] relative">
+    <div className="h-screen w-full bg-[#171717] font-inter text-[#979797] text-[0.9rem] relative">
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route
           path="/*"
           element={
             <ProtectedRoute>
-              <div className="h-full w-full   flex items-start  justify-start relative">
+              <div className="h-full   flex items-start  justify-start relative">
                 {/* sidebar */}
                 <Sidebar></Sidebar>
-                <div className="flex items-start flex-col justify-start w-full  h-full">
+                <div className="flex items-start  flex-col justify-start w-full  h-screen">
                   {/* navigation */}
-                  <div className="h-fit w-full flex view  px-12 m  py-5 pt-8 items-center  justify-between">
+                  <div className="h-fit w-full flex border-dark-bottom view  px-10   pt-6 pb-3  items-center  justify-between">
                     <div className="view  flex flex-col">
-                      <span className="text-[0.875rem] font-semibold mb-3 text-[#653dd3]">Dashboard</span>
-                      <span className="text-[1.35rem] capitalize font-semibold">
+                     
+                      {/* <span className=" capitalize ">
                         {userDataLoading ? (
                           <span>loading</span>
                         ) : (
                           <span>Welcome back, <span className="">{currentUser?.firstName} {currentUser?.lastName}.</span> </span>
                         )}
                       </span>
-                      <span className="text-[0.8rem] mt-1 font-medium text-[#8b95a3]">
+                      <span className="text-[0.8rem] mt-1 font-medium ">
                         {userDataLoading ? (
                           <span >loading</span>
                         ) : (
                           currentUser?.email
                         )}
-                      </span>
+                      </span> */}
                     </div>
                     <button onClick={logOutUser} className="view text-sm p-1">
                       logout
