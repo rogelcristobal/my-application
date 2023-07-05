@@ -1,5 +1,6 @@
 import React from "react";
-import { LuListChecks, LuEdit3, LuSettings ,LuChevronLeft} from "react-icons/lu";
+import { LuListChecks,LuArchive, LuEdit3, LuSettings ,LuChevronLeft} from "react-icons/lu";
+import {BiArchive,BiLayout,BiListCheck,BiEditAlt} from 'react-icons/bi'
 import { TbFolder, TbLayoutGrid } from "react-icons/tb";
 import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
@@ -12,7 +13,7 @@ const Sidebar = () => {
   const handleToggleSidebar = () => {
     setState(!state);
     if (state) {
-      sidebarControl.start({ width: "15.5rem" });
+      sidebarControl.start({ width: "16.5rem" });
     } else {
       sidebarControl.start({ width: "4rem" });
     }
@@ -22,16 +23,16 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      initial={{ width: "15.5rem" }}
+      initial={{ width: "16.5rem" }}
       transition={{ duration: 0.3 }}
       className={`${
-        state ? "w-[4rem]" : "w-[15.5rem]"
+        state ? "w-[4rem]" : "w-[16.5rem]"
       } whitespace-nowrap  relative border-dark-right h-full flex  flex-col  items-center justify-start  flex-shrink-0`}
     >
       <div
         className={`${
           state ? "px-[0.5rem] " : " px-3  "
-        } w-full   relative flex   items-center justify-start   py-4   `}
+        } w-full   relative flex   items-center justify-start   h-20   `}
       >
         <div className=" flex items-center justify-center">
           {/* <div
@@ -58,28 +59,28 @@ const Sidebar = () => {
           </div>
         </motion.button> */}
       </div>
-      <div className="w-full h-full mt-8 flex flex-col border-dark-top justify-start items-start">
+      <div className="w-full h-full mt-20  flex flex-col border-dark-top justify-start items-start">
         <div
           className={`${
-            state ? " px-0 " : "px-3 "
-          } flex   w-full items-center   py-3 justify-center flex-col`}
+            state ? " px-0 " : "px-3.5 "
+          } flex   w-full items-center   py-4 justify-center flex-col`}
         >
           {!state && (
-            <span className=" px-3 text-[0.775rem]  w-full  text-left  Capitalize   mb-2">
+            <span className=" px-3 text-[0.7rem] uppercase w-full  text-left  Capitalize   mb-3">
               General
             </span>
           )}
           {[
-            { path: "/dashboard", title: "dashboard", icon: <TbLayoutGrid /> },
+            { path: "/dashboard", title: "dashboard", icon: <BiLayout /> },
             {
               path: "/collections",
               title: "collections",
-              icon: <TbFolder />,
+              icon: <BiArchive />,
               count: currentUser?.noteCollections?.length,
               loading: currentUserLoading,
             },
-            { path: "/todos", title: "todos", icon: <LuListChecks /> },
-            { path: "/blogs", title: "Blogs", icon: <LuEdit3 /> },
+            { path: "/todos", title: "todos", icon: <BiListCheck /> },
+            { path: "/blogs", title: "Blogs", icon: <BiEditAlt /> },
           ].map((item, id) => (
             <SidebarLink
               key={id}

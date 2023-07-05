@@ -101,15 +101,14 @@ const Collections = () => {
   return (
     <div className="h-screen overflow-y-hidden w-full flex flex-col items-start justify-start relative">
       <div className=" h-full  px-4 py-4 w-full ">
-        {/* <span className="text-[0.8rem] font-medium text-[#8b95a3]"> Lorem ipsum, dolor sit amet consectetur adipisicing.</span> */}
-        {/* <div className="w-fit h-full  overflow-y-auto ">
-          <button
+         <div className="w-fit h-full  overflow-y-auto ">
+          {/* <button
             onClick={addCollectionToggle}
-            className="text-[0.85rem] view w-full view sticky top-0 bg-[#4594d0] text-white rounded-md h-fit p-2.5 px-3"
+            className="text-[0.85rem] view w-fit view sticky top-0 font-normal bg-blue-500 text-white rounded-md h-fit  px-5 py-1"
           >
             Create
-          </button>
-          <div className=" w-fit p-3   h-full space-y-3 ">
+          </button> */}
+          {/* <div className=" w-fit p-3   h-full space-y-3 ">
             {isLoading ? (
               <span>loading data</span>
             ) : collections?.length === 0 ? (
@@ -138,8 +137,8 @@ const Collections = () => {
                 </div>
               ))
             )}
-          </div>
-        </div> */}
+          </div> */}
+        </div>
       </div>
       {addCollectionModalState && <AddCollectionModal collections />}
     </div>
