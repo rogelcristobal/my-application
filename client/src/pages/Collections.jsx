@@ -1,15 +1,16 @@
 import React from "react";
 import axios from "axios";
+import {BiPlus} from 'react-icons/bi'
 import AddCollectionModal from "../components/AddCollectionModal";
 import { QueryClient, useQuery } from "@tanstack/react-query";
 import { useSelector, useDispatch } from "react-redux";
-import { io } from "socket.io-client";
+import socket from '../socket'
 import {
   deleteCurrentUserCollection,
   addCurrentUserCollection,
 } from "../features/user/currentUserSlice";
 const Collections = () => {
-  const socket = io("http://localhost:3001");
+  
   const currentUser = useSelector((state) => state.currentUser.data);
   const [addCollectionModalState, setAddCollectionModalState] =
     React.useState(false);
@@ -36,7 +37,7 @@ const Collections = () => {
       console.log(error);
     }
   };
-
+  console.log(currentUser);
   // once fetchData true set returned data to the state
   const { isLoading } = useQuery(["userData"], fetchData, {
     enabled: !!currentUser?._id,
@@ -48,7 +49,8 @@ const Collections = () => {
   // Trigger the query only when currentUser._id becomes available
   React.useEffect(() => {
     if (currentUser?._id) {
-      queryClient.invalidateQueries("userData");
+      // queryClient.invalidateQueries("userData");
+      console.log("user loaded");
     }
   }, [currentUser]);
 
@@ -100,15 +102,18 @@ const Collections = () => {
 
   return (
     <div className="h-screen overflow-y-hidden w-full flex flex-col items-start justify-start relative">
-      <div className=" h-full  px-4 py-4 w-full ">
-         <div className="w-fit h-full  overflow-y-auto ">
-          {/* <button
-            onClick={addCollectionToggle}
-            className="text-[0.85rem] view w-fit view sticky top-0 font-normal bg-blue-500 text-white rounded-md h-fit  px-5 py-1"
-          >
-            Create
-          </button> */}
-          {/* <div className=" w-fit p-3   h-full space-y-3 ">
+      <div className=" h-full  p-8 w-full ">
+        <div className=" w-[17rem] h-full  view overflow-y-hidden  ">
+          <div className="flex items-center view justify-between px-4 py-3">
+            <span className="text-[0.8rem]">Collection</span>
+            <button
+              onClick={addCollectionToggle}
+              className="text-[0.8rem]  w-fit  font-normal    h-fit  px-2 view py-2"
+            >
+              <BiPlus />
+            </button>
+          </div>
+          <div className=" w-full p-2 pb-16  overflow-y-auto h-full space-y-3 ">
             {isLoading ? (
               <span>loading data</span>
             ) : collections?.length === 0 ? (
@@ -116,7 +121,7 @@ const Collections = () => {
             ) : (
               collections?.map((item, id) => (
                 <div
-                  className="min-h-[6.775rem] flex cursor-pointer p-3 view  w-[16.5rem]"
+                  className="min-h-[6.775rem] flex cursor-pointer p-3 view w-full "
                   key={id}
                 >
                   <div className=" flex flex-col w-full text-normal item-start justify-between ">
@@ -137,7 +142,7 @@ const Collections = () => {
                 </div>
               ))
             )}
-          </div> */}
+          </div>
         </div>
       </div>
       {addCollectionModalState && <AddCollectionModal collections />}

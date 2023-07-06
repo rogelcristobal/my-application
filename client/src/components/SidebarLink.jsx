@@ -7,17 +7,15 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
   };
 
   return (
-    <NavLink to={path} role="link" className="w-full   view mb-0.5">
+    <NavLink to={path} role="link" className="w-full  py-1 view ">
       {({ isActive }) => (
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full font-normal rounded-md  relative  border-0 box-border h-10 btn-sm btn  ${
+          className={`w-full font-normal rounded-md  relative  border-0 box-border  btn-sm btn  ${
             isActive
-              // ? "text-inherit bg-transparent hover:bg-transparent"
-              
-              ? "text-[#171717] bg-transparent hover:bg-transparent font-semibold"
-              : "text-[#9a9a9a] bg-transparent hover:bg-transparent"
+              ? "text-inherit bg-transparent hover:bg-transparent "
+              : "text-inherit bg-transparent hover:bg-transparent"
           }
           ${sidebarState ? "flex justify-center   " : "flex justify-center "}
           `}
@@ -28,15 +26,15 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
                 !sidebarState ? "max-w-[75%] " : "max-w-[100%]"
               }`}
             >
-              <span
+              {/* <span
                 className={`text-[1rem]   mx-auto ${
                   isActive && ""
                 }`}
               >
                 {icon}
-              </span>
+              </span> */}
               {!sidebarState && (
-                <span className="flex items-center text-[0.85rem]  font-medium text-start w-full h-full overflow-x-hidden  truncate ">
+                <span className="flex items-center text-[0.8rem]   text-start w-full h-full overflow-x-hidden  truncate ">
                   {title}
                 </span>
               )}
@@ -52,11 +50,11 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
             }
           </div>
 
-          <div
+          {/* <div
             className={`${isActive ? "h-[100%]" : "h-0"} ${
               sidebarState ? "left-[0rem]" : "-left-[0.9rem]  "
             } transition-all duration-75 w-[0.2rem] bg-[#8b72ff] rounded-r-xl absolute  top-1/2 -translate-y-1/2 `}
-          ></div>
+          ></div> */}
         </div>
       )}
     </NavLink>

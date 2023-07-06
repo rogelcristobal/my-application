@@ -13,7 +13,7 @@ const Sidebar = () => {
   const handleToggleSidebar = () => {
     setState(!state);
     if (state) {
-      sidebarControl.start({ width: "16.5rem" });
+      sidebarControl.start({ width: "16rem" });
     } else {
       sidebarControl.start({ width: "4rem" });
     }
@@ -23,16 +23,14 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      initial={{ width: "16.5rem" }}
+      initial={{ width: "16rem" }}
       transition={{ duration: 0.3 }}
       className={`${
-        state ? "w-[4rem]" : "w-[16.5rem]"
+        state ? "w-[4rem]" : "w-[16rem]"
       } whitespace-nowrap  relative border-dark-right h-full flex  flex-col  items-center justify-start  flex-shrink-0`}
     >
       <div
-        className={`${
-          state ? "px-[0.5rem] " : " px-3  "
-        } w-full   relative flex   items-center justify-start   h-20   `}
+        className={`w-full   relative flex   items-center justify-start   h-[4.7rem]   `}
       >
         <div className=" flex items-center justify-center">
           {/* <div
@@ -59,14 +57,14 @@ const Sidebar = () => {
           </div>
         </motion.button> */}
       </div>
-      <div className="w-full h-full mt-20  flex flex-col border-dark-top justify-start items-start">
+      <div className="w-full h-full mt-0  flex flex-col border-dark-top justify-start items-start">
         <div
           className={`${
-            state ? " px-0 " : "px-3.5 "
+            state ? " px-0 " : "px-4"
           } flex   w-full items-center   py-4 justify-center flex-col`}
         >
           {!state && (
-            <span className=" px-3 text-[0.7rem] uppercase w-full  text-left  Capitalize   mb-3">
+            <span className="  text-[0.7rem] uppercase w-full  text-left  Capitalize   mb-3">
               General
             </span>
           )}
@@ -74,7 +72,7 @@ const Sidebar = () => {
             { path: "/dashboard", title: "dashboard", icon: <BiLayout /> },
             {
               path: "/collections",
-              title: "collections",
+              title: "notes",
               icon: <BiArchive />,
               count: currentUser?.noteCollections?.length,
               loading: currentUserLoading,
@@ -94,7 +92,7 @@ const Sidebar = () => {
           ))}
         </div>
       </div>
-      <div
+      {/* <div
         className={`${
           state ? " px-2 " : "px-3.5 "
         } flex   w-full items-center mt-4  pb-6 justify-center flex-col`}
@@ -110,7 +108,7 @@ const Sidebar = () => {
             />
           )
         )}
-      </div>
+      </div> */}
     </motion.div>
   );
 };

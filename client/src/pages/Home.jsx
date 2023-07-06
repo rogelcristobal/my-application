@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { io } from "socket.io-client";
+import socket from "../socket";
 const Home = () => {
-  const socket =io("http://localhost:3001")
+  
   const currentUser = useSelector((state) => state.currentUser.data);
   const userDataLoading = useSelector((state) => state.currentUser.loading);
 
@@ -16,7 +16,7 @@ const Home = () => {
   // },[])
   return (
     <div className="h-full  w-full flex flex-col items-start justify-start relative">
-      <div className=" h-full overflow-y-scroll pt-6 px-12 w-full">
+      <div className=" h-full overflow-y-scroll pt-2 px-6 w-full">
         <div className=" w-full  view h-[120%]  mt-4">
           <div className="gap-4 w-fit grid grid-flow-col">
             <div className="view h-fit flex items-start bg-white flex-col justify-end p-4 w-52">
