@@ -12,29 +12,29 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full font-normal rounded h-[2.35rem] relative  border-0 box-border  btn-sm btn  ${
+          className={`w-full font-normal rounded h-[2.5rem] relative  border-0 box-border  btn-sm btn  ${
             isActive
-              ? "text-white bg-[#23272c] hover:bg-[#23272c] "
-              : "text-[#9ea0a2] bg-transparent hover:bg-transparent"
+              ? "text-[#fefefe] bg-[#23272c] hover:bg-[#23272c] "
+              : "text-[#68696d] bg-transparent hover:bg-transparent"
           }
           ${sidebarState ? "flex justify-center   " : "flex justify-center "}
           `}
         >
           <div className=" h-full flex justify-between items-center overflow-hidden w-full">
             <div
-              className={`flex justify-start items-center   h-full    w-full capitalize gap-3 ${
+              className={`flex justify-start items-center   h-full    w-full capitalize gap-4 ${
                 !sidebarState ? "max-w-[75%] " : "max-w-[100%]"
               }`}
             >
-              {/* <span
+              <span
                 className={`text-[1rem]   mx-auto ${
                   isActive && ""
                 }`}
               >
                 {icon}
-              </span> */}
+              </span>
               {!sidebarState && (
-                <span className="flex items-center text-[0.8rem]   text-start w-full h-full overflow-x-hidden  truncate ">
+                <span className="flex items-center text-[0.825rem]  font-normal text-start w-full h-full overflow-x-hidden  truncate ">
                   {title}
                 </span>
               )}
@@ -42,7 +42,7 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
             {loading?
             <span className="text-sm">loading</span>
             :count > 0  && (
-              <div className="  view font-inter  flex px-2    text-[0.725rem]  ">
+              <div className="   view font-inter  rounded-full h-4 grid place-content-center w-4    text-[0.55rem]  ">
                 {count}
               </div>
             )

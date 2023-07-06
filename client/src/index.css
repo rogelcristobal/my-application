@@ -18,7 +18,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply cursor-pointer bg-[#1a1c1e]/10 hover:bg-[#1a1c1e]/20 rounded-lg;
+    @apply cursor-pointer bg-gray-600/10 hover:bg-gray-400/10 rounded-lg;
   }
 
   .border-dark-right {

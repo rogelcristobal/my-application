@@ -1,6 +1,6 @@
 import React from "react";
 import { LuListChecks,LuArchive, LuEdit3, LuSettings ,LuChevronLeft} from "react-icons/lu";
-import {BiArchive,BiLayout,BiListCheck,BiEditAlt} from 'react-icons/bi'
+import {BiNote,BiLayout,BiListCheck,BiEditAlt} from 'react-icons/bi'
 import { TbFolder, TbLayoutGrid } from "react-icons/tb";
 import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
@@ -13,7 +13,7 @@ const Sidebar = () => {
   const handleToggleSidebar = () => {
     setState(!state);
     if (state) {
-      sidebarControl.start({ width: "15.5rem" });
+      sidebarControl.start({ width: "16.5rem" });
     } else {
       sidebarControl.start({ width: "4rem" });
     }
@@ -23,11 +23,11 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      initial={{ width: "15.5rem" }}
+      initial={{ width: "16.5rem" }}
       transition={{ duration: 0.3 }}
       className={`${
-        state ? "w-[4rem]" : "w-[15.5rem]"
-      } whitespace-nowrap  relative border-dark-right bg-[#1c1d21] h-full flex  flex-col  items-center justify-start  flex-shrink-0`}
+        state ? "w-[4rem]" : "w-[16.5rem]"
+      } whitespace-nowrap  relative border-r-[1px] border-solid border-neutral-400/10 bg-[#1c1d21] h-full flex  flex-col  items-center justify-start  flex-shrink-0`}
     >
       <div
         className={`w-full   relative flex   items-center justify-start   h-[4.7rem]   `}
@@ -57,10 +57,10 @@ const Sidebar = () => {
           </div>
         </motion.button> */}
       </div>
-      <div className="w-full h-full mt-0  flex flex-col border-dark-top justify-start items-start">
+      <div className="w-full h-full mt-0  flex flex-col justify-start items-start">
         <div
           className={`${
-            state ? " px-0 " : "px-[1.1rem]"
+            state ? " px-0 " : "px-[0.75rem]"
           } flex   w-full items-center mt-2   py-4 justify-center flex-col`}
         >
           {!state && (
@@ -73,7 +73,7 @@ const Sidebar = () => {
             {
               path: "/collections",
               title: "my notes",
-              icon: <BiArchive />,
+              icon: <BiNote />,
               count: currentUser?.noteCollections?.length,
               loading: currentUserLoading,
             },
