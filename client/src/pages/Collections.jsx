@@ -103,8 +103,8 @@ const Collections = () => {
   return (
     <div className="h-screen overflow-y-hidden w-full flex flex-col items-start justify-start relative">
       <div className=" h-full  p-8 w-full ">
-        <div className=" w-[17rem] h-full  view overflow-y-hidden  ">
-          <div className="flex items-center view justify-between px-4 py-3">
+        <div className=" w-[17rem] h-full view  overflow-y-hidden  ">
+          <div className="flex items-center  justify-between px-4 py-3">
             <span className="text-[0.8rem]">Collection</span>
             <button
               onClick={addCollectionToggle}

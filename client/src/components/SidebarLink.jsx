@@ -7,15 +7,15 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
   };
 
   return (
-    <NavLink to={path} role="link" className="w-full  py-1 view ">
+    <NavLink to={path} role="link" className="w-full mb-0.5  view ">
       {({ isActive }) => (
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full font-normal rounded-md  relative  border-0 box-border  btn-sm btn  ${
+          className={`w-full font-normal rounded h-[2.35rem] relative  border-0 box-border  btn-sm btn  ${
             isActive
-              ? "text-inherit bg-transparent hover:bg-transparent "
-              : "text-inherit bg-transparent hover:bg-transparent"
+              ? "text-white bg-[#23272c] hover:bg-[#23272c] "
+              : "text-[#9ea0a2] bg-transparent hover:bg-transparent"
           }
           ${sidebarState ? "flex justify-center   " : "flex justify-center "}
           `}
