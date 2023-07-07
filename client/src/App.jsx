@@ -79,7 +79,7 @@ function App() {
   }, [dispatch, firebaseCurrentUser?.uid]);
 
   return (
-    <div className="h-screen w-full bg-[#141518] font-inter text-[#7b7c82] text-[0.9rem] relative">
+    <div className="h-screen w-full bg-white font-inter text-black text-[0.9rem] relative">
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route
@@ -103,7 +103,7 @@ function App() {
 
                             </span> */} 
                             {/* <BiNote className="text-[1.5rem]"/> */}
-                            Collections
+                            {/* Collections */}
                              </span>
                         )}
                       </span>

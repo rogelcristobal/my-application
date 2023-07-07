@@ -27,7 +27,7 @@ const Sidebar = () => {
       transition={{ duration: 0.3 }}
       className={`${
         state ? "w-[4rem]" : "w-[18rem]"
-      } whitespace-nowrap  relative  bg-[#1b1c21] h-full flex  flex-col  items-center justify-start  flex-shrink-0`}
+      } whitespace-nowrap  relative  border-dark-right h-full flex  flex-col  items-center justify-start  flex-shrink-0`}
     >
       <div
         className={`w-full   relative flex   items-center justify-start   h-[4.7rem]   `}
@@ -64,7 +64,7 @@ const Sidebar = () => {
           } flex   w-full items-center mt-2   py-4 justify-center flex-col`}
         >
           {!state && (
-            <span className=" px-1 text-[0.7rem] text-[#6a6b6f] uppercase w-full  text-left  Capitalize   mb-3">
+            <span className=" px-1 text-[0.8rem] w-full  text-left  Capitalize   mb-3">
               General
             </span>
           )}

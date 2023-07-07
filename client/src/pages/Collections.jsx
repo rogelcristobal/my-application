@@ -103,8 +103,8 @@ const Collections = () => {
     <div className="h-screen overflow-y-hidden w-full flex flex-col items-start justify-start relative">
       <div className=" h-full  p-6 w-full ">
         <div className=" w-[19rem] h-full rounded-lg  overflow-y-hidden  ">
-          <div className="flex items-center text-[#68696d] justify-between px-4 py-2">
-            <span className="text-[0.9rem] ">All notes</span>
+          <div className="flex items-center  justify-between px-4 py-2">
+            {/* <span className="text-[0.9rem] ">All notes</span> */}
             {/* <button
               onClick={addCollectionToggle}
               className="text-[0.95rem]  w-fit  font-normal     h-fit  px-1.5 view py-2"
@@ -115,38 +115,39 @@ const Collections = () => {
           <div className=" w-full  pb-12  px-2  py-2 overflow-y-auto h-full space-y-2.5">
             <button
               onClick={addCollectionToggle}
-              className="text-[0.95rem]  w-full  hover:text-[#7c7d83] text-[#68696d]/80 font-normal rounded-md flex hover:bg-[#1b1c21]/90 bg-[#1b1c21]/60  items-center justify-center  gap-2  h-fit  px-2 py-3.5 view  "
+              className="  w-full   font-normal  flex border-dark  items-center justify-center  gap-2  h-fit  px-2 py-3.5 view  "
             >
               <span className="text-[0.9rem]  ">Create note</span>
             </button> 
             {isLoading ? (
               <span>loading data</span>
             ) : collections?.length === 0 ? (
-              <p className=" text-[0.95rem]">No collections to show</p>
+              <p className=" ">No collections to show</p>
             ) : (
               collections?.map((item, id) => (
                 <div
-                  className="min-h-[6.75rem] px-4  rounded-md bg-[#1b1c21] flex cursor-pointer py-3 view w-full "
+                  className=" px-4   border-dark flex cursor-pointer py-3 view w-full "
                   key={id}
                 >
                   <div className="  flex flex-col w-full text-normal item-start justify-between ">
                     <div className="flex flex-col pr-4">
-                      <span className=" text-[0.9rem] text-[#d8d8d8] font-normal capitalize mt-2">
+                      <span className="   font-normal capitalize mt-2">
                         {item.collectionTitle}
                       </span>
-                      <span className="text-[0.85rem] mt-2 overflow-hidden truncate text-[#7c7d83] w-full">
+                      <span className=" mt-2 overflow-hidden truncate w-full">
                         {item.description}
                       </span>
                     </div>
-                    <div className="mt-3 w-full pt-2 ">
-                      <span className=" text-[0.9rem] flex items-center gap-1 ">
-                        <BiNote />{item.savedNotes.length} 
+                    <div className="mt-0 w-full pt-2 ">
+                      <span className=" flex items-center gap-1 ">
+                        {/* <BiNote /> */}
+                        {item.savedNotes.length} 
                       </span>
                     </div>
                   </div>
                   <button
                     onClick={() => deleteCollection(item._id)}
-                    className="text-[0.9rem] border-dark rounded-md  view w-fit h-fit p-2"
+                    className="text-[0.9rem] border-dark   view w-fit h-fit p-2"
                   >
                     <BiDotsVerticalRounded />
                   </button>
