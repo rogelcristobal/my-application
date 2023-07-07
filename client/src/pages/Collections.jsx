@@ -13,11 +13,10 @@ const Collections = () => {
   const currentUser = useSelector((state) => state.currentUser.data);
   const [addCollectionModalState, setAddCollectionModalState] =
     React.useState(false);
-  const queryClient = new QueryClient();
   const dispatch = useDispatch();
 
   const [collections, setCollections] = React.useState([]);
-
+  const queryClient = new QueryClient()
   const headers = {
     userID: currentUser?._id,
     "Content-Type": "application/json",
@@ -36,7 +35,7 @@ const Collections = () => {
       console.log(error);
     }
   };
-  console.log(currentUser);
+  // console.log(currentUser);
   // once fetchData true set returned data to the state
   const { isLoading } = useQuery(["userData"], fetchData, {
     enabled: !!currentUser?._id,
@@ -48,8 +47,8 @@ const Collections = () => {
   // Trigger the query only when currentUser._id becomes available
   React.useEffect(() => {
     if (currentUser?._id) {
-      // queryClient.invalidateQueries("userData");
-      console.log("user loaded");
+      queryClient.invalidateQueries("userData");
+      
     }
   }, [currentUser]);
 
