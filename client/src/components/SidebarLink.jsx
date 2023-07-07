@@ -12,29 +12,29 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full font-normal rounded h-[2.5rem] relative  border-0 box-border  btn-sm btn  ${
+          className={`w-full font-normal rounded-md h-[2.875rem] relative px-4 border-0 box-border  btn-sm btn  ${
             isActive
-              ? "text-[#fefefe] bg-[#23272c] hover:bg-[#23272c] "
-              : "text-[#68696d] bg-transparent hover:bg-transparent"
+              ? "text-[#d8d8d9]  bg-transparent hover:bg-transparent "
+              : "text-[#68696d] bg-transparent hover:bg-transparent "
           }
           ${sidebarState ? "flex justify-center   " : "flex justify-center "}
           `}
         >
           <div className=" h-full flex justify-between items-center overflow-hidden w-full">
             <div
-              className={`flex justify-start items-center   h-full    w-full capitalize gap-4 ${
+              className={`flex justify-start items-center   h-full    w-full capitalize gap-3 ${
                 !sidebarState ? "max-w-[75%] " : "max-w-[100%]"
               }`}
             >
               <span
-                className={`text-[1rem]   mx-auto ${
+                className={`text-[1.2rem]   mx-auto ${
                   isActive && ""
                 }`}
               >
                 {icon}
               </span>
               {!sidebarState && (
-                <span className="flex items-center text-[0.825rem]  font-normal text-start w-full h-full overflow-x-hidden  truncate ">
+                <span className="flex items-center text-[0.925rem]   text-start w-full h-full overflow-x-hidden  truncate ">
                   {title}
                 </span>
               )}
@@ -42,7 +42,7 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
             {loading?
             <span className="text-sm">loading</span>
             :count > 0  && (
-              <div className="   view font-inter  rounded-full h-4 grid place-content-center w-4    text-[0.55rem]  ">
+              <div className="   view font-inter  rounded-full h-4 grid place-content-center w-4    text-[0.65rem]  ">
                 {count}
               </div>
             )

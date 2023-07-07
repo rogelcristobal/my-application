@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { BiPlus ,BiNote} from "react-icons/bi";
+import { BiDotsVerticalRounded ,BiNote} from "react-icons/bi";
 import AddCollectionModal from "../components/AddCollectionModal";
 import { QueryClient, useQuery } from "@tanstack/react-query";
 import { useSelector, useDispatch } from "react-redux";
@@ -102,23 +102,23 @@ const Collections = () => {
   return (
     <div className="h-screen overflow-y-hidden w-full flex flex-col items-start justify-start relative">
       <div className=" h-full  p-6 w-full ">
-        <div className=" w-[19rem] h-full rounded-lg  overflow-y-hidden  border-dark">
-          <div className="flex items-center text-[#d8d8d9] justify-between px-4 py-3">
-            <span className="text-[0.9rem] font-normal">Upcoming task</span>
-            <button
-              onClick={addCollectionToggle}
-              className="text-[0.95rem]  w-fit  font-normal     h-fit  px-2 view py-2"
-            >
-              <BiPlus />
-            </button>
-          </div>
-          <div className=" w-full  pb-16  px-4  py-2 overflow-y-auto h-full space-y-2">
+        <div className=" w-[19rem] h-full rounded-lg  overflow-y-hidden  ">
+          <div className="flex items-center text-[#68696d] justify-between px-4 py-2">
+            <span className="text-[0.9rem] ">All notes</span>
             {/* <button
               onClick={addCollectionToggle}
-              className="text-[0.95rem]  w-full  thin-box-divider font-normal grid place-content-center   h-fit  px-2 py-2 view "
+              className="text-[0.95rem]  w-fit  font-normal     h-fit  px-1.5 view py-2"
             >
-              <BiPlus /> 
-            </button>  */}
+              <BiPlus />
+            </button> */}
+          </div>
+          <div className=" w-full  pb-12  px-2  py-2 overflow-y-auto h-full space-y-2.5">
+            <button
+              onClick={addCollectionToggle}
+              className="text-[0.95rem]  w-full  hover:text-[#7c7d83] text-[#68696d]/80 font-normal rounded-md flex hover:bg-[#1b1c21]/90 bg-[#1b1c21]/60  items-center justify-center  gap-2  h-fit  px-2 py-3.5 view  "
+            >
+              <span className="text-[0.9rem]  ">Create note</span>
+            </button> 
             {isLoading ? (
               <span>loading data</span>
             ) : collections?.length === 0 ? (
@@ -126,30 +126,30 @@ const Collections = () => {
             ) : (
               collections?.map((item, id) => (
                 <div
-                  className="min-h-[6.75rem] bg-[#1c1d21] hover:thin-box-divider rounded-md  flex cursor-pointer py-3 view w-full "
+                  className="min-h-[6.75rem] px-4  rounded-md bg-[#1b1c21] flex cursor-pointer py-3 view w-full "
                   key={id}
                 >
-                  <div className=" flex flex-col w-full text-normal item-start justify-between ">
-                    <div className="flex flex-col px-4">
-                      <span className=" text-[0.8rem] text-[#d8d8d8] font-normal capitalize mt-2">
+                  <div className="  flex flex-col w-full text-normal item-start justify-between ">
+                    <div className="flex flex-col pr-4">
+                      <span className=" text-[0.9rem] text-[#d8d8d8] font-normal capitalize mt-2">
                         {item.collectionTitle}
                       </span>
-                      <span className="text-[0.8rem] mt-2 overflow-hidden truncate text-[#7c7d83] w-full">
+                      <span className="text-[0.85rem] mt-2 overflow-hidden truncate text-[#7c7d83] w-full">
                         {item.description}
                       </span>
                     </div>
-                    <div className="mt-3 w-full pt-2  px-4">
+                    <div className="mt-3 w-full pt-2 ">
                       <span className=" text-[0.9rem] flex items-center gap-1 ">
                         <BiNote />{item.savedNotes.length} 
                       </span>
                     </div>
                   </div>
-                  {/* <button
+                  <button
                     onClick={() => deleteCollection(item._id)}
-                    className="text-xs view w-fit h-fit p-2"
+                    className="text-[0.9rem] border-dark rounded-md  view w-fit h-fit p-2"
                   >
-                    delete
-                  </button> */}
+                    <BiDotsVerticalRounded />
+                  </button>
                 </div>
               ))
             )}

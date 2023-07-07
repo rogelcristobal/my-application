@@ -14,6 +14,7 @@ import {
 } from "./features/user/firebaseCurrentUserSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "./features/user/currentUserSlice";
+import { BiNote } from "react-icons/bi";
 
 function App() {
   const dispatch = useDispatch();
@@ -78,7 +79,7 @@ function App() {
   }, [dispatch, firebaseCurrentUser?.uid]);
 
   return (
-    <div className="h-screen w-full bg-[#242529] font-inter text-[#7b7c82] text-[0.9rem] relative">
+    <div className="h-screen w-full bg-[#141518] font-inter text-[#7b7c82] text-[0.9rem] relative">
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route
@@ -90,17 +91,23 @@ function App() {
                 <Sidebar></Sidebar>
                 <div className="flex items-start  flex-col justify-start w-full  h-screen">
                   {/* navigation */}
-                  <div className="h-fit w-full flex border-dark-bottom   px-10   py-5   items-center  justify-between">
+                  <div className="h-fit w-full flex  px-10   pb-2 pt-12   items-center  justify-between">
                     <div className="  flex flex-col">
                      
-                      {/* <span className=" capitalize ">
+                      <span className=" capitalize ">
                         {userDataLoading ? (
                           <span>loading</span>
                         ) : (
-                          <span>Welcome back, <span className="">{currentUser?.firstName} {currentUser?.lastName}.</span> </span>
+                          <span className="text-[1.4rem] flex items-center gap-2 text-[#d8d8d9] font-medium">
+                            {/* Welcome back, <span className="">{currentUser?.firstName} {currentUser?.lastName}.
+
+                            </span> */} 
+                            {/* <BiNote className="text-[1.5rem]"/> */}
+                            Collections
+                             </span>
                         )}
                       </span>
-                      <span className="text-[0.8rem] mt-1 font-medium ">
+                      {/* <span className="text-[0.8rem] mt-1 font-medium ">
                         {userDataLoading ? (
                           <span >loading</span>
                         ) : (
@@ -108,9 +115,9 @@ function App() {
                         )}
                       </span> */}
                     </div>
-                    <button onClick={logOutUser} className="view text-sm p-1">
+                    {/* <button onClick={logOutUser} className="view text-sm p-1">
                       logout
-                    </button>
+                    </button> */}
                   </div>
                   <Routes>
                     <Route

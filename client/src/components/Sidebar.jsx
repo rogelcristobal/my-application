@@ -13,7 +13,7 @@ const Sidebar = () => {
   const handleToggleSidebar = () => {
     setState(!state);
     if (state) {
-      sidebarControl.start({ width: "16.5rem" });
+      sidebarControl.start({ width: "18rem" });
     } else {
       sidebarControl.start({ width: "4rem" });
     }
@@ -23,11 +23,11 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      initial={{ width: "16.5rem" }}
+      initial={{ width: "18rem" }}
       transition={{ duration: 0.3 }}
       className={`${
-        state ? "w-[4rem]" : "w-[16.5rem]"
-      } whitespace-nowrap  relative border-r-[1px] border-solid border-neutral-400/10 bg-[#1c1d21] h-full flex  flex-col  items-center justify-start  flex-shrink-0`}
+        state ? "w-[4rem]" : "w-[18rem]"
+      } whitespace-nowrap  relative  bg-[#1b1c21] h-full flex  flex-col  items-center justify-start  flex-shrink-0`}
     >
       <div
         className={`w-full   relative flex   items-center justify-start   h-[4.7rem]   `}
@@ -72,13 +72,13 @@ const Sidebar = () => {
             { path: "/dashboard", title: "dashboard", icon: <BiLayout /> },
             {
               path: "/collections",
-              title: "my notes",
+              title: "Collections",
               icon: <BiNote />,
               count: currentUser?.noteCollections?.length,
               loading: currentUserLoading,
             },
-            { path: "/todos", title: "todos", icon: <BiListCheck /> },
-            { path: "/blogs", title: "Blogs", icon: <BiEditAlt /> },
+            // { path: "/todos", title: "todos", icon: <BiListCheck /> },
+            // { path: "/blogs", title: "Blogs", icon: <BiEditAlt /> },
           ].map((item, id) => (
             <SidebarLink
               key={id}
