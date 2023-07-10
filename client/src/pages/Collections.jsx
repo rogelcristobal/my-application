@@ -4,12 +4,13 @@ import { BiDotsVerticalRounded ,BiNote} from "react-icons/bi";
 import AddCollectionModal from "../components/AddCollectionModal";
 import { QueryClient, useQuery } from "@tanstack/react-query";
 import { useSelector, useDispatch } from "react-redux";
-import socket from "../socket";
 import {
   deleteCurrentUserCollection,
   addCurrentUserCollection,
 } from "../features/user/currentUserSlice";
+import SocketContext from "../context/SocketContext";
 const Collections = () => {
+  const {socket} = React.useContext(SocketContext)
   const currentUser = useSelector((state) => state.currentUser.data);
   const [addCollectionModalState, setAddCollectionModalState] =
     React.useState(false);
