@@ -97,8 +97,6 @@ const Collections = () => {
     setAddCollectionModalState(!addCollectionModalState);
   };
 
-  // console.log(currentUser?.noteCollections)
-
   return (
     <div className="h-screen overflow-y-hidden w-full flex flex-col items-start justify-start relative">
       <div className=" h-full  p-6 w-full ">

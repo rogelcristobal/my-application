@@ -31,7 +31,9 @@ const Sidebar = () => {
   const [userData, setUserData] = React.useState([]);
   React.useEffect(() => {
     setUserData(currentUser);
-    // queryClient.invalidateQueries('userData');
+    if (currentUser?._id) {
+      queryClient.invalidateQueries("userData");
+    }
   }, [currentUser]);
 
 
