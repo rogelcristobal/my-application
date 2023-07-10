@@ -1,11 +1,19 @@
 import React from "react";
-import { LuListChecks,LuArchive, LuEdit3, LuSettings ,LuChevronLeft} from "react-icons/lu";
-import {BiNote,BiLayout,BiListCheck,BiEditAlt} from 'react-icons/bi'
+import {
+  LuListChecks,
+  LuArchive,
+  LuEdit3,
+  LuSettings,
+  LuChevronLeft,
+} from "react-icons/lu";
+import { BiNote, BiLayout, BiListCheck, BiEditAlt } from "react-icons/bi";
 import { TbFolder, TbLayoutGrid } from "react-icons/tb";
 import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
 import { useSelector } from "react-redux";
+import SocketContext from "../context/SocketContext";
 const Sidebar = () => {
+  const { socket } = React.useContext(SocketContext);
   const [state, setState] = React.useState(false);
   const currentUserLoading = useSelector((state) => state.currentUser.loading);
   const currentUser = useSelector((state) => state.currentUser.data);
@@ -18,8 +26,32 @@ const Sidebar = () => {
       sidebarControl.start({ width: "4rem" });
     }
   };
+  const [userData, setUserData] = React.useState([]);
+  React.useEffect(() => {
+    setUserData(currentUser);
+  }, [currentUser]);
 
-  // console.log("sidebar",currentUser)
+  React.useEffect(() => {
+    socket.on("deleteNoteCollection", (data) => {
+      setUserData((prevUserData) => ({
+        ...prevUserData,
+        noteCollections: prevUserData.noteCollections.filter(
+          (c) => c._id !== data._id
+        ),
+      }));
+    });
+    socket.on("addNoteCollection", (data) => {
+       setUserData((prevUserData) => ({
+        ...prevUserData,
+        noteCollections: (prevCollections) => [...prevCollections, data],
+      }));
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+
   return (
     <motion.div
       animate={sidebarControl}
@@ -74,7 +106,7 @@ const Sidebar = () => {
               path: "/collections",
               title: "Collections",
               icon: <BiNote />,
-              count: currentUser?.noteCollections?.length,
+              count: userData?.noteCollections?.length,
               loading: currentUserLoading,
             },
             // { path: "/todos", title: "todos", icon: <BiListCheck /> },

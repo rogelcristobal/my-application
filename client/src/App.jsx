@@ -66,7 +66,6 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-
   // this stores the currentUser that will be used in entire app
   //  via firebase uid(which is its only purpose)
   React.useEffect(() => {

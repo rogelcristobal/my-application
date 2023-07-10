@@ -54,11 +54,10 @@ const Collections = () => {
   }, [currentUser]);
 
   // socket event handler
+  // deleteCollection
   React.useEffect(() => {
-    // deleteCollection
+    // console.log("event: deleteNoteCollection", data);
     socket.on("deleteNoteCollection", (data) => {
-      console.log("event: deleteNoteCollection", data);
-
       //  update the currentUser (which used in the whole app)
       //  with the added collection
       dispatch(deleteCurrentUserCollection(data));
@@ -70,7 +69,7 @@ const Collections = () => {
     });
     // addcollection
     socket.on("addNoteCollection", (data) => {
-      console.log("event: addNoteCollection", data);
+      // console.log("event: addNoteCollection", data);
       setAddCollectionModalState(false);
       //  update the currentUser (which used in the whole app)
       //  with the added collection
