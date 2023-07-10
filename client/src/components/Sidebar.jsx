@@ -30,27 +30,20 @@ const Sidebar = () => {
   };
   const [userData, setUserData] = React.useState([]);
   React.useEffect(() => {
-    setUserData(currentUser);
     if (currentUser?._id) {
+      setUserData(currentUser?.noteCollections);
       queryClient.invalidateQueries("userData");
     }
-  }, [currentUser]);
-
+  }, [currentUser,currentUserLoading]);
+  console.log("component", userData)
 
   React.useEffect(() => {
     socket.on("deleteNoteCollection", (data) => {
-      setUserData((prevUserData) => ({
-        ...prevUserData,
-        noteCollections: prevUserData.noteCollections.filter(
-          (c) => c._id !== data._id
-        ),
-      }));
+      setUserData(prev=>prev?.filter((c) => c._id !== data._id)
+      )
     });
     socket.on("addNoteCollection", (data) => {
-       setUserData((prevUserData) => ({
-        ...prevUserData,
-        noteCollections: (prevCollections) => [...prevCollections, data],
-      }));
+      setUserData((prevCollections) => [...prevCollections, data]);
     });
 
     return () => {
@@ -112,7 +105,7 @@ const Sidebar = () => {
               path: "/collections",
               title: "Collections",
               icon: <BiNote />,
-              count: userData?.noteCollections?.length,
+              count: userData?.length,
               loading: currentUserLoading,
             },
             // { path: "/todos", title: "todos", icon: <BiListCheck /> },
