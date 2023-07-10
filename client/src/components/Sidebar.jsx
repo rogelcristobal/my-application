@@ -12,12 +12,14 @@ import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
 import { useSelector } from "react-redux";
 import SocketContext from "../context/SocketContext";
+import { QueryClient } from "@tanstack/react-query";
 const Sidebar = () => {
   const { socket } = React.useContext(SocketContext);
   const [state, setState] = React.useState(false);
   const currentUserLoading = useSelector((state) => state.currentUser.loading);
   const currentUser = useSelector((state) => state.currentUser.data);
   const sidebarControl = useAnimation();
+  const queryClient = new QueryClient()
   const handleToggleSidebar = () => {
     setState(!state);
     if (state) {
@@ -29,9 +31,14 @@ const Sidebar = () => {
   const [userData, setUserData] = React.useState([]);
   React.useEffect(() => {
     setUserData(currentUser);
+    queryClient.invalidateQueries('userData');
   }, [currentUser]);
 
+
   React.useEffect(() => {
+
+    
+
     socket.on("deleteNoteCollection", (data) => {
       setUserData((prevUserData) => ({
         ...prevUserData,
