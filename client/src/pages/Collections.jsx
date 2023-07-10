@@ -49,7 +49,6 @@ const Collections = () => {
   React.useEffect(() => {
     if (currentUser?._id) {
       queryClient.invalidateQueries("userData");
-      
     }
   }, [currentUser]);
 
@@ -87,7 +86,7 @@ const Collections = () => {
   const deleteCollection = async (id) => {
     try {
       await axios.delete(`http://localhost:3001/collections/${id}`);
-      socket.emit("deleteNoteCollection", id);
+      
     } catch (error) {
       console.log(error);
     }
@@ -97,6 +96,8 @@ const Collections = () => {
   const addCollectionToggle = () => {
     setAddCollectionModalState(!addCollectionModalState);
   };
+
+  // console.log(currentUser?.noteCollections)
 
   return (
     <div className="h-screen overflow-y-hidden w-full flex flex-col items-start justify-start relative">
@@ -114,7 +115,7 @@ const Collections = () => {
           <div className=" w-full  pb-12  px-2  py-2 overflow-y-auto h-full space-y-2.5">
             <button
               onClick={addCollectionToggle}
-              className="  w-full   font-normal  flex border-dark  items-center justify-center  gap-2  h-fit  px-2 py-3.5 view  "
+              className="  w-fit   font-normal  flex border-dark  items-center justify-center  gap-2  h-fit  px-2 py-3 view  "
             >
               <span className="text-[0.9rem]  ">Create note</span>
             </button> 

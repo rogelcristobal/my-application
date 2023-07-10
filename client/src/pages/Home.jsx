@@ -1,19 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import socket from "../socket";
 const Home = () => {
   
   const currentUser = useSelector((state) => state.currentUser.data);
   const userDataLoading = useSelector((state) => state.currentUser.loading);
 
-  // React.useEffect(()=>{
-  //   // listen on noteDeletion
-  //   socket.on("deleteNoteCollection", (data)=>{
-  //     console.log('dashboard deleteNoteCollection', data)
-  //   })
 
-  //   return()=> socket.disconnect()
-  // },[])
   return (
     <div className="h-full  w-full flex flex-col items-start justify-start relative">
       <div className=" h-full overflow-y-scroll pt-2 px-6 w-full">

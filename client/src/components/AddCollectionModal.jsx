@@ -1,9 +1,7 @@
 import axios from "axios";
 import React from "react";
-import { io } from "socket.io-client";
 import { useSelector } from "react-redux";
 const AddCollectionModal = ({collections}) => {
-  const socket = io("http://localhost:3001");
  
   const [input, setInput] = React.useState({
     title: "",
@@ -23,7 +21,6 @@ const AddCollectionModal = ({collections}) => {
       {headers} 
       );
 
-      socket.emit('addNoteCollection',data)
       
     } catch (error) {}
 

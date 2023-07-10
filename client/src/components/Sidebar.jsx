@@ -31,14 +31,11 @@ const Sidebar = () => {
   const [userData, setUserData] = React.useState([]);
   React.useEffect(() => {
     setUserData(currentUser);
-    queryClient.invalidateQueries('userData');
+    // queryClient.invalidateQueries('userData');
   }, [currentUser]);
 
 
   React.useEffect(() => {
-
-    
-
     socket.on("deleteNoteCollection", (data) => {
       setUserData((prevUserData) => ({
         ...prevUserData,
