@@ -28,6 +28,8 @@ const Sidebar = () => {
       sidebarControl.start({ width: "4rem" });
     }
   };
+
+  // stores the collection id array
   const [userData, setUserData] = React.useState([]);
   React.useEffect(() => {
     if (currentUser?._id) {
@@ -35,7 +37,6 @@ const Sidebar = () => {
       queryClient.invalidateQueries("userData");
     }
   }, [currentUser,currentUserLoading]);
-  console.log("component", userData)
 
   React.useEffect(() => {
     socket.on("deleteNoteCollection", (data) => {
@@ -45,11 +46,16 @@ const Sidebar = () => {
     socket.on("addNoteCollection", (data) => {
       setUserData((prevCollections) => [...prevCollections, data]);
     });
-
     return () => {
       socket.disconnect();
     };
   }, []);
+
+
+  if(userData.length != 0){
+    console.log("component", userData)
+  }
+
 
   return (
     <motion.div

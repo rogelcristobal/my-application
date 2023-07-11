@@ -22,6 +22,7 @@ const Collections = () => {
     userID: currentUser?._id,
     "Content-Type": "application/json",
   };
+ 
   // get data from api
   const fetchData = async () => {
     try {
@@ -51,6 +52,8 @@ const Collections = () => {
       queryClient.invalidateQueries("userData");
     }
   }, [currentUser]);
+
+
 
   // socket event handler
   // deleteCollection
@@ -110,12 +113,12 @@ const Collections = () => {
               <BiPlus />
             </button> */}
           </div>
-          <div className=" w-full  pb-12  px-2  py-2 overflow-y-auto h-full space-y-2.5">
+          <div className=" w-full  pb-12  px-2  py-2 overflow-y-auto  h-full space-y-2.5">
             <button
               onClick={addCollectionToggle}
               className="  w-fit   font-normal  flex border-dark  items-center justify-center  gap-2  h-fit  px-2 py-3 view  "
             >
-              <span className="text-[0.9rem]  ">Create note</span>
+              <span className="text-[0.9rem]  ">Add Collection</span>
             </button> 
             {isLoading ? (
               <span>loading data</span>
@@ -124,7 +127,7 @@ const Collections = () => {
             ) : (
               collections?.map((item, id) => (
                 <div
-                  className=" px-4   border-dark flex cursor-pointer py-3 view w-full "
+                  className=" px-4 relative  border-dark flex cursor-pointer py-3 view w-full "
                   key={id}
                 >
                   <div className="  flex flex-col w-full text-normal item-start justify-between ">
@@ -137,9 +140,9 @@ const Collections = () => {
                       </span>
                     </div>
                     <div className="mt-0 w-full pt-2 ">
-                      <span className=" flex items-center gap-1 ">
-                        {/* <BiNote /> */}
+                      <span className=" flex items-center gap-2 ">
                         {item.savedNotes.length} 
+                        <BiNote />
                       </span>
                     </div>
                   </div>
@@ -149,6 +152,7 @@ const Collections = () => {
                   >
                     <BiDotsVerticalRounded />
                   </button>
+                  
                 </div>
               ))
             )}
