@@ -52,9 +52,9 @@ const Sidebar = () => {
   }, []);
 
 
-  if(userData.length != 0){
-    console.log("component", userData)
-  }
+  // if(userData.length != 0){
+  //   console.log("component", userData)
+  // }
 
 
   return (

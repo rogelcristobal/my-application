@@ -14,7 +14,7 @@ import {
 } from "./features/user/firebaseCurrentUserSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "./features/user/currentUserSlice";
-import { BiNote } from "react-icons/bi";
+import { NoteCollectionDropDownPositionProvider } from "./context/NoteCollectionDropDownPositionContext";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,11 +28,9 @@ function App() {
   const currentUser = useSelector((state) => state.currentUser.data);
   const userDataLoading = useSelector((state) => state.currentUser.loading);
 
-
-
-//  if(!userDataLoading) console.log(currentUser)
+  //  if(!userDataLoading) console.log(currentUser)
   // debug purpose
- 
+
   const logOutUser = async () => {
     try {
       await auth.signOut();
@@ -69,12 +67,9 @@ function App() {
   // this stores the currentUser that will be used in entire app
   //  via firebase uid(which is its only purpose)
   React.useEffect(() => {
-
-    
     if (!firebaseCurrentUserIsLoading) {
       dispatch(fetchUser(firebaseCurrentUser?.uid));
     }
-  
   }, [dispatch, firebaseCurrentUser?.uid]);
 
   return (
@@ -92,7 +87,6 @@ function App() {
                   {/* navigation */}
                   <div className="h-fit w-full flex  px-10   pb-2 pt-12   items-center  justify-between">
                     <div className="  flex flex-col">
-                     
                       <span className=" capitalize ">
                         {userDataLoading ? (
                           <span>loading</span>
@@ -100,10 +94,10 @@ function App() {
                           <span className="text-[1.4rem] flex items-center gap-2 text-[#d8d8d9] font-medium">
                             {/* Welcome back, <span className="">{currentUser?.firstName} {currentUser?.lastName}.
 
-                            </span> */} 
+                            </span> */}
                             {/* <BiNote className="text-[1.5rem]"/> */}
                             {/* Collections */}
-                             </span>
+                          </span>
                         )}
                       </span>
                       {/* <span className="text-[0.8rem] mt-1 font-medium ">
@@ -126,7 +120,11 @@ function App() {
                     <Route path="/dashboard" element={<Home />} />
                     <Route
                       path="/collections"
-                      element={<Collections />}
+                      element={
+                        <NoteCollectionDropDownPositionProvider>
+                          <Collections />
+                        </NoteCollectionDropDownPositionProvider>
+                      }
                     ></Route>
                     <Route path="/Todos" element={<Todos />}></Route>
                     <Route path="/Blogs" element={<Blogs />}></Route>
