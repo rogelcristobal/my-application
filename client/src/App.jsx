@@ -14,6 +14,7 @@ import {
 } from "./features/user/firebaseCurrentUserSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "./features/user/currentUserSlice";
+import { NoteCollectionDropDownPositionProvider } from "./context/NoteCollectionDropDownPositionContext";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,11 +28,9 @@ function App() {
   const currentUser = useSelector((state) => state.currentUser.data);
   const userDataLoading = useSelector((state) => state.currentUser.loading);
 
-
-
-//  if(!userDataLoading) console.log(currentUser)
+  //  if(!userDataLoading) console.log(currentUser)
   // debug purpose
- 
+
   const logOutUser = async () => {
     try {
       await auth.signOut();
@@ -65,51 +64,53 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-
   // this stores the currentUser that will be used in entire app
   //  via firebase uid(which is its only purpose)
   React.useEffect(() => {
-
-    
     if (!firebaseCurrentUserIsLoading) {
       dispatch(fetchUser(firebaseCurrentUser?.uid));
     }
-  
   }, [dispatch, firebaseCurrentUser?.uid]);
 
   return (
-    <div className="h-screen w-full bg-[#ffffff] font-inter  text-black relative">
+    <div className="h-screen w-full bg-white font-inter text-black text-[0.9rem] relative">
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route
           path="/*"
           element={
             <ProtectedRoute>
-              <div className="h-full w-full   flex items-start  justify-start relative">
+              <div className="h-full   flex items-start  justify-start relative">
                 {/* sidebar */}
                 <Sidebar></Sidebar>
-                <div className="flex items-start flex-col justify-start w-full  h-full">
+                <div className="flex items-start  flex-col justify-start w-full  h-screen">
                   {/* navigation */}
-                  <div className="h-fit w-full flex view  px-8 mb-  py-5 items-center  justify-between">
-                    <div className="view flex flex-col">
-                      <span>
+                  <div className="h-fit w-full flex  px-10   pb-2 pt-12   items-center  justify-between">
+                    <div className="  flex flex-col">
+                      <span className=" capitalize ">
                         {userDataLoading ? (
                           <span>loading</span>
                         ) : (
-                          `${currentUser?.firstName} ${currentUser?.lastName}`
+                          <span className="text-[1.4rem] flex items-center gap-2 text-[#d8d8d9] font-medium">
+                            {/* Welcome back, <span className="">{currentUser?.firstName} {currentUser?.lastName}.
+
+                            </span> */}
+                            {/* <BiNote className="text-[1.5rem]"/> */}
+                            {/* Collections */}
+                          </span>
                         )}
                       </span>
-                      <span className="text-sm">
+                      {/* <span className="text-[0.8rem] mt-1 font-medium ">
                         {userDataLoading ? (
-                          <span>loading</span>
+                          <span >loading</span>
                         ) : (
                           currentUser?.email
                         )}
-                      </span>
+                      </span> */}
                     </div>
-                    <button onClick={logOutUser} className="view text-sm p-1">
+                    {/* <button onClick={logOutUser} className="view text-sm p-1">
                       logout
-                    </button>
+                    </button> */}
                   </div>
                   <Routes>
                     <Route
@@ -119,7 +120,11 @@ function App() {
                     <Route path="/dashboard" element={<Home />} />
                     <Route
                       path="/collections"
-                      element={<Collections />}
+                      element={
+                        <NoteCollectionDropDownPositionProvider>
+                          <Collections />
+                        </NoteCollectionDropDownPositionProvider>
+                      }
                     ></Route>
                     <Route path="/Todos" element={<Todos />}></Route>
                     <Route path="/Blogs" element={<Blogs />}></Route>

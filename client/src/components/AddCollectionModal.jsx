@@ -1,9 +1,7 @@
 import axios from "axios";
 import React from "react";
-import { io } from "socket.io-client";
 import { useSelector } from "react-redux";
-const AddCollectionModal = ({collections}) => {
-  const socket = io("http://localhost:3001");
+const AddCollectionModal = () => {
  
   const [input, setInput] = React.useState({
     title: "",
@@ -17,13 +15,12 @@ const AddCollectionModal = ({collections}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await axios.post(
+       await axios.post(
         `http://localhost:3001/collections/`,
         { title: input.title, description: input.description },
       {headers} 
       );
 
-      socket.emit('addNoteCollection',data)
       
     } catch (error) {}
 

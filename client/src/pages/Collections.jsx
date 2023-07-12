@@ -3,25 +3,29 @@ import axios from "axios";
 import AddCollectionModal from "../components/AddCollectionModal";
 import { QueryClient, useQuery } from "@tanstack/react-query";
 import { useSelector, useDispatch } from "react-redux";
-import { io } from "socket.io-client";
 import {
   deleteCurrentUserCollection,
   addCurrentUserCollection,
 } from "../features/user/currentUserSlice";
+import SocketContext from "../context/SocketContext";
+import NoteCollection from "../components/NoteCollection";
+import { useScrollPosition } from "../hook/useScrollPosition";
+import NoteCollectionDropDownPositionContext from "../context/NoteCollectionDropDownPositionContext";
+
 const Collections = () => {
-  const socket = io("http://localhost:3001");
+  const { socket } = React.useContext(SocketContext);
   const currentUser = useSelector((state) => state.currentUser.data);
   const [addCollectionModalState, setAddCollectionModalState] =
     React.useState(false);
-  const queryClient = new QueryClient();
   const dispatch = useDispatch();
 
   const [collections, setCollections] = React.useState([]);
-
+  const queryClient = new QueryClient();
   const headers = {
     userID: currentUser?._id,
     "Content-Type": "application/json",
   };
+
   // get data from api
   const fetchData = async () => {
     try {
@@ -36,7 +40,7 @@ const Collections = () => {
       console.log(error);
     }
   };
-
+  // console.log(currentUser);
   // once fetchData true set returned data to the state
   const { isLoading } = useQuery(["userData"], fetchData, {
     enabled: !!currentUser?._id,
@@ -50,14 +54,13 @@ const Collections = () => {
     if (currentUser?._id) {
       queryClient.invalidateQueries("userData");
     }
-  }, [currentUser?._id]);
+  }, [currentUser]);
 
   // socket event handler
+  // deleteCollection
   React.useEffect(() => {
-    // deleteCollection
+    // console.log("event: deleteNoteCollection", data);
     socket.on("deleteNoteCollection", (data) => {
-      console.log("event: deleteNoteCollection", data);
-      
       //  update the currentUser (which used in the whole app)
       //  with the added collection
       dispatch(deleteCurrentUserCollection(data));
@@ -69,14 +72,14 @@ const Collections = () => {
     });
     // addcollection
     socket.on("addNoteCollection", (data) => {
-      console.log("event: addNoteCollection", data);
-      setAddCollectionModalState(false)
+      // console.log("event: addNoteCollection", data);
+      setAddCollectionModalState(false);
       //  update the currentUser (which used in the whole app)
       //  with the added collection
-      dispatch(addCurrentUserCollection(data)); 
+      dispatch(addCurrentUserCollection(data));
 
       //update state on this component
-      setCollections((prevCollections) => [...prevCollections, data]); 
+      setCollections((prevCollections) => [...prevCollections, data]);
     });
     return () => {
       socket.disconnect();
@@ -87,50 +90,78 @@ const Collections = () => {
   const deleteCollection = async (id) => {
     try {
       await axios.delete(`http://localhost:3001/collections/${id}`);
-      socket.emit("deleteNoteCollection", id);
     } catch (error) {
       console.log(error);
     }
   };
-
+  const x = "10rem";
   // toggle the modal
   const addCollectionToggle = () => {
     setAddCollectionModalState(!addCollectionModalState);
   };
 
+  // ui
+  const parentScrollableRef = React.useRef(null);
+
+  const scrollPosition = useScrollPosition(parentScrollableRef);
+
+  const { dropDownState, setDropDownState } = React.useContext(
+    NoteCollectionDropDownPositionContext
+  );
+
+  React.useEffect(() => {
+    setDropDownState({ ...dropDownState, isEnabled: false });
+  }, [scrollPosition]);
+  // console.log(dropDownState.el)
   return (
-    <div className="h-full w-full flex flex-col items-start justify-start relative">
-      <div className=" h-full overflow-y-scroll px-10 pt-10 w-full">
-        <div className=" w-full view h-full space-y-3 p-4">
-          <button
-            onClick={addCollectionToggle}
-            className="text-sm view w-fit h-fit p-2"
+    <div className="h-screen overflow-y-hidden w-full flex flex-col items-start justify-start relative">
+      <div className=" h-full  p-6 w-full relative">
+        <div className=" w-[19rem] h-full rounded-lg  overflow-y-hidden relative ">
+          <div className="flex items-center  justify-between px-2 py-2">
+            <button
+              onClick={addCollectionToggle}
+              className="text-[0.95rem]  w-fit  font-normal  border-dark   h-fit  px-4 view py-2"
+            >
+              add
+            </button>
+            <p>scroll_pos: {Math.floor(scrollPosition)}</p>
+          </div>
+          {/* scrollabe parent */}
+          <div
+            ref={parentScrollableRef}
+            className=" w-full  pb-12  px-2  py-2 overflow-y-auto   h-full space-y-2.5"
           >
-            create collection
-          </button>
-          {isLoading ? (
-            <span>loading data</span>
-          ) : collections?.length === 0 ? (
-            <p>no collections to show</p>
-          ) : (
-            collections?.map((item, id) => (
-              <div className="h-24 flex cursor-pointer view w-60" key={id}>
-                <div className="view flex flex-col w-full text-normal item-start justify-end">
-                  <span>{item.collectionTitle}</span>
-                  <span className="text-sm">{item.description}</span>
-                  <span className="text-gray-400 text-sm">
-                    {item.savedNotes.length} files
-                  </span>
-                
-                </div>
-                <button
-                  onClick={() => deleteCollection(item._id)}
-                  className="text-xs view w-fit h-fit p-2"
-                >
-                  delete
-                </button>
+            {isLoading ? (
+              <span>loading data</span>
+            ) : collections?.length === 0 ? (
+              <p className=" ">No collections to show</p>
+            ) : (
+              collections?.map((item, id) => (
+                // this is the element i want to track
+                <NoteCollection
+                  item={item}
+                  key={id}
+                  parentScrollPosition={scrollPosition}
+                  deleteCollection={deleteCollection}
+                />
+              ))
+            )}
+          </div>
+
+          {dropDownState.isEnabled && (
+            <div
+              style={{
+                top: Math.floor(dropDownState.el.top) + 55,
+                left: dropDownState.el.right - 50,
+              }}
+              className={`h-fit fixed z-[50]  w-fit bg-white `}
+            >
+              <div className="join join-vertical font-inter">
+                <button onClick={()=>console.log(dropDownState.el)} className="btn hover:btn-accent bg-white capitalize font-normal border-dark join-item">Delete</button>
+                <button className="btn hover:btn-accent bg-white capitalize font-normal border-dark join-item">Edit</button>
+             
               </div>
-            ))
+            </div>
           )}
         </div>
       </div>
