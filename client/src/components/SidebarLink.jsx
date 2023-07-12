@@ -12,10 +12,10 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full font-normal rounded-md h-[2.875rem] relative px-4 border-0 box-border  btn-sm btn  ${
+          className={`w-full font-normal rounded-md h-[2.8rem] relative px-4 border-0 box-border   ${
             isActive
-              ? "text-black  bg-transparent hover:bg-transparent "
-              : "text-black bg-transparent hover:bg-transparent "
+              ? "text-inherit  bg-[#f3f5f9]/50 hover:bg-[#f3f5f9]/50 "
+              : "text-inherit bg-transparent hover:bg-transparent "
           }
           ${sidebarState ? "flex justify-center   " : "flex justify-center "}
           `}
@@ -26,15 +26,15 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
                 !sidebarState ? "max-w-[75%] " : "max-w-[100%]"
               }`}
             >
-              {/* <span
-                className={`text-[1.2rem]   mx-auto ${
-                  isActive && ""
+              <span
+                className={`text-[1rem]   mx-auto ${
+                  isActive && "text-blue-500"
                 }`}
               >
                 {icon}
-              </span> */}
+              </span>
               {!sidebarState && (
-                <span className="flex items-center   text-start w-full h-full overflow-x-hidden  truncate ">
+                <span className="flex items-center font-medium text-[0.825rem] text-start w-full h-full overflow-x-hidden  truncate ">
                   {title}
                 </span>
               )}
@@ -42,7 +42,7 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
             {loading?
             <span className="text-sm">loading</span>
             :count > 0  && (
-              <div className="   view font-inter  rounded-full h-4 grid place-content-center w-4   ">
+              <div className=" font-medium text-[0.6rem] bg-[#f3f4f9] rounded-full h-5 grid place-content-center w-5 text-inherit  ">
                 {count}
               </div>
             )

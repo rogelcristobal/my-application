@@ -11,6 +11,9 @@ import SocketContext from "../context/SocketContext";
 import NoteCollection from "../components/NoteCollection";
 import { useScrollPosition } from "../hook/useScrollPosition";
 import NoteCollectionDropDownPositionContext from "../context/NoteCollectionDropDownPositionContext";
+import {BiTrashAlt,BiEdit} from 'react-icons/bi'
+
+
 
 const Collections = () => {
   const { socket } = React.useContext(SocketContext);
@@ -45,7 +48,7 @@ const Collections = () => {
       console.log(error);
     }
   };
-  
+
   // once fetchData true set returned data to the state
   const { isLoading } = useQuery(["userData"], fetchData, {
     enabled: !!currentUser?._id,
@@ -140,7 +143,7 @@ const Collections = () => {
             >
               add
             </button>
-            <p>scroll_pos: {Math.floor(scrollPosition)}</p>
+            {/* <p>scroll_pos: {Math.floor(scrollPosition)}</p> */}
           </div>
           {/* scrollabe parent */}
           <div
@@ -175,23 +178,24 @@ const Collections = () => {
               }}
               className={`h-fit fixed z-[50]  w-fit bg-white `}
             >
+
+
               {/* dropdown */}
               <div
                 ref={dropDownRef}
                 onMouseLeave={() =>
                   setDropDownState({ ...dropDownState, isEnabled: false })
                 }
-                className="join join-vertical font-inter"
+                className="join join-vertical font-inter "
               >
-                {/* <span className="text-sm">{}</span> */}
                 <button
                   onClick={deleteCollection}
-                  className="btn hover:btn-accent hover:text-white bg-white capitalize font-normal border-dark join-item"
+                  className="btn hover:bg-[#f3f5f9]/50 hover:text-inherit flex items-center justify-start bg-white capitalize font-normal border-dark join-item text-[0.8rem]"
                 >
-                  Delete
+                 <BiTrashAlt className="text-[0.9rem]"/> Delete
                 </button>
-                <button className="btn hover:btn-accent hover:text-white  bg-white capitalize font-normal border-dark join-item">
-                  Edit
+                <button className="flex justify-start btn hover:bg-[#f3f5f9]/50 hover:text-inherit  bg-white capitalize font-normal border-dark join-item text-[0.8rem]">
+                  <BiEdit className="text-[0.925rem]"/> Edit
                 </button>
               </div>
             </div>
