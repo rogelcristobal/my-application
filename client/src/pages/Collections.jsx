@@ -18,8 +18,13 @@ const Collections = () => {
   const [addCollectionModalState, setAddCollectionModalState] =
     React.useState(false);
   const dispatch = useDispatch();
-
   const [collections, setCollections] = React.useState([]);
+  const parentScrollableRef = React.useRef(null);
+  const dropDownRef = React.useRef(null);
+  const scrollPosition = useScrollPosition(parentScrollableRef);
+  const { dropDownState, setDropDownState } = React.useContext(
+    NoteCollectionDropDownPositionContext
+  );
   const queryClient = new QueryClient();
   const headers = {
     userID: currentUser?._id,
@@ -40,7 +45,7 @@ const Collections = () => {
       console.log(error);
     }
   };
-  // console.log(currentUser);
+  
   // once fetchData true set returned data to the state
   const { isLoading } = useQuery(["userData"], fetchData, {
     enabled: !!currentUser?._id,
@@ -48,6 +53,34 @@ const Collections = () => {
       setCollections(data);
     },
   });
+
+  // ui event handlers
+  const deleteCollection = async () => {
+    setDropDownState({
+      ...dropDownState,
+      isEnabled: false,
+    });
+    try {
+      await axios.delete(
+        `http://localhost:3001/collections/${dropDownState.el.dataset.objectid}`
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // toggle the modal
+  const addCollectionToggle = () => {
+    setAddCollectionModalState(!addCollectionModalState);
+  };
+
+  const handleClickOutside = (e) => {
+    if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
+      setDropDownState({
+        ...dropDownState,
+        isEnabled: false,
+      });
+    }
+  };
 
   // Trigger the query only when currentUser._id becomes available
   React.useEffect(() => {
@@ -86,33 +119,16 @@ const Collections = () => {
     };
   }, []);
 
-  // ui event handlers
-  const deleteCollection = async (id) => {
-    try {
-      await axios.delete(`http://localhost:3001/collections/${id}`);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const x = "10rem";
-  // toggle the modal
-  const addCollectionToggle = () => {
-    setAddCollectionModalState(!addCollectionModalState);
-  };
-
-  // ui
-  const parentScrollableRef = React.useRef(null);
-
-  const scrollPosition = useScrollPosition(parentScrollableRef);
-
-  const { dropDownState, setDropDownState } = React.useContext(
-    NoteCollectionDropDownPositionContext
-  );
-
   React.useEffect(() => {
     setDropDownState({ ...dropDownState, isEnabled: false });
   }, [scrollPosition]);
   // console.log(dropDownState.el)
+
+  React.useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
     <div className="h-screen overflow-y-hidden w-full flex flex-col items-start justify-start relative">
       <div className=" h-full  p-6 w-full relative">
@@ -151,15 +167,32 @@ const Collections = () => {
           {dropDownState.isEnabled && (
             <div
               style={{
-                top: Math.floor(dropDownState.el.top) + 55,
-                left: dropDownState.el.right - 50,
+                top:
+                  Math.floor(dropDownState.el.getBoundingClientRect().top) + 55,
+                left:
+                  Math.floor(dropDownState.el.getBoundingClientRect().right) -
+                  50,
               }}
               className={`h-fit fixed z-[50]  w-fit bg-white `}
             >
-              <div className="join join-vertical font-inter">
-                <button onClick={()=>console.log(dropDownState.el)} className="btn hover:btn-accent bg-white capitalize font-normal border-dark join-item">Delete</button>
-                <button className="btn hover:btn-accent bg-white capitalize font-normal border-dark join-item">Edit</button>
-             
+              {/* dropdown */}
+              <div
+                ref={dropDownRef}
+                onMouseLeave={() =>
+                  setDropDownState({ ...dropDownState, isEnabled: false })
+                }
+                className="join join-vertical font-inter"
+              >
+                {/* <span className="text-sm">{}</span> */}
+                <button
+                  onClick={deleteCollection}
+                  className="btn hover:btn-accent hover:text-white bg-white capitalize font-normal border-dark join-item"
+                >
+                  Delete
+                </button>
+                <button className="btn hover:btn-accent hover:text-white  bg-white capitalize font-normal border-dark join-item">
+                  Edit
+                </button>
               </div>
             </div>
           )}

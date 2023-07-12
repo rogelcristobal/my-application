@@ -108,9 +108,9 @@ function App() {
                         )}
                       </span> */}
                     </div>
-                    {/* <button onClick={logOutUser} className="view text-sm p-1">
+                    <button onClick={logOutUser} className="view text-sm p-1">
                       logout
-                    </button> */}
+                    </button>
                   </div>
                   <Routes>
                     <Route
