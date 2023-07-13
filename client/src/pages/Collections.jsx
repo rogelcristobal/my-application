@@ -133,26 +133,27 @@ const Collections = () => {
   }, []);
 
   return (
-    <div className="h-screen overflow-y-hidden w-full flex flex-col items-start justify-start relative">
+    <div className="h-screen overflow-y-hidden  w-full flex flex-col items-start justify-start relative">
 
-      <div className="h-fit py-4 px-6 flex items-end">
-        <span className="text-[1.2rem]  font-semibold">  Collections</span>
+      <div className="h-fit pb-6 pt-6 px-8 bg-white flex-col flex w-full items-start relative">
+        <span className="text-[1.25rem]  font-semibold">  Collections</span>
+        
       </div>
-      <div className=" h-full border-dark-top p-0 w-full relative">
-        <div className="view border-dark-right w-[20rem] h-full  overflow-y-hidden relative ">
+      <div className=" h-full border-dark-top  w-full relative">
+        <div className="view w-[20rem] h-full border-dark-right bg-white overflow-y-hidden relative ">
           <div className="flex items-center justify-between p-4">
             <button
               onClick={addCollectionToggle}
-              className="text-[0.8rem] hover:bg-[#f7f7f7] w-full border-none font-medium rounded-md bg-[#f9f9fb]  text-[#7e8192] hover:text-inherit   h-[2.7rem]  px-4  btn btn-sm normal-case"
+              className="text-[0.785rem]  w-fit hover:bg-transparent bg-transparent border-dark hover:border-dark font-medium rounded-md   text-inherit hover:text-inherit   h-[2.5rem]  px-4  btn btn-sm normal-case"
             >
-              Add Collection
+              Add
             </button>
             {/* <p>scroll_pos: {Math.floor(scrollPosition)}</p> */}
           </div>
           {/* scrollabe parent */}
           <div
             ref={parentScrollableRef}
-            className=" w-full  pb-40  px-3  py-2 overflow-y-auto   h-full space-y-2.5"
+            className=" w-full  pb-52  px-3  py-0 overflow-y-auto   h-full space-y-2.5"
           >
             {isLoading ? (
               <span>loading data</span>

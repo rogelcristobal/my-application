@@ -7,15 +7,15 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
   };
 
   return (
-    <NavLink to={path} role="link" className="w-full mb-0.5  view ">
+    <NavLink to={path} role="link" className="w-full mb-0.5  ">
       {({ isActive }) => (
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full  rounded-md h-[2.7rem] relative px-4 border-0 box-border   ${
+          className={`w-full  rounded-md h-[2.7rem] relative px-4    ${
             isActive
-              ? "text-inherit font-medium bg-[#f7f7f7] hover:bg-[#f7f7f7] "
-              : "text-[#676a78] font-medium bg-transparent hover:bg-transparent "
+              ? "text-inherit font-medium bg-transparent hover:bg-transparent border-dark"
+              : "text-[#676a78] font-medium bg-transparent hover:bg-transparent border-0 box-border"
           }
           ${sidebarState ? "flex justify-center   " : "flex justify-center "}
           `}
@@ -26,15 +26,16 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
                 !sidebarState ? "max-w-[75%] " : "max-w-[100%]"
               }`}
             >
+              {/* text-[#004feb] */}
               <span
                 className={`text-[1rem]   mx-auto ${
-                  isActive && "text-blue-500"
+                  isActive && ""
                 }`}
               >
                 {icon}
               </span>
               {!sidebarState && (
-                <span className="flex items-center text-[0.9rem] text-start w-full h-full overflow-x-hidden  truncate ">
+                <span className="flex items-center text-[0.875rem] text-start w-full h-full overflow-x-hidden  truncate ">
                   {title}
                 </span>
               )}

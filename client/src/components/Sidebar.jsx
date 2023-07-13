@@ -19,7 +19,7 @@ const Sidebar = () => {
   const currentUserLoading = useSelector((state) => state.currentUser.loading);
   const currentUser = useSelector((state) => state.currentUser.data);
   const sidebarControl = useAnimation();
-  const queryClient = new QueryClient()
+  const queryClient = new QueryClient();
   const handleToggleSidebar = () => {
     setState(!state);
     if (state) {
@@ -36,12 +36,11 @@ const Sidebar = () => {
       setUserData(currentUser?.noteCollections);
       queryClient.invalidateQueries("userData");
     }
-  }, [currentUser,currentUserLoading]);
+  }, [currentUser, currentUserLoading]);
 
   React.useEffect(() => {
     socket.on("deleteNoteCollection", (data) => {
-      setUserData(prev=>prev?.filter((c) => c._id !== data._id)
-      )
+      setUserData((prev) => prev?.filter((c) => c._id !== data._id));
     });
     socket.on("addNoteCollection", (data) => {
       setUserData((prevCollections) => [...prevCollections, data]);
@@ -51,11 +50,9 @@ const Sidebar = () => {
     };
   }, []);
 
-
   // if(userData.length != 0){
   //   console.log("component", userData)
   // }
-
 
   return (
     <motion.div
@@ -76,44 +73,43 @@ const Sidebar = () => {
       </div> */}
 
       <div className="w-16 h-full flex-shrink-0 border-dark-right view"></div>
-      <div className="h-full w-full flex flex-col">
+      <div className="h-full  w-full flex flex-col">
         <div className="w-full h-full mt-20 border-dark-top  flex flex-col justify-start items-start">
-        <div
-          className={`${
-            state ? " px-0 " : "px-[0.75rem]"
-          } flex   w-full items-center mt-2   py-4 justify-center flex-col`}
-        >
-          {!state && (
-            <span className=" px-1 text-[0.75rem] text-[#9d9ea5] font-medium w-full  text-left  Capitalize   mb-2">
-              MENU
-            </span>
-          )}
-          {[
-            { path: "/dashboard", title: "dashboard", icon: <BiLayout /> },
-            {
-              path: "/collections",
-              title: "Collections",
-              icon: <BiNote />,
-              count: userData?.length,
-              loading: currentUserLoading,
-            },
-            // { path: "/todos", title: "todos", icon: <BiListCheck /> },
-            // { path: "/blogs", title: "Blogs", icon: <BiEditAlt /> },
-          ].map((item, id) => (
-            <SidebarLink
-              key={id}
-              path={item.path}
-              sidebarState={state}
-              title={item.title}
-              icon={item.icon}
-              count={item?.count}
-              loading={item?.loading}
-            />
-          ))}
+          <div
+            className={`${
+              state ? " px-0 " : "px-[0.5rem]"
+            } flex   w-full items-center mt-2   py-4 justify-center flex-col`}
+          >
+            {!state && (
+              <span className=" px-4 text-[0.75rem] text-[#9d9ea5] font-medium w-full  text-left  Capitalize   mb-2">
+                Menu
+              </span>
+            )}
+            {[
+              { path: "/dashboard", title: "dashboard", icon: <BiLayout /> },
+              {
+                path: "/collections",
+                title: "Collections",
+                icon: <BiNote />,
+                count: userData?.length,
+                loading: currentUserLoading,
+              },
+              // { path: "/todos", title: "todos", icon: <BiListCheck /> },
+              // { path: "/blogs", title: "Blogs", icon: <BiEditAlt /> },
+            ].map((item, id) => (
+              <SidebarLink
+                key={id}
+                path={item.path}
+                sidebarState={state}
+                title={item.title}
+                icon={item.icon}
+                count={item?.count}
+                loading={item?.loading}
+              />
+            ))}
+          </div>
         </div>
       </div>
-      </div>
-     
     </motion.div>
   );
 };
