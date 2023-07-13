@@ -12,10 +12,10 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full font-normal rounded-md h-[2.8rem] relative px-4 border-0 box-border   ${
+          className={`w-full  rounded-md h-[2.7rem] relative px-4 border-0 box-border   ${
             isActive
-              ? "text-inherit  bg-[#f3f5f9]/50 hover:bg-[#f3f5f9]/50 "
-              : "text-inherit bg-transparent hover:bg-transparent "
+              ? "text-inherit font-medium bg-[#f7f7f7] hover:bg-[#f7f7f7] "
+              : "text-[#676a78] font-medium bg-transparent hover:bg-transparent "
           }
           ${sidebarState ? "flex justify-center   " : "flex justify-center "}
           `}
@@ -34,7 +34,7 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
                 {icon}
               </span>
               {!sidebarState && (
-                <span className="flex items-center font-medium text-[0.825rem] text-start w-full h-full overflow-x-hidden  truncate ">
+                <span className="flex items-center text-[0.9rem] text-start w-full h-full overflow-x-hidden  truncate ">
                   {title}
                 </span>
               )}
@@ -42,7 +42,7 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
             {loading?
             <span className="text-sm">loading</span>
             :count > 0  && (
-              <div className=" font-medium text-[0.6rem] bg-[#f3f4f9] rounded-full h-5 grid place-content-center w-5 text-inherit  ">
+              <div className=" font-medium text-[0.6rem]  rounded-full h-5 grid place-content-center w-5 text-inherit  ">
                 {count}
               </div>
             )
@@ -52,8 +52,8 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
 
           {/* <div
             className={`${isActive ? "h-[100%]" : "h-0"} ${
-              sidebarState ? "left-[0rem]" : "-left-[0.9rem]  "
-            } transition-all duration-75 w-[0.2rem] bg-[#8b72ff] rounded-r-xl absolute  top-1/2 -translate-y-1/2 `}
+              sidebarState ? "left-[0rem]" : "-left-[0.7rem]  "
+            } transition-all duration-75 w-[0.2rem] bg-blue-500 rounded-r-xl absolute  top-1/2 -translate-y-1/2 `}
           ></div> */}
         </div>
       )}

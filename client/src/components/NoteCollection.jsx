@@ -19,36 +19,35 @@ const NoteCollection = ({ item, parentScrollPosition, deleteCollection }) => {
   return (
     <div
       ref={ref}
-      className=" px-4 relative bg-[#ffffff] rounded-lg flex cursor-pointer py-3 view w-full "
+      className=" relative hover:bg-[#f9f9fb] rounded-lg flex cursor-pointer p-4  w-full "
 
       data-objectid={item._id}
     >
       <div className=" flex flex-col w-full text-normal item-start justify-between ">
-        <div className="flex flex-col pr-4">
-          <span className="  mt-2 font-medium capitalize  text-[0.8rem]">
+        <div className="flex flex-col pr-0">
+          <span className="  mt-0 font-semibold capitalize  text-[0.9rem]">
             {item.collectionTitle}
           </span>
-          <p  className=" mt-1  text-[#999999]/90 line-clamp-3 max-w-[9rem]  text-[0.8rem]">
+          <p  className=" mt-1  text-[#8e99a6] line-clamp-2 max-w-[100%] text-[0.8rem]">
             {item.description}
           </p>
-            {/* <span className=" mt-2 overflow-hidden truncate text-[0.7rem] text-[#999999]/50 w-full">
+            {/* <span className=" mt-2 overflow-hidden truncate text-[0.7rem] text-[#7c8292]/50 w-full">
             ID: {item._id}
           </span> */}
         </div>
-        <div className="mt-4 w-full pt-2 text-[#999999]  text-[0.8rem]">
+        {/* <div className="mt-3 w-full pt-2 text-[#7c8292]  text-[0.8rem]">
           <span className=" flex items-center gap-1.5 ">
             {item.savedNotes.length}
-            <BiNote />
-            {/* <span>files</span> */}
+            <span>files</span>
           </span>
-        </div>
+        </div> */}
       </div>
-      <button
+      {/* <button
         onClick={sample}
-        className="text-[0.9rem]   view w-fit h-fit py-1"
+        className="text-[0.9rem]    w-fit h-fit py-1"
       >
         <BiDotsVerticalRounded />
-      </button>
+      </button> */}
     </div>
   );
 };

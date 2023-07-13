@@ -134,21 +134,25 @@ const Collections = () => {
 
   return (
     <div className="h-screen overflow-y-hidden w-full flex flex-col items-start justify-start relative">
-      <div className=" h-full  p-6 w-full relative">
-        <div className=" w-[19rem] h-full rounded-lg  overflow-y-hidden relative ">
-          <div className="flex items-center  justify-between px-2 py-2">
+
+      <div className="h-fit py-4 px-6 flex items-end">
+        <span className="text-[1.2rem]  font-semibold">  Collections</span>
+      </div>
+      <div className=" h-full border-dark-top p-0 w-full relative">
+        <div className="view border-dark-right w-[20rem] h-full  overflow-y-hidden relative ">
+          <div className="flex items-center justify-between p-4">
             <button
               onClick={addCollectionToggle}
-              className="text-[0.95rem]  w-fit  font-normal  border-dark   h-fit  px-4 view py-2"
+              className="text-[0.8rem] hover:bg-[#f7f7f7] w-full border-none font-medium rounded-md bg-[#f9f9fb]  text-[#7e8192] hover:text-inherit   h-[2.7rem]  px-4  btn btn-sm normal-case"
             >
-              add
+              Add Collection
             </button>
             {/* <p>scroll_pos: {Math.floor(scrollPosition)}</p> */}
           </div>
           {/* scrollabe parent */}
           <div
             ref={parentScrollableRef}
-            className=" w-full  pb-12  px-2  py-2 overflow-y-auto   h-full space-y-2.5"
+            className=" w-full  pb-40  px-3  py-2 overflow-y-auto   h-full space-y-2.5"
           >
             {isLoading ? (
               <span>loading data</span>
