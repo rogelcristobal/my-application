@@ -74,7 +74,7 @@ const Sidebar = () => {
 
       <div className="w-16 h-full flex-shrink-0 border-dark-right view"></div>
       <div className="h-full  w-full flex flex-col">
-        <div className="w-full h-full mt-16   flex flex-col justify-start items-start">
+        <div className="w-full h-full mt-24   flex flex-col justify-start items-start">
           <div
             className={`${
               state ? " px-0 " : "px-[1rem]"

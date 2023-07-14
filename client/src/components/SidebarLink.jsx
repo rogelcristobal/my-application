@@ -53,8 +53,8 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
 
           {/* <div
             className={`${isActive ? "h-[100%]" : "h-0"} ${
-              sidebarState ? "left-[0rem]" : "-left-[0.7rem]  "
-            } transition-all duration-75 w-[0.2rem] bg-blue-500 rounded-r-xl absolute  top-1/2 -translate-y-1/2 `}
+              sidebarState ? "left-[0rem]" : "-left-[1rem]  "
+            } transition-all duration-75 w-[0.275rem] bg-blue-500 rounded-r-xl absolute  top-1/2 -translate-y-1/2 `}
           ></div> */}
         </div>
       )}

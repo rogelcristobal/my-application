@@ -196,11 +196,11 @@ const Collections = () => {
               >
                 <button
                   onClick={deleteCollection}
-                  className="btn hover:bg-[#121416] hover:text-[#ffffff] text-[#7a7d94] flex items-center justify-start bg-white capitalize font-medium border-dark hover:border-dark  join-item text-[0.8rem]"
+                  className="btn bg-[#ffffff] hover:text-[#ffffff] text-[#7a7d94] flex items-center justify-start  capitalize font-medium border-dark hover:border-dark btn-sm h-[2.75rem] px-4 join-item text-[0.8rem]"
                 >
                  <LuTrash2 className="text-[0.925rem]"/> 
                 </button>
-                <button className="btn hover:bg-[#121416] hover:text-[#ffffff] text-[#7a7d94] flex items-center justify-start bg-white capitalize font-medium border-dark hover:border-dark  join-item text-[0.8rem]">
+                <button className="btn bg-[#ffffff] hover:text-[#ffffff] text-[#7a7d94] flex items-center justify-start  capitalize font-medium border-dark hover:border-dark btn-sm h-[2.75rem] px-4 join-item text-[0.8rem]">
                   <LuEdit className="text-[0.925rem]"/> 
                 </button>
               </div>
