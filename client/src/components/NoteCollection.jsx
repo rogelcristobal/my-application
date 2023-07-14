@@ -19,16 +19,16 @@ const NoteCollection = ({ item, parentScrollPosition, deleteCollection }) => {
   return (
     <div
       ref={ref}
-      className=" relative hover:bg-[#fafafa] border-dark rounded-lg flex cursor-pointer p-4  w-full "
+      className=" relative hover:bg-[#f6f8fa] border-dark rounded-lg flex cursor-pointer p-4  w-full "
 
       data-objectid={item._id}
     >
       <div className=" flex flex-col w-full text-normal item-start justify-between ">
         <div className="flex flex-col pr-0">
-          <span className="  mt-0 font-medium capitalize  text-[0.85rem]">
+          <span className="  mt-0 font-medium capitalize  text-[0.875rem]">
             {item.collectionTitle}
           </span>
-          <p  className=" mt-1  text-[#8e99a6] line-clamp-2 max-w-[100%] text-[0.8rem]">
+          <p  className=" mt-3  text-[#8e99a6] line-clamp-2 max-w-[100%] text-[0.775rem] first-letter:uppercase">
             {item.description}
           </p>
             {/* <span className=" mt-2 overflow-hidden truncate text-[0.7rem] text-[#7c8292]/50 w-full">

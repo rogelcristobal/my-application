@@ -23,7 +23,7 @@ const Sidebar = () => {
   const handleToggleSidebar = () => {
     setState(!state);
     if (state) {
-      sidebarControl.start({ width: "19.5rem" });
+      sidebarControl.start({ width: "20rem" });
     } else {
       sidebarControl.start({ width: "4rem" });
     }
@@ -57,10 +57,10 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      initial={{ width: "19.5rem" }}
+      initial={{ width: "20rem" }}
       transition={{ duration: 0.3 }}
       className={`${
-        state ? "w-[4rem]" : "w-[19.5rem]"
+        state ? "w-[4rem]" : "w-[20rem]"
       } whitespace-nowrap bg-[#ffffff] relative  view h-full flex  border-dark-right  items-center justify-start  flex-shrink-0`}
     >
       {/* <div
@@ -74,10 +74,10 @@ const Sidebar = () => {
 
       <div className="w-16 h-full flex-shrink-0 border-dark-right view"></div>
       <div className="h-full  w-full flex flex-col">
-        <div className="w-full h-full mt-20 border-dark-top  flex flex-col justify-start items-start">
+        <div className="w-full h-full mt-16   flex flex-col justify-start items-start">
           <div
             className={`${
-              state ? " px-0 " : "px-[0.5rem]"
+              state ? " px-0 " : "px-[1rem]"
             } flex   w-full items-center mt-2   py-4 justify-center flex-col`}
           >
             {!state && (

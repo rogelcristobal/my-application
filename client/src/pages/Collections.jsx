@@ -11,7 +11,8 @@ import SocketContext from "../context/SocketContext";
 import NoteCollection from "../components/NoteCollection";
 import { useScrollPosition } from "../hook/useScrollPosition";
 import NoteCollectionDropDownPositionContext from "../context/NoteCollectionDropDownPositionContext";
-import {BiTrashAlt,BiEdit} from 'react-icons/bi'
+import {LuTrash2,LuEdit} from 'react-icons/lu'
+import {LuPlus} from 'react-icons/lu'
 
 
 
@@ -135,18 +136,18 @@ const Collections = () => {
   return (
     <div className="h-screen overflow-y-hidden  w-full flex flex-col items-start justify-start relative">
 
-      <div className="h-fit pb-6 pt-6 px-8 bg-white flex-col flex w-full items-start relative">
-        <span className="text-[1.25rem]  font-semibold">  Collections</span>
+      <div className="h-fit pb-6 pt-6 px-6 bg-white flex-col flex w-full items-start relative">
+        <span className="text-[1.25rem]  font-plus font-semibold">  Collections</span>
         
       </div>
       <div className=" h-full border-dark-top  w-full relative">
         <div className="view w-[20rem] h-full border-dark-right bg-white overflow-y-hidden relative ">
-          <div className="flex items-center justify-between p-4">
+          <div className="flex items-center justify-start p-4">
             <button
               onClick={addCollectionToggle}
-              className="text-[0.785rem]  w-fit hover:bg-transparent bg-transparent border-dark hover:border-dark font-medium rounded-md   text-inherit hover:text-inherit   h-[2.5rem]  px-4  btn btn-sm normal-case"
+              className="text-[0.785rem]  w-full   hover:bg-[#f6f8fa] bg-transparent border-dark font-normal rounded-md   text-[#8f8f8f] hover:text-[#8f8f8f]   h-[2.5rem]  hover:border-dark  btn btn-sm normal-case"
             >
-              Add
+              <LuPlus className="text-[0.9rem]"/> New collection
             </button>
             {/* <p>scroll_pos: {Math.floor(scrollPosition)}</p> */}
           </div>
@@ -191,16 +192,16 @@ const Collections = () => {
                 onMouseLeave={() =>
                   setDropDownState({ ...dropDownState, isEnabled: false })
                 }
-                className="join join-vertical font-inter "
+                className="join join-horizontal font-inter hover:drop-shadow-md"
               >
                 <button
                   onClick={deleteCollection}
-                  className="btn hover:bg-[#f3f5f9]/50 hover:text-inherit flex items-center justify-start bg-white capitalize font-normal border-dark join-item text-[0.8rem]"
+                  className="btn hover:bg-[#121416] hover:text-[#ffffff] text-[#7a7d94] flex items-center justify-start bg-white capitalize font-medium border-dark hover:border-dark  join-item text-[0.8rem]"
                 >
-                 <BiTrashAlt className="text-[0.9rem]"/> Delete
+                 <LuTrash2 className="text-[0.925rem]"/> 
                 </button>
-                <button className="flex justify-start btn hover:bg-[#f3f5f9]/50 hover:text-inherit  bg-white capitalize font-normal border-dark join-item text-[0.8rem]">
-                  <BiEdit className="text-[0.925rem]"/> Edit
+                <button className="btn hover:bg-[#121416] hover:text-[#ffffff] text-[#7a7d94] flex items-center justify-start bg-white capitalize font-medium border-dark hover:border-dark  join-item text-[0.8rem]">
+                  <LuEdit className="text-[0.925rem]"/> 
                 </button>
               </div>
             </div>
