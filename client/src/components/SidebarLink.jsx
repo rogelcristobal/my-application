@@ -12,10 +12,10 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full  rounded-md h-[2.7rem] relative px-4    ${
+          className={`w-full  rounded-none h-fit relative px-4  border-0 box-border  ${
             isActive
-              ? "text-inherit font-medium bg-transparent hover:bg-transparent border-dark"
-              : "text-[#676a78] font-medium bg-transparent hover:bg-transparent border-0 box-border"
+              ? "text-inherit  bg-transparent hover:bg-transparent "
+              : "text-[#676a78]  bg-transparent hover:bg-transparent "
           }
           ${sidebarState ? "flex justify-center   " : "flex justify-center "}
           `}
@@ -27,15 +27,15 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
               }`}
             >
               {/* text-[#004feb] */}
-              <span
+              {/* <span
                 className={`text-[1rem]   mx-auto ${
                   isActive && ""
                 }`}
               >
                 {icon}
-              </span>
+              </span> */}
               {!sidebarState && (
-                <span className="flex items-center text-[0.875rem] text-start w-full h-full overflow-x-hidden  truncate ">
+                <span className="flex items-center  text-start w-full h-full overflow-x-hidden  truncate ">
                   {title}
                 </span>
               )}
@@ -43,7 +43,7 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
             {loading?
             <span className="text-sm">loading</span>
             :count > 0  && (
-              <div className=" font-medium text-[0.6rem]  rounded-full h-5 grid place-content-center w-5 text-inherit  ">
+              <div className=" text-[0.6rem]  rounded-full h-5 grid place-content-center w-5 text-inherit  ">
                 {count}
               </div>
             )

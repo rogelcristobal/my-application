@@ -136,25 +136,25 @@ const Collections = () => {
   return (
     <div className="h-screen overflow-y-hidden  w-full flex flex-col items-start justify-start relative">
 
-      <div className="h-fit pb-6 pt-6 px-6 bg-white flex-col flex w-full items-start relative">
-        <span className="text-[1.25rem]  font-plus font-semibold">  Collections</span>
+      <div className="h-fit py-2 px-4 bg-white flex-col flex w-full items-start relative">
+        <span className="   font-medium">  Collections</span>
         
       </div>
       <div className=" h-full border-dark-top  w-full relative">
-        <div className="view w-[20rem] h-full border-dark-right bg-white overflow-y-hidden relative ">
-          <div className="flex items-center justify-start p-4">
+        <div className=" w-[19rem] h-full border-dark-right bg-white overflow-y-hidden relative ">
+          <div className="flex items-center justify-start p-2">
             <button
               onClick={addCollectionToggle}
-              className="text-[0.785rem]  w-full   hover:bg-[#f6f8fa] bg-transparent border-dark font-normal rounded-md   text-[#8f8f8f] hover:text-[#8f8f8f]   h-[2.5rem]  hover:border-dark  btn btn-sm normal-case"
+              className=" w-fit   hover:bg-transparent bg-transparent border-dark font-normal rounded-none  text-inherit   tracking-tight text-[0.8rem] h-fit   hover:border-dark  btn btn-sm normal-case"
             >
-              <LuPlus className="text-[0.9rem]"/> New collection
+             New collection
             </button>
             {/* <p>scroll_pos: {Math.floor(scrollPosition)}</p> */}
           </div>
           {/* scrollabe parent */}
           <div
             ref={parentScrollableRef}
-            className=" w-full  pb-52  px-3  py-0 overflow-y-auto   h-full space-y-2.5"
+            className=" w-full  pb-52  px-2  py-0 overflow-y-auto   h-full space-y-1"
           >
             {isLoading ? (
               <span>loading data</span>

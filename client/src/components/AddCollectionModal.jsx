@@ -31,10 +31,10 @@ const AddCollectionModal = () => {
   };
   return (
     <div className="fixed left-1/2 -translate-x-1/2 z-50 p-3 bg-white top-1/2 -translate-y-1/2 h-fit w-80 view text-sm">
-      <span className="view"> create new collection</span>
+      <span className="view"> create collection</span>
       <form
         onSubmit={handleSubmit}
-        className="view p-2 mt-2 flex flex-col w-full gap-6"
+        className="view p-2 mt-0.5 flex flex-col w-full gap-2"
       >
         <div className="w-full flex flex-col">
           <label htmlFor=""> title</label>
@@ -49,7 +49,7 @@ const AddCollectionModal = () => {
             type="text"
             name=""
             id=""
-            className="bg-transparent view mt-2"
+            className="bg-transparent view mt-0.5"
           />
         </div>
         <div className="w-full flex flex-col">
@@ -65,12 +65,12 @@ const AddCollectionModal = () => {
             type="text"
             name=""
             id=""
-            className="bg-transparent view mt-2"
+            className="bg-transparent view mt-0.5"
           />
         </div>
         <button
           type="submit"
-          className="w-fit btn btn-sm view bg-inherit normal-case font-normal"
+          className="w-fit btn btn-sm view bg-inherit normal-case font-normal text-inherit rounded-none h-fit hover:bg-transparent"
         >
           create
         </button>

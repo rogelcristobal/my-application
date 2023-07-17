@@ -73,7 +73,7 @@ function App() {
   }, [dispatch, firebaseCurrentUser?.uid]);
 
   return (
-    <div className="h-screen w-full bg-[#ffffff] font-inter text-[#181824] relative">
+    <div className="h-screen w-full bg-[#ffffff] font-mono text-[0.8rem] tracking-tight text-[#181824] relative">
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route
@@ -85,13 +85,13 @@ function App() {
                 <Sidebar></Sidebar>
                 <div className="flex items-start  flex-col justify-start w-full  h-screen">
                   {/* navigation */}
-                  <div className="h-fit w-full flex  px-8   py-3     items-center  justify-between">
+                  <div className="h-fit w-full flex  border-dark-bottom py-1 items-center  justify-between">
                     <div className="  flex flex-col">
                       <span className=" capitalize ">
                         {userDataLoading ? (
                           <span>loading</span>
                         ) : (
-                          <span className="text-[1.4rem] flex items-center gap-2 text-[#d8d8d9] font-medium">
+                          <span className=" flex items-center gap-2 text-[#d8d8d9] font-medium">
                             {/* Welcome back, <span className="">{currentUser?.firstName} {currentUser?.lastName}.
 
                             </span> */}

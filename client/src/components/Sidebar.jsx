@@ -23,7 +23,7 @@ const Sidebar = () => {
   const handleToggleSidebar = () => {
     setState(!state);
     if (state) {
-      sidebarControl.start({ width: "20rem" });
+      sidebarControl.start({ width: "16.5rem" });
     } else {
       sidebarControl.start({ width: "4rem" });
     }
@@ -57,31 +57,22 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      initial={{ width: "20rem" }}
+      initial={{ width: "16.5rem" }}
       transition={{ duration: 0.3 }}
       className={`${
-        state ? "w-[4rem]" : "w-[20rem]"
-      } whitespace-nowrap bg-[#ffffff] relative  view h-full flex  border-dark-right  items-center justify-start  flex-shrink-0`}
+        state ? "w-[4rem]" : "w-[16.5rem]"
+      } whitespace-nowrap relative  view h-full flex  border-dark-right  items-center justify-start  flex-shrink-0`}
     >
-      {/* <div
-        className={`w-full  bg-red-100 relative flex   items-center justify-start   h-[4.7rem]   `}
-      >
-        <div className=" flex items-center justify-center">
-          
-        </div>
-
-      </div> */}
-
-      <div className="w-16 h-full flex-shrink-0 border-dark-right view"></div>
+     
       <div className="h-full  w-full flex flex-col">
-        <div className="w-full h-full mt-24   flex flex-col justify-start items-start">
+        <div className="w-full h-full mt-0   flex flex-col justify-start items-start">
           <div
             className={`${
               state ? " px-0 " : "px-[1rem]"
-            } flex   w-full items-center mt-2   py-4 justify-center flex-col`}
+            } flex   w-full items-center mt-0  border-dark-bottom py-2 justify-center flex-col`}
           >
             {!state && (
-              <span className=" px-4 text-[0.75rem] text-[#9d9ea5] font-medium w-full  text-left  Capitalize   mb-2">
+              <span className=" px-2 font-medium w-full  text-left     mb-1">
                 Menu
               </span>
             )}
