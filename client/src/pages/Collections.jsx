@@ -12,11 +12,12 @@ import NoteCollection from "../components/NoteCollection";
 import { useScrollPosition } from "../hook/useScrollPosition";
 import NoteCollectionDropDownPositionContext from "../context/NoteCollectionDropDownPositionContext";
 import { LuTrash2, LuEdit } from "react-icons/lu";
-import { LuPlus } from "react-icons/lu";
-
+import {Routes, Route, useParams} from 'react-router-dom'
+import Sample from "../components/Sample";
 const Collections = () => {
   const { socket } = React.useContext(SocketContext);
   const currentUser = useSelector((state) => state.currentUser.data);
+  const currentUserLoading = useSelector((state) => state.currentUser.loading);
   const [addCollectionModalState, setAddCollectionModalState] =
     React.useState(false);
   const dispatch = useDispatch();
@@ -126,18 +127,31 @@ const Collections = () => {
   }, [scrollPosition]);
   // console.log(dropDownState.el)
 
+  // console.log(currentUser);
+
   React.useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+
+
+  const {collectionID} = useParams()
+ 
   return (
     <div className="h-screen overflow-y-hidden  w-full flex flex-col items-start justify-start relative">
-      <div className="h-fit py-2 px-4 bg-white flex-col flex w-full items-start relative">
-        <span className="   font-medium"> Collections</span>
+      <div className="h-fit py-2 px-4 bg-white gap-4 flex w-full items-start relative">
+        <span className=" font-medium"> Collections</span>
+        <span>
+          {currentUserLoading ? (
+            <span>loading</span>
+          ) : (
+            <span>{currentUser?.noteCollections.length}</span>
+          )}
+        </span>
       </div>
-      <div className=" h-full  w-full relative">
-        <div className=" w-[19rem] h-fulls bg-white overflow-y-hidden relative ">
+      <div className=" h-full  w-full flex items-start justify-start relative">
+        <div className=" w-[19rem] h-full  overflow-y-hidden relative ">
           <div className="flex items-center justify-start p-2">
             <button
               onClick={addCollectionToggle}
@@ -200,6 +214,11 @@ const Collections = () => {
               </div>
             </div>
           )}
+        </div>
+        <div className="w-96 h-full view">
+          <Routes>
+      <Route path="/:collectionID" element={<Sample></Sample>}></Route>
+    </Routes>
         </div>
       </div>
       {addCollectionModalState && <AddCollectionModal collections />}

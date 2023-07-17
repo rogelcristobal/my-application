@@ -2,6 +2,7 @@ import React from "react";
 
 import { BiDotsVerticalRounded, BiNote } from "react-icons/bi";
 import NoteCollectionDropDownPositionContext from "../context/NoteCollectionDropDownPositionContext";
+import { Link, useParams, useNavigate } from "react-router-dom";
 const NoteCollection = ({ item, parentScrollPosition, deleteCollection }) => {
   const { setDropDownState, dropDownState } = React.useContext(
     NoteCollectionDropDownPositionContext
@@ -15,12 +16,17 @@ const NoteCollection = ({ item, parentScrollPosition, deleteCollection }) => {
       el: ref.current,
     });
   };
+  const navigate = useNavigate()
+  const nav =()=>{
+    navigate(`/collections/${item._id}`)
+  }
 
+  
   return (
     <div
       ref={ref}
       className=" relative  view rounded-none flex cursor-pointer p-2  w-full "
-
+      onClick={nav}
       data-objectid={item._id}
     >
       <div className=" flex  w-full flex-col item-start justify-between ">

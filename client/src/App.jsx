@@ -119,7 +119,7 @@ function App() {
                     ></Route>
                     <Route path="/dashboard" element={<Home />} />
                     <Route
-                      path="/collections"
+                      path="/collections/*"
                       element={
                         <NoteCollectionDropDownPositionProvider>
                           <Collections />
