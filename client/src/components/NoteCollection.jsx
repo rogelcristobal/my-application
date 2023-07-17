@@ -19,7 +19,7 @@ const NoteCollection = ({ item, parentScrollPosition, deleteCollection }) => {
   return (
     <div
       ref={ref}
-      className=" relative   rounded-none flex cursor-pointer p-2  w-full "
+      className=" relative  view rounded-none flex cursor-pointer p-2  w-full "
 
       data-objectid={item._id}
     >

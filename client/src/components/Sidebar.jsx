@@ -69,7 +69,7 @@ const Sidebar = () => {
           <div
             className={`${
               state ? " px-0 " : "px-[1rem]"
-            } flex   w-full items-center mt-0  border-dark-bottom py-2 justify-center flex-col`}
+            } flex   w-full items-center mt-0 py-2 justify-center flex-col`}
           >
             {!state && (
               <span className=" px-2 font-medium w-full  text-left     mb-1">

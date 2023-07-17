@@ -11,10 +11,8 @@ import SocketContext from "../context/SocketContext";
 import NoteCollection from "../components/NoteCollection";
 import { useScrollPosition } from "../hook/useScrollPosition";
 import NoteCollectionDropDownPositionContext from "../context/NoteCollectionDropDownPositionContext";
-import {LuTrash2,LuEdit} from 'react-icons/lu'
-import {LuPlus} from 'react-icons/lu'
-
-
+import { LuTrash2, LuEdit } from "react-icons/lu";
+import { LuPlus } from "react-icons/lu";
 
 const Collections = () => {
   const { socket } = React.useContext(SocketContext);
@@ -135,19 +133,17 @@ const Collections = () => {
 
   return (
     <div className="h-screen overflow-y-hidden  w-full flex flex-col items-start justify-start relative">
-
       <div className="h-fit py-2 px-4 bg-white flex-col flex w-full items-start relative">
-        <span className="   font-medium">  Collections</span>
-        
+        <span className="   font-medium"> Collections</span>
       </div>
-      <div className=" h-full border-dark-top  w-full relative">
-        <div className=" w-[19rem] h-full border-dark-right bg-white overflow-y-hidden relative ">
+      <div className=" h-full  w-full relative">
+        <div className=" w-[19rem] h-fulls bg-white overflow-y-hidden relative ">
           <div className="flex items-center justify-start p-2">
             <button
               onClick={addCollectionToggle}
               className=" w-fit   hover:bg-transparent bg-transparent border-dark font-normal rounded-none  text-inherit   tracking-tight text-[0.8rem] h-fit   hover:border-dark  btn btn-sm normal-case"
             >
-             New collection
+              New collection
             </button>
             {/* <p>scroll_pos: {Math.floor(scrollPosition)}</p> */}
           </div>
@@ -177,15 +173,13 @@ const Collections = () => {
             <div
               style={{
                 top:
-                  Math.floor(dropDownState.el.getBoundingClientRect().top) + 55,
+                  Math.floor(dropDownState.el.getBoundingClientRect().top) + 34,
                 left:
                   Math.floor(dropDownState.el.getBoundingClientRect().right) -
                   50,
               }}
               className={`h-fit fixed z-[50]  w-fit bg-white `}
             >
-
-
               {/* dropdown */}
               <div
                 ref={dropDownRef}
@@ -196,12 +190,12 @@ const Collections = () => {
               >
                 <button
                   onClick={deleteCollection}
-                  className="btn bg-[#ffffff] hover:text-[#ffffff] text-[#7a7d94] flex items-center justify-start  capitalize font-medium border-dark hover:border-dark btn-sm h-[2.75rem] px-4 join-item text-[0.8rem]"
+                  className="btn bg-[#ffffff] text-inherit hover:bg-inherit flex items-center justify-start  capitalize font-medium border-dark hover:border-dark btn-sm h-[2.4rem] px-3 join-item text-[0.8rem]"
                 >
-                 <LuTrash2 className="text-[0.925rem]"/> 
+                  <LuTrash2 className="text-[0.925rem]" />
                 </button>
-                <button className="btn bg-[#ffffff] hover:text-[#ffffff] text-[#7a7d94] flex items-center justify-start  capitalize font-medium border-dark hover:border-dark btn-sm h-[2.75rem] px-4 join-item text-[0.8rem]">
-                  <LuEdit className="text-[0.925rem]"/> 
+                <button className="btn bg-[#ffffff] text-inherit hover:bg-inherit flex items-center justify-start  capitalize font-medium border-dark hover:border-dark btn-sm h-[2.4rem] px-3 join-item text-[0.8rem]">
+                  <LuEdit className="text-[0.925rem]" />
                 </button>
               </div>
             </div>
