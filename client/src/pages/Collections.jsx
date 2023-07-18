@@ -11,15 +11,23 @@ import SocketContext from "../context/SocketContext";
 import NoteCollection from "../components/NoteCollection";
 import { useScrollPosition } from "../hook/useScrollPosition";
 import NoteCollectionDropDownPositionContext from "../context/NoteCollectionDropDownPositionContext";
-
+import { LuTrash2, LuEdit } from "react-icons/lu";
+import {Routes, Route, useParams} from 'react-router-dom'
+import Sample from "../components/Sample";
 const Collections = () => {
   const { socket } = React.useContext(SocketContext);
   const currentUser = useSelector((state) => state.currentUser.data);
+  const currentUserLoading = useSelector((state) => state.currentUser.loading);
   const [addCollectionModalState, setAddCollectionModalState] =
     React.useState(false);
   const dispatch = useDispatch();
-
   const [collections, setCollections] = React.useState([]);
+  const parentScrollableRef = React.useRef(null);
+  const dropDownRef = React.useRef(null);
+  const scrollPosition = useScrollPosition(parentScrollableRef);
+  const { dropDownState, setDropDownState } = React.useContext(
+    NoteCollectionDropDownPositionContext
+  );
   const queryClient = new QueryClient();
   const headers = {
     userID: currentUser?._id,
@@ -40,7 +48,7 @@ const Collections = () => {
       console.log(error);
     }
   };
-  // console.log(currentUser);
+
   // once fetchData true set returned data to the state
   const { isLoading } = useQuery(["userData"], fetchData, {
     enabled: !!currentUser?._id,
@@ -48,6 +56,34 @@ const Collections = () => {
       setCollections(data);
     },
   });
+
+  // ui event handlers
+  const deleteCollection = async () => {
+    setDropDownState({
+      ...dropDownState,
+      isEnabled: false,
+    });
+    try {
+      await axios.delete(
+        `http://localhost:3001/collections/${dropDownState.el.dataset.objectid}`
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // toggle the modal
+  const addCollectionToggle = () => {
+    setAddCollectionModalState(!addCollectionModalState);
+  };
+
+  const handleClickOutside = (e) => {
+    if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
+      setDropDownState({
+        ...dropDownState,
+        isEnabled: false,
+      });
+    }
+  };
 
   // Trigger the query only when currentUser._id becomes available
   React.useEffect(() => {
@@ -86,50 +122,47 @@ const Collections = () => {
     };
   }, []);
 
-  // ui event handlers
-  const deleteCollection = async (id) => {
-    try {
-      await axios.delete(`http://localhost:3001/collections/${id}`);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const x = "10rem";
-  // toggle the modal
-  const addCollectionToggle = () => {
-    setAddCollectionModalState(!addCollectionModalState);
-  };
-
-  // ui
-  const parentScrollableRef = React.useRef(null);
-
-  const scrollPosition = useScrollPosition(parentScrollableRef);
-
-  const { dropDownState, setDropDownState } = React.useContext(
-    NoteCollectionDropDownPositionContext
-  );
-
   React.useEffect(() => {
     setDropDownState({ ...dropDownState, isEnabled: false });
   }, [scrollPosition]);
   // console.log(dropDownState.el)
+
+  // console.log(currentUser);
+
+  React.useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+
+ 
   return (
-    <div className="h-screen overflow-y-hidden w-full flex flex-col items-start justify-start relative">
-      <div className=" h-full  p-6 w-full relative">
-        <div className=" w-[19rem] h-full rounded-lg  overflow-y-hidden relative ">
-          <div className="flex items-center  justify-between px-2 py-2">
+    <div className="h-screen overflow-y-hidden  w-full flex flex-col items-start justify-start relative">
+      <div className="h-fit py-2 px-4 bg-white gap-4 flex w-full items-start relative">
+        <span className=" font-medium"> Collections</span>
+        <span>
+          {currentUserLoading ? (
+            <span>loading</span>
+          ) : (
+            <span>{currentUser?.noteCollections.length}</span>
+          )}
+        </span>
+      </div>
+      <div className=" h-full  w-full flex items-start justify-start relative">
+        <div className=" w-[19rem] h-full  overflow-y-hidden relative ">
+          <div className="flex items-center justify-start p-2">
             <button
               onClick={addCollectionToggle}
-              className="text-[0.95rem]  w-fit  font-normal  border-dark   h-fit  px-4 view py-2"
+              className=" w-fit   hover:bg-transparent bg-transparent border-dark font-normal rounded-none  text-inherit   tracking-tight text-[0.8rem] h-fit   hover:border-dark  btn btn-sm normal-case"
             >
-              add
+              New collection
             </button>
-            <p>scroll_pos: {Math.floor(scrollPosition)}</p>
+            {/* <p>scroll_pos: {Math.floor(scrollPosition)}</p> */}
           </div>
           {/* scrollabe parent */}
           <div
             ref={parentScrollableRef}
-            className=" w-full  pb-12  px-2  py-2 overflow-y-auto   h-full space-y-2.5"
+            className=" w-full  pb-52  px-2  py-1 overflow-y-auto   h-full space-y-1"
           >
             {isLoading ? (
               <span>loading data</span>
@@ -141,6 +174,7 @@ const Collections = () => {
                 <NoteCollection
                   item={item}
                   key={id}
+                  id={id}
                   parentScrollPosition={scrollPosition}
                   deleteCollection={deleteCollection}
                 />
@@ -151,18 +185,39 @@ const Collections = () => {
           {dropDownState.isEnabled && (
             <div
               style={{
-                top: Math.floor(dropDownState.el.top) + 55,
-                left: dropDownState.el.right - 50,
+                top:
+                  Math.floor(dropDownState.el.getBoundingClientRect().top) + 34,
+                left:
+                  Math.floor(dropDownState.el.getBoundingClientRect().right) -
+                  50,
               }}
               className={`h-fit fixed z-[50]  w-fit bg-white `}
             >
-              <div className="join join-vertical font-inter">
-                <button onClick={()=>console.log(dropDownState.el)} className="btn hover:btn-accent bg-white capitalize font-normal border-dark join-item">Delete</button>
-                <button className="btn hover:btn-accent bg-white capitalize font-normal border-dark join-item">Edit</button>
-             
+              {/* dropdown */}
+              <div
+                ref={dropDownRef}
+                onMouseLeave={() =>
+                  setDropDownState({ ...dropDownState, isEnabled: false })
+                }
+                className="join join-horizontal font-inter hover:drop-shadow-md"
+              >
+                <button
+                  onClick={deleteCollection}
+                  className="btn bg-[#ffffff] text-inherit hover:bg-inherit flex items-center justify-start  capitalize font-medium border-dark hover:border-dark btn-sm h-[2.4rem] px-3 join-item text-[0.8rem]"
+                >
+                  <LuTrash2 className="text-[0.925rem]" />
+                </button>
+                <button className="btn bg-[#ffffff] text-inherit hover:bg-inherit flex items-center justify-start  capitalize font-medium border-dark hover:border-dark btn-sm h-[2.4rem] px-3 join-item text-[0.8rem]">
+                  <LuEdit className="text-[0.925rem]" />
+                </button>
               </div>
             </div>
           )}
+        </div>
+        <div className="w-96 h-full view">
+          <Routes>
+      <Route path="/:collectionID" element={<Sample></Sample>}></Route>
+    </Routes>
         </div>
       </div>
       {addCollectionModalState && <AddCollectionModal collections />}

@@ -19,11 +19,11 @@ const Sidebar = () => {
   const currentUserLoading = useSelector((state) => state.currentUser.loading);
   const currentUser = useSelector((state) => state.currentUser.data);
   const sidebarControl = useAnimation();
-  const queryClient = new QueryClient()
+  const queryClient = new QueryClient();
   const handleToggleSidebar = () => {
     setState(!state);
     if (state) {
-      sidebarControl.start({ width: "18rem" });
+      sidebarControl.start({ width: "16.5rem" });
     } else {
       sidebarControl.start({ width: "4rem" });
     }
@@ -36,12 +36,11 @@ const Sidebar = () => {
       setUserData(currentUser?.noteCollections);
       queryClient.invalidateQueries("userData");
     }
-  }, [currentUser,currentUserLoading]);
+  }, [currentUser, currentUserLoading]);
 
   React.useEffect(() => {
     socket.on("deleteNoteCollection", (data) => {
-      setUserData(prev=>prev?.filter((c) => c._id !== data._id)
-      )
+      setUserData((prev) => prev?.filter((c) => c._id !== data._id));
     });
     socket.on("addNoteCollection", (data) => {
       setUserData((prevCollections) => [...prevCollections, data]);
@@ -51,101 +50,57 @@ const Sidebar = () => {
     };
   }, []);
 
-
   // if(userData.length != 0){
   //   console.log("component", userData)
   // }
 
-
   return (
     <motion.div
       animate={sidebarControl}
-      initial={{ width: "18rem" }}
+      initial={{ width: "16.5rem" }}
       transition={{ duration: 0.3 }}
       className={`${
-        state ? "w-[4rem]" : "w-[18rem]"
-      } whitespace-nowrap  relative  border-dark-right h-full flex  flex-col  items-center justify-start  flex-shrink-0`}
+        state ? "w-[4rem]" : "w-[16.5rem]"
+      } whitespace-nowrap relative  view h-full flex  border-dark-right  items-center justify-start  flex-shrink-0`}
     >
-      <div
-        className={`w-full   relative flex   items-center justify-start   h-[4.7rem]   `}
-      >
-        <div className=" flex items-center justify-center">
-          {/* <div
-            className={`view grid  cursor-pointer relative rounded-lg p-[0.6rem] place-content-center ${
-              state ? "mr-0" : "mr-0"
-            }`}
+     
+      <div className="h-full  w-full flex flex-col">
+        <div className="w-full h-full mt-0   flex flex-col justify-start items-start">
+          <div
+            className={`${
+              state ? " px-0 " : "px-[1rem]"
+            } flex   w-full items-center mt-0 py-2 justify-center flex-col`}
           >
-            <LuSettings />
-          </div> */}
-          {/* {!state && (
-            <span className=" relative   w-fit text-start ml-3 whitespace-nowrap overflow-hidden text-md ">
-              WhiteSpace
-            </span>
-          )} */}
-        </div>
-
-        {/* toggle btn */}
-        {/* <motion.button
-          onClick={handleToggleSidebar}
-          className={`absolute  h-[2.2rem] w-[2.2rem]  p-1  rounded-full -bottom-2   cursor-pointer  z-10 text-xs text-inherit  right-0 translate-x-1/2 `}
-        >
-          <div className="view rounded-full h-full grid place-content-center w-full">
-            <LuChevronLeft />
+            {!state && (
+              <span className=" px-2 font-medium w-full  text-left     mb-1">
+                Menu
+              </span>
+            )}
+            {[
+              { path: "/dashboard", title: "dashboard", icon: <BiLayout /> },
+              {
+                path: "/collections",
+                title: "Collections",
+                icon: <BiNote />,
+                count: userData?.length,
+                loading: currentUserLoading,
+              },
+              // { path: "/todos", title: "todos", icon: <BiListCheck /> },
+              // { path: "/blogs", title: "Blogs", icon: <BiEditAlt /> },
+            ].map((item, id) => (
+              <SidebarLink
+                key={id}
+                path={item.path}
+                sidebarState={state}
+                title={item.title}
+                icon={item.icon}
+                count={item?.count}
+                loading={item?.loading}
+              />
+            ))}
           </div>
-        </motion.button> */}
-      </div>
-      <div className="w-full h-full mt-0  flex flex-col justify-start items-start">
-        <div
-          className={`${
-            state ? " px-0 " : "px-[0.75rem]"
-          } flex   w-full items-center mt-2   py-4 justify-center flex-col`}
-        >
-          {!state && (
-            <span className=" px-1 text-[0.8rem] w-full  text-left  Capitalize   mb-3">
-              General
-            </span>
-          )}
-          {[
-            { path: "/dashboard", title: "dashboard", icon: <BiLayout /> },
-            {
-              path: "/collections",
-              title: "Collections",
-              icon: <BiNote />,
-              count: userData?.length,
-              loading: currentUserLoading,
-            },
-            // { path: "/todos", title: "todos", icon: <BiListCheck /> },
-            // { path: "/blogs", title: "Blogs", icon: <BiEditAlt /> },
-          ].map((item, id) => (
-            <SidebarLink
-              key={id}
-              path={item.path}
-              sidebarState={state}
-              title={item.title}
-              icon={item.icon}
-              count={item?.count}
-              loading={item?.loading}
-            />
-          ))}
         </div>
       </div>
-      {/* <div
-        className={`${
-          state ? " px-2 " : "px-3.5 "
-        } flex   w-full items-center mt-4  pb-6 justify-center flex-col`}
-      >
-        {[{ path: "/settings", title: "settings", icon: <LuSettings /> }].map(
-          (item, id) => (
-            <SidebarLink
-              key={id}
-              path={item.path}
-              sidebarState={state}
-              title={item.title}
-              icon={item.icon}
-            />
-          )
-        )}
-      </div> */}
     </motion.div>
   );
 };

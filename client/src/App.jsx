@@ -73,7 +73,7 @@ function App() {
   }, [dispatch, firebaseCurrentUser?.uid]);
 
   return (
-    <div className="h-screen w-full bg-white font-inter text-black text-[0.9rem] relative">
+    <div className="h-screen w-full bg-[#ffffff] font-mono text-[0.9rem] tracking-tight text-black relative">
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route
@@ -85,18 +85,20 @@ function App() {
                 <Sidebar></Sidebar>
                 <div className="flex items-start  flex-col justify-start w-full  h-screen">
                   {/* navigation */}
-                  <div className="h-fit w-full flex  px-10   pb-2 pt-12   items-center  justify-between">
+                  <div className="h-fit w-full flex  border-dark-bottom py-1 items-center  justify-between">
                     <div className="  flex flex-col">
                       <span className=" capitalize ">
                         {userDataLoading ? (
-                          <span>loading</span>
+                          <span>loading data</span>
                         ) : (
-                          <span className="text-[1.4rem] flex items-center gap-2 text-[#d8d8d9] font-medium">
-                            {/* Welcome back, <span className="">{currentUser?.firstName} {currentUser?.lastName}.
-
-                            </span> */}
-                            {/* <BiNote className="text-[1.5rem]"/> */}
-                            {/* Collections */}
+                          <span className=" flex flex-col items-center gap-2 px-4 text-[1rem] w-fit font-medium">
+                            <span className=" ">
+                              Welcome back, {currentUser?.firstName}
+                              {currentUser?.lastName}.
+                            </span>
+                            <span className=" overflow-hidden truncate text-[0.8rem] text-[#7c8292]/70 w-full">
+                              {currentUser?._id}
+                            </span>
                           </span>
                         )}
                       </span>
@@ -108,9 +110,9 @@ function App() {
                         )}
                       </span> */}
                     </div>
-                    {/* <button onClick={logOutUser} className="view text-sm p-1">
+                    <button onClick={logOutUser} className="view text-sm p-1">
                       logout
-                    </button> */}
+                    </button>
                   </div>
                   <Routes>
                     <Route
@@ -119,7 +121,7 @@ function App() {
                     ></Route>
                     <Route path="/dashboard" element={<Home />} />
                     <Route
-                      path="/collections"
+                      path="/collections/*"
                       element={
                         <NoteCollectionDropDownPositionProvider>
                           <Collections />

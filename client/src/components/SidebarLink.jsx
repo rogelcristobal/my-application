@@ -7,15 +7,15 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
   };
 
   return (
-    <NavLink to={path} role="link" className="w-full mb-0.5  view ">
+    <NavLink to={path} role="link" className="w-full mb-0.5  ">
       {({ isActive }) => (
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full font-normal rounded-md h-[2.875rem] relative px-4 border-0 box-border  btn-sm btn  ${
+          className={`w-full  rounded-none h-fit relative px-4  border-0 box-border  ${
             isActive
-              ? "text-black  bg-transparent hover:bg-transparent "
-              : "text-black bg-transparent hover:bg-transparent "
+              ? "text-inherit  bg-transparent hover:bg-transparent "
+              : "text-[#676a78]  bg-transparent hover:bg-transparent "
           }
           ${sidebarState ? "flex justify-center   " : "flex justify-center "}
           `}
@@ -26,15 +26,16 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
                 !sidebarState ? "max-w-[75%] " : "max-w-[100%]"
               }`}
             >
+              {/* text-[#004feb] */}
               {/* <span
-                className={`text-[1.2rem]   mx-auto ${
+                className={`text-[1rem]   mx-auto ${
                   isActive && ""
                 }`}
               >
                 {icon}
               </span> */}
               {!sidebarState && (
-                <span className="flex items-center   text-start w-full h-full overflow-x-hidden  truncate ">
+                <span className="flex items-center  text-start w-full h-full overflow-x-hidden  truncate ">
                   {title}
                 </span>
               )}
@@ -42,7 +43,7 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
             {loading?
             <span className="text-sm">loading</span>
             :count > 0  && (
-              <div className="   view font-inter  rounded-full h-4 grid place-content-center w-4   ">
+              <div className=" text-[0.6rem]  rounded-full h-5 grid place-content-center w-5 text-inherit  ">
                 {count}
               </div>
             )
@@ -52,8 +53,8 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path }) => {
 
           {/* <div
             className={`${isActive ? "h-[100%]" : "h-0"} ${
-              sidebarState ? "left-[0rem]" : "-left-[0.9rem]  "
-            } transition-all duration-75 w-[0.2rem] bg-[#8b72ff] rounded-r-xl absolute  top-1/2 -translate-y-1/2 `}
+              sidebarState ? "left-[0rem]" : "-left-[1rem]  "
+            } transition-all duration-75 w-[0.275rem] bg-blue-500 rounded-r-xl absolute  top-1/2 -translate-y-1/2 `}
           ></div> */}
         </div>
       )}
