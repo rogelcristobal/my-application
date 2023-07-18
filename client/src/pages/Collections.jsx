@@ -135,8 +135,6 @@ const Collections = () => {
   }, []);
 
 
-
-  const {collectionID} = useParams()
  
   return (
     <div className="h-screen overflow-y-hidden  w-full flex flex-col items-start justify-start relative">
@@ -164,7 +162,7 @@ const Collections = () => {
           {/* scrollabe parent */}
           <div
             ref={parentScrollableRef}
-            className=" w-full  pb-52  px-2  py-0 overflow-y-auto   h-full space-y-1"
+            className=" w-full  pb-52  px-2  py-1 overflow-y-auto   h-full space-y-1"
           >
             {isLoading ? (
               <span>loading data</span>
@@ -176,6 +174,7 @@ const Collections = () => {
                 <NoteCollection
                   item={item}
                   key={id}
+                  id={id}
                   parentScrollPosition={scrollPosition}
                   deleteCollection={deleteCollection}
                 />
