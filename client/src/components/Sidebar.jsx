@@ -31,9 +31,10 @@ const Sidebar = () => {
 
   // stores the collection id array
   const [userData, setUserData] = React.useState([]);
+  
   React.useEffect(() => {
     if (currentUser?._id) {
-      setUserData(currentUser?.noteCollections);
+      setUserData(currentUser);
       queryClient.invalidateQueries("userData");
     }
   }, [currentUser, currentUserLoading]);
@@ -53,6 +54,7 @@ const Sidebar = () => {
   // if(userData.length != 0){
   //   console.log("component", userData)
   // }
+  console.log(userData)
 
   return (
     <motion.div
@@ -69,10 +71,10 @@ const Sidebar = () => {
           <div
             className={`${
               state ? " px-0 " : "px-[1rem]"
-            } flex   w-full items-center mt-0 py-2 justify-center flex-col`}
+            } flex   w-full items-center mt-24 py-2 justify-center flex-col`}
           >
             {!state && (
-              <span className=" px-2 font-medium w-full  text-left     mb-1">
+              <span className=" px-2 font-semibold w-full  text-left  text-[0.8rem]   mb-2">
                 Menu
               </span>
             )}
@@ -80,10 +82,11 @@ const Sidebar = () => {
               { path: "/dashboard", title: "dashboard", icon: <BiLayout /> },
               {
                 path: "/collections",
-                title: "Collections",
+                title: "collections ",
                 icon: <BiNote />,
-                count: userData?.length,
+                count: userData?.noteCollections?.length,
                 loading: currentUserLoading,
+                items: userData?.noteCollections
               },
               // { path: "/todos", title: "todos", icon: <BiListCheck /> },
               // { path: "/blogs", title: "Blogs", icon: <BiEditAlt /> },
@@ -96,6 +99,7 @@ const Sidebar = () => {
                 icon={item.icon}
                 count={item?.count}
                 loading={item?.loading}
+                item={item?.items}
               />
             ))}
           </div>
