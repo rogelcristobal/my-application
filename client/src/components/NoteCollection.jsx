@@ -29,7 +29,7 @@ const NoteCollection = ({ item, id }) => {
   // },[id])
   return (
     // relative  view rounded-none flex cursor-pointer p-2  w-full
-    <NavLink ref={ref} to={`/collections/${item._id}`} data-objectid={item._id} >
+    <NavLink ref={ref} to={`/collections/${id}`} data-objectid={item._id} >
     {({ isActive }) => (
         <div
           className={`relative view  flex cursor-pointer p-2 w-full ${isActive&&'outline outline-[2px] outline-blue-500'}`}

@@ -214,9 +214,9 @@ const Collections = () => {
             </div>
           )}
         </div>
-        <div className="w-96 h-full view">
+        <div className="w-96 h-full ">
           <Routes>
-      <Route path="/:collectionID" element={<Sample></Sample>}></Route>
+      <Route path="/:collectionID" element={<Sample data={collections}></Sample>}></Route>
     </Routes>
         </div>
       </div>
