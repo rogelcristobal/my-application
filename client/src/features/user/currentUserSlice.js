@@ -46,6 +46,14 @@ export const currentUserSlice = createSlice({
       state.data = newData;
       state.loading = false;
     },
+    updateDataFromInitialFetch:(state,action)=>{
+       const newData = {
+        ...state.data,
+        noteCollections: action.payload
+      };
+      state.data = newData
+      state.loading = false;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -64,6 +72,6 @@ export const currentUserSlice = createSlice({
   },
 });
 
-export const { deleteCurrentUserCollection, addCurrentUserCollection } =
+export const { deleteCurrentUserCollection, addCurrentUserCollection ,updateDataFromInitialFetch} =
   currentUserSlice.actions;
 export default currentUserSlice.reducer;

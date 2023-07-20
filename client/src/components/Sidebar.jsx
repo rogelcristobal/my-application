@@ -57,7 +57,6 @@ const Sidebar = () => {
                 icon: <BiNote />,
                 count: currentUser?.noteCollections?.length,
                 loading: currentUserLoading,
-                // items: userData?.noteCollections
               },
               // { path: "/todos", title: "todos", icon: <BiListCheck /> },
               // { path: "/blogs", title: "Blogs", icon: <BiEditAlt /> },

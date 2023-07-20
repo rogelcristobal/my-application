@@ -71,7 +71,7 @@ function App() {
       dispatch(fetchUser(firebaseCurrentUser?.uid));
     }
   }, [dispatch, firebaseCurrentUser?.uid]);
-
+  
   return (
     <div className="h-screen w-full bg-[#ffffff] font-mono text-[0.9rem] tracking-tight text-black relative">
       <Routes>

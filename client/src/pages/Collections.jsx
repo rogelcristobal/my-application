@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   deleteCurrentUserCollection,
   addCurrentUserCollection,
+  updateDataFromInitialFetch
 } from "../features/user/currentUserSlice";
 import SocketContext from "../context/SocketContext";
 import NoteCollection from "../components/NoteCollection";
@@ -28,7 +29,6 @@ const Collections = () => {
   const { dropDownState, setDropDownState } = React.useContext(
     NoteCollectionDropDownPositionContext
   );
-  const queryClient = new QueryClient();
   const headers = {
     userID: currentUser?._id,
     "Content-Type": "application/json",
@@ -41,6 +41,7 @@ const Collections = () => {
         const { data } = await axios.get("http://localhost:3001/collections/", {
           headers,
         });
+       
         return data.data;
       }
       return {};
@@ -54,7 +55,8 @@ const Collections = () => {
     enabled: !!currentUser?._id,
     onSuccess: (data) => {
       setCollections(data);
-
+      //then updates the redux state 
+      dispatch(updateDataFromInitialFetch(data))
     },
   });
 
@@ -85,14 +87,8 @@ const Collections = () => {
       });
     }
   };
-
-  // Trigger the query only when currentUser._id becomes available
-  React.useEffect(() => {
-    if (currentUser?._id) {
-      queryClient.invalidateQueries("userData");
-    }
-  }, [currentUser]);
-
+  
+ 
   // socket event handler
   // deleteCollection
   React.useEffect(() => {
@@ -165,10 +161,10 @@ const Collections = () => {
           >
             {isLoading ? (
               <span>loading data</span>
-            ) : collections?.length === 0 ? (
+            ) : currentUser?.noteCollections?.length === 0 ? (
               <p className=" ">No collections to show</p>
             ) : (
-              collections?.map((item, id) => (
+              currentUser?.noteCollections?.map((item, id) => (
                 // this is the element i want to track
                 <NoteCollection
                   item={item}
