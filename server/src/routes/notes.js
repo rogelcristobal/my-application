@@ -138,18 +138,33 @@ noteRouter.delete("/:collectionID", async (request, response) => {
 // collectionsRouter.use('/notes', noteRouter)
 
 // get notes
-noteRouter.get("/:collectionID", extractUserID, async (request, response) => {
-  try {
-    const userID = request.userID;
-     
-  } catch (error) {
-    response.status(500).json({
-      status: "error",
-      message: "An error occurred",
-      error: error.message,
-    });
-  }
-});
+// noteRouter.get("/:collectionID", extractUserID, async (request, response) => {
+//   try {
+//     const userID = request.userID;
+//     const {collectionID} = request.params
+//      const user = await UserModel.findById(userID).populate({
+//         // populates the nested data within userModel
+//         path: "noteCollections",
+//         populate: {
+//           path: "savedNotes",
+//         },
+//       });
+//      if(!user){
+//         return response.status(404).json({message:"user does not exist"})
+//      }
+//      const collections = await NoteModel.find({collectionID:collectionID })
+
+//      response.status(200).json({
+//       status:"success",data:collections
+//      })
+//   } catch (error) {
+//     response.status(500).json({
+//       status: "error",
+//       message: "An error occurred",
+//       error: error.message,
+//     });
+//   }
+// });
 
 // create note
 noteRouter.post("/:collectionID", extractUserID, async (request, response) => {

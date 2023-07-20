@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   deleteCurrentUserCollection,
   addCurrentUserCollection,
+  updateDataFromInitialFetch
 } from "../features/user/currentUserSlice";
 import SocketContext from "../context/SocketContext";
 import NoteCollection from "../components/NoteCollection";
@@ -28,7 +29,6 @@ const Collections = () => {
   const { dropDownState, setDropDownState } = React.useContext(
     NoteCollectionDropDownPositionContext
   );
-  const queryClient = new QueryClient();
   const headers = {
     userID: currentUser?._id,
     "Content-Type": "application/json",
@@ -41,6 +41,7 @@ const Collections = () => {
         const { data } = await axios.get("http://localhost:3001/collections/", {
           headers,
         });
+       
         return data.data;
       }
       return {};
@@ -54,6 +55,8 @@ const Collections = () => {
     enabled: !!currentUser?._id,
     onSuccess: (data) => {
       setCollections(data);
+      //then updates the redux state 
+      dispatch(updateDataFromInitialFetch(data))
     },
   });
 
@@ -84,14 +87,8 @@ const Collections = () => {
       });
     }
   };
-
-  // Trigger the query only when currentUser._id becomes available
-  React.useEffect(() => {
-    if (currentUser?._id) {
-      queryClient.invalidateQueries("userData");
-    }
-  }, [currentUser]);
-
+  
+ 
   // socket event handler
   // deleteCollection
   React.useEffect(() => {
@@ -116,6 +113,7 @@ const Collections = () => {
 
       //update state on this component
       setCollections((prevCollections) => [...prevCollections, data]);
+      // console.log(data)
     });
     return () => {
       socket.disconnect();
@@ -125,9 +123,6 @@ const Collections = () => {
   React.useEffect(() => {
     setDropDownState({ ...dropDownState, isEnabled: false });
   }, [scrollPosition]);
-  // console.log(dropDownState.el)
-
-  // console.log(currentUser);
 
   React.useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -135,7 +130,7 @@ const Collections = () => {
   }, []);
 
 
- 
+  // console.log(collections)
   return (
     <div className="h-screen overflow-y-hidden  w-full flex flex-col items-start justify-start relative">
       <div className="h-fit py-2 px-4 bg-white gap-4 flex w-full items-start relative">
@@ -166,10 +161,10 @@ const Collections = () => {
           >
             {isLoading ? (
               <span>loading data</span>
-            ) : collections?.length === 0 ? (
+            ) : currentUser?.noteCollections?.length === 0 ? (
               <p className=" ">No collections to show</p>
             ) : (
-              collections?.map((item, id) => (
+              currentUser?.noteCollections?.map((item, id) => (
                 // this is the element i want to track
                 <NoteCollection
                   item={item}
@@ -214,9 +209,9 @@ const Collections = () => {
             </div>
           )}
         </div>
-        <div className="w-96 h-full view">
+        <div className="w-96 h-full ">
           <Routes>
-      <Route path="/:collectionID" element={<Sample></Sample>}></Route>
+      <Route path="/:collectionID" element={<Sample data={collections}></Sample>}></Route>
     </Routes>
         </div>
       </div>
