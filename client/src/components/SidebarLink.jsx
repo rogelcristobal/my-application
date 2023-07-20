@@ -5,7 +5,7 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path,item }) =>
   const hoverToggle = () => {
     setHOverState(!hoverState);
   };
-  console.log(item)
+  // console.log(item)
   return (
    <>
     <NavLink to={path} role="link" className="w-full mb-0.5  h-fit">
@@ -28,13 +28,13 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path,item }) =>
               }`}
             >
               {/* text-[#004feb] */}
-              <span
+              {/* <span
                 className={`text-[1rem]   mx-auto ${
                   isActive && "text-[#004feb]"
                 }`}
               >
                 {icon}
-              </span>
+              </span> */}
               {!sidebarState && (
                 <span className="flex items-center  text-start w-full h-full overflow-x-hidden  truncate font-medium">
                   {title}
@@ -70,7 +70,7 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path,item }) =>
       {item&&
       <div className="h-fit  w-full flex flex-col px-0">
         {item.map((item,id)=>(
-          <SidebarLink title={item.collectionTitle} key={id}/>
+          <SidebarLink title={item.collectionTitle} path={`/${item.collectionTitle}`} key={id}/>
         ))
 }
       </div>

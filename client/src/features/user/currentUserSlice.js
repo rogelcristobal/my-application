@@ -32,7 +32,7 @@ export const currentUserSlice = createSlice({
       const newData = {
         ...state.data,
         noteCollections: state.data.noteCollections.filter(
-          (collection) => collection !== action.payload._id
+          (collection) => collection._id !== action.payload._id
         ),
       };
       state.data = newData;
@@ -41,7 +41,7 @@ export const currentUserSlice = createSlice({
     addCurrentUserCollection: (state, action) => {
       const newData = {
         ...state.data,
-        noteCollections: [...state.data.noteCollections, action.payload._id],
+        noteCollections: [...state.data.noteCollections, action.payload],
       };
       state.data = newData;
       state.loading = false;

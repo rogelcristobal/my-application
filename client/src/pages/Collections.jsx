@@ -54,6 +54,7 @@ const Collections = () => {
     enabled: !!currentUser?._id,
     onSuccess: (data) => {
       setCollections(data);
+
     },
   });
 
@@ -116,6 +117,7 @@ const Collections = () => {
 
       //update state on this component
       setCollections((prevCollections) => [...prevCollections, data]);
+      // console.log(data)
     });
     return () => {
       socket.disconnect();
@@ -125,9 +127,6 @@ const Collections = () => {
   React.useEffect(() => {
     setDropDownState({ ...dropDownState, isEnabled: false });
   }, [scrollPosition]);
-  // console.log(dropDownState.el)
-
-  // console.log(currentUser);
 
   React.useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -135,7 +134,7 @@ const Collections = () => {
   }, []);
 
 
- 
+  // console.log(collections)
   return (
     <div className="h-screen overflow-y-hidden  w-full flex flex-col items-start justify-start relative">
       <div className="h-fit py-2 px-4 bg-white gap-4 flex w-full items-start relative">
