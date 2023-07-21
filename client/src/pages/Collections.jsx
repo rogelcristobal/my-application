@@ -6,14 +6,14 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   deleteCurrentUserCollection,
   addCurrentUserCollection,
-  updateDataFromInitialFetch
+  updateDataFromInitialFetch,
 } from "../features/user/currentUserSlice";
 import SocketContext from "../context/SocketContext";
 import NoteCollection from "../components/NoteCollection";
 import { useScrollPosition } from "../hook/useScrollPosition";
 import NoteCollectionDropDownPositionContext from "../context/NoteCollectionDropDownPositionContext";
 import { LuTrash2, LuEdit } from "react-icons/lu";
-import {Routes, Route, useParams} from 'react-router-dom'
+import { Routes, Route, useParams } from "react-router-dom";
 import Sample from "../components/Sample";
 const Collections = () => {
   const { socket } = React.useContext(SocketContext);
@@ -41,7 +41,7 @@ const Collections = () => {
         const { data } = await axios.get("http://localhost:3001/collections/", {
           headers,
         });
-       
+
         return data.data;
       }
       return {};
@@ -55,8 +55,8 @@ const Collections = () => {
     enabled: !!currentUser?._id,
     onSuccess: (data) => {
       setCollections(data);
-      //then updates the redux state 
-      dispatch(updateDataFromInitialFetch(data))
+      //then updates the redux state
+      dispatch(updateDataFromInitialFetch(data));
     },
   });
 
@@ -87,8 +87,7 @@ const Collections = () => {
       });
     }
   };
-  
- 
+
   // socket event handler
   // deleteCollection
   React.useEffect(() => {
@@ -129,32 +128,30 @@ const Collections = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-
   // console.log(collections)
   return (
     <div className="h-screen overflow-y-hidden  w-full flex flex-col items-start justify-start relative">
-      <div className="h-fit py-2 px-4 bg-white gap-4 flex w-full items-start relative">
-        <span className=" font-medium"> Collections</span>
+      <div className="h-fit py-2 px-10  gap-4 flex w-full items-start relative">
+        <span className="text-[1.375rem] font-medium text-white"> Collections</span>
         <span>
           {currentUserLoading ? (
             <span>loading</span>
           ) : (
-            <span>{currentUser?.noteCollections.length}</span>
+            <span className="hidden">{currentUser?.noteCollections.length}</span>
           )}
         </span>
       </div>
-      <div className=" h-full  w-full flex items-start justify-start relative">
+      <div className=" h-full px-8 w-full flex items-start justify-start hidden relative">
         <div className=" w-[19rem] h-full  overflow-y-hidden relative ">
-          <div className="flex items-center justify-start p-2">
+          {/* <div className="flex items-center justify-start p-2">
             <button
               onClick={addCollectionToggle}
               className=" w-fit   hover:bg-transparent bg-transparent border-dark font-normal rounded-none  text-inherit   tracking-tight text-[0.8rem] h-fit   hover:border-dark  btn btn-sm normal-case"
             >
               New collection
             </button>
-            {/* <p>scroll_pos: {Math.floor(scrollPosition)}</p> */}
-          </div>
-          {/* scrollabe parent */}
+          </div> */}
+
           <div
             ref={parentScrollableRef}
             className=" w-full  pb-52  px-2  py-1 overflow-y-auto   h-full space-y-1"
@@ -165,7 +162,6 @@ const Collections = () => {
               <p className=" ">No collections to show</p>
             ) : (
               currentUser?.noteCollections?.map((item, id) => (
-                // this is the element i want to track
                 <NoteCollection
                   item={item}
                   key={id}
@@ -211,8 +207,11 @@ const Collections = () => {
         </div>
         <div className="w-96 h-full ">
           <Routes>
-      <Route path="/:collectionID" element={<Sample data={collections}></Sample>}></Route>
-    </Routes>
+            <Route
+              path="/:collectionID"
+              element={<Sample data={collections}></Sample>}
+            ></Route>
+          </Routes>
         </div>
       </div>
       {addCollectionModalState && <AddCollectionModal collections />}

@@ -13,10 +13,10 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path,item }) =>
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full  rounded-none h-[2rem] flex flex-col  relative px-4  border-0 box-border  ${
+          className={`w-full  rounded-md h-[2.4rem] flex flex-col  relative px-4  border-0 box-border  ${
             isActive
-              ? "text-inherit  bg-transparent hover:bg-transparent "
-              : "text-[#676a78]  bg-transparent hover:bg-transparent "
+              ? "text-inherit  bg-[#363636] hover:bg-[#363636] font-normal"
+              : "text-inherit  bg-transparent hover:bg-transparent font-normal"
           }
           ${sidebarState ? "flex justify-center   " : "flex justify-center "}
           `}
@@ -28,15 +28,15 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path,item }) =>
               }`}
             >
               {/* text-[#004feb] */}
-              {/* <span
-                className={`text-[1rem]   mx-auto ${
-                  isActive && "text-[#004feb]"
+              <span
+                className={`text-[0.9rem]   ${
+                  isActive ? "":"text-[#b4b8b8]/70"
                 }`}
               >
                 {icon}
-              </span> */}
+              </span>
               {!sidebarState && (
-                <span className="flex items-center  text-start w-full h-full overflow-x-hidden  truncate font-medium">
+                <span className="flex items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.85rem]  truncate ">
                   {title}
                 </span>
               )}
@@ -44,8 +44,8 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path,item }) =>
             {loading?
             <span className="text-sm">loading</span>
             :count > 0  && (
-              <div className=" text-[0.7rem]  rounded-full h-5 grid place-content-center w-5 text-inherit  font-semibold">
-                {count}
+              <div className=" text-[0.6rem]  rounded-full h-[1.25rem] flex items-center justify-center w-5 text-inherit  font-medium">
+                <span>{count}</span>
               </div>
             )
             
@@ -67,14 +67,14 @@ const SidebarLink = ({ title, sidebarState, loading, icon,count, path,item }) =>
 
     </NavLink>
 
-      {item&&
+      {/* {item&&
       <div className="h-fit  w-full flex flex-col px-0">
         {item.map((item,id)=>(
           <SidebarLink title={item.collectionTitle} path={`/${item.collectionTitle}`} key={id}/>
         ))
 }
       </div>
-      }
+      } */}
 
    </>
   );

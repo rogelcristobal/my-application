@@ -50,7 +50,7 @@ const NoteCollection = ({ item, id }) => {
             </div>
             <div className="mt-0.5 w-full  text-[#7c8292]  text-[0.8rem]">
               <span className=" flex items-center gap-1.5 ">
-                {item.savedNotes.length}
+                {item.savedNotes?.length}
                 <span>files</span>
               </span>
             </div>
