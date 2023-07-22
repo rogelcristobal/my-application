@@ -6,14 +6,14 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   deleteCurrentUserCollection,
   addCurrentUserCollection,
-  updateDataFromInitialFetch
+  updateDataFromInitialFetch,
 } from "../features/user/currentUserSlice";
 import SocketContext from "../context/SocketContext";
 import NoteCollection from "../components/NoteCollection";
 import { useScrollPosition } from "../hook/useScrollPosition";
 import NoteCollectionDropDownPositionContext from "../context/NoteCollectionDropDownPositionContext";
 import { LuTrash2, LuEdit } from "react-icons/lu";
-import {Routes, Route, useParams} from 'react-router-dom'
+import { Routes, Route, useParams } from "react-router-dom";
 import Sample from "../components/Sample";
 const Collections = () => {
   const { socket } = React.useContext(SocketContext);
@@ -22,7 +22,6 @@ const Collections = () => {
   const [addCollectionModalState, setAddCollectionModalState] =
     React.useState(false);
   const dispatch = useDispatch();
-  const [collections, setCollections] = React.useState([]);
   const parentScrollableRef = React.useRef(null);
   const dropDownRef = React.useRef(null);
   const scrollPosition = useScrollPosition(parentScrollableRef);
@@ -41,7 +40,7 @@ const Collections = () => {
         const { data } = await axios.get("http://localhost:3001/collections/", {
           headers,
         });
-       
+
         return data.data;
       }
       return {};
@@ -54,9 +53,8 @@ const Collections = () => {
   const { isLoading } = useQuery(["userData"], fetchData, {
     enabled: !!currentUser?._id,
     onSuccess: (data) => {
-      setCollections(data);
-      //then updates the redux state 
-      dispatch(updateDataFromInitialFetch(data))
+      //then updates the redux state
+      dispatch(updateDataFromInitialFetch(data));
     },
   });
 
@@ -87,8 +85,7 @@ const Collections = () => {
       });
     }
   };
-  
- 
+
   // socket event handler
   // deleteCollection
   React.useEffect(() => {
@@ -99,9 +96,6 @@ const Collections = () => {
       dispatch(deleteCurrentUserCollection(data));
 
       //update state on this component
-      setCollections((prevCollections) =>
-        prevCollections?.filter((c) => c._id !== data._id)
-      );
     });
     // addcollection
     socket.on("addNoteCollection", (data) => {
@@ -112,7 +106,6 @@ const Collections = () => {
       dispatch(addCurrentUserCollection(data));
 
       //update state on this component
-      setCollections((prevCollections) => [...prevCollections, data]);
       // console.log(data)
     });
     return () => {
@@ -129,8 +122,6 @@ const Collections = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-
-  // console.log(collections)
   return (
     <div className="h-screen overflow-y-hidden  w-full flex flex-col items-start justify-start relative">
       <div className="h-fit py-2 px-4 bg-white gap-4 flex w-full items-start relative">
@@ -211,8 +202,8 @@ const Collections = () => {
         </div>
         <div className="w-96 h-full ">
           <Routes>
-      <Route path="/:collectionID" element={<Sample data={collections}></Sample>}></Route>
-    </Routes>
+            <Route path="/:collectionID" element={<Sample></Sample>}></Route>
+          </Routes>
         </div>
       </div>
       {addCollectionModalState && <AddCollectionModal collections />}
