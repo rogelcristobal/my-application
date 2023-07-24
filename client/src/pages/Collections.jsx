@@ -124,31 +124,31 @@ const Collections = () => {
 
   return (
     <div className="h-screen overflow-y-hidden  w-full flex flex-col items-start justify-start relative">
-      <div className="h-fit flex-col view px-8 p-4 gap-1 flex w-full items-start relative ">
-        {/* <span className="capitalize text-[0.8rem] font-semibold text-[#436bfd] ">
+      <div className="h-fit flex-col view px-6 p-4 gap-1 flex w-full items-start relative ">
+        {/* <span className="capitalize text-[0.8rem] font-semibold text-[#21223e] ">
           Collections
         </span> */}
-        <span className="text-[1.6rem] drop-shadow-sm font-semibold ">Saved notes</span>
+        <span className="text-[1.5rem] drop-shadow-sm font-semibold ">Collections</span>
       </div>
       <div className=" h-full px-0  w-full  flex items-start justify-center  relative">
         <div className=" w-full h-fit   relative ">
-          <div className="flex items-center view justify-end px-4 p-1  mx-6 mt-0 mb-0">
+          <div className="flex items-center view justify-end   mx-4  my-2">
             <button
               onClick={addCollectionToggle}
-              className=" w-fit   hover:bg-[#436bfd] bg-[#436bfd] border-none font-medium   text-[#ffffff] rounded-md py-2.5  text-[0.8rem] h-fit    hover:border-none  btn btn-sm normal-case"
+              className=" w-fit   hover:bg-[#21223e] bg-[#21223e] border-none font-medium   text-[#ffffff] rounded-md py-2.5  text-[0.8rem] h-fit    hover:border-none  btn btn-sm normal-case"
             >
               New collection
             </button>
           </div>
 
-          <div className=" w-full h-full  flex gap-4 p-6">
+          <div className=" w-full h-full  flex gap-4 px-4">
             <div className="flex flex-col view">
               <div className="flex-shrink-0 px-3 mb-2 view py-2 text-[#667085]/80">
                 <span className="text-[0.785rem] font-medium">All notes</span>
               </div>
               <div
               ref={parentScrollableRef}
-              className=" w-fit  flex flex-col overflow-y-auto px-1 py-0.5 flex-shrink-0   space-y-2.5   h-[32rem] "
+              className=" w-fit  flex flex-col overflow-y-auto px-1 py-1 flex-shrink-0   space-y-2.5   h-[32rem] "
             >
               {isLoading ? (
                 <span>loading data</span>
@@ -167,7 +167,7 @@ const Collections = () => {
               )}
             </div>
             </div>
-            <div className="h-[32rem] view w-full  ">
+            <div className="h-[35rem] view w-full  ">
               <Routes>
             <Route path="/:collectionID" element={<Sample></Sample>}></Route>
           </Routes>

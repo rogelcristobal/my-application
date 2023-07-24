@@ -31,8 +31,9 @@ const NoteCollection = ({ item, id }) => {
     // relative  view rounded-none flex cursor-pointer p-2  w-full
     <NavLink ref={ref} to={`/collections/${id}`} data-objectid={item._id} className="w-[14.5rem]">
     {({ isActive }) => (
+      // [#436bfe
         <div
-          className={`relative view  flex cursor-pointer rounded-md p-[0.75rem] w-full ${isActive&&'outline outline-[2.25px] outline-blue-500'}`}
+          className={`relative view  flex cursor-pointer rounded-md p-[0.75rem] w-full ${isActive&&'outline outline-[2.25px] outline-inherit'}`}
         >
           <div className={` flex  w-full flex-col item-start justify-between  `}>
             <div className="flex  w-full flex-col">
