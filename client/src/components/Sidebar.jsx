@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  LuListChecks,
-  LuArchive,
-  LuEdit3,
-  LuSettings,
-  LuChevronLeft,
-} from "react-icons/lu";
-import { BiNote, BiLayout, BiListCheck, BiEditAlt } from "react-icons/bi";
+
 import {PiFolderNotchBold,  PiLayoutBold,PiCheckSquareOffsetBold } from "react-icons/pi";
 import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
@@ -20,7 +13,7 @@ const Sidebar = () => {
   const handleToggleSidebar = () => {
     setState(!state);
     if (state) {
-      sidebarControl.start({ width: "16.5rem" });
+      sidebarControl.start({ width: "16rem" });
     } else {
       sidebarControl.start({ width: "4rem" });
     }
@@ -30,22 +23,22 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      initial={{ width: "16.5rem" }}
+      initial={{ width: "16rem" }}
       transition={{ duration: 0.3 }}
       className={`${
-        state ? "w-[4rem]" : "w-[16.5rem]"
-      } whitespace-nowrap relative   h-full flex bg-[#262626]  border-dark-right items-center justify-start  flex-shrink-0`}
+        state ? "w-[4rem]" : "w-[16rem]"
+      } whitespace-nowrap relative   h-full flex bg-[#ffffff]  border-dark-right items-center justify-start  flex-shrink-0`}
     >
      
       <div className="h-full  w-full flex flex-col">
-        <div className="w-full h-full mt-0   flex flex-col justify-start items-start">
+        <div className="w-full h-full mt-8   flex flex-col justify-start items-start">
           <div
             className={`${
-              state ? " px-0 " : "px-[0.7rem]"
+              state ? " px-0 " : "px-[1rem]"
             } flex   w-full items-center mt-8 py-2 justify-center flex-col`}
           >
             {!state && (
-              <span className=" px-2  w-full  text-left  text-[0.775rem]  text-[#b6b8ba] mb-2.5">
+              <span className=" px-2  w-full  text-left  text-[0.775rem]  text-[#667085] font-medium mb-2.5">
                 Menu
               </span>
             )}

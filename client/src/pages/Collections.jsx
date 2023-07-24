@@ -124,48 +124,55 @@ const Collections = () => {
 
   return (
     <div className="h-screen overflow-y-hidden  w-full flex flex-col items-start justify-start relative">
-      <div className="h-fit py-2 px-10  gap-4 flex w-full items-start relative">
-        <span className="text-[1.375rem] font-medium text-white"> Collections</span>
-        <span>
-          {currentUserLoading ? (
-            <span>loading</span>
-          ) : (
-            <span className="hidden">{currentUser?.noteCollections.length}</span>
-          )}
-        </span>
+      <div className="h-fit flex-col view px-8 p-4 gap-1 flex w-full items-start relative ">
+        {/* <span className="capitalize text-[0.8rem] font-semibold text-[#436bfd] ">
+          Collections
+        </span> */}
+        <span className="text-[1.6rem] drop-shadow-sm font-semibold ">Saved notes</span>
       </div>
-      <div className=" h-full px-8 w-full flex items-start justify-start hidden relative">
-        <div className=" w-[19rem] h-full  overflow-y-hidden relative ">
-          {/* <div className="flex items-center justify-start p-2">
+      <div className=" h-full px-0  w-full  flex items-start justify-center  relative">
+        <div className=" w-full h-fit   relative ">
+          <div className="flex items-center view justify-end px-4 p-1  mx-6 mt-0 mb-0">
             <button
               onClick={addCollectionToggle}
-              className=" w-fit   hover:bg-transparent bg-transparent border-dark font-normal rounded-none  text-inherit   tracking-tight text-[0.8rem] h-fit   hover:border-dark  btn btn-sm normal-case"
+              className=" w-fit   hover:bg-[#436bfd] bg-[#436bfd] border-none font-medium   text-[#ffffff] rounded-md py-2.5  text-[0.8rem] h-fit    hover:border-none  btn btn-sm normal-case"
             >
               New collection
             </button>
-          </div> */}
-
-          <div
-            ref={parentScrollableRef}
-            className=" w-full  pb-52  px-2  py-1 overflow-y-auto   h-full space-y-1"
-          >
-            {isLoading ? (
-              <span>loading data</span>
-            ) : currentUser?.noteCollections?.length === 0 ? (
-              <p className=" ">No collections to show</p>
-            ) : (
-              currentUser?.noteCollections?.map((item, id) => (
-                <NoteCollection
-                  item={item}
-                  key={id}
-                  id={id}
-                  parentScrollPosition={scrollPosition}
-                  deleteCollection={deleteCollection}
-                />
-              ))
-            )}
           </div>
 
+          <div className=" w-full h-full  flex gap-4 p-6">
+            <div className="flex flex-col view">
+              <div className="flex-shrink-0 px-3 mb-2 view py-2 text-[#667085]/80">
+                <span className="text-[0.785rem] font-medium">All notes</span>
+              </div>
+              <div
+              ref={parentScrollableRef}
+              className=" w-fit  flex flex-col overflow-y-auto px-1 py-0.5 flex-shrink-0   space-y-2.5   h-[32rem] "
+            >
+              {isLoading ? (
+                <span>loading data</span>
+              ) : currentUser?.noteCollections?.length === 0 ? (
+                <p className=" ">No collections to show</p>
+              ) : (
+                currentUser?.noteCollections?.map((item, id) => (
+                  <NoteCollection
+                    item={item}
+                    key={id}
+                    id={id}
+                    parentScrollPosition={scrollPosition}
+                    deleteCollection={deleteCollection}
+                  />
+                ))
+              )}
+            </div>
+            </div>
+            <div className="h-[32rem] view w-full  ">
+              <Routes>
+            <Route path="/:collectionID" element={<Sample></Sample>}></Route>
+          </Routes>
+            </div>
+          </div>
           {dropDownState.isEnabled && (
             <div
               style={{
@@ -199,9 +206,7 @@ const Collections = () => {
           )}
         </div>
         <div className="w-96 h-full ">
-          <Routes>
-            <Route path="/:collectionID" element={<Sample></Sample>}></Route>
-          </Routes>
+          
         </div>
       </div>
       {addCollectionModalState && <AddCollectionModal collections />}
