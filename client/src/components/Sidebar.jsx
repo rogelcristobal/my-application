@@ -1,6 +1,6 @@
 import React from "react";
 
-import {PiFolderNotchBold,  PiLayoutBold,PiCheckSquareOffsetBold } from "react-icons/pi";
+import {PiFolderNotchBold,  PiLayoutBold,PiCheckSquareOffsetBold ,PiNoteBlankBold} from "react-icons/pi";
 import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
 import { useSelector } from "react-redux";
@@ -50,9 +50,9 @@ const Sidebar = () => {
                 icon: <PiFolderNotchBold />,
                 count: currentUser?.noteCollections?.length,
                 loading: currentUserLoading,
-                items:currentUser?.noteCollections
+                items:[{collectionTitle:"my notes", icon: <PiNoteBlankBold />},{collectionTitle:"todos", icon: <PiCheckSquareOffsetBold />}]
               },
-              { path: "/todos", title: "todos", icon: <PiCheckSquareOffsetBold /> },
+              // { path: "/todos", title: "todos", },
               // { path: "/blogs", title: "Blogs", icon: <BiEditAlt /> },
             ].map((item, id) => (
               <SidebarLink

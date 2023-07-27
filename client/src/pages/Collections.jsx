@@ -125,10 +125,10 @@ const Collections = () => {
   }, []);
 
   return (
-    <div className="h-full overflow-y-hidden  mx-auto container flex flex-col items-start justify-start relative pt-8">
+    <div className="h-full overflow-y-hidden  mx-auto container flex flex-col items-start justify-start relative pt-6">
       <SearchBar></SearchBar>
-      <div className="h-fit flex-col  px-0 p-4 pb-6 mt-4 flex w-full items-start relative ">
-        <span className="font-medium mb-1.5 text-[1.4rem]">My Projects</span>
+      <div className="h-fit flex-col  px-0 p-4 pb-6 mt-6 flex w-full items-start relative ">
+        <span className="font-medium mb-2 text-[1.375rem]"> Projects</span>
         <span className="capitalize text-[0.825rem] font-medium text-[#707070]/70 ">
           Access your saved notes here.
         </span>
