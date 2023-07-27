@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import AddCollectionModal from "../components/AddCollectionModal";
+import SearchBar from "../components/SearchBar";
 import { QueryClient, useQuery } from "@tanstack/react-query";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -124,12 +125,13 @@ const Collections = () => {
   }, []);
 
   return (
-    <div className="h-full overflow-y-hidden  mx-auto container flex flex-col items-start justify-start relative">
-      <div className="h-fit flex-col  px-8 p-4  mt-8 flex w-full items-start relative ">
-        {/* <span className="font-medium mb-1 text-[1.425rem]">Collections</span> */}
-        {/* <span className="capitalize text-[0.85rem] font-medium text-[#707070]/70 ">
+    <div className="h-full overflow-y-hidden  mx-auto container flex flex-col items-start justify-start relative pt-8">
+      <SearchBar></SearchBar>
+      <div className="h-fit flex-col  px-0 p-4 pb-6 mt-4 flex w-full items-start relative ">
+        <span className="font-medium mb-1.5 text-[1.4rem]">My Projects</span>
+        <span className="capitalize text-[0.825rem] font-medium text-[#707070]/70 ">
           Access your saved notes here.
-        </span> */}
+        </span>
       </div>
       <div className=" h-full px-0  w-full  flex items-start justify-center  relative">
         <div className=" w-full h-fit   relative ">

@@ -73,7 +73,7 @@ function App() {
   }, [dispatch, firebaseCurrentUser?.uid]);
   
   return (
-    <div className="h-screen w-full bg-[#1e1e1e] font-inter   text-[#ffffff] relative">
+    <div className="h-screen w-full bg-[#171c1f] font-inter   text-[#ffffff] relative">
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route
