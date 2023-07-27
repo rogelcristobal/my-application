@@ -29,11 +29,11 @@ const NoteCollection = ({ item, id }) => {
   // },[id])
   return (
     // relative  view rounded-none flex cursor-pointer p-2  w-full
-    <NavLink ref={ref} to={`/collections/${id}`} data-objectid={item._id} className="w-[14.5rem]">
+    <NavLink ref={ref} to={`/collections/${id}`} data-objectid={item._id} className="w-[16rem]">
     {({ isActive }) => (
       // [#436bfe
         <div
-          className={`relative view  flex cursor-pointer rounded-md p-[0.75rem] w-full ${isActive&&'outline outline-[2.25px] outline-inherit'}`}
+          className={`relative   flex cursor-pointer  p-[0.75rem] w-full ${isActive&&'outline outline-[2.25px] outline-inherit'}`}
         >
           <div className={` flex  w-full flex-col item-start justify-between  `}>
             <div className="flex  w-full flex-col">
@@ -49,10 +49,10 @@ const NoteCollection = ({ item, id }) => {
           
                
             </div>
-            <div className="mt-3 w-full  text-[#667085]/60  text-[0.8rem]">
+            <div className="mt-2 w-full  text-[#667085]/60  text-[0.8rem]">
               <span className=" flex items-center  font-medium gap-1.5 text-[0.8rem]">
-                <span>{item.savedNotes?.length}</span>
-                <PiNoteBlankBold className="mb-0.5"/>
+                <span>{item.savedNotes?.length}</span> files
+                {/* <PiNoteBlankBold className="mb-0.5"/> */}
               </span>
             </div>
           </div>

@@ -13,7 +13,7 @@ const Sidebar = () => {
   const handleToggleSidebar = () => {
     setState(!state);
     if (state) {
-      sidebarControl.start({ width: "16rem" });
+      sidebarControl.start({ width: "16.5rem" });
     } else {
       sidebarControl.start({ width: "4rem" });
     }
@@ -23,34 +23,34 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      initial={{ width: "16rem" }}
+      initial={{ width: "16.5rem" }}
       transition={{ duration: 0.3 }}
       className={`${
-        state ? "w-[4rem]" : "w-[16rem]"
-      } whitespace-nowrap relative   h-full flex bg-[#ffffff]  border-dark-right items-center justify-start  flex-shrink-0`}
+        state ? "w-[4rem]" : "w-[16.5rem]"
+      } whitespace-nowrap relative   h-full  flex bg-[#262626]  border-dark-right items-center justify-start  flex-shrink-0`}
     >
      
       <div className="h-full  w-full flex flex-col">
-        <div className="w-full h-full mt-8   flex flex-col justify-start items-start">
+        <div className="w-full h-full   flex flex-col justify-start items-start">
           <div
             className={`${
-              state ? " px-0 " : "px-[1rem]"
-            } flex   w-full items-center mt-8 py-2 justify-center flex-col`}
+              state ? " px-0 " : "px-[0.75rem]"
+            } flex   w-full items-center mt-12 py-2 justify-center flex-col`}
           >
             {!state && (
-              <span className=" px-2  w-full  text-left  text-[0.775rem]  text-[#667085] font-medium mb-2.5">
+              <span className=" px-2  w-full  text-left  text-[0.775rem]  text-[#46565b] font-medium mb-2">
                 Menu
               </span>
             )}
             {[
-              { path: "/dashboard", title: "dashboard", icon: <PiLayoutBold /> },
+              { path: "/dashboard", title: "overview", icon: <PiLayoutBold /> },
               {
                 path: "/collections",
                 title: "collections ",
                 icon: <PiFolderNotchBold />,
                 count: currentUser?.noteCollections?.length,
                 loading: currentUserLoading,
-                // items:currentUser?.noteCollections
+                items:currentUser?.noteCollections
               },
               { path: "/todos", title: "todos", icon: <PiCheckSquareOffsetBold /> },
               // { path: "/blogs", title: "Blogs", icon: <BiEditAlt /> },
