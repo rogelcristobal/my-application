@@ -20,17 +20,18 @@ const SidebarLink = ({
 
   return (
     <>
-      <NavLink to={path} role="link" className="w-full  mb-0.5 h-fit">
+      <NavLink to={path} role="link" className="w-full   h-fit">
         {({ isActive }) => {
           
           return (
             <div
               onMouseEnter={hoverToggle}
               onMouseLeave={hoverToggle}
-              className={`w-full  rounded-md h-[2.5rem] flex flex-col  relative px-4 border-0 box-border ${
+              className={`w-full  rounded-md h-[2.5rem] flex flex-col border-0 box-border relative px-4 ${
                 isActive
                   ? "text-white  bg-[#353e44]/50 hover:bg-[#353e44]/50  font-normal "
-                  : "text-neutral-400/80  bg-transparent hover:bg-transparent   font-normal"
+                  // ? "text-white  bg-transparent hover:bg-transparent view font-normal "
+                  : "text-neutral-400/80  bg-transparent hover:bg-transparent    font-normal"
               }
           ${sidebarState ? "flex justify-center   " : "flex justify-center "}
           `}
@@ -50,8 +51,9 @@ const SidebarLink = ({
                     {icon}
                   </span>
                   {!sidebarState && (
-                    <span className="flex items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.825rem]  truncate ">
-                      {title}  {String(isActive)}
+                    <span className="flex items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.8rem]  truncate ">
+                      {title}
+                        {/* {String(isActive)} */}
                     </span>
                   )}
                 </div>
@@ -59,7 +61,7 @@ const SidebarLink = ({
                   <span className="text-sm">loading</span>
                 ) : (
                   count > 0 && (
-                    <div className=" text-[0.6rem]  rounded-md h-[1.2rem] w-[1.2rem] pt-0.5 flex items-center justify-center  text-[#676269]  font-medium">
+                    <div className=" text-[0.6rem]  rounded-md h-[1.2rem] w-[1.2rem] pt-0.5 flex items-center justify-center  text-neutral-400/80  font-medium">
                       <span>{count}</span>
                     </div>
                   )
@@ -79,7 +81,7 @@ const SidebarLink = ({
       </NavLink>
 
       {item && (
-        <div className={`h-fit pl-2.5 w-full flex flex-col px-0 ${activeState&&'bg-red-100'}`}>
+        <div className={`h-fit pl-[0.9rem] w-full flex flex-col px-0 ${activeState&&'bg-red-100'}`}>
           {item.map((item, id) => (
             <SidebarLink
               title={item?.collectionTitle}

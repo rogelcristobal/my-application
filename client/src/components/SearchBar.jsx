@@ -1,6 +1,6 @@
 import React from "react";
 import Axios from "axios";
-import { LuSearch } from "react-icons/lu";
+import { PiMagnifyingGlass } from "react-icons/pi";
 const SearchBar = () => {
   const inputRef = React.useRef(null);
   const [state, setState] = React.useState({
@@ -51,26 +51,26 @@ const SearchBar = () => {
     };
   }, [inputRef]);
   return (
-    <div className=" input input-bordered w-full max-w-xs relative rounded-lg bg-[#1d2327] view">
+    <div className=" input input-ghost view w-full max-w-xs relative h-[2.35rem] bg-[#1a1f23] rounded-lg  ">
       <input
         ref={inputRef}
         type="text"
         onMouseEnter={hoverToggle}
         onMouseLeave={hoverToggle}
-        placeholder="Search..."
+        placeholder="Search"
         onChange={(e) =>
           setState({
             ...state,
             input: e.target.value,
           })
         }
-        className={` h-full bg-[#1d2327] placeholder:font-inter text-inherit text-sm relative placeholder:text-[#696e79]/70 w-full placeholder:text-[0.8rem]  pl-7 max-w-sm  placeholder:font-normal focus:text-inherit cursor-pointer  focus:outline-none ${
+        className={` h-full bg-inherit placeholder:font-inter text-inherit text-sm relative placeholder:text-neutral-400/50 w-full placeholder:text-[0.8rem]  pl-7 max-w-sm  placeholder:font-normal focus:text-inherit cursor-pointer  focus:outline-none ${
           state.hover ? "" : " "
         }`}
       />
-      <LuSearch
+      <PiMagnifyingGlass
         className={`absolute   text-md top-1/2 -translate-y-1/2 ml-0 ${
-          state.hover ? "text-[#696e79]/70" : "text-[#696e79]/70"
+          state.hover ? "text-[#707070]" : "text-neutral-400/60"
         }`}
       />
 

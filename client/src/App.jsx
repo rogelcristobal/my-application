@@ -80,7 +80,7 @@ function App() {
           path="/*"
           element={
             <ProtectedRoute>
-              <div className="h-full   flex items-start flex-col justify-start relative">
+              <div className="h-screen   flex items-start flex-col justify-start relative">
                 {/* sidebar */}
                 {/* navigation */}
                   <div className=" flex-shrink-0 w-full flex view bg-[#ffffff] h-[4rem] hidden items-center  justify-end">
@@ -112,8 +112,8 @@ function App() {
                       logout
                     </button> */}
                   </div>
-                <div className="flex items-start  justify-start w-full  h-screen">
-                <Sidebar></Sidebar>
+                <div className="flex items-start  justify-start w-full  h-full">
+                  <Sidebar></Sidebar>
                   
                   <Routes>
                     <Route
@@ -122,7 +122,7 @@ function App() {
                     ></Route>
                     <Route path="/dashboard" element={<Home />} />
                     <Route
-                      path="/collections/*"
+                      path="/projects/*"
                       element={
                         <NoteCollectionDropDownPositionProvider>
                           <Collections />
