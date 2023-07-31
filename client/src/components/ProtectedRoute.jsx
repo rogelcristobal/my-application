@@ -5,7 +5,9 @@ const ProtectedRoute = ({ children }) => {
   const data = useSelector((state)=>state.user.firebaseCurrentUser)
   const loading = useSelector((state)=>state.user.firebaseCurrentUserLoading)
   if(loading){
-    return <div>loading</div>
+    return <div className="h-full w-full grid place-content-center">
+      <span className="loading loading-spinner loading-lg"></span>
+    </div>
   }else if(!loading&&!data){
     return <Navigate to='/login' replace/>
   }else if(!loading&&data){

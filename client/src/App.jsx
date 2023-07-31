@@ -73,7 +73,7 @@ function App() {
   }, [dispatch, firebaseCurrentUser?.uid]);
   
   return (
-    <div className="h-screen w-full bg-[#171c1f] font-inter   text-[#ffffff] relative">
+    <div className="h-screen w-full  font-inter  bg-[#171718] text-[#2d3036] relative">
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route
@@ -83,7 +83,7 @@ function App() {
               <div className="h-full   flex items-start flex-col justify-start relative">
                 {/* sidebar */}
                 {/* navigation */}
-                  <div className=" flex-shrink-0 w-full flex view bg-[#ffffff] h-[4rem] hidden items-center  justify-end">
+                  <div className=" flex-shrink-0 w-full flex  bg-[#101011] h-[4rem]  items-center  justify-end">
                     {/* <div className="  flex flex-col">
                       <span className=" capitalize ">
                         {userDataLoading ? (
