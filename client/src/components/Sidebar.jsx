@@ -17,7 +17,7 @@ const Sidebar = () => {
   const handleToggleSidebar = () => {
     setState(!state);
     if (state) {
-      sidebarControl.start({ width: "16.5rem" });
+      sidebarControl.start({ width: "15rem" });
     } else {
       sidebarControl.start({ width: "4rem" });
     }
@@ -26,10 +26,10 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      initial={{ width: "16.5rem" }}
+      initial={{ width: "15rem" }}
       transition={{ duration: 0.3 }}
       className={`${
-        state ? "w-[4rem]" : "w-[16.5rem]"
+        state ? "w-[4rem]" : "w-[15rem]"
       } whitespace-nowrap relative   h-full  flex bg-[#171718]  border-dark-right items-center justify-start  flex-shrink-0`}
     >
       <div className="h-full  w-full flex flex-col">
@@ -62,8 +62,7 @@ const Sidebar = () => {
                     />
                   )),
                 },
-                { path: "/todos", title: "todos", },
-                { path: "/blogs", title: "Blogs"},
+               
               ].map((item, id) => (
                 <SidebarLink
                   key={id}

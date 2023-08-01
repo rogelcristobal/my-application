@@ -23,7 +23,7 @@ const SidebarLink = ({
   if (path) {
     return (
       <>
-        <NavLink to={path} role="link" className="w-full  mb-2 h-fit" onClick={(e)=>e.stopPropagation()}>
+        <NavLink to={path} role="link" className="w-full  mb-1 h-fit" onClick={(e)=>e.stopPropagation()}>
           {({ isActive }) => {
             if (isActive) {
               setActiveState(true);
@@ -94,7 +94,7 @@ const SidebarLink = ({
         onMouseLeave={hoverToggle}
         onClick={() => setActiveState(!activeState)}
       >
-        <div className="w-full  mb-2 w h-fit">
+        <div className="w-full  mb-1 w h-fit">
           <div
             className={`w-full  rounded-md h-[2.4rem] flex flex-col  relative px-4 border-0 box-border ${
               activeState
@@ -115,7 +115,7 @@ const SidebarLink = ({
                   {icon}
                 </span>
                 <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.825rem]  truncate ">
-                  {title} {String(activeState)}
+                  {title} 
                 </span>
               </div>
 
@@ -147,7 +147,7 @@ const SidebarLink = ({
           animate={{
             height: activeState ? 2.70 * count + "rem" : 0,
           }}
-          className={` pl-2.5 w-full items-center justify-center view flex flex-col px-0 overflow-hidden `}
+          className={` pl-2.5 w-full items-center justify-center ${activeState&&'view'} flex flex-col px-0 overflow-hidden `}
         >
           {item}
         </motion.div>
