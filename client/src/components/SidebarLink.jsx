@@ -23,7 +23,7 @@ const SidebarLink = ({
 
 
   // Check if the NavLink is active
-  const isActive = location.pathname === path;
+  const isActive = location.pathname.startsWith(path);
 
 
    const handleNavLinkClick = (e) => {
@@ -38,6 +38,7 @@ const SidebarLink = ({
         role="link"
         className="w-full  mb-0.5 h-fit"
         onClick={handleNavLinkClick}
+        exact={false}
       >
         
             <div

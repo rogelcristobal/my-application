@@ -52,7 +52,7 @@ const Sidebar = () => {
                   path:'/collections',
                   title: "projects ",
                   icon: <PiFolderNotch />,
-                  activeClass:`text-white bg-[#2c2c2c]/50 hover:bg-[#2c2c2c]/50`,
+                  activeClass:`text-white `,
 
                   loading: currentUserLoading,
                   items: [{title:"notes",count:currentUser?.noteCollections?.length},{title:"todos"}].map((item, id) => (
