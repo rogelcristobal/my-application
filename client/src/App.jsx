@@ -82,8 +82,8 @@ function App() {
             <ProtectedRoute>
               <div className="h-full   flex items-start flex-col justify-start relative">
                 {/* sidebar */}
-                {/* navigation */}
-                  <div className=" flex-shrink-0 w-full flex  bg-[#101011] h-[4rem]  items-center  justify-end">
+                {/* navigation bg-[#101011]*/}
+                  <div className=" flex-shrink-0 w-full flex  border-dark-bottom h-[4rem]  items-center  justify-end">
                     {/* <div className="  flex flex-col">
                       <span className=" capitalize ">
                         {userDataLoading ? (
