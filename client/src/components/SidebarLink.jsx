@@ -13,12 +13,22 @@ const SidebarLink = ({
   activeClass
 }) => {
   const [hoverState, setHOverState] = React.useState(false);
-  const [activeState, setActiveState] = React.useState(true);
   const hoverToggle = () => {
     setHOverState(!hoverState);
   };
-  const sample = () => {
-    alert("asd");
+  const [activeState, setActiveState] = React.useState(false);
+  const location = useLocation()
+
+
+
+
+  // Check if the NavLink is active
+  const isActive = location.pathname === path;
+
+
+   const handleNavLinkClick = (e) => {
+    e.stopPropagation
+    setActiveState(!activeState);
   };
 
   return (
@@ -26,16 +36,10 @@ const SidebarLink = ({
       <NavLink
         to={path}
         role="link"
-        className="w-full  mb-0 h-fit"
-        onClick={(e) => e.stopPropagation()}
+        className="w-full  mb-0.5 h-fit"
+        onClick={handleNavLinkClick}
       >
-        {({ isActive }) => {
-          if (isActive) {
-            setActiveState(true);
-          } else {
-            setActiveState(false);
-          }
-          return (
+        
             <div
               onMouseEnter={hoverToggle}
               onMouseLeave={hoverToggle}
@@ -43,16 +47,13 @@ const SidebarLink = ({
                 isActive
                 // bg-[#2c2c2c]/50
                   ? activeClass
-                  : "text-[#707070]  bg-transparent hover:bg-transparent   "
+                  : "text-[#707070]  bg-transparent hover:bg-transparent "
               }
-          ${sidebarState ? "flex justify-center   " : "flex justify-center "}
           `}
             >
               <div className="flex-shrink-0 h-full  flex justify-between items-center overflow-hidden w-full">
                 <div
-                  className={`flex justify-start items-center   h-full    w-full capitalize gap-3 ${
-                    !sidebarState ? "max-w-[75%] " : "max-w-[100%]"
-                  }`}
+                  className={`flex justify-start items-center   h-full    w-full capitalize gap-3 `}
                 >
                   {/* text-[#004feb] */}
                   <span
@@ -62,11 +63,11 @@ const SidebarLink = ({
                   >
                     {icon}
                   </span>
-                  {!sidebarState && (
+                  
                     <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.785rem]  truncate ">
                       {title}
                     </span>
-                  )}
+                 
                 </div>
                 {loading ? (
                   <span className="text-sm">loading</span>
@@ -87,8 +88,6 @@ const SidebarLink = ({
                 )}
               </div>
             </div>
-          );
-        }}
       </NavLink>
 
       {item && (
