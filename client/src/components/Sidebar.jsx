@@ -50,7 +50,7 @@ const Sidebar = () => {
 
                 {
                   path:'/collections',
-                  title: "projects ",
+                  title: "collections ",
                   icon: <PiFolderNotch />,
                   activeClass:`text-white `,
 

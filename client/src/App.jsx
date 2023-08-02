@@ -123,6 +123,7 @@ function App() {
                     <Route path="/dashboard" element={<Home />} />
                     <Route
                       path="/collections/*"
+                      
                       element={
                         <NoteCollectionDropDownPositionProvider>
                           <Collections />
