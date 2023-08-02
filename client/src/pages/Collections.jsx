@@ -127,7 +127,7 @@ const Collections = () => {
   }, []);
 
   return (
-    <div></div>
+    <div className="text-sm text-neutral-100/40"> collections page</div>
   );
 };
 
