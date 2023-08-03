@@ -30,7 +30,7 @@ const Sidebar = () => {
       transition={{ duration: 0.3 }}
       className={`${
         state ? "w-[4rem]" : "w-[16rem]"
-      } whitespace-nowrap relative   h-full  flex bg-[#171718]  border-dark-right items-center justify-start  flex-shrink-0`}
+      } whitespace-nowrap relative pt-[4rem]  h-screen  flex bg-[#171718]  border-dark-right items-center justify-start  flex-shrink-0`}
     >
       <div className="h-full  w-full flex flex-col">
         <div className="w-full h-full   flex flex-col justify-start items-start">
@@ -44,7 +44,7 @@ const Sidebar = () => {
                 Menu
               </span>
             )}
-            <div className="w-full h-fit flex flex-col space-y-0.5 border-dark-bottom py-2">
+            <div className="w-full h-fit flex flex-col space-y-0.5  py-2">
               {[
                 { path: "/dashboard", title: "dashboard", icon: <PiLayout /> ,activeClass:`text-white bg-[#2c2c2c]/50 hover:bg-[#2c2c2c]/50`,},
 

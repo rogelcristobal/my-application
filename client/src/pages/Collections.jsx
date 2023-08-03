@@ -127,7 +127,14 @@ const Collections = () => {
   }, []);
 
   return (
-    <div className="text-sm text-neutral-100/40 h-full"></div>
+    <div className="text-sm text-neutral-100/40 h-screen flex relative w-full overflow-y-scroll pt-[4rem]">
+      <div className="h-[200vh] opacity-70 text-xs absolute w-fit view left-4">sample height</div>
+      <div className="mx-auto container px-8 view h-28 flex items-center">
+       
+         <span className="text-white font-medium text-[1.475rem]">Projects</span>
+       
+      </div>
+    </div>
   );
 };
 

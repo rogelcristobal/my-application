@@ -149,7 +149,7 @@ const SidebarLink = ({
             animate={{
               height: activeState ? 2.75 * 2 + "rem" : 0,
             }}
-            className={` pl-3.5  my-1.5 w-full items-center justify-between ${
+            className={` pl-[1.1rem]  my-1.5 w-full items-center justify-between ${
               activeState && ""
             } flex flex-col px-0 overflow-hidden `}
           >

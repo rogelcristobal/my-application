@@ -71,9 +71,9 @@ function App() {
       dispatch(fetchUser(firebaseCurrentUser?.uid));
     }
   }, [dispatch, firebaseCurrentUser?.uid]);
-  
+
   return (
-    <div className="h-screen w-full  font-inter  bg-[#171718] text-[#2d3036] relative">
+    <div className="h-full w-full  font-inter  bg-[#171718] text-[#2d3036] relative">
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route
@@ -81,40 +81,9 @@ function App() {
           element={
             <ProtectedRoute>
               <div className="h-full   flex items-start flex-col justify-start relative">
-                {/* sidebar */}
-                {/* navigation bg-[#101011]*/}
-                  <div className=" flex-shrink-0 w-full flex  border-dark-bottom h-[4rem]  items-center  justify-end">
-                    {/* <div className="  flex flex-col">
-                      <span className=" capitalize ">
-                        {userDataLoading ? (
-                          <span>loading data</span>
-                        ) : (
-                          <span className=" flex flex-col items-center gap-2 px-4 text-[1rem] w-fit font-medium">
-                            <span className=" ">
-                              Welcome back, {currentUser?.firstName}
-                              {currentUser?.lastName}.
-                            </span>
-                            <span className=" overflow-hidden truncate text-[0.8rem] text-[#7c8292]/70 w-full">
-                              {currentUser?._id}
-                            </span>
-                          </span>
-                        )}
-                      </span>
-                      <span className="text-[0.8rem] mt-1 font-medium ">
-                        {userDataLoading ? (
-                          <span >loading</span>
-                        ) : (
-                          currentUser?.email
-                        )}
-                      </span>
-                    </div>
-                    <button onClick={logOutUser} className=" text-sm p-1">
-                      logout
-                    </button> */}
-                  </div>
-                <div className="flex items-start  justify-start w-full  h-screen">
-                <Sidebar></Sidebar>
-                  
+                <div className=" flex-shrink-0 w-full flex  border-dark-bottom h-[4rem] fixed z-10 items-center  justify-end"></div>
+                <div className="flex items-start  justify-start w-full  h-full">
+                  <Sidebar></Sidebar>
                   <Routes>
                     <Route
                       path="/"
@@ -123,7 +92,6 @@ function App() {
                     <Route path="/dashboard" element={<Home />} />
                     <Route
                       path="/collections/*"
-                      
                       element={
                         <NoteCollectionDropDownPositionProvider>
                           <Collections />
