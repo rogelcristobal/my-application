@@ -4,7 +4,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 const SidebarLink = ({
   title,
-  sidebarState,
+  initialState,
   loading,
   icon,
   count,
@@ -16,7 +16,7 @@ const SidebarLink = ({
   const hoverToggle = () => {
     setHOverState(!hoverState);
   };
-  const [activeState, setActiveState] = React.useState(false);
+  const [activeState, setActiveState] = React.useState(initialState);
   const location = useLocation();
 
   // Check if the NavLink is active
@@ -34,7 +34,7 @@ const SidebarLink = ({
         role="link"
         className="w-full  mb-0.5 h-fit"
         onClick={handleNavLinkClick}
-        exact={false}
+       
       >
         <div
           onMouseEnter={hoverToggle}
@@ -59,7 +59,7 @@ const SidebarLink = ({
               </span>
 
               <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.8rem]  truncate ">
-                {title}
+                {title} 
               </span>
             </div>
             {loading ? (

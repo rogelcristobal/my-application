@@ -53,7 +53,7 @@ const Sidebar = () => {
                   title: "projects ",
                   icon: <PiFolderNotch />,
                   activeClass:`text-white `,
-
+                  initialState:true,
                   loading: currentUserLoading,
                   items: [{title:"notes",count:currentUser?.noteCollections?.length},{title:"todos",}].map((item, id) => (
                     <SidebarLink
@@ -79,6 +79,7 @@ const Sidebar = () => {
                   loading={item?.loading}
                   item={item?.items}
                   activeClass={item.activeClass}
+                  initialState={item?.initialState}
                 />
               ))}
             </div>
