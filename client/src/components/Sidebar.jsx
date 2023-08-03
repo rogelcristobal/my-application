@@ -2,8 +2,8 @@ import React from "react";
 import {
   PiFolderNotch,
   PiLayout,
-  PiCheckSquareOffsetBold,
-  PiNoteBlankBold,
+  PiCheckSquareOffset,
+  PiNoteBlank,
 } from "react-icons/pi";
 import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
@@ -40,33 +40,34 @@ const Sidebar = () => {
             } flex   w-full items-center mt-2 py-2 justify-center  flex-col`}
           >
             {!state && (
-              <span className=" px-2  w-full  text-left  text-[0.775rem]  text-neutral-400/50 font-normal mb-2">
+              <span className=" px-2  w-full  text-left  text-[0.775rem]  text-neutral-400/50 font-normal mb-0">
                 Menu
               </span>
             )}
-            <div className="w-full h-fit flex flex-col space-y-1">
+            <div className="w-full h-fit flex flex-col space-y-0.5 border-dark-bottom py-2">
               {[
                 { path: "/dashboard", title: "dashboard", icon: <PiLayout /> ,activeClass:`text-white bg-[#2c2c2c]/50 hover:bg-[#2c2c2c]/50`,},
 
                 {
                   path:'/collections',
-                  title: "collections ",
+                  title: "projects ",
                   icon: <PiFolderNotch />,
                   activeClass:`text-white `,
 
                   loading: currentUserLoading,
-                  items: [{title:"notes",count:currentUser?.noteCollections?.length},{title:"todos"}].map((item, id) => (
+                  items: [{title:"notes",count:currentUser?.noteCollections?.length},{title:"todos",}].map((item, id) => (
                     <SidebarLink
                       title={item?.title}
                       path={`/collections/${item?.title}`}
                       key={id}
                       activeClass={`text-white bg-[#2c2c2c]/50 hover:bg-[#2c2c2c]/50`}
                       count={item.count}
+                      icon={item?.icon}
                       
                     />
                   )),
                 },
-               
+                 { path: "/sample", title: "sample", icon: <PiLayout /> ,activeClass:`text-white bg-[#2c2c2c]/50 hover:bg-[#2c2c2c]/50`,},
               ].map((item, id) => (
                 <SidebarLink
                   key={id}

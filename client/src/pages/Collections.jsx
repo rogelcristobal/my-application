@@ -127,7 +127,7 @@ const Collections = () => {
   }, []);
 
   return (
-    <div className="text-sm text-neutral-100/40"></div>
+    <div className="text-sm text-neutral-100/40 h-full"></div>
   );
 };
 

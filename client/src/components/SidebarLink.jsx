@@ -53,12 +53,12 @@ const SidebarLink = ({
             >
               {/* text-[#004feb] */}
               <span
-                className={`text-[1rem]   ${isActive ? "text-[#4595d0]" : ""}`}
+                className={`text-[1.1rem]   ${isActive ? "text-[#4595d0]" : ""}`}
               >
                 {icon}
               </span>
 
-              <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.795rem]  truncate ">
+              <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.8rem]  truncate ">
                 {title}
               </span>
             </div>
@@ -85,16 +85,16 @@ const SidebarLink = ({
     );
   } else {
     return (
-      <>
+      <div className="">
         <div
           role="link"
-          className="w-full  mb-0.5 h-fit"
+          className="w-full   h-fit "
           onClick={handleNavLinkClick}
         >
           <div
             onMouseEnter={hoverToggle}
             onMouseLeave={hoverToggle}
-            className={`w-full cursor-pointer rounded-md h-[2.4rem] flex flex-col font-normal relative px-4 border-0 box-border ${
+            className={`w-full cursor-pointer rounded-md h-[2.4rem] flex flex-col font-medium relative px-4 border-0 box-border ${
               isActive
                 ? // bg-[#2c2c2c]/50
                   activeClass
@@ -108,7 +108,7 @@ const SidebarLink = ({
               >
                 {/* text-[#004feb] */}
                 <span
-                  className={`text-[1rem]   ${
+                  className={`text-[1.1rem]   ${
                     isActive ? "text-[#4595d0]" : ""
                   }`}
                 >
@@ -145,17 +145,18 @@ const SidebarLink = ({
             initial={{
               height: 0,
             }}
+            // 2.60 * 2 + "rem"
             animate={{
-              height: activeState ? 2.55 * 2 + "rem" : 0,
+              height: activeState ? 2.75 * 2 + "rem" : 0,
             }}
-            className={` pl-3.5  w-full items-center justify-center ${
+            className={` pl-3.5  my-1.5 w-full items-center justify-between ${
               activeState && ""
             } flex flex-col px-0 overflow-hidden `}
           >
             {item}
           </motion.div>
         )}
-      </>
+      </div>
     );
   }
 };
