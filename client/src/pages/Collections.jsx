@@ -16,7 +16,7 @@ import NoteCollectionDropDownPositionContext from "../context/NoteCollectionDrop
 import { LuTrash2, LuEdit } from "react-icons/lu";
 import { Routes, Route, useParams } from "react-router-dom";
 import Sample from "../components/Sample";
-import { GoSidebarExpand } from "react-icons/go";
+import { GoSidebarExpand } from "react-icons/go"; 
 const Collections = () => {
   const { socket } = React.useContext(SocketContext);
   const currentUser = useSelector((state) => state.currentUser.data);
@@ -125,30 +125,15 @@ const Collections = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const onChange = (key) => {
-  console.log(key);
-};
-const items = [
-  {
-    key: '1',
-    label: `Notes`,
-    children: `Content of Tab Pane 1`,
-  },
-  {
-    key: '2',
-    label: `Todos`,
-    children: `Content of Tab Pane 2`,
-  },
 
-];
 
   return (
-    <div className="text-sm text-neutral-100/40 h-screen flex relative w-full overflow-y-scroll pt-[4rem]">
+    <div className="text-sm text-neutral-100/40 h-screen flex relative w-full overflow-y-scroll pt-[4rem] flex flex-col">
       <div className="h-[200vh] opacity-70 text-xs absolute w-16 view left-4">
         
       </div>
-      <div className="xl:mx-auto xl:container xl:px-0 lg:px-8 w-full  view h-fit flex items-start flex-col justify-center">
-        <div className="view w-fit h-fit flex flex-col pt-8">
+      <div className="xl:mx-auto xl:container xl:px-0 lg:px-8 w-full py-4  h-fit flex items-start flex-col justify-center">
+        <div className=" w-fit h-fit flex flex-col pt-6">
           <span className="text-white font-medium md:text-[1.45rem] xl:text-[1.5rem]">
             Projects
           </span>
@@ -156,6 +141,9 @@ const items = [
             Access your saved notes and todos here.
           </span>
         </div>
+      </div>
+      <div className="w-full py-3 border-dark-bottom flex items-end justify-start mt-3">
+        <div className="xl:mx-auto xl:container h-full xl:px-0 lg:px-8  flex items-end">Notes</div>
       </div>
     </div>
   );
