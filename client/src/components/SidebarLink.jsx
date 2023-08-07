@@ -32,18 +32,18 @@ const SidebarLink = ({
       <NavLink
         to={path}
         role="link"
-        className="w-full  mb-0.5 h-fit"
+        className="w-full  mb-0.5 h-fit box-border"
         onClick={handleNavLinkClick}
        
       >
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full  rounded-md h-[2.4rem] flex flex-col font-normal relative px-4 border-0 box-border ${
+          className={`w-full  rounded-md h-[2.4rem] box-border flex flex-col font-normal relative px-3  ${
             isActive
               ? // bg-[#2c2c2c]/50
                 activeClass
-              : "text-[#707070]  bg-transparent hover:bg-transparent "
+              : "text-gray-500  bg-transparent hover:bg-transparent border-0 box-border"
           }
           `}
         >
@@ -51,14 +51,14 @@ const SidebarLink = ({
             <div
               className={`flex justify-start items-center   h-full    w-full capitalize gap-3 `}
             >
-              {/* text-[#004feb] */}
+              {/* text-[#8f6afc] */}
               <span
-                className={`text-[1.1rem]   ${isActive ? "text-[#4595d0]" : ""}`}
+                className={`text-[1.1rem]   ${isActive ? "text-[#8f6afc]" : ""}`}
               >
                 {icon}
               </span>
 
-              <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.8rem]  truncate ">
+              <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.85rem]  truncate ">
                 {title} 
               </span>
             </div>
@@ -66,7 +66,7 @@ const SidebarLink = ({
               <span className="text-sm">loading</span>
             ) : (
               count > 0 && (
-                <div className=" text-[0.6rem]  rounded-md h-[1.2rem] w-[1.2rem] pt-0.5 flex items-center justify-center  text-[#676269]  font-medium">
+                <div className=" text-[0.6rem]  rounded-md h-[1.2rem] w-[1.2rem] pt-0.5 flex items-center justify-center  text-[#676269]  font-normal">
                   <span>{count}</span>
                 </div>
               )
@@ -88,17 +88,17 @@ const SidebarLink = ({
       <div className="">
         <div
           role="link"
-          className="w-full   h-fit "
+          className="w-full   h-fit box-border"
           onClick={handleNavLinkClick}
         >
           <div
             onMouseEnter={hoverToggle}
             onMouseLeave={hoverToggle}
-            className={`w-full cursor-pointer rounded-md h-[2.4rem] flex flex-col font-medium relative px-4 border-0 box-border ${
+            className={`w-full cursor-pointer rounded-md h-[2.4rem] flex flex-col font-normal relative px-3   ${
               isActive
                 ? // bg-[#2c2c2c]/50
                   activeClass
-                : "text-[#707070]  bg-transparent hover:bg-transparent "
+                : "text-gray-500  bg-transparent hover:bg-transparent border-0 box-border"
             }
           `}
           >
@@ -109,13 +109,13 @@ const SidebarLink = ({
                 {/* text-[#004feb] */}
                 <span
                   className={`text-[1.1rem]   ${
-                    isActive ? "text-[#4595d0]" : ""
+                    isActive ? "text-[#8f6afc]" : ""
                   }`}
                 >
                   {icon}
                 </span>
 
-                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.795rem]  truncate ">
+                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.85rem]  truncate ">
                   {title}
                 </span>
               </div>
@@ -123,7 +123,7 @@ const SidebarLink = ({
                 <span className="text-sm">loading</span>
               ) : (
                 count > 0 && (
-                  <div className=" text-[0.6rem]  rounded-md h-[1.2rem] w-[1.2rem] pt-0.5 flex items-center justify-center  text-[#676269]  font-medium">
+                  <div className=" text-[0.6rem]  rounded-md h-[1.2rem] w-[1.2rem] pt-0.5 flex items-center justify-center  text-[#676269]  font-normal">
                     <span>{count}</span>
                   </div>
                 )
@@ -149,11 +149,12 @@ const SidebarLink = ({
             animate={{
               height: activeState ? 2.75 * 2 + "rem" : 0,
             }}
-            className={` pl-[1.1rem]  my-1.5 w-full items-center justify-between ${
+            className={` pl-[1.7rem] relative  my-0.5 w-full items-center justify-between ${
               activeState && ""
             } flex flex-col px-0 overflow-hidden `}
           >
             {item}
+            <div className="absolute w-[2px] h-full top-0 left-4 bg-[#676269]/10"></div>
           </motion.div>
         )}
       </div>

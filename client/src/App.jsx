@@ -73,7 +73,7 @@ function App() {
   }, [dispatch, firebaseCurrentUser?.uid]);
 
   return (
-    <div className="h-full w-full  font-inter  bg-[#171718] text-[#2d3036] relative">
+    <div className="h-screen w-full  font-inter  bg-[#0c1015] text-[#ffffff] relative">
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route
@@ -81,9 +81,10 @@ function App() {
           element={
             <ProtectedRoute>
               <div className="h-full   flex items-start flex-col justify-start relative">
-                <div className=" flex-shrink-0 w-full flex  border-dark-bottom h-[4rem] fixed z-10 items-center  justify-end"></div>
-                <div className="flex items-start  justify-start w-full  h-full">
-                  <Sidebar></Sidebar>
+                <div className=" flex-shrink-0 w-full flex  border-dark-bottom h-[3.85rem] fixed z-10 items-center  justify-end"></div>
+                <div className="flex items-start  justify-start w-full h-full">
+               
+                    <Sidebar></Sidebar>
                   <Routes>
                     <Route
                       path="/"

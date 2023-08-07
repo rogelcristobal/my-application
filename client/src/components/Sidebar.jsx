@@ -17,7 +17,7 @@ const Sidebar = () => {
   const handleToggleSidebar = () => {
     setState(!state);
     if (state) {
-      sidebarControl.start({ width: "16rem" });
+      sidebarControl.start({ width: "17rem" });
     } else {
       sidebarControl.start({ width: "4rem" });
     }
@@ -29,30 +29,30 @@ const Sidebar = () => {
       initial={{ width: "16rem" }}
       transition={{ duration: 0.3 }}
       className={`${
-        state ? "w-[4rem]" : "w-[16rem]"
-      } whitespace-nowrap relative pt-[4rem]  h-screen  flex bg-[#171718]  border-dark-right items-center justify-start  flex-shrink-0`}
+        state ? "w-[4rem]" : "w-[17rem]"
+      } whitespace-nowrap relative pt-[4rem]  h-screen  flex bg-[#151820]   items-center justify-start  flex-shrink-0`}
     >
       <div className="h-full  w-full flex flex-col">
         <div className="w-full h-full   flex flex-col justify-start items-start">
           <div
             className={`${
               state ? " px-0 " : "px-[0.9rem]"
-            } flex   w-full items-center mt-2 py-2 justify-center  flex-col`}
+            } flex   w-full items-center mt-5 py-2 justify-center  flex-col`}
           >
             {!state && (
-              <span className=" px-2  w-full  text-left  text-[0.775rem]  text-neutral-400/50 font-normal mb-0">
+              <span className=" px-2  w-full  text-left  text-[0.775rem] text-gray-500 font-normal mb-0">
                 Menu
               </span>
             )}
-            <div className="w-full h-fit flex flex-col space-y-0.5  py-2">
+            <div className="w-full h-fit flex flex-col space-y-1  py-2">
               {[
-                { path: "/dashboard", title: "dashboard", icon: <PiLayout /> ,activeClass:`text-white bg-[#2c2c2c]/50 hover:bg-[#2c2c2c]/50`,},
+                { path: "/dashboard", title: "dashboard", icon: <PiLayout /> ,activeClass:`view text-inherit bg-transparent hover:bg-transparent`,},
 
                 {
                   path:'/collections',
                   title: "projects ",
                   icon: <PiFolderNotch />,
-                  activeClass:`text-white `,
+                  activeClass:`text-inherit `,
                   initialState:true,
                   loading: currentUserLoading,
                   items: [{title:"notes",count:currentUser?.noteCollections?.length},{title:"todos",}].map((item, id) => (
@@ -60,14 +60,14 @@ const Sidebar = () => {
                       title={item?.title}
                       path={`/collections/${item?.title}`}
                       key={id}
-                      activeClass={`text-white bg-[#2c2c2c]/50 hover:bg-[#2c2c2c]/50`}
+                      activeClass={`text-inherit bg-transparent hover:bg-transparent view `}
                       count={item.count}
                       icon={item?.icon}
                       
                     />
                   )),
                 },
-                 { path: "/sample", title: "sample", icon: <PiLayout /> ,activeClass:`text-white bg-[#2c2c2c]/50 hover:bg-[#2c2c2c]/50`,},
+                 { path: "/sample", title: "sample", icon: <PiLayout /> ,activeClass:`text-inherit bg-transparent hover:bg-transparent view`,},
               ].map((item, id) => (
                 <SidebarLink
                   key={id}

@@ -128,23 +128,23 @@ const Collections = () => {
 
 
   return (
-    <div className="text-sm text-neutral-100/40 h-screen flex relative w-full overflow-y-scroll pt-[4rem] flex flex-col">
-      <div className="h-[200vh] opacity-70 text-xs absolute w-16 view left-4">
+    <div className="text-sm  h-full overflow-y-auto flex relative w-full pt-[4rem]  flex-col">
+      <div className="h-[200vh]  opacity-70 text-xs absolute w-16  left-4">
         
       </div>
-      <div className="xl:mx-auto xl:container xl:px-0 lg:px-8 w-full py-4  h-fit flex items-start flex-col justify-center">
-        <div className=" w-fit h-fit flex flex-col pt-6">
-          <span className="text-white font-medium md:text-[1.45rem] xl:text-[1.5rem]">
+      {/* <div className="w-full     py-2.5  h-fit flex items-start flex-col justify-center">
+        <div className=" w-fit  h-fit flex flex-col pt-4 lg:px-6 xl:px-8">
+          <span className="text-white font-medium text-[1.4rem]">
             Projects
           </span>
-          <span className="text-[0.8rem] xl:mt-3 text-[#676269]  font-medium">
+          <span className="text-[0.8rem] mt-3 text-[#676269]  ">
             Access your saved notes and todos here.
           </span>
         </div>
       </div>
-      <div className="w-full py-3 border-dark-bottom flex items-end justify-start mt-3">
-        <div className="xl:mx-auto xl:container h-full xl:px-0 lg:px-8  flex items-end">Notes</div>
-      </div>
+      <div className="w-full py-2 border-dark-bottom flex items-end justify-start mt-2  ">
+        <div className=" h-full px-0  lg:px-6 xl:px-8 flex items-end text-xs">Notes</div>
+      </div> */}
     </div>
   );
 };

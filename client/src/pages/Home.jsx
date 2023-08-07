@@ -8,7 +8,7 @@ const Home = () => {
 
   return (
     <div className="h-full  w-full flex flex-col items-start justify-start relative">
-      <div className=" h-full overflow-y-scroll pt-2 px-6 w-full">
+      <div className=" h-full  pt-2 px-6 w-full">
         <div className=" w-full   h-[120%]  mt-4">
           <div className="flex flex-col gap-2">
             {/* <div className="view h-fit flex items-start flex-col justify-end p-4 w-52">
