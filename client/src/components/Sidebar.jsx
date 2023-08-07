@@ -30,7 +30,7 @@ const Sidebar = () => {
       transition={{ duration: 0.3 }}
       className={`${
         state ? "w-[4rem]" : "w-[17rem]"
-      } whitespace-nowrap relative pt-[4rem]  h-screen  flex bg-[#151820]   items-center justify-start  flex-shrink-0`}
+      } whitespace-nowrap relative pt-[4rem] shadow-lg h-screen  flex bg-[#151820]   items-center justify-start  flex-shrink-0`}
     >
       <div className="h-full  w-full flex flex-col">
         <div className="w-full h-full   flex flex-col justify-start items-start">

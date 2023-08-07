@@ -81,7 +81,7 @@ function App() {
           element={
             <ProtectedRoute>
               <div className="h-full   flex items-start flex-col justify-start relative">
-                <div className=" flex-shrink-0 w-full flex  border-dark-bottom h-[3.85rem] fixed z-10 items-center  justify-end"></div>
+                <div className=" flex-shrink-0 w-full flex     h-[3.85rem] fixed z-10 items-center  justify-end"></div>
                 <div className="flex items-start  justify-start w-full h-full">
                
                     <Sidebar></Sidebar>

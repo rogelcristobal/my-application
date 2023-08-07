@@ -154,7 +154,7 @@ const SidebarLink = ({
             } flex flex-col px-0 overflow-hidden `}
           >
             {item}
-            <div className="absolute w-[2px] h-full top-0 left-4 bg-[#676269]/10"></div>
+            <div className="absolute w-[1.5px] h-full top-0 left-4 bg-[#676269]/10"></div>
           </motion.div>
         )}
       </div>

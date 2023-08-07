@@ -7,31 +7,13 @@ const Home = () => {
 
 
   return (
-    <div className="h-full  w-full flex flex-col items-start justify-start relative">
-      <div className=" h-full  pt-2 px-6 w-full">
-        <div className=" w-full   h-[120%]  mt-4">
-          <div className="flex flex-col gap-2">
-            {/* <div className="view h-fit flex items-start flex-col justify-end p-4 w-52">
-              <span className={`text-sm`}>total   notes</span>
-
-              {userDataLoading ? (
-                  <span>loading</span>
-                ) : (
-                  currentUser?.totalNotes
-                )}
-            </div>
-
-            <div className="view h-fit flex items-start  flex-col justify-end p-4 w-52">
-              <span className="text-sm">total todos</span>
-              <span>    
-                {userDataLoading ? (
-                  <span>loading</span>
-                ) : (
-                  currentUser?.totalTodos
-                )}
-              </span>
-            </div> */}
+    <div className="h-full overflow-y-auto  w-full flex flex-col items-start justify-start relative">
+      <div className=" h-full  pt-[4rem] px-6 w-full">
+        <div className=" w-full   h-[120%]  ">
+          <div className="">
+            <span className="text-[1.5rem] ml-4 drop-shadow-sm font-normal">Dashboard</span>
           </div>
+          
         </div>
       </div>
     </div>
