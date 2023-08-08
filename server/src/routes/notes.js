@@ -79,8 +79,8 @@ noteRouter.post("/", extractUserID, async (request, response) => {
       status: "success",
       userID: user._id,
       email: user.email,
-      createdCollection: newNoteCollection,
-      user,
+      createdCollection: newNoteCollection
+     
     });
   } catch (error) {
     response.status(500).json({
@@ -133,40 +133,36 @@ noteRouter.delete("/:collectionID", async (request, response) => {
   }
 });
 
-// collections/notes/
-// const noteRouter = express.Router()
-// collectionsRouter.use('/notes', noteRouter)
+// get notes (OK)
+noteRouter.get("/:collectionID", extractUserID, async (request, response) => {
+  try {
+    const userID = request.userID;
+    const {collectionID} = request.params
+     const user = await UserModel.findById(userID).populate({
+        // populates the nested data within userModel
+        path: "noteCollections",
+        populate: {
+          path: "savedNotes",
+        },
+      });
+     if(!user){
+        return response.status(404).json({message:"user does not exist"})
+     }
+     const collections = await NoteModel.find({collectionID:collectionID })
 
-// get notes
-// noteRouter.get("/:collectionID", extractUserID, async (request, response) => {
-//   try {
-//     const userID = request.userID;
-//     const {collectionID} = request.params
-//      const user = await UserModel.findById(userID).populate({
-//         // populates the nested data within userModel
-//         path: "noteCollections",
-//         populate: {
-//           path: "savedNotes",
-//         },
-//       });
-//      if(!user){
-//         return response.status(404).json({message:"user does not exist"})
-//      }
-//      const collections = await NoteModel.find({collectionID:collectionID })
+     response.status(200).json({
+      status:"success",data:collections
+     })
+  } catch (error) {
+    response.status(500).json({
+      status: "error",
+      message: "An error occurred",
+      error: error.message,
+    });
+  }
+});
 
-//      response.status(200).json({
-//       status:"success",data:collections
-//      })
-//   } catch (error) {
-//     response.status(500).json({
-//       status: "error",
-//       message: "An error occurred",
-//       error: error.message,
-//     });
-//   }
-// });
-
-// create note
+// create note (OK)
 noteRouter.post("/:collectionID", extractUserID, async (request, response) => {
   try {
     const { title, content } = request.body;
@@ -213,7 +209,7 @@ noteRouter.post("/:collectionID", extractUserID, async (request, response) => {
   }
 });
 
-// delete note
+// delete note (OK)
 noteRouter.delete("/:collectionID/:noteID", async (request, response) => {
   try {
     const { collectionID, noteID } = request.params;
@@ -264,41 +260,4 @@ noteRouter.get("/search/:query", async (request, response) => {
 
 export { noteRouter as collectionsRouter };
 
-//get all notes
-// router.get('/:userID/:collectionID',async(request,response)=>{
-//   try {
-//     const {collectionID,userID} = request.params
-//     const user = await UserModel.findById(userID)
-//     if(!user){
-//       return response.status(400).json({message:'user not foud!'})
-//     }
-//     const notes = await NotesCollectionModel.find({ _id: { $in: user.noteCollections }})
-//     response.status(200).json({status:'success',data:notes})
-//   } catch (error) {
-//      response.status(500).json({
-//       status: "error",
-//       message: "An error occurred",
-//       error: error.message,
-//     });
-//   }
-// })
 
-//search note sensitive
-// router.get("/search/:query", async (request, response) => {
-//   try {
-//     const { query } = request.params;
-
-//     const searchNote = await NoteModel.find({$text:{$search: query }})
-//     if(searchNote.length === 0){
-//       return response.status(400).json({message:"note not found"})
-//     }
-
-//     response.status(200).json({status:200,result:searchNote})
-//   } catch (error) {
-//     response.status(500).json({
-//       status: "error",
-//       message: "An error occurred",
-//       error: error.message,
-//     });
-//   }
-// });
