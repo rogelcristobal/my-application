@@ -26,7 +26,7 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      initial={{ width: "16rem" }}
+      initial={{ width: "16.5rem" }}
       transition={{ duration: 0.3 }}
       className={`${
         state ? "w-[4rem]" : "w-[17rem]"
@@ -36,7 +36,7 @@ const Sidebar = () => {
         <div className="w-full h-full   flex flex-col justify-start items-start">
           <div
             className={`${
-              state ? " px-0 " : "px-[0.9rem]"
+              state ? " px-0 " : "px-[1.2rem]"
             } flex   w-full items-center mt-5 py-2 justify-center  flex-col`}
           >
             {!state && (
