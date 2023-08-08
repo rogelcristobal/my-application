@@ -12,10 +12,10 @@ router.post("/register", async (request, response) => {
       email,
       firstName,
       lastName,
-      createdAt,
-      lastLoginTime,
-      provider,
-      emailVerified,
+      // createdAt,
+      // lastLoginTime,
+      // provider,
+      // emailVerified,
     } = request.body;
     //checks if user already exist
     const user = await UserModel.findOne({ uid: uid });
@@ -26,12 +26,12 @@ router.post("/register", async (request, response) => {
     const newUser = new UserModel({
       uid,
       email,
-      firstName,
-      lastName,
-      createdAt,
-      lastLoginTime,
-      provider,
-      emailVerified,
+      // firstName,
+      // lastName,
+      // createdAt,
+      // lastLoginTime,
+      // provider,
+      // emailVerified,
       noteCollections: [],
       todoCollections: [],
     });

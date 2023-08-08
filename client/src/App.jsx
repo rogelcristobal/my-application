@@ -16,8 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "./features/user/currentUserSlice";
 import { NoteCollectionDropDownPositionProvider } from "./context/NoteCollectionDropDownPositionContext";
 
-
-import { SignIn,SignedIn} from "@clerk/clerk-react";
+import { SignIn, SignUp, SignedIn } from "@clerk/clerk-react";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,7 +37,7 @@ function App() {
     try {
       await auth.signOut();
       console.log("User signed out successfully");
-      navigate("/login");
+      // navigate("/login");
     } catch (error) {
       console.error("Error signing out:", error);
     }
@@ -78,46 +77,50 @@ function App() {
   return (
     <div className="h-screen w-full  font-inter  bg-[#0c1015] text-[#ffffff] relative">
       <Routes>
-        <Route path="/login" element={<SignIn routing="path" path="/login" />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+
+     
+
         <Route
-          path="/*"
+          path="/protected"
           element={
-         
-            <SignedIn>            
+            <SignedIn>
+
               <ProtectedRoute>
-              <div className="h-full   flex items-start flex-col justify-start relative">
-                <div className=" flex-shrink-0 w-full flex     h-[3.85rem] fixed z-10 items-center  justify-end"></div>
-                <div className="flex items-start  justify-start w-full h-full">
-               
+                <div className="h-full   flex items-start flex-col justify-start relative">
+                  <div className=" flex-shrink-0 w-full flex     h-[3.85rem] fixed z-10 items-center  justify-end"></div>
+                  <div className="flex items-start  justify-start w-full h-full">
                     <Sidebar></Sidebar>
-                  <Routes>
-                    <Route
-                      path="/"
-                      element={<Navigate to="/dashboard" />}
-                    ></Route>
-                    <Route path="/dashboard" element={<Home />} />
-                    <Route
-                      path="/collections/*"
-                      element={
-                        <NoteCollectionDropDownPositionProvider>
-                          <Collections />
-                        </NoteCollectionDropDownPositionProvider>
-                      }
-                    ></Route>
-                    <Route path="/Todos" element={<Todos />}></Route>
-                    <Route path="/Blogs" element={<Blogs />}></Route>
-                  </Routes>
+                    <Routes>
+                      <Route
+                        path="/"
+                        element={<Navigate to="/dashboard" />}
+                      ></Route>
+                      <Route path="/dashboard" element={<Home />} />
+                      <Route
+                        path="/collections/*"
+                        element={
+                          <NoteCollectionDropDownPositionProvider>
+                            <Collections />
+                          </NoteCollectionDropDownPositionProvider>
+                        }
+                      ></Route>
+                      <Route path="/Todos" element={<Todos />}></Route>
+                      <Route path="/Blogs" element={<Blogs />}></Route>
+                    </Routes>
+                  </div>
                 </div>
-              </div>
-            </ProtectedRoute>
+              </ProtectedRoute>
             </SignedIn>
-         
           }
         ></Route>
       </Routes>
-      
     </div>
   );
 }
+
+
+
+
 
 export default App;
