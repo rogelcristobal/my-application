@@ -103,6 +103,12 @@ const Login = () => {
         //   email: completeSignUp.emailAddress,
         // }
         // );
+        if(!userLoaded){
+          console.log('loading')
+        }
+        if(isSignedIn){
+          console.log(user)
+        }
 
         await setActive({ session: completeSignUp.createdSessionId });
       }

@@ -112,8 +112,9 @@ function App() {
                       {isSignedIn && (
                         <>
                           <p>
-                            welcome {user.primaryEmailAddress.emailAddress}{" "}
+                            welcome {user.firstName} {user.lastName}
                           </p>
+                          <p>email: {user.primaryEmailAddress.emailAddress}</p>
                           <p>uid: {user.id}</p>
                         </>
                       )}
