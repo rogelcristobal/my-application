@@ -10,8 +10,8 @@ router.post("/register", async (request, response) => {
     const {
       uid,
       email,
-      // firstName,
-      // lastName,
+      firstName,
+      lastName,
       // createdAt,
       // lastLoginTime,
       // provider,
@@ -26,8 +26,8 @@ router.post("/register", async (request, response) => {
     const newUser = new UserModel({
       uid,
       email,
-      // firstName,
-      // lastName,
+      firstName,
+      lastName,
       // createdAt,
       // lastLoginTime,
       // provider,

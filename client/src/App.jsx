@@ -97,7 +97,7 @@ function App() {
   return (
     <div className="h-screen w-full  font-inter  bg-[#0c1015] text-[#ffffff] relative">
       <Routes>
-        <Route path="/login" element={<Login />}></Route>
+        <Route path="/login" element={<Login/>}></Route>
         <Route
           path="/*"
           element={

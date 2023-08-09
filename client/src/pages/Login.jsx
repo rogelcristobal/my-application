@@ -96,21 +96,19 @@ const Login = () => {
       });
 
       if (completeSignUp.status === "complete") {
-        // await Axios.post(
-        // "http://localhost:3001/auth/register",
-        // {
-        //   uid: completeSignUp.createdUserId,
-        //   email: completeSignUp.emailAddress,
-        // }
-        // );
-        if(!userLoaded){
-          console.log('loading')
+        await Axios.post(
+        "http://localhost:3001/auth/register",
+        {
+          uid: completeSignUp.createdUserId,
+          email: completeSignUp.emailAddress,
+          firstName: completeSignUp.firstName,
+          lastName: completeSignUp.lastName
         }
-        if(isSignedIn){
-          console.log(user)
-        }
+        );
+      
 
         await setActive({ session: completeSignUp.createdSessionId });
+        navigate('/')
       }
 
       if (completeSignUp.status !== "complete") {

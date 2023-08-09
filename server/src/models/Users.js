@@ -6,8 +6,8 @@ const schemaType = mongoose.Schema.Types
 const UserSchema = new mongoose.Schema({
     uid:{type: schemaType.String,required:true,unqique:true},
     email:{type:schemaType.String,required:true},
-    // firstName:{type:schemaType.String,required:true},
-    // lastName:{type:schemaType.String,required:true},
+    firstName:{type:schemaType.String,required:true},
+    lastName:{type:schemaType.String,required:true},
     // createdAt:{type:schemaType.Date,required:true},
     // lastLoginTime:{type:schemaType.Date,required:true},
     // provider:{type:schemaType.String,required:true},
