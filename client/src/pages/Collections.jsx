@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import AddCollectionModal from "../components/AddCollectionModal";
+import SearchBar from "../components/SearchBar";
 import { QueryClient, useQuery } from "@tanstack/react-query";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -15,16 +16,18 @@ import NoteCollectionDropDownPositionContext from "../context/NoteCollectionDrop
 import { LuTrash2, LuEdit } from "react-icons/lu";
 import { Routes, Route, useParams } from "react-router-dom";
 import Sample from "../components/Sample";
+import { GoSidebarExpand } from "react-icons/go"; 
 const Collections = () => {
   const { socket } = React.useContext(SocketContext);
   const currentUser = useSelector((state) => state.currentUser.data);
+  const [activeTab, setActiveTab] = React.useState(0);
   const currentUserLoading = useSelector((state) => state.currentUser.loading);
   const [addCollectionModalState, setAddCollectionModalState] =
     React.useState(false);
   const dispatch = useDispatch();
   const parentScrollableRef = React.useRef(null);
   const dropDownRef = React.useRef(null);
-  const scrollPosition = useScrollPosition(parentScrollableRef);
+  // const scrollPosition = useScrollPosition(parentScrollableRef);
   const { dropDownState, setDropDownState } = React.useContext(
     NoteCollectionDropDownPositionContext
   );
@@ -113,100 +116,35 @@ const Collections = () => {
     };
   }, []);
 
-  React.useEffect(() => {
-    setDropDownState({ ...dropDownState, isEnabled: false });
-  }, [scrollPosition]);
+  // React.useEffect(() => {
+  //   setDropDownState({ ...dropDownState, isEnabled: false });
+  // }, [scrollPosition]);
 
   React.useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  return (
-    <div className="h-screen overflow-y-hidden  w-full flex flex-col items-start justify-start relative">
-      <div className="h-fit py-2 px-4 bg-white gap-4 flex w-full items-start relative">
-        <span className=" font-medium"> Collections</span>
-        <span>
-          {currentUserLoading ? (
-            <span>loading</span>
-          ) : (
-            <span>{currentUser?.noteCollections.length}</span>
-          )}
-        </span>
-      </div>
-      <div className=" h-full  w-full flex items-start justify-start relative">
-        <div className=" w-[19rem] h-full  overflow-y-hidden relative ">
-          <div className="flex items-center justify-start p-2">
-            <button
-              onClick={addCollectionToggle}
-              className=" w-fit   hover:bg-transparent bg-transparent border-dark font-normal rounded-none  text-inherit   tracking-tight text-[0.8rem] h-fit   hover:border-dark  btn btn-sm normal-case"
-            >
-              New collection
-            </button>
-            {/* <p>scroll_pos: {Math.floor(scrollPosition)}</p> */}
-          </div>
-          {/* scrollabe parent */}
-          <div
-            ref={parentScrollableRef}
-            className=" w-full  pb-52  px-2  py-1 overflow-y-auto   h-full space-y-1"
-          >
-            {isLoading ? (
-              <span>loading data</span>
-            ) : currentUser?.noteCollections?.length === 0 ? (
-              <p className=" ">No collections to show</p>
-            ) : (
-              currentUser?.noteCollections?.map((item, id) => (
-                // this is the element i want to track
-                <NoteCollection
-                  item={item}
-                  key={id}
-                  id={id}
-                  parentScrollPosition={scrollPosition}
-                  deleteCollection={deleteCollection}
-                />
-              ))
-            )}
-          </div>
 
-          {dropDownState.isEnabled && (
-            <div
-              style={{
-                top:
-                  Math.floor(dropDownState.el.getBoundingClientRect().top) + 34,
-                left:
-                  Math.floor(dropDownState.el.getBoundingClientRect().right) -
-                  50,
-              }}
-              className={`h-fit fixed z-[50]  w-fit bg-white `}
-            >
-              {/* dropdown */}
-              <div
-                ref={dropDownRef}
-                onMouseLeave={() =>
-                  setDropDownState({ ...dropDownState, isEnabled: false })
-                }
-                className="join join-horizontal font-inter hover:drop-shadow-md"
-              >
-                <button
-                  onClick={deleteCollection}
-                  className="btn bg-[#ffffff] text-inherit hover:bg-inherit flex items-center justify-start  capitalize font-medium border-dark hover:border-dark btn-sm h-[2.4rem] px-3 join-item text-[0.8rem]"
-                >
-                  <LuTrash2 className="text-[0.925rem]" />
-                </button>
-                <button className="btn bg-[#ffffff] text-inherit hover:bg-inherit flex items-center justify-start  capitalize font-medium border-dark hover:border-dark btn-sm h-[2.4rem] px-3 join-item text-[0.8rem]">
-                  <LuEdit className="text-[0.925rem]" />
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-        <div className="w-96 h-full ">
-          <Routes>
-            <Route path="/:collectionID" element={<Sample></Sample>}></Route>
-          </Routes>
+
+  return (
+    <div className="text-sm  h-full overflow-y-auto flex relative w-full pt-[4rem]  flex-col">
+      <div className="h-[200vh]  opacity-70 text-xs absolute w-16  left-4">
+        
+      </div>
+      {/* <div className="w-full     py-2.5  h-fit flex items-start flex-col justify-center">
+        <div className=" w-fit  h-fit flex flex-col pt-4 lg:px-6 xl:px-8">
+          <span className="text-white font-medium text-[1.4rem]">
+            Projects
+          </span>
+          <span className="text-[0.8rem] mt-3 text-[#676269]  ">
+            Access your saved notes and todos here.
+          </span>
         </div>
       </div>
-      {addCollectionModalState && <AddCollectionModal collections />}
+      <div className="w-full py-2 border-dark-bottom flex items-end justify-start mt-2  ">
+        <div className=" h-full px-0  lg:px-6 xl:px-8 flex items-end text-xs">Notes</div>
+      </div> */}
     </div>
   );
 };

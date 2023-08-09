@@ -1,83 +1,165 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-const SidebarLink = ({ title, sidebarState, loading, icon,count, path,item }) => {
+import { PiCaretDownBold } from "react-icons/pi";
+import { NavLink, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
+const SidebarLink = ({
+  title,
+  initialState,
+  loading,
+  icon,
+  count,
+  path,
+  item,
+  activeClass,
+}) => {
   const [hoverState, setHOverState] = React.useState(false);
   const hoverToggle = () => {
     setHOverState(!hoverState);
   };
-  // console.log(item)
-  return (
-   <>
-    <NavLink to={path} role="link" className="w-full mb-0.5  h-fit">
-      {({ isActive }) => (
+  const [activeState, setActiveState] = React.useState(initialState);
+  const location = useLocation();
+
+  // Check if the NavLink is active
+  const isActive = location.pathname.startsWith(path);
+
+  const handleNavLinkClick = (e) => {
+    e.stopPropagation;
+    setActiveState(!activeState);
+  };
+
+  if (!item) {
+    return (
+      <NavLink
+        to={path}
+        role="link"
+        className="w-full  mb-0.5 h-fit box-border"
+        onClick={handleNavLinkClick}
+       
+      >
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full  rounded-none h-[2rem] flex flex-col  relative px-4  border-0 box-border  ${
+          className={`w-full  rounded-md h-[2.4rem] box-border flex flex-col font-normal relative px-3  ${
             isActive
-              ? "text-inherit  bg-transparent hover:bg-transparent "
-              : "text-[#676a78]  bg-transparent hover:bg-transparent "
+              ? // bg-[#2c2c2c]/50
+                activeClass
+              : "text-gray-500  bg-transparent hover:bg-transparent border-0 box-border"
           }
-          ${sidebarState ? "flex justify-center   " : "flex justify-center "}
           `}
         >
           <div className="flex-shrink-0 h-full  flex justify-between items-center overflow-hidden w-full">
             <div
-              className={`flex justify-start items-center   h-full    w-full capitalize gap-3 ${
-                !sidebarState ? "max-w-[75%] " : "max-w-[100%]"
-              }`}
+              className={`flex justify-start items-center   h-full    w-full capitalize gap-3 `}
             >
-              {/* text-[#004feb] */}
-              {/* <span
-                className={`text-[1rem]   mx-auto ${
-                  isActive && "text-[#004feb]"
-                }`}
+              {/* text-[#8f6afc] */}
+              <span
+                className={`text-[1.1rem]   ${isActive ? "text-[#8f6afc]" : ""}`}
               >
                 {icon}
-              </span> */}
-              {!sidebarState && (
-                <span className="flex items-center  text-start w-full h-full overflow-x-hidden  truncate font-medium">
+              </span>
+
+              <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate ">
+                {title} 
+              </span>
+            </div>
+            {loading ? (
+              <span className="text-sm">loading</span>
+            ) : (
+              count > 0 && (
+                <div className=" text-[0.6rem]  rounded-md h-[1.2rem] w-[1.2rem] pt-0.5 flex items-center justify-center  text-[#676269]  font-normal">
+                  <span>{count}</span>
+                </div>
+              )
+            )}
+
+            {item && (
+              <span className="text-[0.675rem] text-[#676269] ">
+                <PiCaretDownBold
+                  className={`${!activeState && "-rotate-90"}`}
+                />
+              </span>
+            )}
+          </div>
+        </div>
+      </NavLink>
+    );
+  } else {
+    return (
+      <div className="">
+        <div
+          role="link"
+          className="w-full   h-fit box-border"
+          onClick={handleNavLinkClick}
+        >
+          <div
+            onMouseEnter={hoverToggle}
+            onMouseLeave={hoverToggle}
+            className={`w-full cursor-pointer rounded-md h-[2.4rem] flex flex-col font-normal relative px-3   ${
+              isActive
+                ? // bg-[#2c2c2c]/50
+                  activeClass
+                : "text-gray-500  bg-transparent hover:bg-transparent border-0 box-border"
+            }
+          `}
+          >
+            <div className="flex-shrink-0 h-full  flex justify-between items-center overflow-hidden w-full">
+              <div
+                className={`flex justify-start items-center   h-full    w-full capitalize gap-3 `}
+              >
+                {/* text-[#004feb] */}
+                <span
+                  className={`text-[1.1rem]   ${
+                    isActive ? "text-[#8f6afc]" : ""
+                  }`}
+                >
+                  {icon}
+                </span>
+
+                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate ">
                   {title}
+                </span>
+              </div>
+              {loading ? (
+                <span className="text-sm">loading</span>
+              ) : (
+                count > 0 && (
+                  <div className=" text-[0.6rem]  rounded-md h-[1.2rem] w-[1.2rem] pt-0.5 flex items-center justify-center  text-[#676269]  font-normal">
+                    <span>{count}</span>
+                  </div>
+                )
+              )}
+
+              {item && (
+                <span className="text-[0.675rem] text-[#676269] ">
+                  <PiCaretDownBold
+                    className={`${!activeState && "-rotate-90"}`}
+                  />
                 </span>
               )}
             </div>
-            {loading?
-            <span className="text-sm">loading</span>
-            :count > 0  && (
-              <div className=" text-[0.7rem]  rounded-full h-5 grid place-content-center w-5 text-inherit  font-semibold">
-                {count}
-              </div>
-            )
-            
-            }
           </div>
-
-          {/* <div
-            className={`${isActive ? "h-[100%]" : "h-0"} ${
-              sidebarState ? "left-[0rem]" : "-left-[1rem]  "
-            } transition-all duration-75 w-[0.275rem] bg-blue-500 rounded-r-xl absolute  top-1/2 -translate-y-1/2 `}
-          ></div> */}
-      {/* {item && 
-      <div className="">asd</div>
-      } */}
-      
         </div>
-      )}
 
-
-    </NavLink>
-
-      {item&&
-      <div className="h-fit  w-full flex flex-col px-0">
-        {item.map((item,id)=>(
-          <SidebarLink title={item.collectionTitle} path={`/${item.collectionTitle}`} key={id}/>
-        ))
-}
+        {item && (
+          <motion.div
+            initial={{
+              height: 0,
+            }}
+            // 2.60 * 2 + "rem"
+            animate={{
+              height: activeState ? 2.75 * 2 + "rem" : 0,
+            }}
+            className={` pl-[1.7rem] relative  my-0.5 w-full items-center justify-between ${
+              activeState && ""
+            } flex flex-col px-0 overflow-hidden `}
+          >
+            {item}
+            <div className="absolute w-[1.5px] h-full top-0 left-4 bg-[#676269]/10"></div>
+          </motion.div>
+        )}
       </div>
-      }
-
-   </>
-  );
+    );
+  }
 };
 
 export default SidebarLink;

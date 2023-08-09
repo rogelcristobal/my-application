@@ -1,13 +1,10 @@
 import React from "react";
 import {
-  LuListChecks,
-  LuArchive,
-  LuEdit3,
-  LuSettings,
-  LuChevronLeft,
-} from "react-icons/lu";
-import { BiNote, BiLayout, BiListCheck, BiEditAlt } from "react-icons/bi";
-import { TbFolder, TbLayoutGrid } from "react-icons/tb";
+  PiFolderNotch,
+  PiLayout,
+  PiCheckSquareOffset,
+  PiNoteBlank,
+} from "react-icons/pi";
 import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
 import { useSelector } from "react-redux";
@@ -20,58 +17,72 @@ const Sidebar = () => {
   const handleToggleSidebar = () => {
     setState(!state);
     if (state) {
-      sidebarControl.start({ width: "16.5rem" });
+      sidebarControl.start({ width: "17rem" });
     } else {
       sidebarControl.start({ width: "4rem" });
     }
   };
 
- 
   return (
     <motion.div
       animate={sidebarControl}
       initial={{ width: "16.5rem" }}
       transition={{ duration: 0.3 }}
       className={`${
-        state ? "w-[4rem]" : "w-[16.5rem]"
-      } whitespace-nowrap relative  view h-full flex  border-dark-right  items-center justify-start  flex-shrink-0`}
+        state ? "w-[4rem]" : "w-[17rem]"
+      } whitespace-nowrap relative pt-[4rem] shadow-lg h-screen  flex bg-[#151820]   items-center justify-start  flex-shrink-0`}
     >
-     
       <div className="h-full  w-full flex flex-col">
-        <div className="w-full h-full mt-0   flex flex-col justify-start items-start">
+        <div className="w-full h-full   flex flex-col justify-start items-start">
           <div
             className={`${
-              state ? " px-0 " : "px-[1rem]"
-            } flex   w-full items-center mt-24 py-2 justify-center flex-col`}
+              state ? " px-0 " : "px-[1.2rem]"
+            } flex   w-full items-center mt-5 py-2 justify-center  flex-col`}
           >
             {!state && (
-              <span className=" px-2 font-semibold w-full  text-left  text-[0.8rem]   mb-2">
+              <span className=" px-2  w-full  text-left  text-[0.775rem] text-gray-500 font-normal mb-0">
                 Menu
               </span>
             )}
-            {[
-              { path: "/dashboard", title: "dashboard", icon: <BiLayout /> },
-              {
-                path: "/collections",
-                title: "collections ",
-                icon: <BiNote />,
-                count: currentUser?.noteCollections?.length,
-                loading: currentUserLoading,
-              },
-              // { path: "/todos", title: "todos", icon: <BiListCheck /> },
-              // { path: "/blogs", title: "Blogs", icon: <BiEditAlt /> },
-            ].map((item, id) => (
-              <SidebarLink
-                key={id}
-                path={item.path}
-                sidebarState={state}
-                title={item.title}
-                icon={item.icon}
-                count={item?.count}
-                loading={item?.loading}
-                item={item?.items}
-              />
-            ))}
+            <div className="w-full h-fit flex flex-col space-y-1  py-2">
+              {[
+                { path: "/dashboard", title: "dashboard", icon: <PiLayout /> ,activeClass:`view text-inherit bg-transparent hover:bg-transparent`,},
+
+                {
+                  path:'/collections',
+                  title: "projects ",
+                  icon: <PiFolderNotch />,
+                  activeClass:`text-inherit `,
+                  initialState:true,
+                  loading: currentUserLoading,
+                  items: [{title:"notes",count:currentUser?.noteCollections?.length},{title:"todos",}].map((item, id) => (
+                    <SidebarLink
+                      title={item?.title}
+                      path={`/collections/${item?.title}`}
+                      key={id}
+                      activeClass={`text-inherit bg-transparent hover:bg-transparent view `}
+                      count={item.count}
+                      icon={item?.icon}
+                      
+                    />
+                  )),
+                },
+                 { path: "/sample", title: "sample", icon: <PiLayout /> ,activeClass:`text-inherit bg-transparent hover:bg-transparent view`,},
+              ].map((item, id) => (
+                <SidebarLink
+                  key={id}
+                  path={item.path}
+                  sidebarState={state}
+                  title={item.title}
+                  icon={item.icon}
+                  count={item?.count}
+                  loading={item?.loading}
+                  item={item?.items}
+                  activeClass={item.activeClass}
+                  initialState={item?.initialState}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -80,3 +91,5 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+
+

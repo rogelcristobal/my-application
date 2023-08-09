@@ -15,6 +15,15 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "./features/user/currentUserSlice";
 import { NoteCollectionDropDownPositionProvider } from "./context/NoteCollectionDropDownPositionContext";
+import ProtectedRouteClerk from "./components/ProtectedRouteClerk";
+
+import {
+  SignIn,
+  SignUp,
+  SignedIn,
+  useUser,
+  UserButton,
+} from "@clerk/clerk-react";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,7 +44,7 @@ function App() {
     try {
       await auth.signOut();
       console.log("User signed out successfully");
-      navigate("/login");
+      // navigate("/login");
     } catch (error) {
       console.error("Error signing out:", error);
     }
@@ -71,71 +80,83 @@ function App() {
       dispatch(fetchUser(firebaseCurrentUser?.uid));
     }
   }, [dispatch, firebaseCurrentUser?.uid]);
-  
+  const { isSignedIn, user, isLoaded } = useUser();
+  if (!isLoaded) {
+    console.log("loading");
+  }
+  if (isSignedIn) {
+    console.log(user);
+  }
+
+  // getting time
+  // if(isLoaded){
+  //   const formattedCreatedAt = new Date(user.createdAt).toLocaleString()
+  //   console.log(formattedCreatedAt)
+  // }
+
   return (
-    <div className="h-screen w-full bg-[#ffffff] font-mono text-[0.9rem] tracking-tight text-black relative">
+    <div className="h-screen w-full  font-inter  bg-[#0c1015] text-[#ffffff] relative">
       <Routes>
-        <Route path="/login" element={<Login />}></Route>
+        <Route path="/login" element={<Login/>}></Route>
         <Route
           path="/*"
           element={
             <ProtectedRoute>
-              <div className="h-full   flex items-start  justify-start relative">
-                {/* sidebar */}
-                <Sidebar></Sidebar>
-                <div className="flex items-start  flex-col justify-start w-full  h-screen">
-                  {/* navigation */}
-                  <div className="h-fit w-full flex  border-dark-bottom py-1 items-center  justify-between">
-                    <div className="  flex flex-col">
-                      <span className=" capitalize ">
-                        {userDataLoading ? (
-                          <span>loading data</span>
-                        ) : (
-                          <span className=" flex flex-col items-center gap-2 px-4 text-[1rem] w-fit font-medium">
-                            <span className=" ">
-                              Welcome back, {currentUser?.firstName}
-                              {currentUser?.lastName}.
-                            </span>
-                            <span className=" overflow-hidden truncate text-[0.8rem] text-[#7c8292]/70 w-full">
-                              {currentUser?._id}
-                            </span>
-                          </span>
-                        )}
-                      </span>
-                      {/* <span className="text-[0.8rem] mt-1 font-medium ">
-                        {userDataLoading ? (
-                          <span >loading</span>
-                        ) : (
-                          currentUser?.email
-                        )}
-                      </span> */}
+              <Routes>
+                <Route path="/" element={<Navigate to="/dashboard" />}></Route>
+                <Route
+                  path="/dashboard"
+                  element={
+                    <div>
+                      {!isLoaded && <>loading</>}
+                      {isSignedIn && (
+                        <>
+                          <p>
+                            welcome {user.firstName} {user.lastName}
+                          </p>
+                          <p>email: {user.primaryEmailAddress.emailAddress}</p>
+                          <p>uid: {user.id}</p>
+                        </>
+                      )}
                     </div>
-                    <button onClick={logOutUser} className="view text-sm p-1">
-                      logout
-                    </button>
-                  </div>
-                  <Routes>
-                    <Route
-                      path="/"
-                      element={<Navigate to="/dashboard" />}
-                    ></Route>
-                    <Route path="/dashboard" element={<Home />} />
-                    <Route
-                      path="/collections/*"
-                      element={
-                        <NoteCollectionDropDownPositionProvider>
-                          <Collections />
-                        </NoteCollectionDropDownPositionProvider>
-                      }
-                    ></Route>
-                    <Route path="/Todos" element={<Todos />}></Route>
-                    <Route path="/Blogs" element={<Blogs />}></Route>
-                  </Routes>
-                </div>
-              </div>
+                  }
+                ></Route>
+              </Routes>
             </ProtectedRoute>
           }
-        ></Route>
+        />
+
+        {/* <Route
+          path="/*"
+          element={
+
+              <ProtectedRoute>
+                <div className="h-full   flex items-start flex-col justify-start relative">
+                  <div className=" flex-shrink-0 w-full flex     h-[3.85rem] fixed z-10 items-center  justify-end"></div>
+                  <div className="flex items-start  justify-start w-full h-full">
+                    <Sidebar></Sidebar>
+                    <Routes>
+                      <Route
+                        path="/"
+                        element={<Navigate to="/dashboard" />}
+                      ></Route>
+                      <Route path="/dashboard" element={<Home />} />
+                      <Route
+                        path="/collections/*"
+                        element={
+                          <NoteCollectionDropDownPositionProvider>
+                            <Collections />
+                          </NoteCollectionDropDownPositionProvider>
+                        }
+                      ></Route>
+                      <Route path="/Todos" element={<Todos />}></Route>
+                      <Route path="/Blogs" element={<Blogs />}></Route>
+                    </Routes>
+                  </div>
+                </div>
+              </ProtectedRoute>
+          }
+        ></Route> */}
       </Routes>
     </div>
   );

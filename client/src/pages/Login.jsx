@@ -7,159 +7,188 @@ import { auth } from "../firebase-config";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useSignUp, UserButton, useUser } from "@clerk/clerk-react";
 const Login = () => {
-  const navigate = useNavigate()
-  const data = useSelector(state=>state.user.firebaseCurrentUser)
-
-  const [registerInput, setRegisterInput] = React.useState({
-    email: "",
-    password: "",
-    firstName:'',
-    lastName:'',
-  });
+  const navigate = useNavigate();
+  const data = useSelector((state) => state.user.firebaseCurrentUser);
   const [logInInput, setLogInInput] = React.useState({
     email: "",
     password: "",
   });
 
-  const registerUser = async () => {
-    try {
-      const { user } = await createUserWithEmailAndPassword(
-        auth,
-        registerInput.email,
-        registerInput.password
-      );
+  const [registerInput, setRegisterInput] = React.useState({
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+  });
 
-      //  request storing uid and other data to the db
-      if (user) {
-        console.log(user)
+  const [code, setCode] = React.useState(null);
+
+  const { isLoaded, signUp, setActive } = useSignUp();
+  const { user, isSignedIn, isLoaded: userLoaded } = useUser();
+  const [pendingVerification, setPendingVerification] = React.useState(false);
+
+  const registerUser = async (e) => {
+    // try {
+    //   const { user } = await createUserWithEmailAndPassword(
+    //     auth,
+    //     registerInput.email,
+    //     registerInput.password
+    //   );
+
+    //   //  request storing uid and other data to the db
+    //   if (user) {
+    //     console.log(user)
+    //     await Axios.post(
+    //       "http://localhost:3001/auth/register",
+    //       {
+    //         uid: user.uid,
+    //         email: user.email,
+    //         firstName:registerInput.firstName,
+    //         lastName:registerInput.lastName,
+    //         createdAt: user.metadata.creationTime,
+    //         lastLoginTime: user.metadata.lastSignInTime,
+    //         provider: user.providerId,
+    //         emailVerified: user.emailVerified,
+    //       }
+    //       );
+    //     logOutUser();
+    //   }
+
+    //   setRegisterInput({ email: "", password: "" });
+    // } catch (error) {
+    //   console.log(error.message);
+    // }
+
+    e.preventDefault();
+    if (!isLoaded) {
+      return;
+    }
+
+    try {
+      await signUp.create({
+        emailAddress: registerInput.email,
+        password: registerInput.password,
+        firstName: registerInput.firstName,
+        lastName: registerInput.lastName,
+      });
+
+      // send the email.
+      await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
+
+      // change the UI to our pending section.
+      setPendingVerification(true);
+    } catch (error) {
+      console.error(JSON.stringify(error, null, 2));
+    }
+  };
+
+  const onPressVerify = async (e) => {
+    e.preventDefault();
+    if (!isLoaded) {
+      return;
+    }
+
+    try {
+      const completeSignUp = await signUp.attemptEmailAddressVerification({
+        code,
+      });
+
+      if (completeSignUp.status === "complete") {
         await Axios.post(
-          "http://localhost:3001/auth/register",
-          {
-            uid: user.uid,
-            email: user.email,
-            firstName:registerInput.firstName,
-            lastName:registerInput.lastName,
-            createdAt: user.metadata.creationTime,
-            lastLoginTime: user.metadata.lastSignInTime,
-            provider: user.providerId,
-            emailVerified: user.emailVerified,
-          }
+        "http://localhost:3001/auth/register",
+        {
+          uid: completeSignUp.createdUserId,
+          email: completeSignUp.emailAddress,
+          firstName: completeSignUp.firstName,
+          lastName: completeSignUp.lastName
+        }
         );
-        logOutUser();
+      
+
+        await setActive({ session: completeSignUp.createdSessionId });
+        navigate('/')
       }
 
-      setRegisterInput({ email: "", password: "" });
-    } catch (error) {
-      console.log(error.message);
-    }
+      if (completeSignUp.status !== "complete") {
+        alert("wrong code boi");
+      }
+    } catch (error) {}
   };
-
-  const logOutUser = async () => {
-    try {
-      await auth.signOut();
-    } catch (error) {
-      console.error("Error signing out:", error);
-    }
-  };
-  const logInUser = async () => {
-    try {
-      await signInWithEmailAndPassword(
-        auth,
-        logInInput.email,
-        logInInput.password
-      );
-      navigate('/dashboard')
-      setLogInInput({ email: "", password: "" });
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
 
   return (
-    <div className="h-full p-12 font-inter bg-[#17181c] text-white mx-auto ">
-      <p>register</p>
-      <input
-        className="sample text-black "
-        type="text"
-        placeholder="email"
-        onChange={(e) =>
-          setRegisterInput({
-            ...registerInput,
-            email: e.target.value,
-          })
-        }
-      />
-      <input
-        className="sample ml-2 text-black "
-        type="password"
-        placeholder="password"
-        onChange={(e) =>
-          setRegisterInput({
-            ...registerInput,
-            password: e.target.value,
-          })
-        }
-      />
-      <br />
-      <input
-        className="sample text-black "
-        type="text"
-        placeholder="firstname"
-        onChange={(e) =>
-          setRegisterInput({
-            ...registerInput,
-            firstName: e.target.value,
-          })
-        }
-      />
-      <input
-        className="sample  ml-2 text-black "
-        type="text"
-        placeholder="lastname"
-        onChange={(e) =>
-          setRegisterInput({
-            ...registerInput,
-            lastName: e.target.value,
-          })
-        }
-      />
-      <button className="sample ml-2  p-1 bg-blue-500 text-white rounded-md" onClick={registerUser}>
-        sign in
-      </button>
+    <div className="flex items-center justify-center h-full">
+      {!pendingVerification && (
+        <div className="h-fit rounded-lg view w-fit p-8 flex flex-col font-inter justify-start items-start space-y-3 bg-inherit  ">
+          <p>register</p>
+          <input
+            className=" text-black w-52 "
+            type="text"
+            placeholder="email"
+            onChange={(e) =>
+              setRegisterInput({
+                ...registerInput,
+                email: e.target.value,
+              })
+            }
+          />
+          <input
+            className="  text-black w-52 "
+            type="password"
+            placeholder="password"
+            onChange={(e) =>
+              setRegisterInput({
+                ...registerInput,
+                password: e.target.value,
+              })
+            }
+          />
+          <input
+            className=" text-black w-52 "
+            type="text"
+            placeholder="firstName"
+            onChange={(e) =>
+              setRegisterInput({
+                ...registerInput,
+                firstName: e.target.value,
+              })
+            }
+          />
+          <input
+            className=" text-black w-52 "
+            type="text"
+            placeholder="lastName"
+            onChange={(e) =>
+              setRegisterInput({
+                ...registerInput,
+                lastName: e.target.value,
+              })
+            }
+          />
 
-      <p>current user: {data?.email}</p>
-      <button className="sample ml-2  p-1 bg-red-500 text-white rounded-md" onClick={logOutUser}>
-        logout
-      </button>
+          <button
+            className=" ml-2  p-1 bg-blue-500 text-white rounded-md"
+            onClick={registerUser}
+          >
+            sign in
+          </button>
 
-      <p className="mt-20">login</p>
-      <input
-        className="sample text-black "
-        type="text"
-        placeholder="email"
-        onChange={(e) =>
-          setLogInInput({
-            ...logInInput,
-            email: e.target.value,
-          })
-        }
-      />
-      <input
-        className="sample ml-2 text-black"
-        type="password"
-        placeholder="password"
-        onChange={(e) =>
-          setLogInInput({
-            ...logInInput,
-            password: e.target.value,
-          })
-        }
-      />
-      <button className="sample ml-2 p-1 bg-green-500 text-white rounded-md" onClick={logInUser}>
-        log in
-      </button>
+          <UserButton />
+        </div>
+      )}
+      {pendingVerification && (
+        <div className="view p-8 flex flex-col items-center justify-center">
+          input code
+          <input
+            className="   text-black w-52 "
+            type="text"
+            placeholder="code"
+            onChange={(e) => setCode(e.target.value)}
+          />
+          <button onClick={(e) => onPressVerify(e)}>okay</button>
+        </div>
+      )}
     </div>
   );
 };
