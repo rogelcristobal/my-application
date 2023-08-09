@@ -7,7 +7,7 @@ import { auth } from "../firebase-config";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useSignUp, UserButton ,useUser} from "@clerk/clerk-react";
+import { useSignUp, UserButton, useUser } from "@clerk/clerk-react";
 const Login = () => {
   const navigate = useNavigate();
   const data = useSelector((state) => state.user.firebaseCurrentUser);
@@ -23,10 +23,10 @@ const Login = () => {
     lastName: "",
   });
 
-  const [code,setCode] = React.useState(null)
+  const [code, setCode] = React.useState(null);
 
-  const { isLoaded, signUp } = useSignUp();
-  const {isSignedIn,user,isLoaded: userLoaded} = useUser()
+  const { isLoaded, signUp, setActive } = useSignUp();
+  const { user, isSignedIn, isLoaded: userLoaded } = useUser();
   const [pendingVerification, setPendingVerification] = React.useState(false);
 
   const registerUser = async (e) => {
@@ -70,10 +70,10 @@ const Login = () => {
       await signUp.create({
         emailAddress: registerInput.email,
         password: registerInput.password,
-       
-       
+        firstName: registerInput.firstName,
+        lastName: registerInput.lastName,
       });
-  
+
       // send the email.
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
 
@@ -84,119 +84,107 @@ const Login = () => {
     }
   };
 
-  const onPressVerify = async(e)=>{
-    e.preventDefault()
-    if(!isLoaded){
-      return
+  const onPressVerify = async (e) => {
+    e.preventDefault();
+    if (!isLoaded) {
+      return;
     }
 
     try {
-      const completeSignUp =  await signUp.attemptEmailAddressVerification({code})
+      const completeSignUp = await signUp.attemptEmailAddressVerification({
+        code,
+      });
 
-      if(completeSignUp.status ==="complete"){
-        alert('successfull login')
+      if (completeSignUp.status === "complete") {
+        // await Axios.post(
+        // "http://localhost:3001/auth/register",
+        // {
+        //   uid: completeSignUp.createdUserId,
+        //   email: completeSignUp.emailAddress,
+        // }
+        // );
 
-
-
-
-          console.log(completeSignUp.createdUserId)
-          
-          await Axios.post(
-          "http://localhost:3001/auth/register",
-          {
-            uid: completeSignUp.createdUserId,
-            email: completeSignUp.emailAddress,
-            // firstName:registerInput.firstName,
-            // lastName:registerInput.lastName,
-            // createdAt: completeSignUp.createdUserId,
-            // lastLoginTime: completeSignUp,
-            // provider: user.providerId,
-            // emailVerified: user.emailVerified,
-          }
-          );
-        
-         
+        await setActive({ session: completeSignUp.createdSessionId });
       }
 
-      if(completeSignUp.status !== "complete"){
-        alert('wrong code boi')
+      if (completeSignUp.status !== "complete") {
+        alert("wrong code boi");
       }
-    } catch (error) {
-      
-    }
-  }
+    } catch (error) {}
+  };
+
   return (
     <div className="flex items-center justify-center h-full">
-     {!pendingVerification&& <div className="h-fit rounded-lg view w-fit p-8 flex flex-col font-inter justify-start items-start space-y-3 bg-inherit  ">
-        <p>register</p>
-        <input
-          className=" text-black w-52 "
-          type="text"
-          placeholder="email"
-          onChange={(e) =>
-            setRegisterInput({
-              ...registerInput,
-              email: e.target.value,
-            })
-          }
-        />
-        <input
-          className="  text-black w-52 "
-          type="password"
-          placeholder="password"
-          onChange={(e) =>
-            setRegisterInput({
-              ...registerInput,
-              password: e.target.value,
-            })
-          }
-        />
+      {!pendingVerification && (
+        <div className="h-fit rounded-lg view w-fit p-8 flex flex-col font-inter justify-start items-start space-y-3 bg-inherit  ">
+          <p>register</p>
+          <input
+            className=" text-black w-52 "
+            type="text"
+            placeholder="email"
+            onChange={(e) =>
+              setRegisterInput({
+                ...registerInput,
+                email: e.target.value,
+              })
+            }
+          />
+          <input
+            className="  text-black w-52 "
+            type="password"
+            placeholder="password"
+            onChange={(e) =>
+              setRegisterInput({
+                ...registerInput,
+                password: e.target.value,
+              })
+            }
+          />
+          <input
+            className=" text-black w-52 "
+            type="text"
+            placeholder="firstName"
+            onChange={(e) =>
+              setRegisterInput({
+                ...registerInput,
+                firstName: e.target.value,
+              })
+            }
+          />
+          <input
+            className=" text-black w-52 "
+            type="text"
+            placeholder="lastName"
+            onChange={(e) =>
+              setRegisterInput({
+                ...registerInput,
+                lastName: e.target.value,
+              })
+            }
+          />
 
-        <input
-          className=" text-black w-52 "
-          type="text"
-          placeholder="firstname"
-          onChange={(e) =>
-            setRegisterInput({
-              ...registerInput,
-              firstName: e.target.value,
-            })
-          }
-        />
-        <input
-          className="   text-black w-52 "
-          type="text"
-          placeholder="lastname"
-          onChange={(e) =>
-            setRegisterInput({
-              ...registerInput,
-              lastName: e.target.value,
-            })
-          }
-        />
-        <button
-          className=" ml-2  p-1 bg-blue-500 text-white rounded-md"
-          onClick={registerUser}
-        >
-          sign in
-        </button>
+          <button
+            className=" ml-2  p-1 bg-blue-500 text-white rounded-md"
+            onClick={registerUser}
+          >
+            sign in
+          </button>
 
-        <UserButton />
-      </div>}
-      {pendingVerification&&
-      <div className="view p-8 flex flex-col items-center justify-center">
-        input code
-        <input
-          className="   text-black w-52 "
-          type="text"
-          placeholder="code"
-          onChange={(e) =>
-            setCode(e.target.value)
-          }
-        />    
-        <button onClick={(e)=> onPressVerify(e)}>okay</button>
-      </div>
-      }
+          <UserButton />
+        </div>
+      )}
+      {pendingVerification && (
+        <div className="view p-8 flex flex-col items-center justify-center">
+          input code
+          <input
+            className="   text-black w-52 "
+            type="text"
+            placeholder="code"
+            onChange={(e) => setCode(e.target.value)}
+          />
+          <button onClick={(e) => onPressVerify(e)}>okay</button>
+        </div>
+      )}
     </div>
   );
 };

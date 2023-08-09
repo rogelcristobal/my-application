@@ -10,8 +10,8 @@ router.post("/register", async (request, response) => {
     const {
       uid,
       email,
-      firstName,
-      lastName,
+      // firstName,
+      // lastName,
       // createdAt,
       // lastLoginTime,
       // provider,

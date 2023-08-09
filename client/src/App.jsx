@@ -15,8 +15,15 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "./features/user/currentUserSlice";
 import { NoteCollectionDropDownPositionProvider } from "./context/NoteCollectionDropDownPositionContext";
+import ProtectedRouteClerk from "./components/ProtectedRouteClerk";
 
-import { SignIn, SignUp, SignedIn } from "@clerk/clerk-react";
+import {
+  SignIn,
+  SignUp,
+  SignedIn,
+  useUser,
+  UserButton,
+} from "@clerk/clerk-react";
 
 function App() {
   const dispatch = useDispatch();
@@ -73,18 +80,54 @@ function App() {
       dispatch(fetchUser(firebaseCurrentUser?.uid));
     }
   }, [dispatch, firebaseCurrentUser?.uid]);
+  const { isSignedIn, user, isLoaded } = useUser();
+  if (!isLoaded) {
+    console.log("loading");
+  }
+  if (isSignedIn) {
+    console.log(user);
+  }
+
+  // getting time
+  // if(isLoaded){
+  //   const formattedCreatedAt = new Date(user.createdAt).toLocaleString()
+  //   console.log(formattedCreatedAt)
+  // }
 
   return (
     <div className="h-screen w-full  font-inter  bg-[#0c1015] text-[#ffffff] relative">
       <Routes>
         <Route path="/login" element={<Login />}></Route>
-
-     
-
         <Route
-          path="/protected"
+          path="/*"
           element={
-            <SignedIn>
+            <ProtectedRoute>
+              <Routes>
+                <Route path="/" element={<Navigate to="/dashboard" />}></Route>
+                <Route
+                  path="/dashboard"
+                  element={
+                    <div>
+                      {!isLoaded && <>loading</>}
+                      {isSignedIn && (
+                        <>
+                          <p>
+                            welcome {user.primaryEmailAddress.emailAddress}{" "}
+                          </p>
+                          <p>uid: {user.id}</p>
+                        </>
+                      )}
+                    </div>
+                  }
+                ></Route>
+              </Routes>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* <Route
+          path="/*"
+          element={
 
               <ProtectedRoute>
                 <div className="h-full   flex items-start flex-col justify-start relative">
@@ -111,16 +154,11 @@ function App() {
                   </div>
                 </div>
               </ProtectedRoute>
-            </SignedIn>
           }
-        ></Route>
+        ></Route> */}
       </Routes>
     </div>
   );
 }
-
-
-
-
 
 export default App;
