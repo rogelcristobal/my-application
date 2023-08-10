@@ -2,8 +2,8 @@ import React from "react";
 
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
-
-import { useSignUp, UserButton } from "@clerk/clerk-react";
+import {Link} from 'react-router-dom'
+import { useSignUp } from "@clerk/clerk-react";
 const Login = () => {
   const navigate = useNavigate();
   // const data = useSelector((state) => state.user.firebaseCurrentUser);
@@ -79,68 +79,91 @@ const Login = () => {
   return (
     <div className="flex items-center justify-center h-full">
       {!pendingVerification && (
-        <div className="h-fit rounded-lg view w-fit p-8 flex flex-col font-inter justify-start items-start space-y-3 bg-inherit  ">
-          <p>register</p>
-          <input
-            className=" text-black w-52 "
-            type="text"
-            placeholder="email"
-            onChange={(e) =>
-              setRegisterInput({
-                ...registerInput,
-                email: e.target.value,
-              })
-            }
-          />
-          <input
-            className="  text-black w-52 "
-            type="password"
-            placeholder="password"
-            onChange={(e) =>
-              setRegisterInput({
-                ...registerInput,
-                password: e.target.value,
-              })
-            }
-          />
-          <input
-            className=" text-black w-52 "
-            type="text"
-            placeholder="firstName"
-            onChange={(e) =>
-              setRegisterInput({
-                ...registerInput,
-                firstName: e.target.value,
-              })
-            }
-          />
-          <input
-            className=" text-black w-52 "
-            type="text"
-            placeholder="lastName"
-            onChange={(e) =>
-              setRegisterInput({
-                ...registerInput,
-                lastName: e.target.value,
-              })
-            }
-          />
+        <div className="h-fit rounded-lg view w-fit bg-white text-[#0c1015] p-6 flex flex-col font-inter justify-center items-center space-y-3.5 bg-inherit  ">
+         <div className=" flex flex-col w-full pt-2 pb-4">
+           <p className="text-inherit  text-[1.125rem] font-medium">Create your Account</p>
+           <p className="text-gray-500/70 text-[0.75rem] mt-1.5 font-medium">to continue to NoteStack</p>
+         </div>
+
+          <div className="flex  gap-4">
+            <div className="flex flex-col ">
+              <label className="text-gray-500/70 text-[0.75rem] mb-2 font-medium">
+                First name
+              </label>
+              <input
+                className=" text-[#0c1015] rounded-md w-36 bg-white view py-1.5 px-2 placeholder:text-[0.9rem]"
+                type="text"
+                onChange={(e) =>
+                  setRegisterInput({
+                    ...registerInput,
+                    firstName: e.target.value,
+                  })
+                }
+              />
+            </div>
+            <div className="flex flex-col ">
+              <label className="text-gray-500/70 text-[0.75rem] mb-2 font-medium">
+                Last name
+              </label>
+              <input
+                className=" text-[#0c1015] rounded-md w-36 bg-white view py-1.5 px-2 placeholder:text-[0.9rem]"
+                type="text"
+                onChange={(e) =>
+                  setRegisterInput({
+                    ...registerInput,
+                    lastName: e.target.value,
+                  })
+                }
+              />
+            </div>
+          </div>
+          <div className="flex flex-col w-full ">
+            <label className="text-gray-500/70 text-[0.75rem] mb-2 font-medium">
+              Email
+            </label>
+            <input
+              className=" text-[#0c1015] rounded-md w-full bg-white view py-1.5 px-2 placeholder:text-[0.9rem]"
+              type="text"
+              onChange={(e) =>
+                setRegisterInput({
+                  ...registerInput,
+                  email: e.target.value,
+                })
+              }
+            />
+          </div>
+          <div className="flex flex-col w-full ">
+            <label className="text-gray-500/70 text-[0.75rem] mb-2 font-medium">
+              Password
+            </label>
+            <input
+              className="  text-[#0c1015] rounded-md w-full bg-white view py-1.5 px-2 placeholder:text-[0.9rem]"
+              type="password"
+              onChange={(e) =>
+                setRegisterInput({
+                  ...registerInput,
+                  password: e.target.value,
+                })
+              }
+            />
+          </div>
 
           <button
-            className=" ml-2  p-1 bg-blue-500 text-white rounded-md"
+            className="  w-full px-2 py-3 bg-[#1b55ff] text-[0.75rem] font-medium text-white rounded-md"
             onClick={registerUser}
           >
-            sign in
+            CONTINUE
           </button>
 
-          <UserButton />
+              <span className="text-gray-500/70 text-[0.75rem] w-full text-center pt-4 font-medium">have an account? <Link to='/' className="text-[#1b55ff]">Sign in</Link></span>
+              
         </div>
       )}
       {pendingVerification && (
         <div className="view p-8 flex flex-col items-center justify-center">
           input code
           <input
-            className="   text-black w-52 "
+            className="   text-[#0c1015] rounded-md w-52 "
             type="text"
             placeholder="code"
             onChange={(e) => setCode(e.target.value)}
