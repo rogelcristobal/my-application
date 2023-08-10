@@ -65,7 +65,8 @@ const Login = () => {
           uid: completeSignUp.createdUserId,
           email: completeSignUp.emailAddress,
           firstName: completeSignUp.firstName,
-          lastName: completeSignUp.lastName
+          lastName: completeSignUp.lastName,
+          
         }
         );
 
