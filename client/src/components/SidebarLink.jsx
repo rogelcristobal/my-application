@@ -1,7 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { PiCaretDownBold } from "react-icons/pi";
 import { NavLink, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+
 const SidebarLink = ({
   title,
   initialState,
@@ -34,15 +36,13 @@ const SidebarLink = ({
         role="link"
         className="w-full  mb-0.5 h-fit box-border"
         onClick={handleNavLinkClick}
-       
       >
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
           className={`w-full  rounded-md h-[2.4rem] box-border flex flex-col font-normal relative px-3  ${
             isActive
-              ? // bg-[#2c2c2c]/50
-                activeClass
+              ? activeClass
               : "text-gray-500  bg-transparent hover:bg-transparent border-0 box-border"
           }
           `}
@@ -53,13 +53,15 @@ const SidebarLink = ({
             >
               {/* text-[#8f6afc] */}
               <span
-                className={`text-[1.1rem]   ${isActive ? "text-[#8f6afc]" : ""}`}
+                className={`text-[1.1rem]   ${
+                  isActive ? "text-[#8f6afc]" : ""
+                }`}
               >
                 {icon}
               </span>
 
               <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate ">
-                {title} 
+                {title}
               </span>
             </div>
             {loading ? (
@@ -120,7 +122,7 @@ const SidebarLink = ({
                 </span>
               </div>
               {loading ? (
-                <span className="text-sm">loading</span>
+                <span className="loading loading-spinner loading-xs text-[#676269] mr-2"></span>
               ) : (
                 count > 0 && (
                   <div className=" text-[0.6rem]  rounded-md h-[1.2rem] w-[1.2rem] pt-0.5 flex items-center justify-center  text-[#676269]  font-normal">
@@ -160,6 +162,17 @@ const SidebarLink = ({
       </div>
     );
   }
+};
+
+SidebarLink.propTypes = {
+  title: PropTypes.string,
+  initialState: PropTypes.bool,
+  loading: PropTypes.bool,
+  icon: PropTypes.node,
+  count: PropTypes.number,
+  path: PropTypes.string,
+  item: PropTypes.node,
+  activeClass: PropTypes.string,
 };
 
 export default SidebarLink;

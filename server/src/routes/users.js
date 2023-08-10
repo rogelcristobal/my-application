@@ -28,10 +28,6 @@ router.post("/register", async (request, response) => {
       email,
       firstName,
       lastName,
-      // createdAt,
-      // lastLoginTime,
-      // provider,
-      // emailVerified,
       noteCollections: [],
       todoCollections: [],
     });

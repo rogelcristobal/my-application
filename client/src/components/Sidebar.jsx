@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  PiFolderNotch,
-  PiLayout,
-  PiCheckSquareOffset,
-  PiNoteBlank,
-} from "react-icons/pi";
+import { PiFolderNotch, PiLayout } from "react-icons/pi";
 import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
 import { useSelector } from "react-redux";
@@ -14,14 +9,14 @@ const Sidebar = () => {
   const currentUser = useSelector((state) => state.currentUser.data);
   const sidebarControl = useAnimation();
 
-  const handleToggleSidebar = () => {
-    setState(!state);
-    if (state) {
-      sidebarControl.start({ width: "17rem" });
-    } else {
-      sidebarControl.start({ width: "4rem" });
-    }
-  };
+  // const handleToggleSidebar = () => {
+  //   setState(!state);
+  //   if (state) {
+  //     sidebarControl.start({ width: "17rem" });
+  //   } else {
+  //     sidebarControl.start({ width: "4rem" });
+  //   }
+  // };
 
   return (
     <motion.div
@@ -46,16 +41,27 @@ const Sidebar = () => {
             )}
             <div className="w-full h-fit flex flex-col space-y-1  py-2">
               {[
-                { path: "/dashboard", title: "dashboard", icon: <PiLayout /> ,activeClass:`view text-inherit bg-transparent hover:bg-transparent`,},
+                {
+                  path: "/dashboard",
+                  title: "dashboard",
+                  icon: <PiLayout />,
+                  activeClass: `view text-inherit bg-transparent hover:bg-transparent`,
+                },
 
                 {
-                  path:'/collections',
+                  path: "/collections",
                   title: "projects ",
                   icon: <PiFolderNotch />,
-                  activeClass:`text-inherit `,
-                  initialState:true,
+                  activeClass: `text-inherit `,
+                  initialState: true,
                   loading: currentUserLoading,
-                  items: [{title:"notes",count:currentUser?.noteCollections?.length},{title:"todos",}].map((item, id) => (
+                  items: [
+                    {
+                      title: "notes",
+                      count: currentUser?.noteCollections?.length,
+                    },
+                    { title: "todos" },
+                  ].map((item, id) => (
                     <SidebarLink
                       title={item?.title}
                       path={`/collections/${item?.title}`}
@@ -63,11 +69,15 @@ const Sidebar = () => {
                       activeClass={`text-inherit bg-transparent hover:bg-transparent view `}
                       count={item.count}
                       icon={item?.icon}
-                      
                     />
                   )),
                 },
-                 { path: "/sample", title: "sample", icon: <PiLayout /> ,activeClass:`text-inherit bg-transparent hover:bg-transparent view`,},
+                {
+                  path: "/sample",
+                  title: "sample",
+                  icon: <PiLayout />,
+                  activeClass: `text-inherit bg-transparent hover:bg-transparent view`,
+                },
               ].map((item, id) => (
                 <SidebarLink
                   key={id}
@@ -91,5 +101,3 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
-
-
