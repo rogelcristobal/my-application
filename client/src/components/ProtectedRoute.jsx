@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children }) => {
     );
   }
   if (!isSignedIn) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/auth/sign-in" replace />;
   }
 
   return children;

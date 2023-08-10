@@ -1,8 +1,10 @@
 import React from "react";
-import SignInComponent from "../components/SignInComponent";
 import { useSignUp } from "@clerk/clerk-react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
+import SignInComponent from "../components/SignInComponent";
+import SignUpComponent from "../components/SignUpComponent";
+import { Routes, Route } from "react-router-dom";
 const AuthPage = () => {
   const navigate = useNavigate();
   const [code, setCode] = React.useState(null);
@@ -42,27 +44,46 @@ const AuthPage = () => {
 
   return (
     <div className="w-full  h-full">
-      {!pendingVerification && (
-        <div className="flex items-center justify-end mx-auto container h-full">
-          <SignInComponent
-            setPendingVerification={setPendingVerification}
-          ></SignInComponent>
-        </div>
-      )}
-      {pendingVerification && (
-        <div className="flex items-start pt-[8rem] justify-center mx-auto container h-full">
-          <div className="view p-8 flex flex-col items-center rounded-xl w-fit h-fit justify-center">
-            input code
-            <input
-              className="   text-[#0c1015] rounded-md w-52 "
-              type="text"
-              placeholder="code"
-              onChange={(e) => setCode(e.target.value)}
-            />
-            <button onClick={(e) => onPressVerify(e)}>okay</button>
-          </div>
-        </div>
-      )}
+      <Routes>
+        <Route
+          path="/sign-in"
+          element={
+            <>
+              {!pendingVerification && (
+                <div className="flex items-center justify-end mx-auto container h-full">
+                  <SignInComponent
+                    setPendingVerification={setPendingVerification}
+                  ></SignInComponent>
+                </div>
+              )}
+              {pendingVerification && (
+                <div className="flex items-start pt-[8rem] justify-center mx-auto container h-full">
+                  <div className="view p-8 flex flex-col items-center rounded-xl w-fit h-fit justify-center">
+                    input code
+                    <input
+                      className="   text-[#0c1015] rounded-md w-52 "
+                      type="text"
+                      placeholder="code"
+                      onChange={(e) => setCode(e.target.value)}
+                    />
+                    <button onClick={(e) => onPressVerify(e)}>okay</button>
+                  </div>
+                </div>
+              )}
+            </>
+          }
+        ></Route>
+        <Route
+          path="/sign-up"
+          element={
+            <div className="flex items-center justify-end mx-auto container h-full">
+              <SignUpComponent
+                setPendingVerification={setPendingVerification}
+              ></SignUpComponent>
+            </div>
+          }
+        ></Route>
+      </Routes>
     </div>
   );
 };
