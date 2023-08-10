@@ -1,5 +1,5 @@
 
-import { useUser } from "@clerk/clerk-react";
+import { useUser,UserButton } from "@clerk/clerk-react";
 
 
 const Home = () => {
@@ -15,7 +15,8 @@ const Home = () => {
             <span className="text-[1.475rem] mt-1.5 drop-shadow-sm font-medium">
               Welcome, <span className="capitalize">{isLoaded&&user.firstName}</span>
             </span>
-          </div>        
+          </div>      
+          <UserButton></UserButton>  
         </div>
       </div>
     </div>

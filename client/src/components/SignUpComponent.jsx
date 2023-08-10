@@ -37,7 +37,7 @@ const SignUpComponent = ({ setPendingVerification }) => {
       // change the UI to our pending section.
       setPendingVerification(true);
     } catch (error) {
-      console.error(JSON.stringify(error, null, 2));
+      console.log(error);
     }
   };
 
@@ -52,7 +52,7 @@ const SignUpComponent = ({ setPendingVerification }) => {
   return (
     <div className="h-fit rounded-xl view w-fit shadow-lg bg-white text-[#0c1015] p-7 flex flex-col font-inter justify-center items-center space-y-3.5 bg-inherit  ">
       <div className=" flex flex-col w-full pt-2 pb-6">
-        <p className="text-inherit  text-[1.125rem] font-medium">
+        <p className="text-inherit  text-[1.165rem] font-medium">
           Create your Account
         </p>
         <p className="text-gray-500/70 text-[0.75rem] mt-1.5 font-medium">

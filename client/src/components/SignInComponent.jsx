@@ -1,19 +1,17 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
-import { useSignUp } from "@clerk/clerk-react";
+import { Link ,useNavigate} from "react-router-dom";
+import { useSignIn } from "@clerk/clerk-react";
 import Proptypes from "prop-types";
-const SignInComponent = ({ setPendingVerification }) => {
+const SignInComponent = ({ }) => {
   // const data = useSelector((state) => state.user.firebaseCurrentUser);
-
-  const [registerInput, setRegisterInput] = React.useState({
+  const navigate= useNavigate()
+  const [loginInput, setLoginInput] = React.useState({
     email: "",
     password: "",
-    firstName: "",
-    lastName: "",
   });
 
-  const { isLoaded, signUp } = useSignUp();
+  const { isLoaded, signIn, setActive } = useSignIn();
 
   const registerUser = async (e) => {
     e.preventDefault();
@@ -22,20 +20,22 @@ const SignInComponent = ({ setPendingVerification }) => {
     }
 
     try {
-      await signUp.create({
-        emailAddress: registerInput.email,
-        password: registerInput.password,
-        firstName: registerInput.firstName,
-        lastName: registerInput.lastName,
-      });
+    
+      const result = await signIn.create({
+        identifier:loginInput.email,
+        password:loginInput.password
+      })
+      
 
-      // send the email.
-      await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
-
+      if(result.status === 'complete'){
+        console.log(result)
+        await setActive({session:result.createdSessionId})
+        navigate('/')
+      }
+      
       // change the UI to our pending section.
-      setPendingVerification(true);
     } catch (error) {
-      console.error(JSON.stringify(error, null, 2));
+      console.log(error);
     }
   };
 
@@ -44,7 +44,7 @@ const SignInComponent = ({ setPendingVerification }) => {
   return (
     <div className="h-fit rounded-xl view w-fit shadow-lg bg-white text-[#0c1015] p-7 flex flex-col font-inter justify-center items-center space-y-3.5 bg-inherit  ">
       <div className=" flex flex-col w-full pt-2 pb-6">
-        <p className="text-inherit  text-[1.125rem] font-medium">
+        <p className="text-inherit  text-[1.165rem] font-medium">
           Log in to your Account
         </p>
         <p className="text-gray-500/70 text-[0.75rem] mt-1.5 font-medium">
@@ -61,8 +61,8 @@ const SignInComponent = ({ setPendingVerification }) => {
           className=" text-[#0c1015] rounded-md w-[18.7rem] bg-white view py-2 px-2 focus:outline-none focus:ring-[1.5px] focus:ring-[#1b55ff] text-[0.8rem]"
           type="text"
           onChange={(e) =>
-            setRegisterInput({
-              ...registerInput,
+            setLoginInput({
+              ...loginInput,
               email: e.target.value,
             })
           }
@@ -76,8 +76,8 @@ const SignInComponent = ({ setPendingVerification }) => {
           className="  text-[#0c1015] rounded-md w-[18.7rem] bg-white view py-2 px-2 focus:outline-none focus:ring-[1.5px] focus:ring-[#1b55ff] text-[0.8rem]"
           type="password"
           onChange={(e) =>
-            setRegisterInput({
-              ...registerInput,
+            setLoginInput({
+              ...loginInput,
               password: e.target.value,
             })
           }

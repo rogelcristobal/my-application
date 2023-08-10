@@ -46,14 +46,14 @@ const AuthPage = () => {
     <div className="w-full  h-full">
       <Routes>
         <Route
-          path="/sign-in"
+          path="/sign-up"
           element={
             <>
               {!pendingVerification && (
                 <div className="flex items-center justify-end mx-auto container h-full">
-                  <SignInComponent
+                  <SignUpComponent
                     setPendingVerification={setPendingVerification}
-                  ></SignInComponent>
+                  ></SignUpComponent>
                 </div>
               )}
               {pendingVerification && (
@@ -63,7 +63,7 @@ const AuthPage = () => {
                     <input
                       className="   text-[#0c1015] rounded-md w-52 "
                       type="text"
-                      placeholder="code"
+                      placeholder="code     "
                       onChange={(e) => setCode(e.target.value)}
                     />
                     <button onClick={(e) => onPressVerify(e)}>okay</button>
@@ -74,12 +74,10 @@ const AuthPage = () => {
           }
         ></Route>
         <Route
-          path="/sign-up"
+          path="/sign-in"
           element={
             <div className="flex items-center justify-end mx-auto container h-full">
-              <SignUpComponent
-                setPendingVerification={setPendingVerification}
-              ></SignUpComponent>
+              <SignInComponent />
             </div>
           }
         ></Route>
