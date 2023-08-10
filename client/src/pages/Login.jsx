@@ -77,21 +77,21 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-full">
+    <div className="flex items-center justify-end mx-auto container h-full">
       {!pendingVerification && (
-        <div className="h-fit rounded-lg view w-fit bg-white text-[#0c1015] p-6 flex flex-col font-inter justify-center items-center space-y-3.5 bg-inherit  ">
-         <div className=" flex flex-col w-full pt-2 pb-4">
+        <div className="h-fit rounded-xl view w-fit shadow-lg bg-white text-[#0c1015] p-7 flex flex-col font-inter justify-center items-center space-y-3.5 bg-inherit  ">
+         <div className=" flex flex-col w-full pt-2 pb-6">
            <p className="text-inherit  text-[1.125rem] font-medium">Create your Account</p>
            <p className="text-gray-500/70 text-[0.75rem] mt-1.5 font-medium">to continue to NoteStack</p>
          </div>
 
           <div className="flex  gap-4">
             <div className="flex flex-col ">
-              <label className="text-gray-500/70 text-[0.75rem] mb-2 font-medium">
+              <label className="text-gray-500/70 text-[0.75rem] mb-1.5 font-medium">
                 First name
               </label>
               <input
-                className=" text-[#0c1015] rounded-md w-36 bg-white view py-1.5 px-2 placeholder:text-[0.9rem]"
+                className=" text-[#0c1015] rounded-md w-[8.85rem] bg-white view py-1.5 px-2 placeholder:text-[0.9rem]"
                 type="text"
                 onChange={(e) =>
                   setRegisterInput({
@@ -102,11 +102,11 @@ const Login = () => {
               />
             </div>
             <div className="flex flex-col ">
-              <label className="text-gray-500/70 text-[0.75rem] mb-2 font-medium">
+              <label className="text-gray-500/70 text-[0.75rem] mb-1.5 font-medium">
                 Last name
               </label>
               <input
-                className=" text-[#0c1015] rounded-md w-36 bg-white view py-1.5 px-2 placeholder:text-[0.9rem]"
+                className=" text-[#0c1015] rounded-md w-[8.85rem] bg-white view py-1.5 px-2 placeholder:text-[0.9rem]"
                 type="text"
                 onChange={(e) =>
                   setRegisterInput({
@@ -118,7 +118,7 @@ const Login = () => {
             </div>
           </div>
           <div className="flex flex-col w-full ">
-            <label className="text-gray-500/70 text-[0.75rem] mb-2 font-medium">
+            <label className="text-gray-500/70 text-[0.75rem] mb-1.5 font-medium">
               Email
             </label>
             <input
@@ -133,7 +133,7 @@ const Login = () => {
             />
           </div>
           <div className="flex flex-col w-full ">
-            <label className="text-gray-500/70 text-[0.75rem] mb-2 font-medium">
+            <label className="text-gray-500/70 text-[0.75rem] mb-1.5 font-medium">
               Password
             </label>
             <input
