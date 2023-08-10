@@ -1,20 +1,13 @@
 import React from "react";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-import { auth } from "../firebase-config";
+
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useSignUp, UserButton, useUser } from "@clerk/clerk-react";
+
+import { useSignUp, UserButton } from "@clerk/clerk-react";
 const Login = () => {
   const navigate = useNavigate();
-  const data = useSelector((state) => state.user.firebaseCurrentUser);
-  const [logInInput, setLogInInput] = React.useState({
-    email: "",
-    password: "",
-  });
+  // const data = useSelector((state) => state.user.firebaseCurrentUser);
+ 
 
   const [registerInput, setRegisterInput] = React.useState({
     email: "",
@@ -26,41 +19,10 @@ const Login = () => {
   const [code, setCode] = React.useState(null);
 
   const { isLoaded, signUp, setActive } = useSignUp();
-  const { user, isSignedIn, isLoaded: userLoaded } = useUser();
   const [pendingVerification, setPendingVerification] = React.useState(false);
 
+
   const registerUser = async (e) => {
-    // try {
-    //   const { user } = await createUserWithEmailAndPassword(
-    //     auth,
-    //     registerInput.email,
-    //     registerInput.password
-    //   );
-
-    //   //  request storing uid and other data to the db
-    //   if (user) {
-    //     console.log(user)
-    //     await Axios.post(
-    //       "http://localhost:3001/auth/register",
-    //       {
-    //         uid: user.uid,
-    //         email: user.email,
-    //         firstName:registerInput.firstName,
-    //         lastName:registerInput.lastName,
-    //         createdAt: user.metadata.creationTime,
-    //         lastLoginTime: user.metadata.lastSignInTime,
-    //         provider: user.providerId,
-    //         emailVerified: user.emailVerified,
-    //       }
-    //       );
-    //     logOutUser();
-    //   }
-
-    //   setRegisterInput({ email: "", password: "" });
-    // } catch (error) {
-    //   console.log(error.message);
-    // }
-
     e.preventDefault();
     if (!isLoaded) {
       return;
@@ -84,6 +46,7 @@ const Login = () => {
     }
   };
 
+  // verify code input
   const onPressVerify = async (e) => {
     e.preventDefault();
     if (!isLoaded) {
@@ -105,7 +68,6 @@ const Login = () => {
           lastName: completeSignUp.lastName
         }
         );
-      
 
         await setActive({ session: completeSignUp.createdSessionId });
         navigate('/')
@@ -114,7 +76,9 @@ const Login = () => {
       if (completeSignUp.status !== "complete") {
         alert("wrong code boi");
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
