@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 import { PiCaretDownBold } from "react-icons/pi";
 import { NavLink, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -36,7 +36,6 @@ const SidebarLink = ({
         role="link"
         className="w-full  mb-0.5 h-fit box-border"
         onClick={handleNavLinkClick}
-       
       >
         <div
           onMouseEnter={hoverToggle}
@@ -54,13 +53,15 @@ const SidebarLink = ({
             >
               {/* text-[#8f6afc] */}
               <span
-                className={`text-[1.1rem]   ${isActive ? "text-[#8f6afc]" : ""}`}
+                className={`text-[1.1rem]   ${
+                  isActive ? "text-[#8f6afc]" : ""
+                }`}
               >
                 {icon}
               </span>
 
               <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate ">
-                {title} 
+                {title}
               </span>
             </div>
             {loading ? (
@@ -163,16 +164,15 @@ const SidebarLink = ({
   }
 };
 
-
- SidebarLink.propTypes={
-title: PropTypes.string,
+SidebarLink.propTypes = {
+  title: PropTypes.string,
   initialState: PropTypes.bool,
   loading: PropTypes.bool,
   icon: PropTypes.node,
   count: PropTypes.number,
   path: PropTypes.string,
   item: PropTypes.node,
-  activeClass: PropTypes.string
-}
+  activeClass: PropTypes.string,
+};
 
 export default SidebarLink;

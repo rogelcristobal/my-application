@@ -1,6 +1,6 @@
-import React, { Children } from "react";
-import { Navigate, Outlet } from "react-router-dom";
-import { useSelector } from "react-redux";
+
+import PropTypes from 'prop-types'
+import { Navigate } from "react-router-dom";
 import { useUser } from "@clerk/clerk-react";
 const ProtectedRoute = ({ children }) => {
   // const data = useSelector((state)=>state.user.firebaseCurrentUser)
@@ -19,5 +19,9 @@ const ProtectedRoute = ({ children }) => {
 
   return children;
 };
+
+ProtectedRoute.propTypes={
+  children:PropTypes.node
+}
 
 export default ProtectedRoute;

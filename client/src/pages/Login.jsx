@@ -7,7 +7,6 @@ import { useSignUp, UserButton } from "@clerk/clerk-react";
 const Login = () => {
   const navigate = useNavigate();
   // const data = useSelector((state) => state.user.firebaseCurrentUser);
- 
 
   const [registerInput, setRegisterInput] = React.useState({
     email: "",
@@ -20,7 +19,6 @@ const Login = () => {
 
   const { isLoaded, signUp, setActive } = useSignUp();
   const [pendingVerification, setPendingVerification] = React.useState(false);
-
 
   const registerUser = async (e) => {
     e.preventDefault();
@@ -59,26 +57,22 @@ const Login = () => {
       });
 
       if (completeSignUp.status === "complete") {
-        await Axios.post(
-        "http://localhost:3001/auth/register",
-        {
+        await Axios.post("http://localhost:3001/auth/register", {
           uid: completeSignUp.createdUserId,
           email: completeSignUp.emailAddress,
           firstName: completeSignUp.firstName,
           lastName: completeSignUp.lastName,
-          
-        }
-        );
+        });
 
         await setActive({ session: completeSignUp.createdSessionId });
-        navigate('/')
+        navigate("/");
       }
 
       if (completeSignUp.status !== "complete") {
         alert("wrong code boi");
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
