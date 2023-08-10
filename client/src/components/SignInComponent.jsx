@@ -1,11 +1,11 @@
 import React from "react";
 
-import { Link ,useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSignIn } from "@clerk/clerk-react";
 import Proptypes from "prop-types";
-const SignInComponent = ({ }) => {
+const SignInComponent = ({}) => {
   // const data = useSelector((state) => state.user.firebaseCurrentUser);
-  const navigate= useNavigate()
+  const navigate = useNavigate();
   const [loginInput, setLoginInput] = React.useState({
     email: "",
     password: "",
@@ -20,26 +20,23 @@ const SignInComponent = ({ }) => {
     }
 
     try {
-    
       const result = await signIn.create({
-        identifier:loginInput.email,
-        password:loginInput.password
-      })
-      
+        identifier: loginInput.email,
+        password: loginInput.password,
+      });
 
-      if(result.status === 'complete'){
+      if (result.status === "complete") {
+        await setActive({ session: result.createdSessionId });
+        navigate("/");
+      }else{
         console.log(result)
-        await setActive({session:result.createdSessionId})
-        navigate('/')
       }
-      
+
       // change the UI to our pending section.
     } catch (error) {
       console.log(error);
     }
   };
-
-  
 
   return (
     <div className="h-fit rounded-xl view w-fit shadow-lg bg-white text-[#0c1015] p-7 flex flex-col font-inter justify-center items-center space-y-3.5 bg-inherit  ">
@@ -52,7 +49,6 @@ const SignInComponent = ({ }) => {
         </p>
       </div>
 
-     
       <div className="flex flex-col w-full ">
         <label className="text-gray-500/70 text-[0.75rem] mb-1.5 font-medium">
           Email

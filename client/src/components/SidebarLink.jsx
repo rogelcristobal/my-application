@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { PiCaretDownBold } from "react-icons/pi";
 import { NavLink, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
 
 const SidebarLink = ({
   title,
@@ -20,6 +21,7 @@ const SidebarLink = ({
   };
   const [activeState, setActiveState] = React.useState(initialState);
   const location = useLocation();
+  const currentUserLoading = useSelector((state) => state.currentUser.loading);
 
   // Check if the NavLink is active
   const isActive = location.pathname.startsWith(path);
@@ -28,6 +30,7 @@ const SidebarLink = ({
     e.stopPropagation;
     setActiveState(!activeState);
   };
+ 
 
   if (!item) {
     return (
@@ -64,15 +67,13 @@ const SidebarLink = ({
                 {title}
               </span>
             </div>
-            {loading ? (
-              <span className="text-sm">loading</span>
-            ) : (
-              count > 0 && (
+            <span>
+              {count > 0 && (
                 <div className=" text-[0.6rem]  rounded-md h-[1.2rem] w-[1.2rem] pt-0.5 flex items-center justify-center  text-[#676269]  font-normal">
                   <span>{count}</span>
                 </div>
-              )
-            )}
+              )}
+            </span>
 
             {item && (
               <span className="text-[0.675rem] text-[#676269] ">
@@ -85,6 +86,8 @@ const SidebarLink = ({
         </div>
       </NavLink>
     );
+
+    // if link has a children , therefore it renders a dropdown and not a link component
   } else {
     return (
       <div className="">
@@ -121,15 +124,6 @@ const SidebarLink = ({
                   {title}
                 </span>
               </div>
-              {loading ? (
-                <span className="loading loading-spinner loading-xs text-[#676269] mr-2"></span>
-              ) : (
-                count > 0 && (
-                  <div className=" text-[0.6rem]  rounded-md h-[1.2rem] w-[1.2rem] pt-0.5 flex items-center justify-center  text-[#676269]  font-normal">
-                    <span>{count}</span>
-                  </div>
-                )
-              )}
 
               {item && (
                 <span className="text-[0.675rem] text-[#676269] ">

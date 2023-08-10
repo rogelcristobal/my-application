@@ -18,6 +18,8 @@ const Sidebar = () => {
   //   }
   // };
 
+
+
   return (
     <motion.div
       animate={sidebarControl}
@@ -54,11 +56,11 @@ const Sidebar = () => {
                   icon: <PiFolderNotch />,
                   activeClass: `text-inherit `,
                   initialState: true,
-                  loading: currentUserLoading,
                   items: [
                     {
                       title: "notes",
                       count: currentUser?.noteCollections?.length,
+                      loading:currentUserLoading,
                     },
                     { title: "todos" },
                   ].map((item, id) => (
@@ -69,6 +71,7 @@ const Sidebar = () => {
                       activeClass={`text-inherit bg-transparent hover:bg-transparent view `}
                       count={item.count}
                       icon={item?.icon}
+                      loading={item?.loading}
                     />
                   )),
                 },
@@ -86,10 +89,11 @@ const Sidebar = () => {
                   title={item.title}
                   icon={item.icon}
                   count={item?.count}
-                  loading={item?.loading}
                   item={item?.items}
                   activeClass={item.activeClass}
                   initialState={item?.initialState}
+                  
+                  loading={item?.loading}
                 />
               ))}
             </div>
