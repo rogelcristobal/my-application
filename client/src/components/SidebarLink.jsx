@@ -3,12 +3,11 @@ import PropTypes from "prop-types";
 import { PiCaretDownBold } from "react-icons/pi";
 import { NavLink, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useSelector } from "react-redux";
 
 const SidebarLink = ({
   title,
   initialState,
-  loading,
+  
   icon,
   count,
   path,
@@ -21,7 +20,6 @@ const SidebarLink = ({
   };
   const [activeState, setActiveState] = React.useState(initialState);
   const location = useLocation();
-  const currentUserLoading = useSelector((state) => state.currentUser.loading);
 
   // Check if the NavLink is active
   const isActive = location.pathname.startsWith(path);
@@ -30,15 +28,15 @@ const SidebarLink = ({
     e.stopPropagation;
     setActiveState(!activeState);
   };
- 
 
   if (!item) {
     return (
       <NavLink
         to={path}
         role="link"
-        className="w-full  mb-0.5 h-fit box-border"
+        className="w-full  mb-0.5 h-fit box-border relative" 
         onClick={handleNavLinkClick}
+        
       >
         <div
           onMouseEnter={hoverToggle}
@@ -54,10 +52,10 @@ const SidebarLink = ({
             <div
               className={`flex justify-start items-center   h-full    w-full capitalize gap-3 `}
             >
-              {/* text-[#8f6afc] */}
+              {/* text-[] */}
               <span
                 className={`text-[1.1rem]   ${
-                  isActive ? "text-[#8f6afc]" : ""
+                  isActive ? "text-[#26a7de]" : ""
                 }`}
               >
                 {icon}
@@ -84,6 +82,8 @@ const SidebarLink = ({
             )}
           </div>
         </div>
+
+        {/* {isItem&&<div className={`${isActive?'bg-[#676269]/50 h-[90%]':'h-0'} transition-all duration-100 ease-in-out   w-[1.5px] z-10 absolute -left-[0.7rem] top-1/2 -translate-y-1/2`}></div>} */}
       </NavLink>
     );
 
@@ -114,7 +114,7 @@ const SidebarLink = ({
                 {/* text-[#004feb] */}
                 <span
                   className={`text-[1.1rem]   ${
-                    isActive ? "text-[#8f6afc]" : ""
+                    isActive ? "text-[#26a7de]" : ""
                   }`}
                 >
                   {icon}
@@ -150,7 +150,7 @@ const SidebarLink = ({
             } flex flex-col px-0 overflow-hidden `}
           >
             {item}
-            <div className="absolute w-[1.5px] h-full top-0 left-4 bg-[#676269]/10"></div>
+            {/* <div className="absolute w-[1.5px] h-full top-0 left-4 bg-[#676269]/10"></div> */}
           </motion.div>
         )}
       </div>

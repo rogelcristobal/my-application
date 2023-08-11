@@ -3,7 +3,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSignIn } from "@clerk/clerk-react";
 import Proptypes from "prop-types";
-const SignInComponent = ({}) => {
+const SignInComponent = () => {
   // const data = useSelector((state) => state.user.firebaseCurrentUser);
   const navigate = useNavigate();
   const [loginInput, setLoginInput] = React.useState({
@@ -37,9 +37,9 @@ const SignInComponent = ({}) => {
       console.log(error);
     }
   };
-
+  
   return (
-    <div className="h-fit rounded-xl view w-fit shadow-lg bg-white text-[#0c1015] p-7 flex flex-col font-inter justify-center items-center space-y-3.5 bg-inherit  ">
+    <div  className="h-fit rounded-xl view w-fit shadow-lg bg-white text-[#0c1015] p-7 flex flex-col font-inter justify-center items-center space-y-3.5 bg-inherit  ">
       <div className=" flex flex-col w-full pt-2 pb-6">
         <p className="text-inherit  text-[1.165rem] font-medium">
           Log in to your Account
@@ -54,7 +54,7 @@ const SignInComponent = ({}) => {
           Email
         </label>
         <input
-          className=" text-[#0c1015] rounded-md w-[18.7rem] bg-white view py-2 px-2 focus:outline-none focus:ring-[1.5px] focus:ring-[#1b55ff] text-[0.8rem]"
+          className=" text-[#0c1015] rounded-md w-[18.7rem] bg-white view py-2 px-2 focus:outline-none focus:ring-[1.5px] focus:ring-[#1DA1F2] text-[0.8rem]"
           type="text"
           onChange={(e) =>
             setLoginInput({
@@ -69,7 +69,7 @@ const SignInComponent = ({}) => {
           Password
         </label>
         <input
-          className="  text-[#0c1015] rounded-md w-[18.7rem] bg-white view py-2 px-2 focus:outline-none focus:ring-[1.5px] focus:ring-[#1b55ff] text-[0.8rem]"
+          className="  text-[#0c1015] rounded-md w-[18.7rem] bg-white view py-2 px-2 focus:outline-none focus:ring-[1.5px] focus:ring-[#1DA1F2] text-[0.8rem]"
           type="password"
           onChange={(e) =>
             setLoginInput({
@@ -81,7 +81,7 @@ const SignInComponent = ({}) => {
       </div>
 
       <button
-        className="  w-full px-2 py-3  bg-[#1b55ff] text-[0.75rem] font-medium text-white rounded-md"
+        className="  w-full px-2 py-3  bg-[#1DA1F2] text-[0.75rem] font-medium text-white rounded-md"
         onClick={registerUser}
       >
         CONTINUE
@@ -89,7 +89,7 @@ const SignInComponent = ({}) => {
 
       <span className="text-gray-500/70 text-[0.75rem] w-full text-center pt-4 font-medium">
         have an account?
-        <Link to="/auth/sign-up" className="text-[#1b55ff] ml-2">
+        <Link to="/auth/sign-up" className="text-[#1DA1F2] ml-2">
           Sign up
         </Link>
       </span>

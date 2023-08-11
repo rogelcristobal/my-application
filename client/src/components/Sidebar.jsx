@@ -1,5 +1,5 @@
 import React from "react";
-import { PiFolderNotch, PiLayout } from "react-icons/pi";
+import { PiFolderNotch, PiLayout ,PiToolbox} from "react-icons/pi";
 import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
 import { useSelector } from "react-redux";
@@ -56,13 +56,15 @@ const Sidebar = () => {
                   icon: <PiFolderNotch />,
                   activeClass: `text-inherit `,
                   initialState: true,
+                  attr:'dropdown',
                   items: [
                     {
                       title: "notes",
                       count: currentUser?.noteCollections?.length,
                       loading:currentUserLoading,
+                      isItem:true
                     },
-                    { title: "todos" },
+                    { title: "todos",isItem:true },
                   ].map((item, id) => (
                     <SidebarLink
                       title={item?.title}
@@ -72,13 +74,14 @@ const Sidebar = () => {
                       count={item.count}
                       icon={item?.icon}
                       loading={item?.loading}
+                      isItem={item.isItem}
                     />
                   )),
                 },
                 {
-                  path: "/sample",
-                  title: "sample",
-                  icon: <PiLayout />,
+                  path: "/Tools",
+                  title: "tools",
+                  icon: <PiToolbox />,
                   activeClass: `text-inherit bg-transparent hover:bg-transparent view`,
                 },
               ].map((item, id) => (
