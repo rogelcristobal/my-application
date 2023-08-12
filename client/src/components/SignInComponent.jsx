@@ -33,9 +33,9 @@ const SignInComponent = () => {
       }
 
       // change the UI to our pending section.
-    } catch (error) {
-      console.log(error);
-    }
+   } catch (err) {
+  console.error("error", err.errors[0].longMessage);
+}
   };
   
   return (
@@ -54,7 +54,7 @@ const SignInComponent = () => {
           Email
         </label>
         <input
-          className=" text-[#0c1015] rounded-md w-[18.7rem] bg-white view py-2 px-2 focus:outline-none focus:ring-[1.5px] focus:ring-[#1DA1F2] text-[0.8rem]"
+          className=" text-[#0c1015] rounded-md w-[18.7rem] bg-white view py-2 px-2 focus:outline-none focus:ring-[1.5px] focus:ring-[#3399FF] text-[0.8rem]"
           type="text"
           onChange={(e) =>
             setLoginInput({
@@ -69,7 +69,7 @@ const SignInComponent = () => {
           Password
         </label>
         <input
-          className="  text-[#0c1015] rounded-md w-[18.7rem] bg-white view py-2 px-2 focus:outline-none focus:ring-[1.5px] focus:ring-[#1DA1F2] text-[0.8rem]"
+          className="  text-[#0c1015] rounded-md w-[18.7rem] bg-white view py-2 px-2 focus:outline-none focus:ring-[1.5px] focus:ring-[#3399FF] text-[0.8rem]"
           type="password"
           onChange={(e) =>
             setLoginInput({
@@ -81,7 +81,7 @@ const SignInComponent = () => {
       </div>
 
       <button
-        className="  w-full px-2 py-3  bg-[#1DA1F2] text-[0.75rem] font-medium text-white rounded-md"
+        className="  w-full px-2 py-3  bg-[#3399FF] text-[0.75rem] font-medium text-white rounded-md"
         onClick={registerUser}
       >
         CONTINUE
@@ -89,7 +89,7 @@ const SignInComponent = () => {
 
       <span className="text-gray-500/70 text-[0.75rem] w-full text-center pt-4 font-medium">
         have an account?
-        <Link to="/auth/sign-up" className="text-[#1DA1F2] ml-2">
+        <Link to="/auth/sign-up" className="text-[#3399FF] ml-2">
           Sign up
         </Link>
       </span>

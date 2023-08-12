@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Navigate, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
-
+import Components from './pages/Collections'
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "./features/user/currentUserSlice";
 import Sidebar from "./components/Sidebar";
@@ -30,13 +30,14 @@ function App() {
   // }
   // console.log(userDataLoading);
   
-  // if(!currentUserLoading){
-  //   console.log(currentUser)
-  // }else{
-  //   console.log('loading')
-  // }
+  if(!currentUserLoading && isLoaded){
+    console.log(currentUser)
+    console.log(user)
+  }else{
+    console.log('loading')
+  }
   return (
-    <div className="h-screen w-full  font-inter  bg-[#0c1015] text-[#ffffff] relative">
+    <div className="h-screen w-full  font-inter  bg-[#0d0f16] text-[#fafbff] relative">
       <Routes>
         <Route path="/auth/*" element={<AuthPage />}></Route>
         
@@ -45,7 +46,7 @@ function App() {
           element={
             <ProtectedRoute>
               <div className="h-full   flex items-start flex-col justify-start relative">
-                <div className=" flex-shrink-0 w-full flex     h-[3.85rem] fixed z-10 items-center  justify-end"></div>
+                <div className=" flex-shrink-0 w-full flex   view  h-[3.85rem] fixed z-10 items-center  justify-end"></div>
                 <div className="flex items-start  justify-start w-full h-full">
                   <Sidebar></Sidebar>
                   <Routes>
@@ -54,6 +55,7 @@ function App() {
                       element={<Navigate to="/dashboard" />}
                     ></Route>
                     <Route path="/dashboard" element={<Home />}></Route>
+                    <Route path="/collections/*" element={<Components />}></Route>
                   </Routes>
                 </div>
               </div>

@@ -12,11 +12,13 @@ import {
 import SocketContext from "../context/SocketContext";
 import NoteCollection from "../components/NoteCollection";
 import { useScrollPosition } from "../hook/useScrollPosition";
-import NoteCollectionDropDownPositionContext from "../context/NoteCollectionDropDownPositionContext";
+// import NoteCollectionDropDownPositionContext from "../context/NoteCollectionDropDownPositionContext";
 import { LuTrash2, LuEdit } from "react-icons/lu";
 import { Routes, Route, useParams } from "react-router-dom";
 import Sample from "../components/Sample";
 import { GoSidebarExpand } from "react-icons/go"; 
+
+
 const Collections = () => {
   const { socket } = React.useContext(SocketContext);
   const currentUser = useSelector((state) => state.currentUser.data);
@@ -28,9 +30,9 @@ const Collections = () => {
   const parentScrollableRef = React.useRef(null);
   const dropDownRef = React.useRef(null);
   // const scrollPosition = useScrollPosition(parentScrollableRef);
-  const { dropDownState, setDropDownState } = React.useContext(
-    NoteCollectionDropDownPositionContext
-  );
+  // const { dropDownState, setDropDownState } = React.useContext(
+  //   NoteCollectionDropDownPositionContext
+  // );
   const headers = {
     userID: currentUser?._id,
     "Content-Type": "application/json",
@@ -62,32 +64,32 @@ const Collections = () => {
   });
 
   // ui event handlers
-  const deleteCollection = async () => {
-    setDropDownState({
-      ...dropDownState,
-      isEnabled: false,
-    });
-    try {
-      await axios.delete(
-        `http://localhost:3001/collections/${dropDownState.el.dataset.objectid}`
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const deleteCollection = async () => {
+  //   setDropDownState({
+  //     ...dropDownState,
+  //     isEnabled: false,
+  //   });
+  //   try {
+  //     await axios.delete(
+  //       `http://localhost:3001/collections/${dropDownState.el.dataset.objectid}`
+  //     );
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   // toggle the modal
-  const addCollectionToggle = () => {
-    setAddCollectionModalState(!addCollectionModalState);
-  };
+  // const addCollectionToggle = () => {
+  //   setAddCollectionModalState(!addCollectionModalState);
+  // };
 
-  const handleClickOutside = (e) => {
-    if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
-      setDropDownState({
-        ...dropDownState,
-        isEnabled: false,
-      });
-    }
-  };
+  // const handleClickOutside = (e) => {
+  //   if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
+  //     setDropDownState({
+  //       ...dropDownState,
+  //       isEnabled: false,
+  //     });
+  //   }
+  // };
 
   // socket event handler
   // deleteCollection
@@ -120,31 +122,54 @@ const Collections = () => {
   //   setDropDownState({ ...dropDownState, isEnabled: false });
   // }, [scrollPosition]);
 
-  React.useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  // React.useEffect(() => {
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => document.removeEventListener("mousedown", handleClickOutside);
+  // }, []);
 
 
 
   return (
-    <div className="text-sm  h-full overflow-y-auto flex relative w-full pt-[4rem]  flex-col">
-      <div className="h-[200vh]  opacity-70 text-xs absolute w-16  left-4">
-        
-      </div>
-      {/* <div className="w-full     py-2.5  h-fit flex items-start flex-col justify-center">
-        <div className=" w-fit  h-fit flex flex-col pt-4 lg:px-6 xl:px-8">
-          <span className="text-white font-medium text-[1.4rem]">
-            Projects
-          </span>
-          <span className="text-[0.8rem] mt-3 text-[#676269]  ">
-            Access your saved notes and todos here.
-          </span>
+    <div className="h-full overflow-y-auto font-inter w-full flex flex-col items-start justify-start relative">
+      <div className=" h-full  pt-[5rem] px-6  w-full">
+        <div className=" container mx-auto   h-[150%]  ">
+          <div className="flex items-center  px-4">
+            <div className="flex flex-col  w-full">
+              <span className="text-[1.55rem] text-[#fafbff]  mt-2 drop-shadow-sm font-medium">
+                {/* Welcome,{' '}
+                <span className="capitalize">{isLoaded && user.fullName}</span> */}
+                Collections
+              </span>
+             
+            </div>
+            {/* <UserButton
+              appearance={{
+                elements: {
+                  userButtonPopoverCard:
+                    " rounded-lg shadow-none view bg-white font-inter text-inherit h-fit  w-[20rem]",
+                  userButtonPopoverMain: " ",
+                  userPreview: " ",
+                  userPreviewAvatarContainer: " ",
+                  userPreviewTextContainer: "  ",
+                  userPreviewMainIdentifier: "text-[0.9remrem]  capitalize",
+                  userPreviewSecondaryIdentifier: "  mt-1 text-[#676269]",
+                  userButtonPopoverActions: "  mt-4",
+                  userButtonPopoverActionButtonIconBox: "  ",
+                  userButtonPopoverActionButtonText:
+                    "  text-inherit  font-normal text-[0.8rem]",
+                  userButtonPopoverActionButton: "  text-inherit  px-4",
+                  userButtonPopoverFooter: " ",
+                },
+              }}
+            ></UserButton> */}
+          </div>
+           <div className="px-4 pt-3 h-full">
+{/* bg-[#161822] */}
+            {/* <span className="text-[0.9rem] text-gray-600  font-normal">Dashboard</span> */}
+         
+           </div>
         </div>
       </div>
-      <div className="w-full py-2 border-dark-bottom flex items-end justify-start mt-2  ">
-        <div className=" h-full px-0  lg:px-6 xl:px-8 flex items-end text-xs">Notes</div>
-      </div> */}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { PiFolderNotch, PiLayout ,PiToolbox} from "react-icons/pi";
+import { PiFolderNotch, PiLayout, PiToolbox } from "react-icons/pi";
 import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
 import { useSelector } from "react-redux";
@@ -18,18 +18,14 @@ const Sidebar = () => {
   //   }
   // };
 
-
-
   return (
     <motion.div
       animate={sidebarControl}
-      initial={{ width: "16.5rem" }}
-      transition={{ duration: 0.3 }}
-      className={`${
-        state ? "w-[4rem]" : "w-[17rem]"
-      } whitespace-nowrap relative pt-[4rem] shadow-lg h-screen  flex bg-[#151820]   items-center justify-start  flex-shrink-0`}
+      className={`w-[16.5rem] xl:w-[17.5rem] whitespace-nowrap relative border-dark-right h-screen  flex bg-[#0d0f16]   items-center justify-start  flex-shrink-0`}
     >
-      <div className="h-full  w-full flex flex-col">
+      
+      
+      <div className="h-full w-full pt-[4rem] flex flex-col">
         <div className="w-full h-full   flex flex-col justify-start items-start">
           <div
             className={`${
@@ -37,40 +33,40 @@ const Sidebar = () => {
             } flex   w-full items-center mt-5 py-2 justify-center  flex-col`}
           >
             {!state && (
-              <span className=" px-2  w-full  text-left  text-[0.775rem] text-gray-500 font-normal mb-0">
-                Menu
+              <span className=" px-2  w-full  text-left  text-[0.75rem] text-gray-700 font-medium mb-1.5">
+                MENU
               </span>
             )}
-            <div className="w-full h-fit flex flex-col space-y-1  py-2">
+            <div className="w-full h-fit flex flex-col space-y-2  py-2">
               {[
                 {
                   path: "/dashboard",
                   title: "dashboard",
                   icon: <PiLayout />,
-                  activeClass: `view text-inherit bg-transparent hover:bg-transparent`,
+                  activeClass: ` text-[#fafbff] bg-transparent hover:bg-transparent`,
                 },
 
                 {
                   path: "/collections",
-                  title: "projects ",
+                  title: "collections ",
                   icon: <PiFolderNotch />,
-                  activeClass: `text-inherit `,
+                  activeClass: `text-[#fafbff] `,
                   initialState: true,
-                  attr:'dropdown',
+                  attr: "dropdown",
                   items: [
                     {
                       title: "notes",
                       count: currentUser?.noteCollections?.length,
-                      loading:currentUserLoading,
-                      isItem:true
+                      loading: currentUserLoading,
+                      isItem: true,
                     },
-                    { title: "todos",isItem:true },
+                    { title: "todos", isItem: true },
                   ].map((item, id) => (
                     <SidebarLink
                       title={item?.title}
                       path={`/collections/${item?.title}`}
                       key={id}
-                      activeClass={`text-inherit bg-transparent hover:bg-transparent view `}
+                      activeClass={`text-[#58a1f9] bg-transparent hover:bg-transparent  `}
                       count={item.count}
                       icon={item?.icon}
                       loading={item?.loading}
@@ -82,7 +78,7 @@ const Sidebar = () => {
                   path: "/Tools",
                   title: "tools",
                   icon: <PiToolbox />,
-                  activeClass: `text-inherit bg-transparent hover:bg-transparent view`,
+                  activeClass: `text-[#fafbff] bg-transparent hover:bg-transparent `,
                 },
               ].map((item, id) => (
                 <SidebarLink
@@ -95,7 +91,6 @@ const Sidebar = () => {
                   item={item?.items}
                   activeClass={item.activeClass}
                   initialState={item?.initialState}
-                  
                   loading={item?.loading}
                 />
               ))}

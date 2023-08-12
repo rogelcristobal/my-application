@@ -43,7 +43,7 @@ const AuthPage = () => {
   };
 
   return (
-    <div className="w-full  h-full">
+    <div className="w-full bg-white h-full">
       <Routes>
         <Route
           path="/sign-up"

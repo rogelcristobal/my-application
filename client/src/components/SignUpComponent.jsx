@@ -66,7 +66,7 @@ const SignUpComponent = ({ setPendingVerification }) => {
             First name
           </label>
           <input
-            className=" text-[#0c1015] rounded-md w-[8.85rem] bg-white view py-2 px-2 focus:outline-none focus:ring-[1.5px] focus:ring-[#26a7de] text-[0.8rem]"
+            className=" text-[#0c1015] rounded-md w-[8.85rem] bg-white view py-2 px-2 focus:outline-none focus:ring-[1.5px] focus:ring-[#3399FF] text-[0.8rem]"
             type="text"
             onChange={(e) =>
               setRegisterInput({
@@ -81,7 +81,7 @@ const SignUpComponent = ({ setPendingVerification }) => {
             Last name
           </label>
           <input
-            className=" text-[#0c1015] rounded-md w-[8.85rem] bg-white view py-2 px-2 focus:outline-none focus:ring-[1.5px] focus:ring-[#26a7de] text-[0.8rem]"
+            className=" text-[#0c1015] rounded-md w-[8.85rem] bg-white view py-2 px-2 focus:outline-none focus:ring-[1.5px] focus:ring-[#3399FF] text-[0.8rem]"
             type="text"
             onChange={(e) =>
               setRegisterInput({
@@ -97,7 +97,7 @@ const SignUpComponent = ({ setPendingVerification }) => {
           Email
         </label>
         <input
-          className=" text-[#0c1015] rounded-md w-full bg-white view py-2 px-2 focus:outline-none focus:ring-[1.5px] focus:ring-[#26a7de] text-[0.8rem]"
+          className=" text-[#0c1015] rounded-md w-full bg-white view py-2 px-2 focus:outline-none focus:ring-[1.5px] focus:ring-[#3399FF] text-[0.8rem]"
           type="text"
           onChange={(e) =>
             setRegisterInput({
@@ -112,7 +112,7 @@ const SignUpComponent = ({ setPendingVerification }) => {
           Password
         </label>
         <input
-          className="  text-[#0c1015] rounded-md w-full bg-white view py-2 px-2 focus:outline-none focus:ring-[1.5px] focus:ring-[#26a7de] text-[0.8rem]"
+          className="  text-[#0c1015] rounded-md w-full bg-white view py-2 px-2 focus:outline-none focus:ring-[1.5px] focus:ring-[#3399FF] text-[0.8rem]"
           type="password"
           onChange={(e) =>
             setRegisterInput({
@@ -124,7 +124,7 @@ const SignUpComponent = ({ setPendingVerification }) => {
       </div>
 
       <button
-        className="  w-full px-2 py-3  bg-[#26a7de] text-[0.75rem] font-medium text-white rounded-md"
+        className="  w-full px-2 py-3  bg-[#3399FF] text-[0.75rem] font-medium text-white rounded-md"
         onClick={registerUser}
       >
         CONTINUE
@@ -132,7 +132,7 @@ const SignUpComponent = ({ setPendingVerification }) => {
 
       <span className="text-gray-500/70 text-[0.75rem] w-full text-center  pt-4 font-medium">
         have an account?
-        <Link to="/auth/sign-in" className="text-[#26a7de] ml-2">
+        <Link to="/auth/sign-in" className="text-[#3399FF] ml-2">
           Sign in
         </Link>
       </span>

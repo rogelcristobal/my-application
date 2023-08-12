@@ -41,10 +41,10 @@ const SidebarLink = ({
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full  rounded-md h-[2.4rem] box-border flex flex-col font-normal relative px-3  ${
+          className={`w-full  rounded-md h-[2.5rem] box-border flex flex-col font-normal relative px-3  ${
             isActive
-              ? activeClass
-              : "text-gray-500  bg-transparent hover:bg-transparent border-0 box-border"
+              ? `${activeClass} `
+              : "text-gray-600  bg-transparent hover:bg-transparent border-0 box-border"
           }
           `}
         >
@@ -54,20 +54,20 @@ const SidebarLink = ({
             >
               {/* text-[] */}
               <span
-                className={`text-[1.1rem]   ${
-                  isActive ? "text-[#26a7de]" : ""
+                className={`text-[1.3rem]   ${
+                  isActive ? "text-[#58a1f9]" : ""
                 }`}
               >
                 {icon}
               </span>
 
-              <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate ">
+              <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.875rem]  truncate ">
                 {title}
               </span>
             </div>
             <span>
               {count > 0 && (
-                <div className=" text-[0.6rem]  rounded-md h-[1.2rem] w-[1.2rem] pt-0.5 flex items-center justify-center  text-[#676269]  font-normal">
+                <div className=" text-[0.6rem]  rounded-md h-[1.2rem] w-[1.2rem] pt-0.5 flex items-center justify-center  text-[#676269]  font-medium">
                   <span>{count}</span>
                 </div>
               )}
@@ -99,11 +99,11 @@ const SidebarLink = ({
           <div
             onMouseEnter={hoverToggle}
             onMouseLeave={hoverToggle}
-            className={`w-full cursor-pointer rounded-md h-[2.4rem] flex flex-col font-normal relative px-3   ${
+            className={`w-full cursor-pointer rounded-md h-[2.4rem] flex flex-col font-medium relative px-3   ${
               isActive
                 ? // bg-[#2c2c2c]/50
                   activeClass
-                : "text-gray-500  bg-transparent hover:bg-transparent border-0 box-border"
+                : "text-gray-600  bg-transparent hover:bg-transparent border-0 box-border"
             }
           `}
           >
@@ -114,13 +114,13 @@ const SidebarLink = ({
                 {/* text-[#004feb] */}
                 <span
                   className={`text-[1.1rem]   ${
-                    isActive ? "text-[#26a7de]" : ""
+                    isActive ? "text-[#58a1f9]" : ""
                   }`}
                 >
                   {icon}
                 </span>
 
-                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate ">
+                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.875rem]  truncate ">
                   {title}
                 </span>
               </div>
@@ -145,8 +145,8 @@ const SidebarLink = ({
             animate={{
               height: activeState ? 2.75 * 2 + "rem" : 0,
             }}
-            className={` pl-[1.7rem] relative  my-0.5 w-full items-center justify-between ${
-              activeState && ""
+            className={` pl-[1.7rem] relative  my-0.5  w-full items-center justify-between ${
+              activeState && "mt-2 "
             } flex flex-col px-0 overflow-hidden `}
           >
             {item}
