@@ -5,11 +5,11 @@ const Home = () => {
 
   return (
     <div className="h-full overflow-y-auto font-inter w-full flex flex-col items-start justify-start relative">
-      <div className=" h-full  pt-[3rem] px-6  w-full">
+      <div className=" h-full  pt-[3rem] px-5  w-full">
         <div className=" container mx-auto   h-[150%]  ">
-          <div className="flex items-center  px-3">
+          <div className="flex items-center  px-5">
             <div className="flex flex-col  w-full">
-              <span className="text-[1.35rem] text-[#e8e8e8]  font-normal">
+              <span className="text-[1.35rem] text-[#e8e8e8]  font-medium">
                 Welcome back,{' '}
                 <span className="capitalize">{isLoaded && user.firstName}</span>
                 
@@ -40,8 +40,8 @@ const Home = () => {
               }}
             ></UserButton> */}
           </div>
-           <div className="px-3 pt-3 h-full">
-            <span className="text-[0.875rem] mt-6  text-[#686868] capitalize"> Dashboard</span>
+           <div className="px-5 pt-6 h-full">
+            <span className="text-[0.875rem]   text-[#686868] capitalize"> Dashboard</span>
             <div className=" flex gap-4 mt-3">
               <div className="w-64 h-32  rounded-md bg-[#212121]"></div>
               <div className="w-64 h-32  rounded-md bg-[#212121]"></div>

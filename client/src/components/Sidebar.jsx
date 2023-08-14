@@ -28,7 +28,7 @@ const Sidebar = () => {
           <div
             className={`${
               state ? " px-0 " : "px-[1.2rem]"
-            } flex   w-full items-start mt-2 py-2 justify-between h-full flex-col`}
+            } flex   w-full items-start  justify-between h-full flex-col`}
           >
             <div className="justify-center w-full flex-col items-center">
               {!state && (
@@ -104,14 +104,14 @@ const Sidebar = () => {
               <div className="w-full h-fit flex flex-col space-y-2   py-2">
                 {[
                   {
-                    path: "/Account",
+                    path: "/account",
                     title: "account",
                     icon: <PiUserGear />,
                     activeClass: ` text-[#e8e8e8] bg-transparent hover:bg-transparent`,
                   },
 
                   {
-                    path: "/Settings",
+                    path: "/settings",
                     title: "Settings",
                     icon: <PiGear />,
                     activeClass: `text-[#e8e8e8] bg-transparent hover:bg-transparent `,
