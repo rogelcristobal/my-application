@@ -4,7 +4,6 @@ import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
 import { useSelector } from "react-redux";
 const Sidebar = () => {
-  const [state, setState] = React.useState(false);
   const currentUserLoading = useSelector((state) => state.currentUser.loading);
   const currentUser = useSelector((state) => state.currentUser.data);
   const sidebarControl = useAnimation();
@@ -23,19 +22,17 @@ const Sidebar = () => {
       animate={sidebarControl}
       className={`w-[16.5rem] xl:w-[16.5rem] whitespace-nowrap relative  h-screen  flex bg-[#212121]   items-center justify-start  flex-shrink-0`}
     >
-      <div className="h-full w-full pt-[3.5rem] flex flex-col">
+      <div className="h-full w-full pt-[3.5rem] pb-[2rem] flex flex-col">
         <div className="w-full h-full   flex flex-col justify-start items-start">
           <div
-            className={`${
-              state ? " px-0 " : "px-[1.2rem]"
-            } flex   w-full items-start  justify-between h-full flex-col`}
+            className={` flex   w-full items-start mt-4 justify-between h-full flex-col`}
           >
             <div className="justify-center w-full flex-col items-center">
-              {!state && (
+              
                 <span className=" px-2  w-full  text-left  text-[0.75rem] text-[#686868] font-medium mb-1.5">
                   Menu
                 </span>
-              )}
+             
               <div className="w-full h-fit flex flex-col space-y-2   py-2">
                 {[
                   {
@@ -83,7 +80,6 @@ const Sidebar = () => {
                   <SidebarLink
                     key={id}
                     path={item.path}
-                    sidebarState={state}
                     title={item.title}
                     icon={item.icon}
                     count={item?.count}
@@ -96,11 +92,11 @@ const Sidebar = () => {
               </div>
             </div>
             <div className="justify-center w-full flex-col items-center">
-              {!state && (
+            
                 <span className=" px-2  w-full  text-left  text-[0.75rem] text-[#686868] font-medium mb-1.5">
                   Settings
                 </span>
-              )}
+             
               <div className="w-full h-fit flex flex-col space-y-2   py-2">
                 {[
                   {
@@ -120,7 +116,6 @@ const Sidebar = () => {
                   <SidebarLink
                     key={id}
                     path={item.path}
-                    sidebarState={state}
                     title={item.title}
                     icon={item.icon}
                     count={item?.count}
