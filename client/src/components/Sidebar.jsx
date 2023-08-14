@@ -21,36 +21,36 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      className={`w-[16.5rem] xl:w-[17.5rem] whitespace-nowrap relative border-dark-right h-screen  flex bg-[#0d0f16]   items-center justify-start  flex-shrink-0`}
+      className={`w-[16.5rem] xl:w-[16.5rem] whitespace-nowrap relative  h-screen  flex bg-[#212121]   items-center justify-start  flex-shrink-0`}
     >
       
       
-      <div className="h-full w-full pt-[4rem] flex flex-col">
+      <div className="h-full w-full pt-[3.5rem] flex flex-col">
         <div className="w-full h-full   flex flex-col justify-start items-start">
           <div
             className={`${
               state ? " px-0 " : "px-[1.2rem]"
-            } flex   w-full items-center mt-5 py-2 justify-center  flex-col`}
+            } flex   w-full items-center mt-2 py-2 justify-center  flex-col`}
           >
             {!state && (
-              <span className=" px-2  w-full  text-left  text-[0.75rem] text-gray-700 font-medium mb-1.5">
-                MENU
+              <span className=" px-2  w-full  text-left  text-[0.75rem] text-[#686868] font-medium mb-1.5">
+                Menu
               </span>
             )}
-            <div className="w-full h-fit flex flex-col space-y-2  py-2">
+            <div className="w-full h-fit flex flex-col space-y-2 border-dark-bottom  py-2">
               {[
                 {
                   path: "/dashboard",
                   title: "dashboard",
                   icon: <PiLayout />,
-                  activeClass: ` text-[#fafbff] bg-transparent hover:bg-transparent`,
+                  activeClass: ` text-[#e8e8e8] bg-transparent hover:bg-transparent`,
                 },
 
                 {
                   path: "/collections",
                   title: "collections ",
                   icon: <PiFolderNotch />,
-                  activeClass: `text-[#fafbff] `,
+                  activeClass: `text-[#e8e8e8] `,
                   initialState: true,
                   attr: "dropdown",
                   items: [
@@ -66,7 +66,7 @@ const Sidebar = () => {
                       title={item?.title}
                       path={`/collections/${item?.title}`}
                       key={id}
-                      activeClass={`text-[#58a1f9] bg-transparent hover:bg-transparent  `}
+                      activeClass={`text-inherit bg-transparent hover:bg-transparent  `}
                       count={item.count}
                       icon={item?.icon}
                       loading={item?.loading}
@@ -78,7 +78,7 @@ const Sidebar = () => {
                   path: "/Tools",
                   title: "tools",
                   icon: <PiToolbox />,
-                  activeClass: `text-[#fafbff] bg-transparent hover:bg-transparent `,
+                  activeClass: `text-[#e8e8e8] bg-transparent hover:bg-transparent `,
                 },
               ].map((item, id) => (
                 <SidebarLink

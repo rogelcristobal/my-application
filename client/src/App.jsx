@@ -37,7 +37,7 @@ function App() {
     console.log('loading')
   }
   return (
-    <div className="h-screen w-full  font-inter  bg-[#0d0f16] text-[#fafbff] relative">
+    <div className="h-screen w-full  font-inter  bg-[#181818] text-[#fafbff] relative">
       <Routes>
         <Route path="/auth/*" element={<AuthPage />}></Route>
         
@@ -46,7 +46,7 @@ function App() {
           element={
             <ProtectedRoute>
               <div className="h-full   flex items-start flex-col justify-start relative">
-                <div className=" flex-shrink-0 w-full flex   view  h-[3.85rem] fixed z-10 items-center  justify-end"></div>
+                <div className=" flex-shrink-0 w-full flex    h-[3.85rem] fixed z-1 items-center  justify-end"></div>
                 <div className="flex items-start  justify-start w-full h-full">
                   <Sidebar></Sidebar>
                   <Routes>

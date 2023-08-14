@@ -131,14 +131,14 @@ const Collections = () => {
 
   return (
     <div className="h-full overflow-y-auto font-inter w-full flex flex-col items-start justify-start relative">
-      <div className=" h-full  pt-[5rem] px-6  w-full">
+      <div className=" h-full  pt-[3.5rem] px-6  w-full">
         <div className=" container mx-auto   h-[150%]  ">
           <div className="flex items-center  px-4">
             <div className="flex flex-col  w-full">
-              <span className="text-[1.55rem] text-[#fafbff]  mt-2 drop-shadow-sm font-medium">
+              <span className="text-[1.4rem] text-[#fafbff]  drop-shadow-sm font-medium">
                 {/* Welcome,{' '}
                 <span className="capitalize">{isLoaded && user.fullName}</span> */}
-                Collections
+                {/* Collections */}
               </span>
              
             </div>

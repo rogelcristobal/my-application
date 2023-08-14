@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: 'class',
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
@@ -20,14 +20,6 @@ export default {
         inter: ["Inter", "sans-serif"],
         plus: ["Plus Jakarta Sans", "sans-serif"],
         general: ["General Sans", "sans-serif"],
-
-        passengerRegular: ["PassengerSans-Regular", "sans-serif"],
-
-        passengerMedium: ["PassengerSans-Medium", "sans-serif"],
-
-        passengerSemibold: ["PassengerSans-Semibold", "sans-serif"],
-
-        passengerBold: ["PassengerSans-Bold", "sans-serif"],
       },
     },
   },

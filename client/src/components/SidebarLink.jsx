@@ -34,17 +34,17 @@ const SidebarLink = ({
       <NavLink
         to={path}
         role="link"
-        className="w-full  mb-0.5 h-fit box-border relative" 
+        className="w-full   h-fit box-border relative" 
         onClick={handleNavLinkClick}
         
       >
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full  rounded-md h-[2.5rem] box-border flex flex-col font-normal relative px-3  ${
+          className={`w-full  rounded-md h-[2.4rem] box-border flex flex-col font-normal relative px-3  ${
             isActive
-              ? `${activeClass} `
-              : "text-gray-600  bg-transparent hover:bg-transparent border-0 box-border"
+              ? `${activeClass}  view`
+              : "text-[#b7b7b7]/70  bg-transparent hover:bg-transparent border-0 box-border"
           }
           `}
         >
@@ -54,27 +54,27 @@ const SidebarLink = ({
             >
               {/* text-[] */}
               <span
-                className={`text-[1.3rem]   ${
-                  isActive ? "text-[#58a1f9]" : ""
+                className={`text-[1.1rem]   ${
+                  isActive ? "text-inherit" : "text-[#777777]"
                 }`}
               >
                 {icon}
               </span>
 
-              <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.8rem]  truncate ">
+              <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate ">
                 {title}
               </span>
             </div>
             <span>
               {count > 0 && (
-                <div className=" text-[0.6rem]  rounded-md h-[1.2rem] w-[1.2rem] pt-0.5 flex items-center justify-center  text-[#676269]  font-medium">
+                <div className=" text-[0.7rem]  rounded-md h-[1.2rem] w-[1.2rem] pt-0.5 flex items-center justify-center  text-[#b7b7b7]/70   font-normal">
                   <span>{count}</span>
                 </div>
               )}
             </span>
 
             {item && (
-              <span className="text-[0.675rem] text-[#676269] ">
+              <span className="text-[0.675rem] text-[#b7b7b7]/70  ">
                 <PiCaretDownBold
                   className={`${!activeState && "-rotate-90"}`}
                 />
@@ -99,11 +99,11 @@ const SidebarLink = ({
           <div
             onMouseEnter={hoverToggle}
             onMouseLeave={hoverToggle}
-            className={`w-full cursor-pointer rounded-md h-[2.4rem] flex flex-col font-medium relative px-3   ${
+            className={`w-full cursor-pointer rounded-md h-[2.4rem] flex flex-col font-normal relative px-3   ${
               isActive
                 ? // bg-[#2c2c2c]/50
                   activeClass
-                : "text-gray-600  bg-transparent hover:bg-transparent border-0 box-border"
+                : "text-[#b7b7b7]/70  bg-transparent hover:bg-transparent border-0 box-border"
             }
           `}
           >
@@ -114,19 +114,19 @@ const SidebarLink = ({
                 {/* text-[#004feb] */}
                 <span
                   className={`text-[1.1rem]   ${
-                    isActive ? "text-[#58a1f9]" : ""
+                    isActive ? "text-inherit" : "text-[#777777]"
                   }`}
                 >
                   {icon}
                 </span>
 
-                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.8rem]  truncate ">
+                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate ">
                   {title}
                 </span>
               </div>
 
               {item && (
-                <span className="text-[0.675rem] text-[#676269] ">
+                <span className="text-[0.75rem] text-[#b7b7b7]/70  ">
                   <PiCaretDownBold
                     className={`${!activeState && "-rotate-90"}`}
                   />
@@ -145,8 +145,8 @@ const SidebarLink = ({
             animate={{
               height: activeState ? 2.75 * 2 + "rem" : 0,
             }}
-            className={` pl-[1.7rem] relative  my-0.5  w-full items-center justify-between ${
-              activeState && "mt-2 "
+            className={` pl-[1.1rem] relative    w-full items-center justify-between ${
+              activeState && "mt-1.5 "
             } flex flex-col px-0 overflow-hidden `}
           >
             {item}

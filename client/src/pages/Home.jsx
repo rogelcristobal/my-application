@@ -1,21 +1,24 @@
-import { useUser, UserButton } from "@clerk/clerk-react";
+import { useUser } from "@clerk/clerk-react";
 
 const Home = () => {
   const { user, isLoaded } = useUser();
 
   return (
     <div className="h-full overflow-y-auto font-inter w-full flex flex-col items-start justify-start relative">
-      <div className=" h-full  pt-[5rem] px-6  w-full">
+      <div className=" h-full  pt-[3rem] px-6  w-full">
         <div className=" container mx-auto   h-[150%]  ">
-          <div className="flex items-center  px-4">
+          <div className="flex items-center  px-3">
             <div className="flex flex-col  w-full">
-              <span className="text-[1.55rem] text-[#fafbff]  mt-2 drop-shadow-sm font-medium">
-                {/* Welcome,{' '}
-                <span className="capitalize">{isLoaded && user.fullName}</span> */}
-                Dashboard
+              <span className="text-[1.35rem] text-[#e8e8e8]  font-normal">
+                Welcome back,{' '}
+                <span className="capitalize">{isLoaded && user.firstName}</span>
+                
               </span>
+              <span className="text-[#686868]  text-[0.775rem]">{isLoaded&&user.primaryEmailAddress.emailAddress}</span>
+              
              
             </div>
+            
             {/* <UserButton
               appearance={{
                 elements: {
@@ -37,9 +40,13 @@ const Home = () => {
               }}
             ></UserButton> */}
           </div>
-           <div className="px-4 pt-3 h-full">
-{/* bg-[#161822] */}
-            {/* <span className="text-[0.9rem] text-gray-600  font-normal">Dashboard</span> */}
+           <div className="px-3 pt-3 h-full">
+            <span className="text-[0.875rem] mt-6  text-[#686868] capitalize"> Dashboard</span>
+            <div className=" flex gap-4 mt-3">
+              <div className="w-64 h-32  rounded-md bg-[#212121]"></div>
+              <div className="w-64 h-32  rounded-md bg-[#212121]"></div>
+
+            </div>
          
            </div>
         </div>
