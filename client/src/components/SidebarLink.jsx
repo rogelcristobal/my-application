@@ -54,7 +54,7 @@ const SidebarLink = ({
             >
               {/* text-[] */}
               <span
-                className={`text-[1.1rem]   ${
+                className={`text-[1rem]   ${
                   isActive ? "text-inherit" : "text-[#777777]"
                 }`}
               >
@@ -113,7 +113,7 @@ const SidebarLink = ({
               >
                 {/* text-[#004feb] */}
                 <span
-                  className={`text-[1.1rem]   ${
+                  className={`text-[1rem]   ${
                     isActive ? "text-inherit" : "text-[#777777]"
                   }`}
                 >
