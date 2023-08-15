@@ -50,7 +50,7 @@ React.useEffect(() => {
         </div>
       </div>
 
-      <UserModal state={state}/>
+      <UserModal state={state} initials={initials}/>
     </div>
   );
 };
