@@ -44,8 +44,8 @@ React.useEffect(() => {
 
   return (
     <div ref={ref} className="relative" onClick={handleAvatarClick}>
-      <div className="avatar placeholder cursor-pointer">
-        <div className="bg-neutral-focus text-neutral-content text-[0.785rem] rounded-full w-9">
+      <div className="avatar placeholder cursor-pointer ">
+        <div className=" text-neutral-content text-[0.785rem] rounded-full w-9 bg-[#212121] ">
           <span>{initials}</span>
         </div>
       </div>

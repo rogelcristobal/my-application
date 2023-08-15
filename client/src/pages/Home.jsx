@@ -5,16 +5,16 @@ const Home = () => {
 
   return (
     <div className="h-full overflow-y-auto font-inter w-full flex flex-col items-start justify-start relative">
-      <div className=" h-full  pt-[5rem] px-5  w-full">
+      <div className=" h-full  pt-[3rem] px-5  w-full">
         <div className=" container mx-auto   h-[150%]  ">
           <div className="flex items-center  px-5">
             <div className="flex flex-col  w-full">
-            <span className="text-[0.875rem]  text-[#686868]  capitalize"> Dashboard</span>
+            {/* <span className="text-[0.8rem]  text-[#686868]  capitalize"> Dashboard</span> */}
 
-              <span className="text-[1.45rem] mt-3.5 text-[#e8e8e8]  font-normal">
-                Welcome back,{' '}
-                <span className="capitalize">{isLoaded && user.firstName}</span>
-                
+              <span className="text-[0.8rem]  text-[#686868]  font-normal">
+        
+                <span className="capitalize ">Dashboard</span>
+                <p className="text-[1.375rem] text-[#e8e8e8]  mt-1.5 font-medium capitalize"> Welcome back, {isLoaded&&user.firstName}</p>
               </span>
               {/* <span className="text-[#686868] mt-1 text-[0.775rem]">{isLoaded&&user.primaryEmailAddress.emailAddress}</span> */}
               
