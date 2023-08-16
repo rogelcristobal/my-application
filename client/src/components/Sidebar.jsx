@@ -1,4 +1,4 @@
-import React from "react";
+
 import { PiFolderNotch, PiLayout, PiToolbox,PiUserGear,PiGear } from "react-icons/pi";
 import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
@@ -20,7 +20,7 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      className={`w-[16.5rem] xl:w-[16.5rem] whitespace-nowrap relative   h-screen  flex bg-[#212121]   items-center justify-start  flex-shrink-0`}
+      className={`w-[16.5rem] xl:w-[16.5rem] whitespace-nowrap relative z-50  h-screen  flex bg-[#212121]    items-center justify-start  flex-shrink-0`}
     >
       <div className="h-full w-full pt-[3.5rem] pb-[2rem] flex flex-col">
         <div className="w-full h-full   flex flex-col justify-start items-start">

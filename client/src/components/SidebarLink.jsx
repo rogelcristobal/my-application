@@ -43,8 +43,8 @@ const SidebarLink = ({
           onMouseLeave={hoverToggle}
           className={`w-full  rounded-md h-[2.4rem] box-border flex flex-col font-normal relative px-3  ${
             isActive
-              ? `${activeClass}  view`
-              : "text-[#b7b7b7]/70  bg-transparent hover:bg-transparent border-0 box-border"
+              ? `${activeClass} view `
+              : "text-[#999999]/70  bg-transparent hover:bg-transparent border-0 box-border"
           }
           `}
         >
@@ -55,7 +55,7 @@ const SidebarLink = ({
               {/* text-[] */}
               <span
                 className={`text-[1rem]   ${
-                  isActive ? "text-inherit" : "text-[#777777]"
+                  isActive ? "text-inherit" : "text-[#999999]/70"
                 }`}
               >
                 {icon}
@@ -67,14 +67,14 @@ const SidebarLink = ({
             </div>
             <span>
               {count > 0 && (
-                <div className=" text-[0.7rem]  rounded-md h-[1.2rem] w-[1.2rem] pt-0.5 flex items-center justify-center  text-[#b7b7b7]/70   font-normal">
+                <div className=" text-[0.7rem]  rounded-md h-[1.2rem] w-[1.2rem] pt-0.5 flex items-center justify-center  text-[#999999]/70   font-normal">
                   <span>{count}</span>
                 </div>
               )}
             </span>
 
             {item && (
-              <span className="text-[0.675rem] text-[#b7b7b7]/70  ">
+              <span className="text-[0.675rem] text-[#999999]/70  ">
                 <PiCaretDownBold
                   className={`${!activeState && "-rotate-90"}`}
                 />
@@ -103,7 +103,7 @@ const SidebarLink = ({
               isActive
                 ? // bg-[#2c2c2c]/50
                   activeClass
-                : "text-[#b7b7b7]/70  bg-transparent hover:bg-transparent border-0 box-border"
+                : "text-[#999999]/70  bg-transparent hover:bg-transparent border-0 box-border"
             }
           `}
           >
@@ -114,7 +114,7 @@ const SidebarLink = ({
                 {/* text-[#004feb] */}
                 <span
                   className={`text-[1rem]   ${
-                    isActive ? "text-inherit" : "text-[#777777]"
+                    isActive ? "text-inherit" : "text-[#999999]/70"
                   }`}
                 >
                   {icon}
@@ -126,7 +126,7 @@ const SidebarLink = ({
               </div>
 
               {item && (
-                <span className="text-[0.75rem] text-[#b7b7b7]/70  ">
+                <span className="text-[0.75rem] text-[#666666]  ">
                   <PiCaretDownBold
                     className={`${!activeState && "-rotate-90"}`}
                   />

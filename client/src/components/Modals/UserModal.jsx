@@ -7,7 +7,7 @@ const UserModal = ({ state, initials }) => {
       onClick={(e) => {
         e.stopPropagation();
       }}
-      className={`bg-[#212121] rounded-lg drop-shadow absolute whitespace-nowrap overflow-hidden top-12 right-0 transition-all duration-100 ease-in-out ${
+      className={`bg-[#212121] rounded-lg drop-shadow absolute whitespace-nowrap overflow-hidden top-[3.25rem] right-0 transition-all duration-100 ease-in-out ${
         state ? "h-96 w-72" : "h-0 w-0"
       }`}
     >
