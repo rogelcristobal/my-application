@@ -93,38 +93,17 @@ const Sidebar = () => {
             </div>
             <div className="justify-center w-full flex-col items-center">
             
-                <span className=" px-2  w-full  text-left  text-[0.75rem] text-[#686868] font-medium mb-1.5">
+                  <span className=" px-2  w-full  text-left  text-[0.75rem] text-[#686868] font-medium mb-1.5">
                   Settings
                 </span>
              
               <div className="w-full h-fit flex flex-col space-y-2   py-2">
-                {[
-                  {
-                    path: "/account",
-                    title: "account",
-                    icon: <PiUserGear />,
-                    activeClass: ` text-[#e8e8e8] bg-transparent hover:bg-transparent`,
-                  },
-
-                  {
-                    path: "/settings",
-                    title: "Settings",
-                    icon: <PiGear />,
-                    activeClass: `text-[#e8e8e8] bg-transparent hover:bg-transparent `,
-                  },
-                ].map((item, id) => (
                   <SidebarLink
-                    key={id}
-                    path={item.path}
-                    title={item.title}
-                    icon={item.icon}
-                    count={item?.count}
-                    item={item?.items}
-                    activeClass={item.activeClass}
-                    initialState={item?.initialState}
-                    loading={item?.loading}
+                    path="/settings"
+                    title="Settings"
+                    icon={<PiGear />}
+                    activeClass={`text-[#e8e8e8] bg-transparent hover:bg-transparent `}
                   />
-                ))}
               </div>
             </div>
           </div>

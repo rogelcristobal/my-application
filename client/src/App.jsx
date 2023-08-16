@@ -9,6 +9,7 @@ import { useUser } from "@clerk/clerk-react";
 import Home from "./pages/Home";
 import AuthPage from "./pages/AuthPage";
 import User from "./components/User";
+import Settings from "./pages/Settings";
 function App() {
   const dispatch = useDispatch();
   const { isSignedIn, user, isLoaded } = useUser();
@@ -27,12 +28,7 @@ function App() {
   // }
   // console.log(userDataLoading);
 
-  // if(!currentUserLoading && isLoaded){
-  //   console.log(currentUser)
-  //   console.log(user)
-  // }else{
-  //   console.log('loading')
-  // }
+
   return (
     <div className="h-screen w-full  font-inter  bg-[#181818] text-[#e8e8e8] relative">
       <Routes>
@@ -68,6 +64,7 @@ function App() {
                       path="/collections/*"
                       element={<Components />}
                     ></Route>
+                    <Route path="/settings" element={<Settings/>}></Route>
                   </Routes>
                 </div>
               </div>
