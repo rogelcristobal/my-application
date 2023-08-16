@@ -27,8 +27,8 @@ const Collections = () => {
   const [addCollectionModalState, setAddCollectionModalState] =
     React.useState(false);
   const dispatch = useDispatch();
-  const parentScrollableRef = React.useRef(null);
-  const dropDownRef = React.useRef(null);
+  // const parentScrollableRef = React.useRef(null);
+  // const dropDownRef = React.useRef(null);
   // const scrollPosition = useScrollPosition(parentScrollableRef);
   // const { dropDownState, setDropDownState } = React.useContext(
   //   NoteCollectionDropDownPositionContext

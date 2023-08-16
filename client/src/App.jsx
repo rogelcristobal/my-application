@@ -49,7 +49,7 @@ function App() {
                   <div className="items-center  h-full justify-end flex ">
                     <div className="w-fit h-full  justify-between  flex-shrink-0 flex gap-4 items-center">
                       <span className="text-[0.75rem] text-[#e8e8e8] capitalize">
-                        {isLoaded && user.fullName}
+                        {isLoaded && user?.fullName}
                       </span>
                       <User></User>
                     </div>

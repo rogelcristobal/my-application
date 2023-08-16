@@ -1,4 +1,4 @@
-import { useUser } from "@clerk/clerk-react";
+import {  useUser } from "@clerk/clerk-react";
 import React from "react";
 import UserModal from "./Modals/UserModal";
 import {PiCaretDown} from 'react-icons/pi'
@@ -7,6 +7,7 @@ const User = () => {
   const [initials, setInitials] = React.useState(null);
   const [state, setState] = React.useState(false);
   const ref = React.useRef(null);
+
   const getInitials = (fullname) => {
     let initialStore = "";
     const name = fullname.split(" ");
@@ -42,9 +43,9 @@ React.useEffect(() => {
     
   };
 }, [ref]);
-
+  
   return (
-    <div ref={ref} className={`relative flex   items-center justify-between gap-2 ${state&&'view'}`} onClick={handleAvatarClick}>
+    <div ref={ref} role="button"  className={`relative flex   items-center justify-between gap-2 `} onClick={handleAvatarClick}>
       <div className="avatar placeholder cursor-pointer ">
         <div className=" text-neutral-content text-[0.725rem] rounded-full w-[2.25rem] bg-[#212121] ">
           <span>{initials}</span>
@@ -52,7 +53,7 @@ React.useEffect(() => {
       </div>
       <PiCaretDown className="text-[0.8rem] text-[#999999]/70 "/>
 
-      <UserModal state={state} initials={initials}/>
+      <UserModal state={state} initials={initials} />
     </div>
   );
 };

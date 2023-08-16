@@ -90,7 +90,7 @@ const SidebarLink = ({
     // if link has a children , therefore it renders a dropdown and not a link component
   } else {
     return (
-      <div className="">
+      <>
         <div
           role="link"
           className="w-full   h-fit box-border"
@@ -153,7 +153,7 @@ const SidebarLink = ({
             {/* <div className="absolute w-[1.5px] h-full top-0 left-4 bg-[#676269]/10"></div> */}
           </motion.div>
         )}
-      </div>
+      </>
     );
   }
 };
