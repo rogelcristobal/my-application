@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 const SidebarLink = ({
   title,
   initialState,
-  loading,
+  
   icon,
   count,
   path,
@@ -34,16 +34,17 @@ const SidebarLink = ({
       <NavLink
         to={path}
         role="link"
-        className="w-full  mb-0.5 h-fit box-border"
+        className="w-full   h-fit box-border relative" 
         onClick={handleNavLinkClick}
+        
       >
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
           className={`w-full  rounded-md h-[2.4rem] box-border flex flex-col font-normal relative px-3  ${
             isActive
-              ? activeClass
-              : "text-gray-500  bg-transparent hover:bg-transparent border-0 box-border"
+              ? `${activeClass} view `
+              : "text-[#999999]/70  bg-transparent hover:bg-transparent border-0 box-border"
           }
           `}
         >
@@ -51,10 +52,10 @@ const SidebarLink = ({
             <div
               className={`flex justify-start items-center   h-full    w-full capitalize gap-3 `}
             >
-              {/* text-[#8f6afc] */}
+              {/* text-[] */}
               <span
-                className={`text-[1.1rem]   ${
-                  isActive ? "text-[#8f6afc]" : ""
+                className={`text-[1rem]   ${
+                  isActive ? "text-inherit" : "text-[#999999]/70"
                 }`}
               >
                 {icon}
@@ -64,18 +65,16 @@ const SidebarLink = ({
                 {title}
               </span>
             </div>
-            {loading ? (
-              <span className="text-sm">loading</span>
-            ) : (
-              count > 0 && (
-                <div className=" text-[0.6rem]  rounded-md h-[1.2rem] w-[1.2rem] pt-0.5 flex items-center justify-center  text-[#676269]  font-normal">
+            <span>
+              {count > 0 && (
+                <div className=" text-[0.7rem]  rounded-md h-[1.2rem] w-[1.2rem] pt-0.5 flex items-center justify-center  text-[#999999]/70   font-normal">
                   <span>{count}</span>
                 </div>
-              )
-            )}
+              )}
+            </span>
 
             {item && (
-              <span className="text-[0.675rem] text-[#676269] ">
+              <span className="text-[0.675rem] text-[#999999]/70  ">
                 <PiCaretDownBold
                   className={`${!activeState && "-rotate-90"}`}
                 />
@@ -83,11 +82,15 @@ const SidebarLink = ({
             )}
           </div>
         </div>
+
+        {/* {isItem&&<div className={`${isActive?'bg-[#676269]/50 h-[90%]':'h-0'} transition-all duration-100 ease-in-out   w-[1.5px] z-10 absolute -left-[0.7rem] top-1/2 -translate-y-1/2`}></div>} */}
       </NavLink>
     );
+
+    // if link has a children , therefore it renders a dropdown and not a link component
   } else {
     return (
-      <div className="">
+      <>
         <div
           role="link"
           className="w-full   h-fit box-border"
@@ -100,7 +103,7 @@ const SidebarLink = ({
               isActive
                 ? // bg-[#2c2c2c]/50
                   activeClass
-                : "text-gray-500  bg-transparent hover:bg-transparent border-0 box-border"
+                : "text-[#999999]/70  bg-transparent hover:bg-transparent border-0 box-border"
             }
           `}
           >
@@ -110,8 +113,8 @@ const SidebarLink = ({
               >
                 {/* text-[#004feb] */}
                 <span
-                  className={`text-[1.1rem]   ${
-                    isActive ? "text-[#8f6afc]" : ""
+                  className={`text-[1rem]   ${
+                    isActive ? "text-inherit" : "text-[#999999]/70"
                   }`}
                 >
                   {icon}
@@ -121,18 +124,9 @@ const SidebarLink = ({
                   {title}
                 </span>
               </div>
-              {loading ? (
-                <span className="loading loading-spinner loading-xs text-[#676269] mr-2"></span>
-              ) : (
-                count > 0 && (
-                  <div className=" text-[0.6rem]  rounded-md h-[1.2rem] w-[1.2rem] pt-0.5 flex items-center justify-center  text-[#676269]  font-normal">
-                    <span>{count}</span>
-                  </div>
-                )
-              )}
 
               {item && (
-                <span className="text-[0.675rem] text-[#676269] ">
+                <span className="text-[0.75rem] text-[#666666]  ">
                   <PiCaretDownBold
                     className={`${!activeState && "-rotate-90"}`}
                   />
@@ -151,15 +145,15 @@ const SidebarLink = ({
             animate={{
               height: activeState ? 2.75 * 2 + "rem" : 0,
             }}
-            className={` pl-[1.7rem] relative  my-0.5 w-full items-center justify-between ${
-              activeState && ""
+            className={` pl-[1.1rem] relative    w-full items-center justify-between ${
+              activeState && "mt-1.5 "
             } flex flex-col px-0 overflow-hidden `}
           >
             {item}
-            <div className="absolute w-[1.5px] h-full top-0 left-4 bg-[#676269]/10"></div>
+            {/* <div className="absolute w-[1.5px] h-full top-0 left-4 bg-[#676269]/10"></div> */}
           </motion.div>
         )}
-      </div>
+      </>
     );
   }
 };

@@ -1,10 +1,9 @@
-import React from "react";
-import { PiFolderNotch, PiLayout } from "react-icons/pi";
+
+import { PiFolderNotch, PiLayout, PiToolbox,PiUserGear,PiGear } from "react-icons/pi";
 import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
 import { useSelector } from "react-redux";
 const Sidebar = () => {
-  const [state, setState] = React.useState(false);
   const currentUserLoading = useSelector((state) => state.currentUser.loading);
   const currentUser = useSelector((state) => state.currentUser.data);
   const sidebarControl = useAnimation();
@@ -21,77 +20,112 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      initial={{ width: "16.5rem" }}
-      transition={{ duration: 0.3 }}
-      className={`${
-        state ? "w-[4rem]" : "w-[17rem]"
-      } whitespace-nowrap relative pt-[4rem] shadow-lg h-screen  flex bg-[#151820]   items-center justify-start  flex-shrink-0`}
+      className={`w-[16.5rem] xl:w-[16.5rem] whitespace-nowrap relative z-50  h-screen  flex bg-[#212121]    items-center justify-start  flex-shrink-0`}
     >
-      <div className="h-full  w-full flex flex-col">
+      <div className="h-full w-full pt-[3.5rem] pb-[2rem] flex flex-col">
         <div className="w-full h-full   flex flex-col justify-start items-start">
           <div
-            className={`${
-              state ? " px-0 " : "px-[1.2rem]"
-            } flex   w-full items-center mt-5 py-2 justify-center  flex-col`}
+            className={` flex px-[1.1rem]   w-full items-start mt-4 justify-between h-full flex-col`}
           >
-            {!state && (
-              <span className=" px-2  w-full  text-left  text-[0.775rem] text-gray-500 font-normal mb-0">
-                Menu
-              </span>
-            )}
-            <div className="w-full h-fit flex flex-col space-y-1  py-2">
-              {[
-                {
-                  path: "/dashboard",
-                  title: "dashboard",
-                  icon: <PiLayout />,
-                  activeClass: `view text-inherit bg-transparent hover:bg-transparent`,
-                },
+            <div className="justify-center w-full flex-col items-center">
+              
+                <span className=" px-2  w-full  text-left  text-[0.75rem] text-[#686868] font-medium mb-1.5">
+                  Menu
+                </span>
+             
+              <div className="w-full h-fit flex flex-col space-y-2   py-2">
+                {[
+                  {
+                    path: "/dashboard",
+                    title: "dashboard",
+                    icon: <PiLayout />,
+                    activeClass: ` text-[#e8e8e8] bg-transparent hover:bg-transparent`,
+                  },
 
-                {
-                  path: "/collections",
-                  title: "projects ",
-                  icon: <PiFolderNotch />,
-                  activeClass: `text-inherit `,
-                  initialState: true,
-                  loading: currentUserLoading,
-                  items: [
-                    {
-                      title: "notes",
-                      count: currentUser?.noteCollections?.length,
-                    },
-                    { title: "todos" },
-                  ].map((item, id) => (
-                    <SidebarLink
-                      title={item?.title}
-                      path={`/collections/${item?.title}`}
-                      key={id}
-                      activeClass={`text-inherit bg-transparent hover:bg-transparent view `}
-                      count={item.count}
-                      icon={item?.icon}
-                    />
-                  )),
-                },
-                {
-                  path: "/sample",
-                  title: "sample",
-                  icon: <PiLayout />,
-                  activeClass: `text-inherit bg-transparent hover:bg-transparent view`,
-                },
-              ].map((item, id) => (
-                <SidebarLink
-                  key={id}
-                  path={item.path}
-                  sidebarState={state}
-                  title={item.title}
-                  icon={item.icon}
-                  count={item?.count}
-                  loading={item?.loading}
-                  item={item?.items}
-                  activeClass={item.activeClass}
-                  initialState={item?.initialState}
-                />
-              ))}
+                  {
+                    path: "/collections",
+                    title: "collections ",
+                    icon: <PiFolderNotch />,
+                    activeClass: `text-[#e8e8e8] `,
+                    initialState: true,
+                    attr: "dropdown",
+                    items: [
+                      {
+                        title: "notes",
+                        count: currentUser?.noteCollections?.length,
+                        loading: currentUserLoading,
+                        isItem: true,
+                      },
+                      { title: "todos", isItem: true },
+                    ].map((item, id) => (
+                      <SidebarLink
+                        title={item?.title}
+                        path={`/collections/${item?.title}`}
+                        key={id}
+                        activeClass={`text-inherit bg-transparent hover:bg-transparent  `}
+                        count={item.count}
+                        icon={item?.icon}
+                        loading={item?.loading}
+                        isItem={item.isItem}
+                      />
+                    )),
+                  },
+                  {
+                    path: "/Tools",
+                    title: "tools",
+                    icon: <PiToolbox />,
+                    activeClass: `text-[#e8e8e8] bg-transparent hover:bg-transparent `,
+                  },
+                ].map((item, id) => (
+                  <SidebarLink
+                    key={id}
+                    path={item.path}
+                    title={item.title}
+                    icon={item.icon}
+                    count={item?.count}
+                    item={item?.items}
+                    activeClass={item.activeClass}
+                    initialState={item?.initialState}
+                    loading={item?.loading}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="justify-center w-full flex-col items-center">
+            
+                <span className=" px-2  w-full  text-left  text-[0.75rem] text-[#686868] font-medium mb-1.5">
+                  Settings
+                </span>
+             
+              <div className="w-full h-fit flex flex-col space-y-2   py-2">
+                {[
+                  {
+                    path: "/account",
+                    title: "account",
+                    icon: <PiUserGear />,
+                    activeClass: ` text-[#e8e8e8] bg-transparent hover:bg-transparent`,
+                  },
+
+                  {
+                    path: "/settings",
+                    title: "Settings",
+                    icon: <PiGear />,
+                    activeClass: `text-[#e8e8e8] bg-transparent hover:bg-transparent `,
+                  },
+                ].map((item, id) => (
+                  <SidebarLink
+                    key={id}
+                    path={item.path}
+                    title={item.title}
+                    icon={item.icon}
+                    count={item?.count}
+                    item={item?.items}
+                    activeClass={item.activeClass}
+                    initialState={item?.initialState}
+                    loading={item?.loading}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
