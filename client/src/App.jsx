@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Navigate, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Components from "./pages/Collections";
+import Collections from "./pages/Collections";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "./features/user/currentUserSlice";
 import Sidebar from "./components/Sidebar";
@@ -62,7 +62,7 @@ function App() {
                     <Route path="/dashboard" element={<Home />}></Route>
                     <Route
                       path="/collections/*"
-                      element={<Components />}
+                      element={<Collections />}
                     ></Route>
                     <Route path="/settings" element={<Settings/>}></Route>
                   </Routes>
