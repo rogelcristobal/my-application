@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 const SidebarLink = ({
   title,
   initialState,
-  
+
   icon,
   count,
   path,
@@ -34,9 +34,8 @@ const SidebarLink = ({
       <NavLink
         to={path}
         role="link"
-        className="w-full   h-fit box-border relative" 
+        className="w-full   h-fit box-border relative"
         onClick={handleNavLinkClick}
-        
       >
         <div
           onMouseEnter={hoverToggle}
@@ -92,7 +91,8 @@ const SidebarLink = ({
     return (
       <>
         <div
-          role="link"
+          role="button"
+          tabIndex={0}
           className="w-full   h-fit box-border"
           onClick={handleNavLinkClick}
         >
