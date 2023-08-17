@@ -40,10 +40,10 @@ const SidebarLink = ({
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full  rounded-md h-[2.4rem] box-border flex flex-col font-normal relative px-3  ${
+          className={`w-full  rounded-md h-[2.25rem] box-border flex flex-col font-normal relative px-3  ${
             isActive
               ? `${activeClass} view `
-              : "text-[#999999]/70  bg-transparent hover:bg-transparent border-0 box-border"
+              : "text-[#999999]  bg-transparent hover:bg-transparent border-0 box-border"
           }
           `}
         >
@@ -99,11 +99,11 @@ const SidebarLink = ({
           <div
             onMouseEnter={hoverToggle}
             onMouseLeave={hoverToggle}
-            className={`w-full cursor-pointer rounded-md h-[2.4rem] flex flex-col font-normal relative px-3   ${
+            className={`w-full cursor-pointer rounded-md h-[2.25rem] flex flex-col font-normal relative px-3   ${
               isActive
                 ? // bg-[#2c2c2c]/50
                   activeClass
-                : "text-[#999999]/70  bg-transparent hover:bg-transparent border-0 box-border"
+                : "text-[#999999]  bg-transparent hover:bg-transparent border-0 box-border"
             }
           `}
           >

@@ -131,23 +131,22 @@ const Collections = () => {
 
   return (
     <div className="h-full overflow-y-auto font-inter w-full flex flex-col items-end justify-start relative">
-      <div className=" h-full  pt-[3.5rem] px-6  w-full">
+      <div className=" h-full  pt-[4rem] px-6  w-full">
         <div className=" container mx-auto   h-[150%]  ">
-          <div className="flex items-center  px-5">
+          <div className="flex items-center  px-6">
             <div className="flex flex-col  w-full">
-              <span className="text-[0.8rem]  text-[#686868]/70  font-normal">
-                  <span className="capitalize ">Collections</span>
-                <p className="text-[1.5rem] text-[#e8e8e8]  mt-1.5 font-medium ">
-                  {/* {" "}
-                  Welcome back, {isLoaded && user.firstName} */}
-                  Access your files here
+               <span className="text-[0.8rem]  text-[#686868]  font-normal">
+                <p className="text-[1.425rem] text-[#e8e8e8] mb-3  font-medium capitalize">
+                  {" "}
+                  Collections
                 </p>
+                <span className="capitalize ">Access your saved notes here</span>
               </span>
             </div>
 
             
           </div>
-          <div className="px-5 pt-5 h-full">
+          <div className="px-6 pt-6 h-full">
            
           </div>
         </div>
