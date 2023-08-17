@@ -22,12 +22,12 @@ const Sidebar = () => {
       animate={sidebarControl}
       className={`w-[16.5rem] xl:w-[16.5rem] whitespace-nowrap relative z-50  h-screen  flex bg-[#212121]    items-center justify-start  flex-shrink-0`}
     >
-      <div className="h-full w-full pt-[3.5rem] pb-[2rem] flex flex-col">
+      <div className="h-full w-full pt-[4rem] pb-[2rem] flex flex-col">
         <div className="w-full h-full   flex flex-col justify-start items-start">
           <div
             className={` flex px-[1.1rem]   w-full items-start mt-4 justify-between h-full flex-col`}
           >
-            <div className="justify-center w-full flex-col items-center">
+            <div className="justify-center w-full border-dark-bottom pb-2 flex-col items-center">
               
                 <span className=" px-2  w-full  text-left  text-[0.75rem] text-[#686868] font-medium mb-1.5">
                   Menu
