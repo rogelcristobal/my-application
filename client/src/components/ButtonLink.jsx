@@ -16,10 +16,10 @@ const ButtonLink = ({ icon, title, path, handler }) => {
         onMouseEnter={handleMouseHover}
         onMouseLeave={handleMouseHover}
         role="link"
-        className={`w-full px-3  cursor-pointer rounded-md h-[2.5rem]  flex flex-col font-normal relative    
+        className={`w-full px-3  cursor-pointer rounded-md h-[2.4rem]  flex flex-col font-normal relative    
              ${
                hover
-                 ? "text-[#e8e8e8] bg-transparent hover:bg-transparent view "
+                 ? "text-[#e8e8e8] bg-[#20232c] hover:bg-[#20232c]  "
                  : "text-[#999999]/70  bg-transparent hover:bg-transparent   "
              }
           `}
@@ -54,10 +54,10 @@ const ButtonLink = ({ icon, title, path, handler }) => {
         onMouseLeave={handleMouseHover}
         role="button"
         tabIndex={0}
-        className={`w-full px-3  cursor-pointer rounded-md h-[2.5rem]  flex flex-col font-normal relative    
+        className={`w-full px-3  cursor-pointer rounded-md h-[2.4rem]  flex flex-col font-normal relative    
              ${
                hover
-                 ? "text-[#e8e8e8] bg-transparent hover:bg-transparent view "
+                 ? "text-[#e8e8e8] bg-[#20232c] hover:bg-[#20232c]  "
                  : "text-[#999999]/70  bg-transparent hover:bg-transparent   "
              }
           `}

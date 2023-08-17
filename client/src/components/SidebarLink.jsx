@@ -40,9 +40,9 @@ const SidebarLink = ({
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full  rounded-md h-[2.25rem] box-border flex flex-col font-normal relative px-3  ${
+          className={`w-full  rounded-md h-[2.4rem] box-border flex flex-col font-normal relative px-3  ${
             isActive
-              ? `${activeClass} view `
+              ? `${activeClass}  `
               : "text-[#999999]  bg-transparent hover:bg-transparent border-0 box-border"
           }
           `}
@@ -54,13 +54,13 @@ const SidebarLink = ({
               {/* text-[] */}
               <span
                 className={`text-[1rem]   ${
-                  isActive ? "text-inherit" : "text-[#999999]/70"
+                  isActive ? "text-[#918cf2]" : "text-[#999999]/70"
                 }`}
               >
                 {icon}
               </span>
 
-              <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.85rem]  truncate ">
+              <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.85rem] font-normal  truncate ">
                 {title}
               </span>
             </div>
@@ -99,7 +99,7 @@ const SidebarLink = ({
           <div
             onMouseEnter={hoverToggle}
             onMouseLeave={hoverToggle}
-            className={`w-full cursor-pointer rounded-md h-[2.25rem] flex flex-col font-normal relative px-3   ${
+            className={`w-full cursor-pointer rounded-md h-[2.4rem] flex flex-col font-normal relative px-3   ${
               isActive
                 ? // bg-[#2c2c2c]/50
                   activeClass
@@ -114,7 +114,7 @@ const SidebarLink = ({
                 {/* text-[#004feb] */}
                 <span
                   className={`text-[1rem]   ${
-                    isActive ? "text-inherit" : "text-[#999999]/70"
+                    isActive ? "text-[#918cf2]" : "text-[#999999]/70"
                   }`}
                 >
                   {icon}

@@ -20,7 +20,7 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      className={`w-[16.5rem] xl:w-[16.5rem] whitespace-nowrap relative z-50  h-screen  flex bg-[#212124]    items-center justify-start  flex-shrink-0`}
+      className={`w-[16.5rem] xl:w-[16.5rem] whitespace-nowrap relative z-50  h-screen  flex bg-[#161921]    items-center justify-start  flex-shrink-0`}
     >
       <div className="h-full w-full pt-[4rem] pb-[2rem] flex flex-col">
         <div className="w-full h-full   flex flex-col justify-start items-start">
@@ -39,7 +39,7 @@ const Sidebar = () => {
                     path: "/dashboard",
                     title: "dashboard",
                     icon: <PiLayout />,
-                    activeClass: ` text-[#e8e8e8] bg-transparent hover:bg-transparent`,
+                    activeClass: ` text-[#e8e8e8] bg-[#20232c] hover:bg-[#20232c]`,
                   },
 
                   {
@@ -62,7 +62,7 @@ const Sidebar = () => {
                         title={item?.title}
                         path={`/collections/${item?.title}`}
                         key={id}
-                        activeClass={`text-inherit bg-transparent hover:bg-transparent  `}
+                        activeClass={`text-inherit bg-[#20232c] hover:bg-[#20232c]  `}
                         count={item.count}
                         icon={item?.icon}
                         loading={item?.loading}
@@ -74,7 +74,7 @@ const Sidebar = () => {
                     path: "/Tools",
                     title: "tools",
                     icon: <PiToolbox />,
-                    activeClass: `text-[#e8e8e8] bg-transparent hover:bg-transparent `,
+                    activeClass: `text-[#e8e8e8] bg-[#20232c] hover:bg-[#20232c] `,
                   },
                 ].map((item, id) => (
                   <SidebarLink
