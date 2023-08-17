@@ -21,8 +21,8 @@ const Home = () => {
           </div>
           <div className="px-6 pt-3 h-full ">
             <div className=" flex gap-4 mt-0">
-              <div className="w-[14rem] h-32  rounded-md bg-[#212121]"></div>
-              <div className="w-[14rem] h-32  rounded-md bg-[#212121]"></div>
+              <div className="w-[14rem] h-32  rounded-md bg-[#212124]"></div>
+              <div className="w-[14rem] h-32  rounded-md bg-[#212124]"></div>
             </div>
 
           </div>

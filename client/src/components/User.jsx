@@ -47,7 +47,7 @@ React.useEffect(() => {
   return (
     <div ref={ref} role="button"  className={`relative flex   items-center justify-between gap-2 `} onClick={handleAvatarClick}>
       <div className="avatar placeholder cursor-pointer ">
-        <div className=" text-neutral-content text-[0.725rem] rounded-full w-[2.25rem] bg-[#212121] ">
+        <div className=" text-neutral-content text-[0.725rem] rounded-full w-[2.25rem] bg-[#212124] ">
           <span>{initials}</span>
         </div>
       </div>

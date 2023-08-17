@@ -1,8 +1,6 @@
 import React from "react";
 import axios from "axios";
-import AddCollectionModal from "../components/AddCollectionModal";
-import SearchBar from "../components/SearchBar";
-import { QueryClient, useQuery } from "@tanstack/react-query";
+import {  useQuery } from "@tanstack/react-query";
 import { useSelector, useDispatch } from "react-redux";
 import {
   deleteCurrentUserCollection,
@@ -10,23 +8,17 @@ import {
   updateDataFromInitialFetch,
 } from "../features/user/currentUserSlice";
 import SocketContext from "../context/SocketContext";
-import NoteCollection from "../components/NoteCollection";
-import { useScrollPosition } from "../hook/useScrollPosition";
-// import NoteCollectionDropDownPositionContext from "../context/NoteCollectionDropDownPositionContext";
-import { LuTrash2, LuEdit } from "react-icons/lu";
-import { Routes, Route, useParams } from "react-router-dom";
-import Sample from "../components/Sample";
-import { GoSidebarExpand } from "react-icons/go"; 
+
 
 
 const Collections = () => {
   const { socket } = React.useContext(SocketContext);
   const currentUser = useSelector((state) => state.currentUser.data);
-  const [activeTab, setActiveTab] = React.useState(0);
-  const currentUserLoading = useSelector((state) => state.currentUser.loading);
   const [addCollectionModalState, setAddCollectionModalState] =
-    React.useState(false);
+  React.useState(false);
   const dispatch = useDispatch();
+  // const [activeTab, setActiveTab] = React.useState(0);
+  // const currentUserLoading = useSelector((state) => state.currentUser.loading);
   // const parentScrollableRef = React.useRef(null);
   // const dropDownRef = React.useRef(null);
   // const scrollPosition = useScrollPosition(parentScrollableRef);
@@ -133,7 +125,7 @@ const Collections = () => {
    <div className="h-full overflow-y-auto font-inter w-full flex flex-col items-end justify-start relative">
       <div className=" h-full  pt-[3.5rem]   w-full">
         <div className=" container mx-auto   h-[150%]  ">
-          <div className="flex items-center pb-8 border-dark-bottom px-12">
+          <div className="flex items-center pb-8 px-12">
             <div className="flex flex-col  w-full">
               <span className="text-[0.8rem]  text-[#686868]  font-medium">
                 <span className="capitalize ">Collections</span>

@@ -3,7 +3,7 @@ const Settings = () => {
     <div className="h-full overflow-y-auto font-inter w-full flex flex-col items-end justify-start relative">
       <div className=" h-full  pt-[3.5rem]   w-full">
         <div className=" container mx-auto   h-[150%]  ">
-          <div className="flex items-center pb-8 border-dark-bottom px-12">
+          <div className="flex items-center pb-8  px-12">
             <div className="flex flex-col  w-full">
               <span className="text-[0.8rem]  text-[#686868]  font-medium">
                 <span className="capitalize ">Settings</span>
