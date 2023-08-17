@@ -10,7 +10,7 @@ const Home = () => {
             <div className="flex flex-col  w-full">
               <span className="text-[0.8rem]  text-[#918cf2]  font-medium">
                 <span className="capitalize ">Dashboard</span>
-                <p className="text-[1.45rem] text-[#e8e8e8] mb-8 mt-1.5 font-medium capitalize">
+                <p className="text-[1.425rem] text-[#e8e8e8] mb-8 mt-1.5 font-medium capitalize">
                   {" "}
                   Welcome, {isLoaded && user.firstName}
                 </p>
