@@ -51,9 +51,9 @@ React.useEffect(() => {
           <span>{initials}</span>
         </div>
       </div>
-      <PiCaretDown className="text-[0.8rem] text-[#999999]/70 "/>
-
+      {/* <PiCaretDown className="text-[0.8rem] text-[#999999]/70 "/> */}
       <UserModal state={state} initials={initials} />
+
     </div>
   );
 };

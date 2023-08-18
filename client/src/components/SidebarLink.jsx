@@ -43,7 +43,7 @@ const SidebarLink = ({
           className={`w-full  rounded-md h-[2.4rem] box-border flex flex-col font-normal relative px-3  ${
             isActive
               ? `${activeClass}  `
-              : "text-[#999999]  bg-transparent hover:bg-transparent border-0 box-border"
+              : "text-gray-400/50  bg-transparent hover:bg-transparent border-0 box-border"
           }
           `}
         >
@@ -53,8 +53,8 @@ const SidebarLink = ({
             >
               {/* text-[] */}
               <span
-                className={`text-[1rem]   ${
-                  isActive ? "text-[#918cf2]" : "text-[#999999]/70"
+                className={`text-[1.1rem]   ${
+                  isActive ? "text-[#7c8a97]" : "text-gray-400/50 "
                 }`}
               >
                 {icon}
@@ -103,7 +103,7 @@ const SidebarLink = ({
               isActive
                 ? // bg-[#2c2c2c]/50
                   activeClass
-                : "text-[#999999]  bg-transparent hover:bg-transparent border-0 box-border"
+                : "text-gray-400/50   bg-transparent hover:bg-transparent border-0 box-border"
             }
           `}
           >
@@ -113,8 +113,8 @@ const SidebarLink = ({
               >
                 {/* text-[#004feb] */}
                 <span
-                  className={`text-[1rem]   ${
-                    isActive ? "text-[#918cf2]" : "text-[#999999]/70"
+                  className={`text-[1.1rem]   ${
+                    isActive ? "text-[#7c8a97]" : "text-gray-400/50 "
                   }`}
                 >
                   {icon}

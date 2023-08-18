@@ -30,7 +30,7 @@ function App() {
 
 
   return (
-    <div className="h-screen w-full  font-inter  bg-[#11141a] text-[#e8e8e8] relative">
+    <div className="h-screen w-full  font-inter  bg-[#27292c] text-[#e8e8e8] relative">
       <Routes>
         <Route path="/auth/*" element={<AuthPage />}></Route>
 
@@ -39,15 +39,15 @@ function App() {
           element={
             <ProtectedRoute>
               <div className="h-full   flex items-start flex-col justify-start relative">
-                <div className=" flex-shrink-0 items-center top-[1.25rem] right-0 justify-end flex   h-[3.5rem] fixed  z-10     w-full">
-                  <div className=" h-full w-[calc(100%-16.5rem)] px-10 items-center justify-end flex">
+                <div className=" flex-shrink-0 items-center top-[0rem] right-0 justify-end flex    h-[3.5rem] fixed  z-50     w-full ">
+                  <div className=" h-full view box-border w-[calc(100%-17rem)] px-12 items-center justify-end flex">
                     {/* <PiMagnifyingGlass className="text-[#b7b7b7]/50 text-[1.1rem]" /> */}
-                  <div className="items-center  h-full justify-end flex ">
+                  <div className="items-center h-full justify-end flex ">
                     <div className="w-fit h-full  justify-between  flex-shrink-0 flex gap-4 items-center">
-                      <span className="text-[0.75rem] text-[#e8e8e8] capitalize">
+                      {/* <User></User> */}
+                      {/* <span className="text-[0.75rem] tracking-wide text-[#e8e8e8] capitalize">
                         {isLoaded && user?.fullName}
-                      </span>
-                      <User></User>
+                      </span> */}
                     </div>
                   </div>
                   </div>

@@ -8,22 +8,22 @@ const Home = () => {
         <div className=" container mx-auto   h-[150%]  ">
           <div className="flex items-center  px-6">
             <div className="flex flex-col  w-full">
-              <span className="text-[0.8rem]  text-[#918cf2]  font-medium">
-                <span className="capitalize ">Dashboard</span>
-                <p className="text-[1.425rem] text-[#e8e8e8] mb-8 mt-1.5 font-medium capitalize">
+              {/* <span className="text-[0.8rem]  text-[#918cf2]  font-medium">
+                
+                <p className="text-[1.435rem] text-[#e8e8e8] mb-5 mt-1.5 font-medium capitalize">
                   {" "}
-                  Welcome, {isLoaded && user.firstName}
+                  Welcome back, {isLoaded && user.firstName}
                 </p>
-              </span>
+              </span> */}
             </div>
 
             
           </div>
-          <div className="px-6 pt-3 h-full ">
-            <div className=" flex gap-4 mt-0">
-              <div className="w-[14rem] h-32  rounded-md bg-[#161921]"></div>
-              <div className="w-[14rem] h-32  rounded-md bg-[#161921]"></div>
-            </div>
+          <div className="px-6 pt-2 h-full ">
+            {/* <div className=" flex gap-6 mt-0">
+              <div className="w-[14rem] h-32  rounded-md view"></div>
+              <div className="w-[14rem] h-32  rounded-md view"></div>
+            </div> */}
 
           </div>
         </div>
