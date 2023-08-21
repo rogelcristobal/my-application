@@ -102,8 +102,8 @@ const SidebarLink = ({
             className={`w-full cursor-pointer rounded-md h-[2.4rem] flex flex-col font-normal relative px-3.5   ${
               isActive
                 ? // bg-[#2c2c2c]/50
-                  `${activeClass}`
-                : "text-[#cccccc]   bg-transparent hover:bg-transparent border-0 box-border"
+                  `activeClass`
+                : "text-gray-400/60  bg-transparent hover:bg-transparent border-0 box-border"
             }
           `}
           >
