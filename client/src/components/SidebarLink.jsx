@@ -43,30 +43,30 @@ const SidebarLink = ({
           className={`w-full  rounded-md h-[2.4rem] box-border flex flex-col font-normal relative px-3  ${
             isActive
               ? `${activeClass}  `
-              : "text-gray-400/50  bg-transparent hover:bg-transparent border-0 box-border"
+              : "text-gray-400/60  bg-transparent hover:bg-transparent border-0 box-border"
           }
           `}
         >
           <div className="flex-shrink-0 h-full  flex justify-between items-center overflow-hidden w-full">
             <div
-              className={`flex justify-start items-center   h-full    w-full capitalize gap-3 `}
+              className={`flex justify-start items-center   h-full    w-full capitalize gap-4 `}
             >
               {/* text-[] */}
               <span
                 className={`text-[1.1rem]   ${
-                  isActive ? "text-[#7c8a97]" : "text-gray-400/50 "
+                  isActive ? "text-inherit" : "text-gray-400/50 "
                 }`}
               >
                 {icon}
               </span>
 
-              <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.85rem] font-normal  truncate ">
+              <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem] font-normal  truncate ">
                 {title}
               </span>
             </div>
             <span>
               {count > 0 && (
-                <div className=" text-[0.7rem]  rounded-md h-[1.2rem] w-[1.2rem] pt-0.5 flex items-center justify-center  text-[#999999]/70   font-normal">
+                <div className=" text-[0.6rem]  rounded-full py-0.5 px-1.5 pt-[0.20rem]  flex items-center justify-center  text-[#cccccc]   font-normal">
                   <span>{count}</span>
                 </div>
               )}
@@ -103,24 +103,24 @@ const SidebarLink = ({
               isActive
                 ? // bg-[#2c2c2c]/50
                   activeClass
-                : "text-gray-400/50   bg-transparent hover:bg-transparent border-0 box-border"
+                : "text-[#cccccc]   bg-transparent hover:bg-transparent border-0 box-border"
             }
           `}
           >
             <div className="flex-shrink-0 h-full  flex justify-between items-center overflow-hidden w-full">
               <div
-                className={`flex justify-start items-center   h-full    w-full capitalize gap-3 `}
+                className={`flex justify-start items-center   h-full    w-full capitalize gap-4 `}
               >
                 {/* text-[#004feb] */}
                 <span
                   className={`text-[1.1rem]   ${
-                    isActive ? "text-[#7c8a97]" : "text-gray-400/50 "
+                    isActive ? "text-inherit" : "text-gray-400/50 "
                   }`}
                 >
                   {icon}
                 </span>
 
-                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.85rem]  truncate ">
+                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate ">
                   {title}
                 </span>
               </div>

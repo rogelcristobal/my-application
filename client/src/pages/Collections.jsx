@@ -131,7 +131,7 @@ const Collections = () => {
                 {/* <span className="capitalize ">Dashboard</span> */}
                 <p className="text-[1.435rem] text-[#e8e8e8] mb-5 mt-1.5 font-medium capitalize">
                   {" "}
-                Collection
+               
                 </p>
               </span>
             </div>
