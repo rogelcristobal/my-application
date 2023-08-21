@@ -19,11 +19,15 @@ const Home = () => {
 
             
           </div>
-          <div className="px-6 pt-2 h-full ">
-            {/* <div className=" flex gap-6 mt-0">
-              <div className="w-[14rem] h-32  rounded-md view"></div>
-              <div className="w-[14rem] h-32  rounded-md view"></div>
-            </div> */}
+          <div className="px-6 pt-6  h-full ">
+            <div className=" flex gap-6 mt-0">
+              <div className="w-[14rem] h-28  rounded-md  bg-[#191b1e]">
+                <div>
+                  <span></span>
+                </div>
+              </div>
+              <div className="w-[14rem] h-28  rounded-md  bg-[#191b1e]"></div>
+            </div>
 
           </div>
         </div>

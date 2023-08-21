@@ -57,9 +57,9 @@ function App() {
                   <Routes>
                     <Route
                       path="/"
-                      element={<Navigate to="/dashboard" />}
+                      element={<Navigate to="/home" />}
                     ></Route>
-                    <Route path="/dashboard" element={<Home />}></Route>
+                    <Route path="/home" element={<Home />}></Route>
                     <Route
                       path="/collections/*"
                       element={<Collections />}

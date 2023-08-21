@@ -46,8 +46,8 @@ const Sidebar = () => {
               <div className="w-full h-fit flex flex-col space-y-2.5 mt-1.5  py-2">
                 {[
                   {
-                    path: "/dashboard",
-                    title: "dashboard",
+                    path: "/home",
+                    title: "home",
                     icon: <PiHouse />,
                     activeClass: ` text-[#d4d4d4] bg-[#27292e] hover:bg-[#27292e]`,
                   },

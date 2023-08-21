@@ -60,13 +60,13 @@ const SidebarLink = ({
                 {icon}
               </span>
 
-              <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.8rem] font-normal  truncate ">
+              <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.815rem] font-normal  truncate ">
                 {title}
               </span>
             </div>
             <span>
               {count > 0 && (
-                <div className=" text-[0.6rem]  rounded-full py-0.5 px-1.5 pt-[0.20rem]  flex items-center justify-center  text-[#cccccc]   font-normal">
+                <div className=" text-[0.6rem]  rounded-full  flex items-center justify-center  text-[#cccccc]   font-normal">
                   <span>{count}</span>
                 </div>
               )}
@@ -81,8 +81,6 @@ const SidebarLink = ({
             )}
           </div>
         </div>
-
-        {/* {isItem&&<div className={`${isActive?'bg-[#676269]/50 h-[90%]':'h-0'} transition-all duration-100 ease-in-out   w-[1.5px] z-10 absolute -left-[0.7rem] top-1/2 -translate-y-1/2`}></div>} */}
       </NavLink>
     );
 
@@ -111,7 +109,6 @@ const SidebarLink = ({
               <div
                 className={`flex justify-start items-center   h-full    w-full capitalize gap-3 `}
               >
-                {/* text-[#004feb] */}
                 <span
                   className={`text-[1rem]   ${
                     isActive ? "text-inherit" : "text-gray-400/50 "
@@ -120,7 +117,7 @@ const SidebarLink = ({
                   {icon}
                 </span>
 
-                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.8rem]  truncate ">
+                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.815rem]  truncate ">
                   {title}
                 </span>
               </div>
@@ -150,7 +147,6 @@ const SidebarLink = ({
             } flex flex-col px-0 overflow-hidden `}
           >
             {item}
-            {/* <div className="absolute w-[1.5px] h-full top-0 left-4 bg-[#676269]/10"></div> */}
           </motion.div>
         )}
       </div>
