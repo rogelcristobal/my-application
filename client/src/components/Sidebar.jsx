@@ -36,10 +36,10 @@ const Sidebar = () => {
             <span className="font-normal text-[1.05rem]">NoteStack</span>
           </div> */}
           <div
-            className={` flex px-[1.3rem]   w-full items-start mt-6 justify-between h-full flex-col`}
+            className={` flex px-[1.3rem]   w-full items-start mt-8 justify-between h-full flex-col`}
           >
             <div className="justify-center w-full  flex-col items-center">
-              <span className=" px-2  w-full  text-left  text-[0.75rem] text-[#454545]  font-medium ">
+              <span className=" px-2  w-full  text-left  text-[0.75rem] text-gray-500/60  font-medium ">
                 Menu
               </span>
 
@@ -78,7 +78,7 @@ const Sidebar = () => {
                 ))}
               </div>
               <div className="justify-center w-full flex-col mt-2.5 items-center">
-                <span className=" px-2  w-full  text-left  text-[0.75rem] text-[#454545] font-medium ">
+                <span className=" px-2  w-full  text-left  text-[0.75rem] text-gray-500/60 font-medium ">
                   Tools
                 </span>
 
