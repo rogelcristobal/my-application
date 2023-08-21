@@ -27,15 +27,16 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      className={`w-[16.5rem] xl:w-[17rem] whitespace-nowrap relative z-10  h-screen  flex bg-[#191b1e]   items-center justify-start  flex-shrink-0`}
+      className={`w-fit whitespace-nowrap relative z-10  h-screen  flex bg-[#191b1e]   items-center justify-start  flex-shrink-0`}
     >
-      <div className="h-full w-full pt-[2rem] pb-[2rem] flex flex-col">
+      {/* <div className="w-16 flex-shrink-0 h-full bg-[#1c1e1f] flex flex-col items-center justify-end"></div> */}
+      <div className="h-full w-[17rem] pt-[2rem] pb-[2rem] flex flex-col">
         <div className="w-full h-full   flex flex-col justify-start items-start">
           {/* <div className="w-full h-16  flex items-center px-7">
             <span className="font-normal text-[1.05rem]">NoteStack</span>
           </div> */}
           <div
-            className={` flex px-[1.2rem]   w-full items-start mt-6 justify-between h-full flex-col`}
+            className={` flex px-[1.3rem]   w-full items-start mt-6 justify-between h-full flex-col`}
           >
             <div className="justify-center w-full  flex-col items-center">
               <span className=" px-2  w-full  text-left  text-[0.75rem] text-[#454545]  font-medium ">
@@ -48,19 +49,19 @@ const Sidebar = () => {
                     path: "/dashboard",
                     title: "dashboard",
                     icon: <PiHouse />,
-                    activeClass: ` text-[#cecece] bg-[#27292e] hover:bg-[#27292e]`,
+                    activeClass: ` text-[#d4d4d4] bg-[#27292e] hover:bg-[#27292e]`,
                   },
                   {
                     path: "/time-sheet",
                     title: "time sheet",
                     icon: <PiCalendarCheck />,
-                    activeClass: ` text-[#cecece] bg-[#27292e] hover:bg-[#27292e]`,
+                    activeClass: ` text-[#d4d4d4] bg-[#27292e] hover:bg-[#27292e]`,
                   },
                   {
                     path: "/pay-summary",
                     title: "pay summary",
                     icon: <PiCardholder />,
-                    activeClass: ` text-[#cecece] bg-[#27292e] hover:bg-[#27292e]`,
+                    activeClass: ` text-[#d4d4d4] bg-[#27292e] hover:bg-[#27292e]`,
                   },
                 ].map((item, id) => (
                   <SidebarLink
@@ -87,7 +88,7 @@ const Sidebar = () => {
                       path: "/collections",
                       title: "collections ",
                       icon: <PiFolderNotch />,
-                      activeClass: `text-[#cecece] `,
+                      activeClass: `text-[#d4d4d4] `,
                       initialState: true,
                       attr: "dropdown",
                       items: [
@@ -138,7 +139,7 @@ const Sidebar = () => {
                   path="/settings"
                   title="Settings"
                   icon={<PiGear />}
-                  activeClass={`text-[#cecece] bg-[#27292e] hover:bg-[#27292e] `}
+                  activeClass={`text-[#d4d4d4] bg-[#27292e] hover:bg-[#27292e] `}
                 />
               </div>
             </div>
