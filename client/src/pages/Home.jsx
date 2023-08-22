@@ -7,18 +7,18 @@ const Home = () => {
       <div className=" h-full  pt-[3.5rem] px-6  w-full">
         <div className=" container mx-auto   h-[150%]  ">
           <div className="flex items-center   px-6">
-            {/* <div className="flex flex-col items-start w-full">
-              <span className="text-[0.825rem] text-start capitalize text-gray-400 font-medium">
+            <div className="flex flex-col items-start w-full">
+              {/* <span className="text-[0.825rem] text-start capitalize text-[#d4d4d4]/40 font-normal">
                   Good Morning, {isLoaded && user.firstName}
                   
                   
-                <p className="text-[1.45rem] text-gray-900 mb-5 mt-1.5 font-semibold capitalize">
+                <p className="text-[1.5rem] text-[#d4d4d4] mb-5 mt-1.5 font-medium capitalize">
                 
                   Welcome back!
                  </p>
-              </span>
+              </span> */}
              
-            </div> */}
+            </div>
 
             
           </div>
