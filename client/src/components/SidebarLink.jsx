@@ -40,10 +40,10 @@ const SidebarLink = ({
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full  rounded-md h-[2.4rem] box-border flex flex-col font-normal relative px-3.5  ${
+          className={`w-full  rounded-md h-[2.45rem] box-border flex flex-col  relative px-3.5  ${
             isActive
-              ? `${activeClass}  `
-              : "text-gray-400/60  bg-transparent hover:bg-transparent border-0 box-border"
+              ? `${activeClass} font-normal `
+              : "text-[#d4d4d4]/40 bg-transparent hover:bg-transparent border-0 font-normal box-border"
           }
           `}
         >
@@ -53,20 +53,20 @@ const SidebarLink = ({
             >
               {/* text-[] */}
               <span
-                className={`text-[1rem]   ${
-                  isActive ? "text-inherit" : "text-gray-400/50 "
+                className={`text-[0.95rem]   ${
+                  isActive ? "text-white" : "text-[#d4d4d4]/40"
                 }`}
               >
                 {icon}
               </span>
 
-              <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.815rem] font-normal  truncate ">
+              <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate ">
                 {title}
               </span>
             </div>
             <span>
               {count > 0 && (
-                <div className=" text-[0.6rem]  rounded-full  flex items-center justify-center  text-[#cccccc]   font-normal">
+                <div className=" text-[0.675rem]  rounded-full  flex items-center justify-center  text-[#d4d4d4]  font-medium">
                   <span>{count}</span>
                 </div>
               )}
@@ -91,17 +91,17 @@ const SidebarLink = ({
         <div
           role="button"
           tabIndex={0}
-          className="w-full h-fit box-border"
+          className="w-full  h-fit box-border"
           onClick={handleNavLinkClick}
         >
           <div
             onMouseEnter={hoverToggle}
             onMouseLeave={hoverToggle}
-            className={`w-full cursor-pointer rounded-md h-[2.4rem] flex flex-col font-normal relative px-3.5   ${
+            className={`w-full cursor-pointer rounded-md h-[2.45rem] flex flex-col relative px-3.5   ${
               isActive
                 ? // bg-[#2c2c2c]/50
-                  `activeClass`
-                : "text-gray-400/60  bg-transparent hover:bg-transparent border-0 box-border"
+                  `${activeClass} font-normal `
+                : "text-[#d4d4d4]/40 bg-transparent hover:bg-transparent border-0 box-border font-normal "
             }
           `}
           >
@@ -110,14 +110,14 @@ const SidebarLink = ({
                 className={`flex justify-start items-center   h-full    w-full capitalize gap-3 `}
               >
                 <span
-                  className={`text-[1rem]   ${
-                    isActive ? "text-inherit" : "text-gray-400/50 "
+                  className={`text-[0.95rem]   ${
+                    isActive ? "text-white" : "text-[#d4d4d4]/40"
                   }`}
                 >
                   {icon}
                 </span>
 
-                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.815rem]  truncate ">
+                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate ">
                   {title}
                 </span>
               </div>
@@ -140,9 +140,9 @@ const SidebarLink = ({
             }}
             // 2.60 * 2 + "rem"
             animate={{
-              height: activeState ? 2.75 * 2 + "rem" : 0,
+              height: activeState ? 2.85 * 2 + "rem" : 0,
             }}
-            className={` pl-[1rem] relative   mt-2 w-full items-center justify-between ${
+            className={` pl-[1rem] relative  pt-2  w-full items-center justify-between ${
               activeState && " "
             } flex flex-col px-0 overflow-hidden `}
           >

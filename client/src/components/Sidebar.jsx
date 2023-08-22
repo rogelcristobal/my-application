@@ -1,9 +1,9 @@
 import {
-  PiFolderNotch,
-  PiHouse,
-  PiGear,
-  PiCalendarCheck,
-  PiCardholder,
+  PiFolderNotchBold,
+  PiHouseBold,
+  PiGearBold,
+  PiCalendarCheckBold,
+  PiCardholderBold,
 } from "react-icons/pi";
 import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
@@ -27,41 +27,41 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      className={`w-fit whitespace-nowrap relative z-10  h-screen  flex bg-[#191b1e]   items-center justify-start  flex-shrink-0`}
+      className={`w-fit whitespace-nowrap relative z-10  h-screen  flex bg-[#191b1f]   items-center justify-start  flex-shrink-0`}
     >
       {/* <div className="w-16 flex-shrink-0 h-full bg-[#1c1e1f] flex flex-col items-center justify-end"></div> */}
-      <div className="h-full w-[17rem] pt-[2rem] pb-[2rem] flex flex-col">
+      <div className="h-full w-[16.75rem] pt-[2rem] pb-[2rem] flex flex-col">
         <div className="w-full h-full   flex flex-col justify-start items-start">
           {/* <div className="w-full h-16  flex items-center px-7">
             <span className="font-normal text-[1.05rem]">NoteStack</span>
           </div> */}
           <div
-            className={` flex px-[1.3rem]   w-full items-start mt-8 justify-between h-full flex-col`}
+            className={` flex px-[1.2rem]   w-full items-start mt-6 justify-between h-full flex-col`}
           >
-            <div className="justify-center w-full  flex-col items-center">
-              <span className=" px-2  w-full  text-left  text-[0.75rem] text-gray-500/60  font-medium ">
+            <div className="justify-center w-full mt-2 flex-col items-center">
+              <span className=" px-1  w-full  text-left  text-[0.75rem] text-[#454545]  font-medium ">
                 Menu
               </span>
 
-              <div className="w-full h-fit flex flex-col space-y-2.5 mt-1.5  py-2">
+              <div className="w-full h-fit  flex flex-col space-y-2 mt-1  py-2">
                 {[
                   {
-                    path: "/home",
-                    title: "home",
-                    icon: <PiHouse />,
-                    activeClass: ` text-[#d4d4d4] bg-[#27292e] hover:bg-[#27292e]`,
+                    path: "/dashboard",
+                    title: "dashboard",
+                    icon: <PiHouseBold />,
+                    activeClass: ` text-[#d4d4d4] bg-[#27292e]/70 hover:bg-[#27292e]/70`,
                   },
-                  {
-                    path: "/time-sheet",
-                    title: "time sheet",
-                    icon: <PiCalendarCheck />,
-                    activeClass: ` text-[#d4d4d4] bg-[#27292e] hover:bg-[#27292e]`,
-                  },
+                  // {
+                  //   path: "/time-sheet",
+                  //   title: "time sheet",
+                  //   icon: <PiCalendarCheckBold />,
+                  //   activeClass: ` text-[#d4d4d4] bg-[#27292e]/70 hover:bg-[#27292e]/70`,
+                  // },
                   {
                     path: "/pay-summary",
                     title: "pay summary",
-                    icon: <PiCardholder />,
-                    activeClass: ` text-[#d4d4d4] bg-[#27292e] hover:bg-[#27292e]`,
+                    icon: <PiCardholderBold />,
+                    activeClass: ` text-[#d4d4d4] bg-[#27292e]/70 hover:bg-[#27292e]/70`,
                   },
                 ].map((item, id) => (
                   <SidebarLink
@@ -77,17 +77,17 @@ const Sidebar = () => {
                   />
                 ))}
               </div>
-              <div className="justify-center w-full flex-col mt-2.5 items-center">
-                <span className=" px-2  w-full  text-left  text-[0.75rem] text-gray-500/60 font-medium ">
+              <div className="justify-center  w-full flex-col mt-2 items-center">
+                <span className=" px-1  w-full  text-left  text-[0.75rem] text-[#454545] font-medium ">
                   Tools
                 </span>
 
-                <div className="w-full h-fit flex flex-col space-y-2  mt-1.5 py-2">
+                <div className="w-full h-fit flex flex-col space-y-2  mt-0 py-2">
                   {[
                     {
                       path: "/collections",
                       title: "collections ",
-                      icon: <PiFolderNotch />,
+                      icon: <PiFolderNotchBold />,
                       activeClass: `text-[#d4d4d4] `,
                       initialState: true,
                       attr: "dropdown",
@@ -104,14 +104,19 @@ const Sidebar = () => {
                           title={item?.title}
                           path={`/collections/${item?.title}`}
                           key={id}
-                          activeClass={`text-inherit bg-[#27292e] hover:bg-[#27292e]  `}
+                          activeClass={`text-[#d4d4d4] bg-[#27292e]/70 hover:bg-[#27292e]/70  `}
                           count={item.count}
                           icon={item?.icon}
                           loading={item?.loading}
                           isItem={item.isItem}
                         />
                       )),
-                    },
+                    }, {
+                    path: "/cards",
+                    title: "Cards",
+                    icon: <PiCardholderBold />,
+                    activeClass: ` text-[#d4d4d4] bg-[#27292e]/70 hover:bg-[#27292e]/70`,
+                  },
                   ].map((item, id) => (
                     <SidebarLink
                       key={id}
@@ -130,16 +135,16 @@ const Sidebar = () => {
             </div>
 
             <div className="justify-center w-full flex-col items-center">
-              <span className=" px-2  w-full  text-left  text-[0.75rem] text-[#454545] font-medium ">
+              <span className=" px-1  w-full  text-left  text-[0.75rem] text-[#454545] font-medium ">
                 Settings
               </span>
 
-              <div className="w-full h-fit flex flex-col space-y-2  mt-1.5 py-2">
+              <div className="w-full h-fit flex flex-col space-y-2  mt-0 py-2">
                 <SidebarLink
                   path="/settings"
                   title="Settings"
-                  icon={<PiGear />}
-                  activeClass={`text-[#d4d4d4] bg-[#27292e] hover:bg-[#27292e] `}
+                  icon={<PiGearBold />}
+                  activeClass={`text-[#d4d4d4] bg-[#27292e]/70 hover:bg-[#27292e]/70 `}
                 />
               </div>
             </div>

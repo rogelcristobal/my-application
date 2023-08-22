@@ -30,7 +30,7 @@ function App() {
 
 
   return (
-    <div className="h-screen w-full  font-inter  bg-[#161819] text-[#d4d4d4] relative">
+    <div className="h-screen w-full  font-inter  bg-[#161819] text-[#101828] relative">
       <Routes>
         <Route path="/auth/*" element={<AuthPage />}></Route>
 
@@ -57,9 +57,9 @@ function App() {
                   <Routes>
                     <Route
                       path="/"
-                      element={<Navigate to="/home" />}
+                      element={<Navigate to="/dashboard" />}
                     ></Route>
-                    <Route path="/home" element={<Home />}></Route>
+                    <Route path="/dashboard" element={<Home />}></Route>
                     <Route
                       path="/collections/*"
                       element={<Collections />}
