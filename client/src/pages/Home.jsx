@@ -40,9 +40,9 @@ const Home = () => {
                 </div>
               </div> */}
 
-              <div className="min-w-[16rem] h-fit px-[16px] py-[16px] rounded-lg bg-[#191b1f] ">
-                <div className="mt-0 flex items-center  gap-5">
-                  <div className=" h-[2.5rem] w-[2.5rem] bg-[#161819] flex-shrink-0  rounded-md  grid place-content-center">
+              <div className="min-w-[16rem] h-fit p-[12px] rounded-lg bg-[#191b1f] ">
+                <div className="mt-0 flex items-center  gap-4">
+                  <div className=" h-[2.5rem] w-[2.5rem] view flex-shrink-0  rounded-md  grid place-content-center">
                     {" "}
                     <PiCheckSquareOffsetBold className="text-[0.8rem] text-[#d4d4d4]/70 " />
                   </div>
@@ -56,6 +56,24 @@ const Home = () => {
                   </div>
                 </div>
               </div>
+
+               <div className="min-w-[16rem] h-fit p-[12px] rounded-lg bg-[#191b1f] ">
+                <div className="mt-0 flex items-center  gap-4">
+                  <div className=" h-[2.5rem] w-[2.5rem] view flex-shrink-0  rounded-md  grid place-content-center">
+                    {" "}
+                    <PiCheckSquareOffsetBold className="text-[0.8rem] text-[#d4d4d4]/70 " />
+                  </div>
+                  <div className="flex items-start  w-full flex-col justify-start ">
+                    <span className="text-[0.785rem]  text-[#d4d4d4]/40">
+                      Completed tasks
+                    </span>
+                    <span className="text-[1.4rem] tracking-wider font-general tabular-nums  font-normal">
+                      24
+                    </span>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
