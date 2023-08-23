@@ -2,7 +2,7 @@ import {
   PiFolderNotchBold,
   PiHouseBold,
   PiGearBold,
-  PiCalendarCheckBold,
+  PiHashBold,
   PiCardholderBold,
 } from "react-icons/pi";
 import { motion, useAnimation } from "framer-motion";
@@ -49,19 +49,19 @@ const Sidebar = () => {
                     path: "/dashboard",
                     title: "dashboard",
                     icon: <PiHouseBold />,
-                    activeClass: ` text-[#d4d4d4] bg-[#27292e]/70 hover:bg-[#27292e]/70`,
+                    activeClass: ` text-[#d4d4d4] bg-[#27292e]/40 hover:bg-[#27292e]/40`,
                   },
                   // {
                   //   path: "/time-sheet",
                   //   title: "time sheet",
                   //   icon: <PiCalendarCheckBold />,
-                  //   activeClass: ` text-[#d4d4d4] bg-[#27292e]/70 hover:bg-[#27292e]/70`,
+                  //   activeClass: ` text-[#d4d4d4] bg-[#27292e]/40 hover:bg-[#27292e]/40`,
                   // },
                   {
                     path: "/pay-summary",
                     title: "pay summary",
                     icon: <PiCardholderBold />,
-                    activeClass: ` text-[#d4d4d4] bg-[#27292e]/70 hover:bg-[#27292e]/70`,
+                    activeClass: ` text-[#d4d4d4] bg-[#27292e]/40 hover:bg-[#27292e]/40`,
                   },
                 ].map((item, id) => (
                   <SidebarLink
@@ -104,19 +104,34 @@ const Sidebar = () => {
                           title={item?.title}
                           path={`/collections/${item?.title}`}
                           key={id}
-                          activeClass={`text-[#d4d4d4] bg-[#27292e]/70 hover:bg-[#27292e]/70  `}
+                          activeClass={`text-[#d4d4d4] bg-[#27292e]/40 hover:bg-[#27292e]/40  `}
                           count={item.count}
                           icon={item?.icon}
                           loading={item?.loading}
                           isItem={item.isItem}
                         />
                       )),
-                    }, {
-                    path: "/cards",
-                    title: "Cards",
-                    icon: <PiCardholderBold />,
-                    activeClass: ` text-[#d4d4d4] bg-[#27292e]/70 hover:bg-[#27292e]/70`,
-                  },
+                    },
+                    {
+                      path: "/channels",
+                      title: "Channels ",
+                      icon: <PiHashBold />,
+                      activeClass: `text-[#d4d4d4] `,
+                      initialState: true,
+                      attr: "dropdown",
+                      items: [{}, {}].map((item, id) => (
+                        <SidebarLink
+                          title={item?.title}
+                          path={`/collections/${item?.title}`}
+                          key={id}
+                          activeClass={`text-[#d4d4d4] bg-[#27292e]/40 hover:bg-[#27292e]/40  `}
+                          count={item.count}
+                          icon={item?.icon}
+                          loading={item?.loading}
+                          isItem={item.isItem}
+                        />
+                      )),
+                    },
                   ].map((item, id) => (
                     <SidebarLink
                       key={id}
@@ -144,7 +159,7 @@ const Sidebar = () => {
                   path="/settings"
                   title="Settings"
                   icon={<PiGearBold />}
-                  activeClass={`text-[#d4d4d4] bg-[#27292e]/70 hover:bg-[#27292e]/70 `}
+                  activeClass={`text-[#d4d4d4] bg-[#27292e]/40 hover:bg-[#27292e]/40 `}
                 />
               </div>
             </div>
