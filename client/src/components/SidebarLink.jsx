@@ -34,16 +34,16 @@ const SidebarLink = ({
       <NavLink
         to={path}
         role="link"
-        className="w-full   h-fit box-border relative border-dark"
+        className="w-full   h-fit box-border relative border-dark rounded-md"
         onClick={handleNavLinkClick}
       >
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full  rounded-md h-[2.45rem] box-border flex flex-col  relative px-3.5  ${
+          className={`w-full  rounded-lg  h-[2.4rem] box-border flex flex-col  relative px-3.5  ${
             isActive
-              ? `${activeClass} font-normal `
-              : "text-inherit bg-transparent hover:bg-transparent border-0 font-normal box-border"
+              ? `${activeClass} font-medium `
+              : "text-[#8d909c] bg-transparent hover:bg-transparent border-0 font-medium box-border"
           }
           `}
         >
@@ -53,14 +53,14 @@ const SidebarLink = ({
             >
               {/* text-[] */}
               <span
-                className={`text-[0.95rem]   ${
-                  isActive ? "text-inherit" : "text-inherit"
+                className={`text-[0.965rem]   ${
+                  isActive ? "text-inherit" : "text-[#8d909c]"
                 }`}
               >
                 {icon}
               </span>
 
-              <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate ">
+              <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate  ">
                 {title}
               </span>
             </div>
@@ -91,17 +91,17 @@ const SidebarLink = ({
         <div
           role="button"
           tabIndex={0}
-          className="w-full  h-fit box-border border-dark"
+          className="w-full  h-fit box-border border-dark rounded-md "
           onClick={handleNavLinkClick}
         >
           <div
             onMouseEnter={hoverToggle}
             onMouseLeave={hoverToggle}
-            className={`w-full cursor-pointer rounded-md h-[2.45rem] flex flex-col relative px-3.5   ${
+            className={`w-full cursor-pointer rounded-lg  h-[2.4rem] flex flex-col relative px-3.5   ${
               isActive
                 ? // bg-[#2c2c2c]/50
-                  `${activeClass} font-normal `
-                : "text-inherit bg-transparent hover:bg-transparent border-0 box-border font-normal "
+                  `${activeClass} font-medium `
+                : "text-[#8d909c] bg-transparent hover:bg-transparent border-0 box-border font-medium "
             }
           `}
           >
@@ -110,20 +110,20 @@ const SidebarLink = ({
                 className={`flex justify-start items-center   h-full    w-full capitalize gap-3 `}
               >
                 <span
-                  className={`text-[0.95rem]   ${
-                    isActive ? "text-inherit" : "text-inherit"
+                  className={`text-[0.965rem]   ${
+                    isActive ? "text-inherit" : "text-[#8d909c]"
                   }`}
                 >
                   {icon}
                 </span>
 
-                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate ">
+                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate  ">
                   {title}
                 </span>
               </div>
 
               {item && (
-                <span className="text-[0.75rem] text-[#666666]  ">
+                <span className="text-[0.75rem] text-[#8d909c]  ">
                   <PiCaretDownBold
                     className={`${!activeState && "-rotate-90"}`}
                   />
@@ -140,9 +140,9 @@ const SidebarLink = ({
             }}
             // 2.60 * 2 + "rem"
             animate={{
-              height: activeState ? 2.85 * 2 + "rem" : 0,
+              height: activeState ? 2.8 * 2 + "rem" : 0,
             }}
-            className={` pl-[1rem] relative  pt-2  w-full items-center justify-between ${
+            className={` pl-[1rem] relative  pt-1  w-full items-center justify-between ${
               activeState && " "
             } flex flex-col px-0 overflow-hidden `}
           >

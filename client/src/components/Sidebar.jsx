@@ -5,6 +5,7 @@ import {
   PiHash,
   PiCardholder,
 } from "react-icons/pi";
+import {FiGrid,FiCreditCard,FiFolder,FiHash,FiSettings} from 'react-icons/fi'
 import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
 import { useSelector } from "react-redux";
@@ -36,10 +37,10 @@ const Sidebar = () => {
             <span className="font-normal text-[1.05rem]">NoteStack</span>
           </div> */}
           <div
-            className={` flex px-[1.2rem]   w-full items-start mt-6 justify-between h-full flex-col`}
+            className={` flex px-[1.2rem]   w-full items-start mt-0 justify-between h-full flex-col`}
           >
             <div className="justify-center w-full mt-2 flex-col items-center">
-              <span className=" px-1  w-full  text-left  text-[0.75rem] text-[#454545]  font-medium ">
+              <span className=" px-1  w-full  text-left  text-[0.75rem] text-[#8d909c]  font-medium ">
                 Menu
               </span>
 
@@ -48,7 +49,7 @@ const Sidebar = () => {
                   {
                     path: "/dashboard",
                     title: "dashboard",
-                    icon: <PiHouse />,
+                    icon: <FiGrid />,
                     activeClass: ` text-inherit bg-transparent hover:bg-transparent`,
                   },
                   // {
@@ -60,7 +61,7 @@ const Sidebar = () => {
                   {
                     path: "/pay-summary",
                     title: "pay summary",
-                    icon: <PiCardholder />,
+                    icon: <FiCreditCard />,
                     activeClass: ` text-inherit bg-transparent hover:bg-transparent`,
                   },
                 ].map((item, id) => (
@@ -78,16 +79,16 @@ const Sidebar = () => {
                 ))}
               </div>
               <div className="justify-center  w-full flex-col mt-2 items-center">
-                <span className=" px-1  w-full  text-left  text-[0.75rem] text-[#454545] font-medium ">
+                <span className=" px-1  w-full  text-left  text-[0.75rem] text-[#8d909c] font-medium ">
                   Tools
                 </span>
 
-                <div className="w-full h-fit flex flex-col space-y-2  mt-0 py-2">
+                <div className="w-full h-fit flex flex-col space-y-1  mt-0 py-2">
                   {[
                     {
                       path: "/collections",
                       title: "collections ",
-                      icon: <PiFolderNotch />,
+                      icon: <FiFolder />,
                       activeClass: `text-inherit `,
                       initialState: true,
                       attr: "dropdown",
@@ -115,7 +116,7 @@ const Sidebar = () => {
                     {
                       path: "/channels",
                       title: "Channels ",
-                      icon: <PiHash />,
+                      icon: <FiHash />,
                       activeClass: `text-inherit `,
                       initialState: true,
                       attr: "dropdown",
@@ -150,7 +151,7 @@ const Sidebar = () => {
             </div>
 
             <div className="justify-center w-full flex-col items-center">
-              <span className=" px-1  w-full  text-left  text-[0.75rem] text-[#454545] font-medium ">
+              <span className=" px-1  w-full  text-left  text-[0.75rem] text-[#8d909c] font-medium ">
                 Settings
               </span>
 
@@ -158,7 +159,7 @@ const Sidebar = () => {
                 <SidebarLink
                   path="/settings"
                   title="Settings"
-                  icon={<PiGear />}
+                  icon={<FiSettings />}
                   activeClass={`text-inherit bg-transparent hover:bg-transparent `}
                 />
               </div>
