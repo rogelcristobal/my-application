@@ -34,7 +34,7 @@ const SidebarLink = ({
       <NavLink
         to={path}
         role="link"
-        className="w-full   h-fit box-border relative"
+        className="w-full   h-fit box-border relative border-dark"
         onClick={handleNavLinkClick}
       >
         <div
@@ -43,7 +43,7 @@ const SidebarLink = ({
           className={`w-full  rounded-md h-[2.45rem] box-border flex flex-col  relative px-3.5  ${
             isActive
               ? `${activeClass} font-normal `
-              : "text-[#d4d4d4]/40 bg-transparent hover:bg-transparent border-0 font-normal box-border"
+              : "text-inherit bg-transparent hover:bg-transparent border-0 font-normal box-border"
           }
           `}
         >
@@ -54,7 +54,7 @@ const SidebarLink = ({
               {/* text-[] */}
               <span
                 className={`text-[0.95rem]   ${
-                  isActive ? "text-white" : "text-[#d4d4d4]/40"
+                  isActive ? "text-inherit" : "text-inherit"
                 }`}
               >
                 {icon}
@@ -91,7 +91,7 @@ const SidebarLink = ({
         <div
           role="button"
           tabIndex={0}
-          className="w-full  h-fit box-border"
+          className="w-full  h-fit box-border border-dark"
           onClick={handleNavLinkClick}
         >
           <div
@@ -101,7 +101,7 @@ const SidebarLink = ({
               isActive
                 ? // bg-[#2c2c2c]/50
                   `${activeClass} font-normal `
-                : "text-[#d4d4d4]/40 bg-transparent hover:bg-transparent border-0 box-border font-normal "
+                : "text-inherit bg-transparent hover:bg-transparent border-0 box-border font-normal "
             }
           `}
           >
@@ -111,7 +111,7 @@ const SidebarLink = ({
               >
                 <span
                   className={`text-[0.95rem]   ${
-                    isActive ? "text-white" : "text-[#d4d4d4]/40"
+                    isActive ? "text-inherit" : "text-inherit"
                   }`}
                 >
                   {icon}

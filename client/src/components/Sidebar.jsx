@@ -1,9 +1,9 @@
 import {
-  PiFolderNotchBold,
-  PiHouseBold,
-  PiGearBold,
-  PiHashBold,
-  PiCardholderBold,
+  PiFolderNotch,
+  PiHouse,
+  PiGear,
+  PiHash,
+  PiCardholder,
 } from "react-icons/pi";
 import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
@@ -27,7 +27,7 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      className={`w-fit whitespace-nowrap relative z-10  h-screen  flex bg-[#191b1f]   items-center justify-start  flex-shrink-0`}
+      className={`w-fit whitespace-nowrap relative z-10 border-dark-right h-screen  flex bg-inherit   items-center justify-start  flex-shrink-0`}
     >
       {/* <div className="w-16 flex-shrink-0 h-full bg-[#1c1e1f] flex flex-col items-center justify-end"></div> */}
       <div className="h-full w-[16.75rem] pt-[2rem] pb-[2rem] flex flex-col">
@@ -43,25 +43,25 @@ const Sidebar = () => {
                 Menu
               </span>
 
-              <div className="w-full h-fit  flex flex-col space-y-2 mt-1  py-2">
+              <div className="w-full h-fit  flex flex-col space-y-1 mt-1  py-2">
                 {[
                   {
                     path: "/dashboard",
                     title: "dashboard",
-                    icon: <PiHouseBold />,
-                    activeClass: ` text-[#d4d4d4] bg-[#27292e]/40 hover:bg-[#27292e]/40`,
+                    icon: <PiHouse />,
+                    activeClass: ` text-inherit bg-transparent hover:bg-transparent`,
                   },
                   // {
                   //   path: "/time-sheet",
                   //   title: "time sheet",
                   //   icon: <PiCalendarCheckBold />,
-                  //   activeClass: ` text-[#d4d4d4] bg-[#27292e]/40 hover:bg-[#27292e]/40`,
+                  //   activeClass: ` text-inherit bg-transparent hover:bg-transparent`,
                   // },
                   {
                     path: "/pay-summary",
                     title: "pay summary",
-                    icon: <PiCardholderBold />,
-                    activeClass: ` text-[#d4d4d4] bg-[#27292e]/40 hover:bg-[#27292e]/40`,
+                    icon: <PiCardholder />,
+                    activeClass: ` text-inherit bg-transparent hover:bg-transparent`,
                   },
                 ].map((item, id) => (
                   <SidebarLink
@@ -87,8 +87,8 @@ const Sidebar = () => {
                     {
                       path: "/collections",
                       title: "collections ",
-                      icon: <PiFolderNotchBold />,
-                      activeClass: `text-[#d4d4d4] `,
+                      icon: <PiFolderNotch />,
+                      activeClass: `text-inherit `,
                       initialState: true,
                       attr: "dropdown",
                       items: [
@@ -104,7 +104,7 @@ const Sidebar = () => {
                           title={item?.title}
                           path={`/collections/${item?.title}`}
                           key={id}
-                          activeClass={`text-[#d4d4d4] bg-[#27292e]/40 hover:bg-[#27292e]/40  `}
+                          activeClass={`text-inherit bg-transparent hover:bg-transparent  `}
                           count={item.count}
                           icon={item?.icon}
                           loading={item?.loading}
@@ -115,8 +115,8 @@ const Sidebar = () => {
                     {
                       path: "/channels",
                       title: "Channels ",
-                      icon: <PiHashBold />,
-                      activeClass: `text-[#d4d4d4] `,
+                      icon: <PiHash />,
+                      activeClass: `text-inherit `,
                       initialState: true,
                       attr: "dropdown",
                       items: [{}, {}].map((item, id) => (
@@ -124,7 +124,7 @@ const Sidebar = () => {
                           title={item?.title}
                           path={`/collections/${item?.title}`}
                           key={id}
-                          activeClass={`text-[#d4d4d4] bg-[#27292e]/40 hover:bg-[#27292e]/40  `}
+                          activeClass={`text-inherit bg-transparent hover:bg-transparent  `}
                           count={item.count}
                           icon={item?.icon}
                           loading={item?.loading}
@@ -158,8 +158,8 @@ const Sidebar = () => {
                 <SidebarLink
                   path="/settings"
                   title="Settings"
-                  icon={<PiGearBold />}
-                  activeClass={`text-[#d4d4d4] bg-[#27292e]/40 hover:bg-[#27292e]/40 `}
+                  icon={<PiGear />}
+                  activeClass={`text-inherit bg-transparent hover:bg-transparent `}
                 />
               </div>
             </div>

@@ -30,7 +30,7 @@ function App() {
 
 
   return (
-    <div className="h-screen w-full  font-inter  bg-[#161819] text-[#d4d4d4] relative">
+    <div className="h-screen w-full  font-inter  bg-white text-gray-900 relative">
       <Routes>
         <Route path="/auth/*" element={<AuthPage />}></Route>
 
