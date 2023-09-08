@@ -13,7 +13,7 @@ const Home = () => {
                 {/* Good Morning, {isLoaded && user.firstName} */}
                 
                 <p className="text-[1.5rem]   mt-0.5 font-medium capitalize">
-                  Add New Product
+                  Dashboard
                 </p>
               </span>
               {/* <span className="capitalize text-[#d4d4d4]/30 mt-1.5 font-normal text-[0.75rem] ">

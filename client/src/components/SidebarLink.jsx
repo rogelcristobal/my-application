@@ -34,7 +34,7 @@ const SidebarLink = ({
       <NavLink
         to={path}
         role="link"
-        className="w-full   h-fit box-border relative  rounded-md"
+        className="w-full   h-fit box-border relative   rounded-md"
         onClick={handleNavLinkClick}
       >
         <div
