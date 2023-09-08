@@ -5,14 +5,15 @@ const Home = () => {
 
   return (
     <div className="h-full overflow-y-auto font-inter w-full flex flex-col items-end justify-start relative">
-      <div className=" h-full  pt-[3rem]  w-full">
+      <div className=" h-full  pt-[3.5rem]  w-full">
         <div className=" container mx-auto   h-[150%]  ">
-          <div className="flex items-center   px-6">
+          <div className="flex items-center   px-8">
             <div className="flex flex-col items-start mb-6 w-full">
-              <span className="text-[0.825rem] text-start capitalize  font-medium">
+              <span className="text-[0.8rem] text-start capitalize  font-medium">
                 {/* Good Morning, {isLoaded && user.firstName} */}
-                <p className="text-[1.565rem]   mt-1 font-semibold capitalize">
-                  Dashboard
+                
+                <p className="text-[1.5rem]   mt-0.5 font-medium capitalize">
+                  Add New Product
                 </p>
               </span>
               {/* <span className="capitalize text-[#d4d4d4]/30 mt-1.5 font-normal text-[0.75rem] ">

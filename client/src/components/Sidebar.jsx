@@ -28,7 +28,7 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      className={`w-fit whitespace-nowrap relative z-10 border-dark-right h-screen  flex bg-inherit   items-center justify-start  flex-shrink-0`}
+      className={`w-fit whitespace-nowrap relative z-10 border-dark-right h-screen  flex bg-inherit pl-0  items-center justify-start  flex-shrink-0`}
     >
       {/* <div className="w-16 flex-shrink-0 h-full bg-[#1c1e1f] flex flex-col items-center justify-end"></div> */}
       <div className="h-full w-[16.75rem] pt-[2rem] pb-[2rem] flex flex-col">

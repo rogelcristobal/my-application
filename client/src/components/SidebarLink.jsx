@@ -34,7 +34,7 @@ const SidebarLink = ({
       <NavLink
         to={path}
         role="link"
-        className="w-full   h-fit box-border relative border-dark rounded-md"
+        className="w-full   h-fit box-border relative  rounded-md"
         onClick={handleNavLinkClick}
       >
         <div
@@ -91,7 +91,7 @@ const SidebarLink = ({
         <div
           role="button"
           tabIndex={0}
-          className="w-full  h-fit box-border border-dark rounded-md "
+          className="w-full  h-fit box-border  rounded-md "
           onClick={handleNavLinkClick}
         >
           <div
@@ -109,26 +109,27 @@ const SidebarLink = ({
               <div
                 className={`flex justify-start items-center   h-full    w-full capitalize gap-3 `}
               >
-                <span
+                {/* <span
                   className={`text-[0.965rem]   ${
                     isActive ? "text-inherit" : "text-[#8d909c]"
                   }`}
                 >
                   {icon}
+                </span> */}
+                 {item && (
+                <span className="text-[0.75rem] text-inherit  ">
+                  <PiCaretDownBold
+                    className={`${!activeState && "-rotate-90"}`}
+                  />
                 </span>
+              )}
 
                 <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate  ">
                   {title}
                 </span>
               </div>
 
-              {item && (
-                <span className="text-[0.75rem] text-[#8d909c]  ">
-                  <PiCaretDownBold
-                    className={`${!activeState && "-rotate-90"}`}
-                  />
-                </span>
-              )}
+             
             </div>
           </div>
         </div>
@@ -140,7 +141,7 @@ const SidebarLink = ({
             }}
             // 2.60 * 2 + "rem"
             animate={{
-              height: activeState ? 2.8 * 2 + "rem" : 0,
+              height: activeState ? 2.75 * 2 + "rem" : 0,
             }}
             className={` pl-[1rem] relative  pt-1  w-full items-center justify-between ${
               activeState && " "
