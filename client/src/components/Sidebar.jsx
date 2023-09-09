@@ -39,20 +39,20 @@ const Sidebar = () => {
       {/* <div className="w-16 flex-shrink-0 h-full bg-[#1c1e1f] flex flex-col items-center justify-end"></div> */}
       <div className="h-full w-[16.75rem] pt-[2rem] pb-[2rem] flex flex-col">
         <div className="w-full h-full   flex flex-col justify-start items-start">
-          <div className="w-full h-12 flex-shrink-0  flex items-center px-[2rem]">
+          {/* <div className="w-full h-12 flex-shrink-0  flex items-center px-[2rem]">
             <span className="font-medium text-[1.1rem] w-full">NoteStack</span>
-          </div>
+          </div> */}
           <div
             className={` flex    w-full items-start mt-8 justify-between h-full flex-col`}
           >
             <div className="justify-center h-[calc(100vh-15rem)] overflow-y-scroll px-[1.2rem]  w-full mt-2 flex-col items-center">
-              <div className="mb-3 mt-0.5">
+              {/* <div className="mb-3 mt-0.5">
                 <input
                   type="text"
                   placeholder="Search here"
                   className="input input-bordered  h-10 placeholder:text-[#8d909c]  text-[0.865rem] border-dark placeholder:text-[0.8rem] w-full max-w-xs"
                 />
-              </div>
+              </div> */}
               <span className=" px-1  w-full  text-left  text-[0.70rem] text-[#8d909c]/60 tracking-widest  font-medium uppercase ">
                 Menu
               </span>
@@ -60,8 +60,8 @@ const Sidebar = () => {
               <div className="w-full h-fit  flex flex-col space-y-0 mt-1  py-2">
                 {[
                   {
-                    path: "/home",
-                    title: "home",
+                    path: "/dashboard",
+                    title: "dashboard",
                     icon: <FiGrid />,
                     activeClass: ` text-inherit bg-transparent hover:bg-transparent`,
                   },
@@ -71,12 +71,12 @@ const Sidebar = () => {
                   //   icon: <PiCalendarCheckBold />,
                   //   activeClass: ` text-inherit bg-transparent hover:bg-transparent`,
                   // },
-                  {
-                    path: "/pay-summary",
-                    title: "pay summary",
-                    icon: <FiCreditCard />,
-                    activeClass: ` text-inherit bg-transparent hover:bg-transparent`,
-                  },
+                  // {
+                  //   path: "/pay-summary",
+                  //   title: "pay summary",
+                  //   icon: <FiCreditCard />,
+                  //   activeClass: ` text-inherit bg-transparent hover:bg-transparent`,
+                  // },
                 ].map((item, id) => (
                   <SidebarLink
                     key={id}

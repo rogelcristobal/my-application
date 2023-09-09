@@ -34,7 +34,7 @@ const SidebarLink = ({
       <NavLink
         to={path}
         role="link"
-        className="w-full  h-fit box-border relative   rounded-md"
+        className={`w-full  h-fit box-border relative   rounded-md ${!isItem&&isActive&&'border-dark'}`}
         onClick={handleNavLinkClick}
       >
         <div
@@ -60,7 +60,7 @@ const SidebarLink = ({
                 {icon}
               </span>
 
-              <span className={`flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.85rem]  truncate  `}>
+              <span className={`flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate  `}>
                 {title}
               </span>
             </div>
@@ -118,13 +118,13 @@ const SidebarLink = ({
                   {icon}
                 </span>
 
-                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.85rem]  truncate  ">
+                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate  ">
                   {title}
                 </span>
               </div>
 
                  {item && (
-                <span className="text-[0.85rem] text-[#727f95]/70  ">
+                <span className="text-[0.865rem] text-[#727f95]/70  ">
                   <PiCaretDownBold
                     className={`${!activeState && "-rotate-90"}`}
                   />
