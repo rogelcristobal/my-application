@@ -2,25 +2,25 @@ import { useUser } from "@clerk/clerk-react";
 import { PiCheckSquareOffsetBold, PiClockBold } from "react-icons/pi";
 const Home = () => {
   const { user, isLoaded } = useUser();
-
+// console.log(user)
   return (
-    <div className="h-full overflow-y-auto font-inter w-full flex flex-col items-end justify-start relative">
+    <div className="h-full overflow-y-auto  font-inter w-full flex flex-col items-end justify-start relative">
       <div className=" h-full  pt-[3.5rem]  w-full">
         <div className=" container mx-auto   h-[150%]  ">
-          <div className="flex items-center   px-8">
+          {/* <div className="flex items-center   px-8">
             <div className="flex flex-col items-start mb-6 w-full">
-              <span className="text-[0.8rem] text-start capitalize  font-medium">
-                {/* Good Morning, {isLoaded && user.firstName} */}
+              <span className="text-[0.875rem] text-start capitalize  font-medium">
                 
-                <p className="text-[1.5rem]   mt-0.5 font-medium capitalize">
-                  Dashboard
+               
+                <p className="text-[1.55rem]   mt-1 font-semibold  capitalize">
+               {isLoaded && user.fullName} 
                 </p>
               </span>
-              {/* <span className="capitalize text-[#d4d4d4]/30 mt-1.5 font-normal text-[0.75rem] ">
-                Status: 
-              </span> */}
+              <span className="tracking-normal text-[#7f858c]/70 mt-1 font-normal text-[0.8rem] ">
+                {isLoaded && user.primaryEmailAddress.emailAddress} 
+              </span>
             </div>
-          </div>
+          </div> */}
           <div className="px-6 pt-0  w-full h-full ">
             <div className=" flex gap-6 ">
               {/* <div className="min-w-[16rem] h-fit px-[18px] py-[18px] flex-col flex justify-between rounded-lg bg-[#191b1f]">

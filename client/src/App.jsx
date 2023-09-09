@@ -30,7 +30,7 @@ function App() {
 
 
   return (
-    <div className="h-screen w-full  font-inter  bg-white text-[#12172b] tracking-tight relative">
+    <div className="h-screen w-full  font-inter  bg-white text-black tracking-tight relative">
       <Routes>
         <Route path="/auth/*" element={<AuthPage />}></Route>
 
@@ -38,7 +38,7 @@ function App() {
           path="/*"
           element={
             <ProtectedRoute>
-              <div className="h-full   flex items-start flex-col justify-start relative">
+              <div className="h-full bg-neutral-100/40  flex items-start flex-col justify-start relative">
                 <div className=" flex-shrink-0 items-center top-[0rem] right-0 justify-end flex    h-[3.5rem] fixed  z-50     w-full ">
                   <div className=" h-full  box-border w-[calc(100%-17rem)] px-12 items-center justify-end flex">
                     {/* <PiMagnifyingGlass className="text-[#b7b7b7]/50 text-[1.1rem]" /> */}
@@ -57,9 +57,9 @@ function App() {
                   <Routes>
                     <Route
                       path="/"
-                      element={<Navigate to="/dashboard" />}
+                      element={<Navigate to="/home" />}
                     ></Route>
-                    <Route path="/dashboard" element={<Home />}></Route>
+                    <Route path="/home" element={<Home />}></Route>
                     <Route
                       path="/collections/*"
                       element={<Collections />}

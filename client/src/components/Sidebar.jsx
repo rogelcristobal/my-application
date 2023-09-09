@@ -5,7 +5,13 @@ import {
   PiHash,
   PiCardholder,
 } from "react-icons/pi";
-import {FiGrid,FiCreditCard,FiFolder,FiHash,FiSettings} from 'react-icons/fi'
+import {
+  FiGrid,
+  FiCreditCard,
+  FiFolder,
+  FiHash,
+  FiSettings,
+} from "react-icons/fi";
 import { motion, useAnimation } from "framer-motion";
 import SidebarLink from "./SidebarLink";
 import { useSelector } from "react-redux";
@@ -28,27 +34,34 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      className={`w-fit whitespace-nowrap relative z-10 border-dark-right h-screen  flex bg-inherit pl-0  items-center justify-start  flex-shrink-0`}
+      className={`w-fit whitespace-nowrap relative z-10  h-screen  flex bg-white pl-0  items-center justify-start  flex-shrink-0`}
     >
       {/* <div className="w-16 flex-shrink-0 h-full bg-[#1c1e1f] flex flex-col items-center justify-end"></div> */}
       <div className="h-full w-[16.75rem] pt-[2rem] pb-[2rem] flex flex-col">
         <div className="w-full h-full   flex flex-col justify-start items-start">
-          {/* <div className="w-full h-16  flex items-center px-7">
-            <span className="font-normal text-[1.05rem]">NoteStack</span>
-          </div> */}
+          <div className="w-full h-12 flex-shrink-0  flex items-center px-[2rem]">
+            <span className="font-medium text-[1.1rem] w-full">NoteStack</span>
+          </div>
           <div
-            className={` flex px-[1.2rem]   w-full items-start mt-0 justify-between h-full flex-col`}
+            className={` flex    w-full items-start mt-8 justify-between h-full flex-col`}
           >
-            <div className="justify-center w-full mt-2 flex-col items-center">
-              <span className=" px-1  w-full  text-left  text-[0.75rem] text-[#8d909c]  font-medium ">
+            <div className="justify-center h-[calc(100vh-15rem)] overflow-y-scroll px-[1.2rem]  w-full mt-2 flex-col items-center">
+              <div className="mb-3 mt-0.5">
+                <input
+                  type="text"
+                  placeholder="Search here"
+                  className="input input-bordered  h-10 placeholder:text-[#8d909c]  text-[0.865rem] border-dark placeholder:text-[0.8rem] w-full max-w-xs"
+                />
+              </div>
+              <span className=" px-1  w-full  text-left  text-[0.70rem] text-[#8d909c]/60 tracking-widest  font-medium uppercase ">
                 Menu
               </span>
 
-              <div className="w-full h-fit  flex flex-col space-y-1 mt-1  py-2">
+              <div className="w-full h-fit  flex flex-col space-y-0 mt-1  py-2">
                 {[
                   {
-                    path: "/dashboard",
-                    title: "dashboard",
+                    path: "/home",
+                    title: "home",
                     icon: <FiGrid />,
                     activeClass: ` text-inherit bg-transparent hover:bg-transparent`,
                   },
@@ -79,11 +92,11 @@ const Sidebar = () => {
                 ))}
               </div>
               <div className="justify-center  w-full flex-col mt-2 items-center">
-                <span className=" px-1  w-full  text-left  text-[0.75rem] text-[#8d909c] font-medium ">
+                <span className=" px-1  w-full  text-left  text-[0.70rem] text-[#8d909c]/60 tracking-widest font-medium uppercase ">
                   Tools
                 </span>
 
-                <div className="w-full h-fit flex flex-col space-y-1  mt-0 py-2">
+                <div className="w-full h-fit flex flex-col space-y-0  mt-0 py-2">
                   {[
                     {
                       path: "/collections",
@@ -119,19 +132,19 @@ const Sidebar = () => {
                       icon: <FiHash />,
                       activeClass: `text-inherit `,
                       initialState: true,
-                      attr: "dropdown",
-                      items: [{}, {}].map((item, id) => (
-                        <SidebarLink
-                          title={item?.title}
-                          path={`/collections/${item?.title}`}
-                          key={id}
-                          activeClass={`text-inherit bg-transparent hover:bg-transparent  `}
-                          count={item.count}
-                          icon={item?.icon}
-                          loading={item?.loading}
-                          isItem={item.isItem}
-                        />
-                      )),
+                      // attr: "dropdown",
+                      // items: [{}, {}].map((item, id) => (
+                      //   <SidebarLink
+                      //     title={item?.title}
+                      //     path={`/collections/${item?.title}`}
+                      //     key={id}
+                      //     activeClass={`text-inherit bg-transparent hover:bg-transparent  `}
+                      //     count={item.count}
+                      //     icon={item?.icon}
+                      //     loading={item?.loading}
+                      //     isItem={item.isItem}
+                      //   />
+                      // )),
                     },
                   ].map((item, id) => (
                     <SidebarLink
@@ -150,12 +163,12 @@ const Sidebar = () => {
               </div>
             </div>
 
-            <div className="justify-center w-full flex-col items-center">
-              <span className=" px-1  w-full  text-left  text-[0.75rem] text-[#8d909c] font-medium ">
+            <div className="justify-center w-full px-[1.2rem] flex-col items-center">
+              <span className=" px-1  w-full  text-left  text-[0.70rem] text-[#8d909c]/60 tracking-widest font-medium uppercase ">
                 Settings
               </span>
 
-              <div className="w-full h-fit flex flex-col space-y-2  mt-0 py-2">
+              <div className="w-full h-fit flex flex-col space-y-0  mt-0 py-2">
                 <SidebarLink
                   path="/settings"
                   title="Settings"
@@ -164,6 +177,7 @@ const Sidebar = () => {
                 />
               </div>
             </div>
+
           </div>
         </div>
       </div>

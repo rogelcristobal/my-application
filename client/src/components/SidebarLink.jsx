@@ -7,12 +7,12 @@ import { motion } from "framer-motion";
 const SidebarLink = ({
   title,
   initialState,
-
   icon,
   count,
   path,
   item,
   activeClass,
+  isItem
 }) => {
   const [hoverState, setHOverState] = React.useState(false);
   const hoverToggle = () => {
@@ -34,7 +34,7 @@ const SidebarLink = ({
       <NavLink
         to={path}
         role="link"
-        className="w-full   h-fit box-border relative   rounded-md"
+        className="w-full  h-fit box-border relative   rounded-md"
         onClick={handleNavLinkClick}
       >
         <div
@@ -43,7 +43,7 @@ const SidebarLink = ({
           className={`w-full  rounded-lg  h-[2.4rem] box-border flex flex-col  relative px-3.5  ${
             isActive
               ? `${activeClass} font-medium `
-              : "text-[#8d909c] bg-transparent hover:bg-transparent border-0 font-medium box-border"
+              : "text-[#727f95] bg-transparent hover:bg-transparent border-0 font-medium box-border"
           }
           `}
         >
@@ -54,13 +54,13 @@ const SidebarLink = ({
               {/* text-[] */}
               <span
                 className={`text-[0.965rem]   ${
-                  isActive ? "text-inherit" : "text-[#8d909c]"
+                  isActive ? "text-[#345cec]" : "text-[#727f95]"
                 }`}
               >
                 {icon}
               </span>
 
-              <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate  ">
+              <span className={`flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.85rem]  truncate  `}>
                 {title}
               </span>
             </div>
@@ -81,13 +81,14 @@ const SidebarLink = ({
             )}
           </div>
         </div>
+        {/* {isItem&&<div className={`absolute h-[80%] w-[0.15rem] ${isActive&&'bg-[#345cec]'} -left-4  -translate-y-1/2 top-1/2 rounded-l-[15px]`}></div>} */}
       </NavLink>
     );
 
     // if link has a children , therefore it renders a dropdown and not a link component
   } else {
     return (
-      <div>
+      <div className={`${activeState&&'border-dark rounded-md'}`}>
         <div
           role="button"
           tabIndex={0}
@@ -101,7 +102,7 @@ const SidebarLink = ({
               isActive
                 ? // bg-[#2c2c2c]/50
                   `${activeClass} font-medium `
-                : "text-[#8d909c] bg-transparent hover:bg-transparent border-0 box-border font-medium "
+                : "text-[#727f95] bg-transparent hover:bg-transparent border-0 box-border font-medium "
             }
           `}
           >
@@ -109,26 +110,26 @@ const SidebarLink = ({
               <div
                 className={`flex justify-start items-center   h-full    w-full capitalize gap-3 `}
               >
-                {/* <span
+                <span
                   className={`text-[0.965rem]   ${
-                    isActive ? "text-inherit" : "text-[#8d909c]"
+                    isActive ? "text-[#345cec]" : "text-[#727f95]"
                   }`}
                 >
                   {icon}
-                </span> */}
+                </span>
+
+                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.85rem]  truncate  ">
+                  {title}
+                </span>
+              </div>
+
                  {item && (
-                <span className="text-[0.75rem] text-inherit  ">
+                <span className="text-[0.85rem] text-[#727f95]/70  ">
                   <PiCaretDownBold
                     className={`${!activeState && "-rotate-90"}`}
                   />
                 </span>
               )}
-
-                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate  ">
-                  {title}
-                </span>
-              </div>
-
              
             </div>
           </div>
@@ -141,9 +142,9 @@ const SidebarLink = ({
             }}
             // 2.60 * 2 + "rem"
             animate={{
-              height: activeState ? 2.75 * 2 + "rem" : 0,
+              height: activeState ? 2.875 * 2 + "rem" : 0,
             }}
-            className={` pl-[1rem] relative  pt-1  w-full items-center justify-between ${
+            className={` pl-[1rem] relative  py-0  w-full items-end justify-center ${
               activeState && " "
             } flex flex-col px-0 overflow-hidden `}
           >
