@@ -34,7 +34,7 @@ const SidebarLink = ({
       <NavLink
         to={path}
         role="link"
-        className={`w-full  h-fit box-border relative   rounded-md ${!isItem&&isActive&&''}`}
+        className={`w-full  h-fit box-border relative   rounded-md`}
         onClick={handleNavLinkClick}
       >
         <div
@@ -43,7 +43,7 @@ const SidebarLink = ({
           className={`w-full  rounded-lg  h-[2.6rem] box-border flex flex-col  relative px-3.5  ${
             isActive
               ? `${activeClass} font-medium `
-              : "text-[#727f95] bg-transparent hover:bg-transparent border-0 font-medium box-border"
+              : "text-[#727f95]/90 bg-transparent hover:bg-transparent border-0 font-medium box-border"
           }
           `}
         >
@@ -53,14 +53,14 @@ const SidebarLink = ({
             >
               {/* text-[] */}
               <span
-                className={`text-[1rem]   ${
-                  isActive ? "text-[#3972f7]" : "text-[#727f95]"
+                className={`text-[1.1rem]   ${
+                  isActive ? "text-[#3972f7]" : "text-[#727f95]/90"
                 }`}
               >
                 {icon}
               </span>
 
-              <span className={`flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.870rem]  truncate  `}>
+              <span className={`flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden   ${isItem?'text-[0.8rem]':'text-[0.870rem]'} truncate  `}>
                 {title}
               </span>
             </div>
@@ -81,7 +81,7 @@ const SidebarLink = ({
             )}
           </div>
         </div>
-        {/* {isItem&&<div className={`absolute h-[80%] w-[0.15rem] ${isActive&&'bg-[#3972f7]'} -left-4  -translate-y-1/2 top-1/2 rounded-l-[15px]`}></div>} */}
+        {/* {isActive&&<div className={`absolute h-[50%] w-[3px] ${isActive&&'bg-[#3972f7]'} left-[0.1rem]  -translate-y-1/2 top-1/2 rounded-r-[15px]`}></div>} */}
       </NavLink>
     );
 
@@ -102,7 +102,7 @@ const SidebarLink = ({
               isActive
                 ? // bg-[#2c2c2c]/50
                   `${activeClass} font-medium `
-                : "text-[#727f95] bg-transparent hover:bg-transparent border-0 box-border font-medium "
+                : "text-[#727f95]/90 bg-transparent hover:bg-transparent border-0 box-border font-medium "
             }
           `}
           >
@@ -111,8 +111,8 @@ const SidebarLink = ({
                 className={`flex justify-start items-center   h-full    w-full capitalize gap-2.5 `}
               >
                 <span
-                  className={`text-[1rem]   ${
-                    isActive ? "text-[#3972f7]" : "text-[#727f95]"
+                  className={`text-[1.1rem]   ${
+                    isActive ? "text-[#3972f7]" : "text-[#727f95]/90"
                   }`}
                 >
                   {icon}
@@ -124,7 +124,7 @@ const SidebarLink = ({
               </div>
 
                  {item && (
-                <span className="text-[0.870rem] text-[#727f95]/70  ">
+                <span className="text-[0.870rem] text-[#727f95]/90/70  ">
                   <PiCaretDownBold
                     className={`${!activeState && "-rotate-90"}`}
                   />
