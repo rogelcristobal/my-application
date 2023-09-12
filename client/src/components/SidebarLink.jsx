@@ -34,13 +34,13 @@ const SidebarLink = ({
       <NavLink
         to={path}
         role="link"
-        className={`w-full  h-fit box-border relative   rounded-md ${!isItem&&isActive&&'border-dark'}`}
+        className={`w-full  h-fit box-border relative   rounded-md ${!isItem&&isActive&&''}`}
         onClick={handleNavLinkClick}
       >
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full  rounded-lg  h-[2.4rem] box-border flex flex-col  relative px-3.5  ${
+          className={`w-full  rounded-lg  h-[2.6rem] box-border flex flex-col  relative px-3.5  ${
             isActive
               ? `${activeClass} font-medium `
               : "text-[#727f95] bg-transparent hover:bg-transparent border-0 font-medium box-border"
@@ -49,18 +49,18 @@ const SidebarLink = ({
         >
           <div className="flex-shrink-0 h-full  flex justify-between items-center overflow-hidden w-full">
             <div
-              className={`flex justify-start items-center   h-full    w-full capitalize gap-3 `}
+              className={`flex justify-start items-center   h-full    w-full capitalize gap-2.5 `}
             >
               {/* text-[] */}
               <span
-                className={`text-[0.965rem]   ${
-                  isActive ? "text-[#345cec]" : "text-[#727f95]"
+                className={`text-[1rem]   ${
+                  isActive ? "text-[#3972f7]" : "text-[#727f95]"
                 }`}
               >
                 {icon}
               </span>
 
-              <span className={`flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate  `}>
+              <span className={`flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.870rem]  truncate  `}>
                 {title}
               </span>
             </div>
@@ -81,14 +81,14 @@ const SidebarLink = ({
             )}
           </div>
         </div>
-        {/* {isItem&&<div className={`absolute h-[80%] w-[0.15rem] ${isActive&&'bg-[#345cec]'} -left-4  -translate-y-1/2 top-1/2 rounded-l-[15px]`}></div>} */}
+        {/* {isItem&&<div className={`absolute h-[80%] w-[0.15rem] ${isActive&&'bg-[#3972f7]'} -left-4  -translate-y-1/2 top-1/2 rounded-l-[15px]`}></div>} */}
       </NavLink>
     );
 
     // if link has a children , therefore it renders a dropdown and not a link component
   } else {
     return (
-      <div className={`${activeState&&'border-dark rounded-md'}`}>
+      <div className={`${activeState&&' rounded-md'}`}>
         <div
           role="button"
           tabIndex={0}
@@ -98,7 +98,7 @@ const SidebarLink = ({
           <div
             onMouseEnter={hoverToggle}
             onMouseLeave={hoverToggle}
-            className={`w-full cursor-pointer rounded-lg  h-[2.4rem] flex flex-col relative px-3.5   ${
+            className={`w-full cursor-pointer rounded-lg  h-[2.6rem] flex flex-col relative px-3.5   ${
               isActive
                 ? // bg-[#2c2c2c]/50
                   `${activeClass} font-medium `
@@ -108,23 +108,23 @@ const SidebarLink = ({
           >
             <div className="flex-shrink-0 h-full  flex justify-between items-center overflow-hidden w-full">
               <div
-                className={`flex justify-start items-center   h-full    w-full capitalize gap-3 `}
+                className={`flex justify-start items-center   h-full    w-full capitalize gap-2.5 `}
               >
                 <span
-                  className={`text-[0.965rem]   ${
-                    isActive ? "text-[#345cec]" : "text-[#727f95]"
+                  className={`text-[1rem]   ${
+                    isActive ? "text-[#3972f7]" : "text-[#727f95]"
                   }`}
                 >
                   {icon}
                 </span>
 
-                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate  ">
+                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.870rem]  truncate  ">
                   {title}
                 </span>
               </div>
 
                  {item && (
-                <span className="text-[0.865rem] text-[#727f95]/70  ">
+                <span className="text-[0.870rem] text-[#727f95]/70  ">
                   <PiCaretDownBold
                     className={`${!activeState && "-rotate-90"}`}
                   />

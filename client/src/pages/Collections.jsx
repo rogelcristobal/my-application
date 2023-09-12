@@ -123,22 +123,22 @@ const Collections = () => {
 
   return (
    <div className="h-full overflow-y-auto font-inter w-full flex flex-col items-end justify-start relative">
-      <div className=" h-full  pt-[3.5rem] px-6  w-full">
-        <div className=" container mx-auto   h-[150%]  ">
-          <div className="flex items-center  px-6">
-            <div className="flex flex-col  w-full">
-              <span className="text-[0.8rem]  text-[#918cf2]  font-medium">
+      <div className=" h-[150%]  pt-[3.5rem]   w-full">
+        <div className="    ">
+          <div className="flex items-center px-12  ">
+            <div className="flex flex-col  container mx-auto">
+              <span className="text-[0.8rem]  text-inherit  font-semibold">
                 {/* <span className="capitalize ">Dashboard</span> */}
-                <p className="text-[1.435rem] text-[#e8e8e8] mb-5 mt-1.5 font-medium capitalize">
+                <p className="text-[1.55rem] text-inherit mb-5 mt-1.5 font-medium capitalize">
                   {" "}
-               
+                Notes
                 </p>
               </span>
             </div>
 
             
           </div>
-          <div className="px-6 pt-2 h-full ">
+          <div className="px-6 pt-2 h-52 mt-8 container mx-auto ">
            
 
           </div>

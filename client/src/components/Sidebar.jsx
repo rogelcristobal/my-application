@@ -1,10 +1,7 @@
 import {
-  PiFolderNotch,
-  PiHouse,
-  PiGear,
-  PiHash,
-  PiCardholder,
-} from "react-icons/pi";
+ MdOutlineSpaceDashboard,MdFolderOpen
+} from "react-icons/md";
+import {FcFolder} from 'react-icons/fc'
 import {
   FiGrid,
   FiCreditCard,
@@ -34,18 +31,18 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      className={`w-fit whitespace-nowrap relative z-10  h-screen  flex bg-white pl-0  items-center justify-start  flex-shrink-0`}
+      className={`w-fit whitespace-nowrap relative z-10 border-dark-right h-screen  flex bg-white pl-0  items-center justify-start  flex-shrink-0`}
     >
       {/* <div className="w-16 flex-shrink-0 h-full bg-[#1c1e1f] flex flex-col items-center justify-end"></div> */}
-      <div className="h-full w-[16.75rem] pt-[2rem] pb-[2rem] flex flex-col">
-        <div className="w-full h-full   flex flex-col justify-start items-start">
+      <div className="h-full w-[16rem] pt-[2rem] pb-[2rem] flex flex-col">
+        <div className="w-full h-full   flex flex-col justify-start pl-2 items-start">
           {/* <div className="w-full h-12 flex-shrink-0  flex items-center px-[2rem]">
             <span className="font-medium text-[1.1rem] w-full">NoteStack</span>
           </div> */}
           <div
-            className={` flex    w-full items-start mt-8 justify-between h-full flex-col`}
+            className={` flex  w-full items-center mt-0 justify-between h-full flex-col`}
           >
-            <div className="justify-center h-[calc(100vh-15rem)] overflow-y-scroll px-[1.2rem]  w-full mt-2 flex-col items-center">
+            <div className="justify-center h-[calc(100vh-15rem)] overflow-y-scroll px-[0.5rem]  w-full mt-2 flex-col items-center">
               {/* <div className="mb-3 mt-0.5">
                 <input
                   type="text"
@@ -53,7 +50,7 @@ const Sidebar = () => {
                   className="input input-bordered  h-10 placeholder:text-[#8d909c]  text-[0.865rem] border-dark placeholder:text-[0.8rem] w-full max-w-xs"
                 />
               </div> */}
-              <span className=" px-1  w-full  text-left  text-[0.70rem] text-[#8d909c]/60 tracking-widest  font-medium uppercase ">
+              <span className=" px-1  w-full  text-left  text-[0.70rem] text-[#8d909c]/80 tracking-widest  font-medium uppercase ">
                 Menu
               </span>
 
@@ -62,20 +59,20 @@ const Sidebar = () => {
                   {
                     path: "/dashboard",
                     title: "dashboard",
-                    icon: <FiGrid />,
-                    activeClass: ` text-inherit bg-transparent hover:bg-transparent`,
+                    icon: <MdOutlineSpaceDashboard />,
+                    activeClass: ` text-inherit bg-[#f5f5f5]/70 hover:bg-[#f5f5f5]/70`,
                   },
                   // {
                   //   path: "/time-sheet",
                   //   title: "time sheet",
                   //   icon: <PiCalendarCheckBold />,
-                  //   activeClass: ` text-inherit bg-transparent hover:bg-transparent`,
+                  //   activeClass: ` text-inherit bg-[#f5f5f5]/70 hover:bg-[#f5f5f5]/70`,
                   // },
                   // {
                   //   path: "/pay-summary",
                   //   title: "pay summary",
                   //   icon: <FiCreditCard />,
-                  //   activeClass: ` text-inherit bg-transparent hover:bg-transparent`,
+                  //   activeClass: ` text-inherit bg-[#f5f5f5]/70 hover:bg-[#f5f5f5]/70`,
                   // },
                 ].map((item, id) => (
                   <SidebarLink
@@ -92,7 +89,7 @@ const Sidebar = () => {
                 ))}
               </div>
               <div className="justify-center  w-full flex-col mt-2 items-center">
-                <span className=" px-1  w-full  text-left  text-[0.70rem] text-[#8d909c]/60 tracking-widest font-medium uppercase ">
+                <span className=" px-1  w-full  text-left  text-[0.70rem] text-[#8d909c]/80 tracking-widest font-medium uppercase ">
                   Tools
                 </span>
 
@@ -101,7 +98,7 @@ const Sidebar = () => {
                     {
                       path: "/collections",
                       title: "collections ",
-                      icon: <FiFolder />,
+                      icon: <MdFolderOpen />,
                       activeClass: `text-inherit `,
                       initialState: true,
                       attr: "dropdown",
@@ -118,7 +115,7 @@ const Sidebar = () => {
                           title={item?.title}
                           path={`/collections/${item?.title}`}
                           key={id}
-                          activeClass={`text-inherit bg-transparent hover:bg-transparent  `}
+                          activeClass={`text-inherit bg-[#f5f5f5]/70 hover:bg-[#f5f5f5]/70  `}
                           count={item.count}
                           icon={item?.icon}
                           loading={item?.loading}
@@ -138,7 +135,7 @@ const Sidebar = () => {
                       //     title={item?.title}
                       //     path={`/collections/${item?.title}`}
                       //     key={id}
-                      //     activeClass={`text-inherit bg-transparent hover:bg-transparent  `}
+                      //     activeClass={`text-inherit bg-[#f5f5f5]/70 hover:bg-[#f5f5f5]/70  `}
                       //     count={item.count}
                       //     icon={item?.icon}
                       //     loading={item?.loading}
@@ -161,10 +158,7 @@ const Sidebar = () => {
                   ))}
                 </div>
               </div>
-            </div>
-
-            <div className="justify-center w-full px-[1.2rem] flex-col items-center">
-              <span className=" px-1  w-full  text-left  text-[0.70rem] text-[#8d909c]/60 tracking-widest font-medium uppercase ">
+              <span className=" px-1  w-full  text-left  text-[0.70rem] text-[#8d909c]/80 tracking-widest font-medium uppercase ">
                 Settings
               </span>
 
@@ -173,9 +167,13 @@ const Sidebar = () => {
                   path="/settings"
                   title="Settings"
                   icon={<FiSettings />}
-                  activeClass={`text-inherit bg-transparent hover:bg-transparent `}
+                  activeClass={`text-inherit bg-[#f5f5f5]/70 hover:bg-[#f5f5f5]/70 `}
                 />
               </div>
+            </div>
+
+            <div className="justify-center w-full px-[1.2rem] flex-col items-center">
+              
             </div>
 
           </div>
