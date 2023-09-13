@@ -81,14 +81,15 @@ const SidebarLink = ({
             )}
           </div>
         </div>
-        {/* {isActive&&<div className={`absolute h-[50%] w-[3px] ${isActive&&'bg-[#3972f7]'} left-[0.1rem]  -translate-y-1/2 top-1/2 rounded-r-[15px]`}></div>} */}
+        {isActive&&<div className={`absolute h-[50%] w-[3px] ${isActive&&'bg-[#B7A2FC]'} left-[0.1rem]  -translate-y-1/2 top-1/2 rounded-r-[15px]`}></div>}
       </NavLink>
     );
 
     // if link has a children , therefore it renders a dropdown and not a link component
   } else {
     return (
-      <div className={`${activeState&&' rounded-md'}`}>
+      <NavLink
+        to={path} role="link" className={`${activeState&&' rounded-md'}`}>
         <div
           role="button"
           tabIndex={0}
@@ -151,7 +152,7 @@ const SidebarLink = ({
             {item}
           </motion.div>
         )}
-      </div>
+      </NavLink>
     );
   }
 };
