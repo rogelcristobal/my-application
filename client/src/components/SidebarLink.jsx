@@ -101,7 +101,7 @@ const SidebarLink = ({
       <NavLink
         to={path}
         role="link"
-        className={`${activeState && " rounded-md view"} `}
+        className={`${activeState && " rounded-lg view"} `}
       >
         <div
           role="button"

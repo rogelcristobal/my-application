@@ -32,7 +32,7 @@ const Sidebar = () => {
       className={`w-fit whitespace-nowrap relative z-10 h-screen  flex bg-[#262626] pl-0  items-center justify-start  flex-shrink-0`}
     >
       {/* <div className="w-16 flex-shrink-0 h-full bg-[#1c1e1f] flex flex-col items-center justify-end"></div> */}
-      <div className="h-full w-[16rem] pt-[2rem] pb-[2rem] flex flex-col">
+      <div className="h-full w-[16.5rem] pt-[2rem] pb-[2rem] flex flex-col">
         <div className="w-full h-full   flex flex-col justify-start pl-2 items-start">
           {/* <div className="w-full h-12 flex-shrink-0  flex items-center px-[2rem]">
             <span className="font-medium text-[1.1rem] w-full">NoteStack</span>
