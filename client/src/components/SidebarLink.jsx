@@ -12,7 +12,7 @@ const SidebarLink = ({
   path,
   item,
   activeClass,
-  isItem
+  isItem,
 }) => {
   const [hoverState, setHOverState] = React.useState(false);
   const hoverToggle = () => {
@@ -60,7 +60,11 @@ const SidebarLink = ({
                 {icon}
               </span>
 
-              <span className={`flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden   ${isItem?'text-[0.8rem]':'text-[0.850rem]'} truncate  `}>
+              <span
+                className={`flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden   ${
+                  isItem ? "text-[0.8rem]" : "text-[0.850rem]"
+                } truncate  `}
+              >
                 {title}
               </span>
             </div>
@@ -81,7 +85,13 @@ const SidebarLink = ({
             )}
           </div>
         </div>
-        {isActive&&<div className={`absolute h-[50%] w-[3px] ${isActive&&'bg-[#B7A2FC]'} left-[0.1rem]  -translate-y-1/2 top-1/2 rounded-r-[15px]`}></div>}
+        {isActive && (
+          <div
+            className={`absolute h-[50%] w-[3px] ${
+              isActive && "bg-[#B7A2FC]"
+            } left-[0.1rem]  -translate-y-1/2 top-1/2 rounded-r-[15px]`}
+          ></div>
+        )}
       </NavLink>
     );
 
@@ -89,7 +99,10 @@ const SidebarLink = ({
   } else {
     return (
       <NavLink
-        to={path} role="link" className={`${activeState&&' rounded-md'}`}>
+        to={path}
+        role="link"
+        className={`${activeState && " rounded-md view"}`}
+      >
         <div
           role="button"
           tabIndex={0}
@@ -124,14 +137,13 @@ const SidebarLink = ({
                 </span>
               </div>
 
-                 {item && (
+              {item && (
                 <span className="text-[0.8rem] text-[#737373]/70  ">
                   <PiCaretDownBold
                     className={`${!activeState && "-rotate-90"}`}
                   />
                 </span>
               )}
-             
             </div>
           </div>
         </div>
