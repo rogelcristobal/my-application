@@ -7,11 +7,11 @@
     @apply border-dark box-border
   }
   ::-webkit-scrollbar {
-    width: 0.5rem;
+    width: 0.3rem;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply cursor-pointer hover:bg-gray-500/30 bg-gray-400/10 rounded-lg;
+    @apply cursor-pointer hover:bg-gray-500/30 bg-gray-600/20 rounded-lg;
   }
 
     .border-dark-right {

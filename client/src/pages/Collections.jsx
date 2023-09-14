@@ -1,8 +1,6 @@
 import React from "react";
 import axios from "axios";
-import AddCollectionModal from "../components/AddCollectionModal";
-import SearchBar from "../components/SearchBar";
-import { QueryClient, useQuery } from "@tanstack/react-query";
+import {  useQuery } from "@tanstack/react-query";
 import { useSelector, useDispatch } from "react-redux";
 import {
   deleteCurrentUserCollection,
@@ -10,23 +8,17 @@ import {
   updateDataFromInitialFetch,
 } from "../features/user/currentUserSlice";
 import SocketContext from "../context/SocketContext";
-import NoteCollection from "../components/NoteCollection";
-import { useScrollPosition } from "../hook/useScrollPosition";
-// import NoteCollectionDropDownPositionContext from "../context/NoteCollectionDropDownPositionContext";
-import { LuTrash2, LuEdit } from "react-icons/lu";
-import { Routes, Route, useParams } from "react-router-dom";
-import Sample from "../components/Sample";
-import { GoSidebarExpand } from "react-icons/go"; 
+
 
 
 const Collections = () => {
   const { socket } = React.useContext(SocketContext);
   const currentUser = useSelector((state) => state.currentUser.data);
-  const [activeTab, setActiveTab] = React.useState(0);
-  const currentUserLoading = useSelector((state) => state.currentUser.loading);
   const [addCollectionModalState, setAddCollectionModalState] =
-    React.useState(false);
+  React.useState(false);
   const dispatch = useDispatch();
+  // const [activeTab, setActiveTab] = React.useState(0);
+  // const currentUserLoading = useSelector((state) => state.currentUser.loading);
   // const parentScrollableRef = React.useRef(null);
   // const dropDownRef = React.useRef(null);
   // const scrollPosition = useScrollPosition(parentScrollableRef);
@@ -130,44 +122,26 @@ const Collections = () => {
 
 
   return (
-    <div className="h-full overflow-y-auto font-inter w-full flex flex-col items-start justify-start relative">
-      <div className=" h-full  pt-[3.5rem] px-6  w-full">
-        <div className=" container mx-auto   h-[150%]  ">
-          <div className="flex items-center  px-4">
-            <div className="flex flex-col  w-full">
-              <span className="text-[1.4rem] text-[#fafbff]  drop-shadow-sm font-medium">
-                {/* Welcome,{' '}
-                <span className="capitalize">{isLoaded && user.fullName}</span> */}
-                {/* Collections */}
+   <div className="h-full overflow-y-auto font-inter w-full flex flex-col items-end justify-start relative">
+      <div className=" h-[150%]  pt-[3.5rem]   w-full">
+        <div className="    ">
+          <div className="flex items-center px-12  ">
+            <div className="flex flex-col  container mx-auto">
+              <span className="text-[0.8rem]  text-inherit  font-semibold">
+               
+                <p className="text-[1.55rem] text-[#eeeeee] mb-5 mt-1.5 font-medium capitalize">
+                  
+                Collections
+                </p>
               </span>
-             
             </div>
-            {/* <UserButton
-              appearance={{
-                elements: {
-                  userButtonPopoverCard:
-                    " rounded-lg shadow-none view bg-white font-inter text-inherit h-fit  w-[20rem]",
-                  userButtonPopoverMain: " ",
-                  userPreview: " ",
-                  userPreviewAvatarContainer: " ",
-                  userPreviewTextContainer: "  ",
-                  userPreviewMainIdentifier: "text-[0.9remrem]  capitalize",
-                  userPreviewSecondaryIdentifier: "  mt-1 text-[#676269]",
-                  userButtonPopoverActions: "  mt-4",
-                  userButtonPopoverActionButtonIconBox: "  ",
-                  userButtonPopoverActionButtonText:
-                    "  text-inherit  font-normal text-[0.8rem]",
-                  userButtonPopoverActionButton: "  text-inherit  px-4",
-                  userButtonPopoverFooter: " ",
-                },
-              }}
-            ></UserButton> */}
+
+            
           </div>
-           <div className="px-4 pt-3 h-full">
-{/* bg-[#161822] */}
-            {/* <span className="text-[0.9rem] text-gray-600  font-normal">Dashboard</span> */}
-         
-           </div>
+          <div className="px-6 pt-2 h-52 mt-8 container mx-auto ">
+           
+
+          </div>
         </div>
       </div>
     </div>

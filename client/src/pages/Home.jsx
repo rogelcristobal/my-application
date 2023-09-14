@@ -1,61 +1,65 @@
 import { useUser } from "@clerk/clerk-react";
+import { PiCheckSquareOffsetBold, PiClockBold } from "react-icons/pi";
 const Home = () => {
   const { user, isLoaded } = useUser();
-
+// console.log(user)
   return (
-    <div className="h-full overflow-y-auto font-inter w-full flex flex-col items-end justify-start relative">
-      {/* <div className=" flex-shrink-0 bg-[#101011] items-center top-0 right-0 justify-between flex   h-[3.5rem]  z-10  px-10   w-full">
-        <PiMagnifyingGlass className="text-[#b7b7b7]/50 text-[1.1rem]" />
-        <div className="items-center  h-full justify-end flex ">
-          <div className="w-fit h-full  justify-between  flex-shrink-0 flex gap-4 items-center">
-            <span className="text-[0.75rem] text-[#e8e8e8] capitalize">
-              {isLoaded && user.fullName}
-            </span>
-            <User></User>
-          </div>
-        </div>
-      </div> */}
-      <div className=" h-full  pt-[3.75rem] px-5  w-full">
+    <div className="h-full overflow-y-auto  font-inter w-full flex flex-col items-end justify-start relative">
+      <div className=" h-full  pt-[3.5rem]  w-full">
         <div className=" container mx-auto   h-[150%]  ">
-          <div className="flex items-center  px-5">
-            <div className="flex flex-col  w-full">
-              {/* <span className="text-[0.8rem]  text-[#686868]  capitalize"> Dashboard</span> */}
-
-              <span className="text-[0.8rem]  text-[#686868]/70  font-normal">
-                <span className="capitalize ">Dashboard</span>
-                <p className="text-[1.4rem] text-[#e8e8e8]  mt-1.5 font-medium capitalize">
-                  {" "}
-                  Welcome back, {isLoaded && user.firstName}
+          <div className="flex items-center   px-8">
+            <div className="flex flex-col items-start mb-6 w-full">
+              <span className="text-[0.875rem] text-start capitalize text-[#7f858c]/70 font-medium">
+                Good morning
+               
+                <p className="text-[1.55rem]  text-[#eeeeee] mt-1 font-medium  capitalize">
+               Welcome back {isLoaded && user.firstName} 
                 </p>
               </span>
-              {/* <span className="text-[#686868] mt-1 text-[0.775rem]">{isLoaded&&user.primaryEmailAddress.emailAddress}</span> */}
+              {/* <span className="tracking-normal text-[#7f858c]/70 mt-1 font-normal text-[0.8rem] ">
+                {isLoaded && user.primaryEmailAddress.emailAddress} 
+              </span> */}
             </div>
-
-            {/* <UserButton
-              appearance={{
-                elements: {
-                  userButtonPopoverCard:
-                    " rounded-lg shadow-none view bg-white font-inter text-inherit h-fit  w-[20rem]",
-                  userButtonPopoverMain: " ",
-                  userPreview: " ",
-                  userPreviewAvatarContainer: " ",
-                  userPreviewTextContainer: "  ",
-                  userPreviewMainIdentifier: "text-[0.9remrem]  capitalize",
-                  userPreviewSecondaryIdentifier: "  mt-1 text-[#676269]",
-                  userButtonPopoverActions: "  mt-4",
-                  userButtonPopoverActionButtonIconBox: "  ",
-                  userButtonPopoverActionButtonText:
-                    "  text-inherit  font-normal text-[0.8rem]",
-                  userButtonPopoverActionButton: "  text-inherit  px-4",
-                  userButtonPopoverFooter: " ",
-                },
-              }}
-            ></UserButton> */}
           </div>
-          <div className="px-5 pt-5 h-full">
-            <div className=" flex gap-4 mt-3">
-              <div className="w-[14rem] h-32  rounded-md bg-[#212121]"></div>
-              <div className="w-[14rem] h-32  rounded-md bg-[#212121]"></div>
+          <div className="px-6 pt-0  w-full h-full ">
+            <div className=" flex gap-6 ">
+              {/* <div className="min-w-[16rem] h-fit px-[18px] py-[18px] flex-col flex justify-between rounded-lg bg-[#191b1f]">
+                <div className="flex items-center  justify-start gap-1.5 ">
+                  <span className="text-[0.8rem] font-normal ">
+                    {" "}
+                    Timed in at
+                  </span>
+                </div>
+                <div className="mt-3 flex items-center gap-3.5">
+                  <div className=" p-[0.5rem]  rounded-md view ">
+                    {" "}
+                    <PiClockBold className="text-[0.8rem]  " />
+                  </div>
+                  <span className="text-[1.6rem] font-sans tabular-nums  font-normal">
+                    07:11 <span className="text-[1.1rem]">am</span>
+                  </span>
+                </div>
+              </div> */}
+
+              {/* <div className="min-w-[15rem] h-fit py-[12px] p-[14px] rounded-md bg-inherit border-dark ">
+                <div className="mt-0 flex items-center  gap-3.5">
+                  <div className=" h-[2rem] w-[2rem]  border-dark flex-shrink-0  rounded-md  grid place-content-center">
+                    {" "}
+                    <PiCheckSquareOffsetBold className="text-[1rem]  " />
+                  </div>
+                  <div className="flex items-start  w-full flex-col justify-start ">
+                    <span className="text-[0.785rem] font-medium  ">
+                       Tasks
+                    </span>
+                    <span className="text-[1.3rem] tracking-wider font-general tabular-nums  font-medium">
+                      24
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+               */}
+
             </div>
           </div>
         </div>

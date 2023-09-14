@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Navigate, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Components from "./pages/Collections";
+import Collections from "./pages/Collections";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "./features/user/currentUserSlice";
 import Sidebar from "./components/Sidebar";
@@ -9,6 +9,7 @@ import { useUser } from "@clerk/clerk-react";
 import Home from "./pages/Home";
 import AuthPage from "./pages/AuthPage";
 import User from "./components/User";
+import Settings from "./pages/Settings";
 function App() {
   const dispatch = useDispatch();
   const { isSignedIn, user, isLoaded } = useUser();
@@ -27,14 +28,9 @@ function App() {
   // }
   // console.log(userDataLoading);
 
-  // if(!currentUserLoading && isLoaded){
-  //   console.log(currentUser)
-  //   console.log(user)
-  // }else{
-  //   console.log('loading')
-  // }
+
   return (
-    <div className="h-screen w-full  font-inter  bg-[#181818] text-[#e8e8e8] relative">
+    <div className="h-screen w-full  font-inter  bg-[#212121] text-[#eeeeee] tracking-tight relative">
       <Routes>
         <Route path="/auth/*" element={<AuthPage />}></Route>
 
@@ -43,15 +39,15 @@ function App() {
           element={
             <ProtectedRoute>
               <div className="h-full   flex items-start flex-col justify-start relative">
-                <div className=" flex-shrink-0 items-center top-[1.5rem] right-0 justify-end flex   h-[3.5rem] fixed  z-10     w-full">
-                  <div className=" h-full w-[calc(100%-16.5rem)] px-10 items-center justify-end flex">
+                <div className=" flex-shrink-0 items-center top-[0rem] right-0 justify-end flex    h-[3.5rem] fixed  z-50     w-full ">
+                  <div className=" h-full  box-border w-[calc(100%-17rem)] px-12 items-center justify-end flex">
                     {/* <PiMagnifyingGlass className="text-[#b7b7b7]/50 text-[1.1rem]" /> */}
-                  <div className="items-center  h-full justify-end flex ">
+                  <div className="items-center h-full justify-end flex ">
                     <div className="w-fit h-full  justify-between  flex-shrink-0 flex gap-4 items-center">
-                      <span className="text-[0.75rem] text-[#e8e8e8] capitalize">
+                      {/* <User></User> */}
+                      {/* <span className="text-[0.75rem] tracking-wide text-[#e8e8e8] capitalize">
                         {isLoaded && user?.fullName}
-                      </span>
-                      <User></User>
+                      </span> */}
                     </div>
                   </div>
                   </div>
@@ -66,8 +62,9 @@ function App() {
                     <Route path="/dashboard" element={<Home />}></Route>
                     <Route
                       path="/collections/*"
-                      element={<Components />}
+                      element={<Collections />}
                     ></Route>
+                    <Route path="/settings" element={<Settings/>}></Route>
                   </Routes>
                 </div>
               </div>

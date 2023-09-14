@@ -47,13 +47,13 @@ React.useEffect(() => {
   return (
     <div ref={ref} role="button"  className={`relative flex   items-center justify-between gap-2 `} onClick={handleAvatarClick}>
       <div className="avatar placeholder cursor-pointer ">
-        <div className=" text-neutral-content text-[0.725rem] rounded-full w-[2.25rem] bg-[#212121] ">
+        <div className=" text-neutral-content text-[0.7rem] rounded-full w-[2.25rem] bg-[#20232c] ">
           <span>{initials}</span>
         </div>
       </div>
-      <PiCaretDown className="text-[0.8rem] text-[#999999]/70 "/>
-
+      {/* <PiCaretDown className="text-[0.8rem] text-[#999999]/70 "/> */}
       <UserModal state={state} initials={initials} />
+
     </div>
   );
 };

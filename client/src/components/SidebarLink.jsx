@@ -7,12 +7,12 @@ import { motion } from "framer-motion";
 const SidebarLink = ({
   title,
   initialState,
-  
   icon,
   count,
   path,
   item,
   activeClass,
+  isItem,
 }) => {
   const [hoverState, setHOverState] = React.useState(false);
   const hoverToggle = () => {
@@ -34,40 +34,43 @@ const SidebarLink = ({
       <NavLink
         to={path}
         role="link"
-        className="w-full   h-fit box-border relative" 
+        className={`w-full  h-fit box-border relative ${isItem&&'pr-[1rem] '}  rounded-md`}
         onClick={handleNavLinkClick}
-        
       >
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full  rounded-md h-[2.4rem] box-border flex flex-col font-normal relative px-3  ${
+          className={`w-full  rounded-lg   ${isItem?'h-[2.35rem] ':'h-[2.5rem]'} box-border flex flex-col  relative px-3.5  ${
             isActive
-              ? `${activeClass} view `
-              : "text-[#999999]/70  bg-transparent hover:bg-transparent border-0 box-border"
+              ? `${activeClass} font-normal `
+              : "text-[#737373] bg-transparent hover:bg-transparent border-0 font-normal box-border"
           }
           `}
         >
           <div className="flex-shrink-0 h-full  flex justify-between items-center overflow-hidden w-full">
             <div
-              className={`flex justify-start items-center   h-full    w-full capitalize gap-3 `}
+              className={`flex justify-start items-center   h-full    w-full capitalize gap-2.5 `}
             >
               {/* text-[] */}
               <span
                 className={`text-[1rem]   ${
-                  isActive ? "text-inherit" : "text-[#999999]/70"
+                  isActive ? "text-[#B7A2FC]" : "text-[#737373]"
                 }`}
               >
                 {icon}
               </span>
 
-              <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate ">
+              <span
+                className={`flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden   ${
+                  isItem ? "text-[0.8rem]" : "text-[0.850rem]"
+                } truncate  `}
+              >
                 {title}
               </span>
             </div>
             <span>
               {count > 0 && (
-                <div className=" text-[0.7rem]  rounded-md h-[1.2rem] w-[1.2rem] pt-0.5 flex items-center justify-center  text-[#999999]/70   font-normal">
+                <div className=" text-[0.675rem]  rounded-full  flex items-center justify-center  text-[#d4d4d4]  font-normal">
                   <span>{count}</span>
                 </div>
               )}
@@ -82,51 +85,60 @@ const SidebarLink = ({
             )}
           </div>
         </div>
-
-        {/* {isItem&&<div className={`${isActive?'bg-[#676269]/50 h-[90%]':'h-0'} transition-all duration-100 ease-in-out   w-[1.5px] z-10 absolute -left-[0.7rem] top-1/2 -translate-y-1/2`}></div>} */}
+        {isActive && (
+          <div
+            className={`absolute h-[50%] w-[3px] ${
+              isActive && "bg-[#B7A2FC]"
+            } left-[0.1rem]  -translate-y-1/2 top-1/2 rounded-r-[15px]`}
+          ></div>
+        )}
       </NavLink>
     );
 
     // if link has a children , therefore it renders a dropdown and not a link component
   } else {
     return (
-      <>
+      <NavLink
+        to={path}
+        role="link"
+        className={`${activeState && " rounded-lg view"} `}
+      >
         <div
-          role="link"
-          className="w-full   h-fit box-border"
+          role="button"
+          tabIndex={0}
+          className={`w-full  h-fit box-border  rounded-md `}
           onClick={handleNavLinkClick}
         >
           <div
             onMouseEnter={hoverToggle}
             onMouseLeave={hoverToggle}
-            className={`w-full cursor-pointer rounded-md h-[2.4rem] flex flex-col font-normal relative px-3   ${
+            className={`w-full cursor-pointer rounded-lg  h-[2.5rem] flex flex-col relative px-3.5   ${
               isActive
                 ? // bg-[#2c2c2c]/50
-                  activeClass
-                : "text-[#999999]/70  bg-transparent hover:bg-transparent border-0 box-border"
+                  `${activeClass} font-normal `
+                : "text-[#737373] bg-transparent hover:bg-transparent border-0 box-border font-normal "
             }
           `}
           >
             <div className="flex-shrink-0 h-full  flex justify-between items-center overflow-hidden w-full">
               <div
-                className={`flex justify-start items-center   h-full    w-full capitalize gap-3 `}
+                className={`flex justify-start items-center   h-full    w-full capitalize gap-2.5 `}
               >
-                {/* text-[#004feb] */}
                 <span
                   className={`text-[1rem]   ${
-                    isActive ? "text-inherit" : "text-[#999999]/70"
+                    isActive ? "text-[#B7A2FC]" : "text-[#737373]"
                   }`}
                 >
                   {icon}
                 </span>
 
-                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.865rem]  truncate ">
+                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.850rem]  truncate  ">
                   {title}
                 </span>
               </div>
 
               {item && (
-                <span className="text-[0.75rem] text-[#666666]  ">
+                <span className="text-[0.8rem] text-[#737373]/70  ">
                   <PiCaretDownBold
                     className={`${!activeState && "-rotate-90"}`}
                   />
@@ -143,17 +155,16 @@ const SidebarLink = ({
             }}
             // 2.60 * 2 + "rem"
             animate={{
-              height: activeState ? 2.75 * 2 + "rem" : 0,
+              height: activeState ? 2.85 * 2 + "rem" : 0,
             }}
-            className={` pl-[1.1rem] relative    w-full items-center justify-between ${
-              activeState && "mt-1.5 "
+            className={` pl-[1rem] relative  mb-1.5  w-full items-start space-y-1 justify-center ${
+              activeState && " "
             } flex flex-col px-0 overflow-hidden `}
           >
             {item}
-            {/* <div className="absolute w-[1.5px] h-full top-0 left-4 bg-[#676269]/10"></div> */}
           </motion.div>
         )}
-      </>
+      </NavLink>
     );
   }
 };
@@ -167,6 +178,7 @@ SidebarLink.propTypes = {
   path: PropTypes.string,
   item: PropTypes.node,
   activeClass: PropTypes.string,
+  isItem:PropTypes.bool
 };
 
 export default SidebarLink;
