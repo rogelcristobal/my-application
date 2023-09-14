@@ -129,7 +129,7 @@ const Collections = () => {
             <div className="flex flex-col  container mx-auto">
               <span className="text-[0.8rem]  text-inherit  font-semibold">
                 {/* <span className="capitalize ">Dashboard</span> */}
-                <p className="text-[1.55rem] text-inherit mb-5 mt-1.5 font-medium capitalize">
+                <p className="text-[1.55rem] text-[#eeeeee] mb-5 mt-1.5 font-medium capitalize">
                   {" "}
                 Notes
                 </p>

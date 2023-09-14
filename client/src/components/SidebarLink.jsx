@@ -40,10 +40,10 @@ const SidebarLink = ({
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full  rounded-lg  h-[2.6rem] box-border flex flex-col  relative px-3.5  ${
+          className={`w-full  rounded-lg  h-[2.5rem] box-border flex flex-col  relative px-3.5  ${
             isActive
-              ? `${activeClass} font-medium `
-              : "text-[#727f95]/90 bg-transparent hover:bg-transparent border-0 font-medium box-border"
+              ? `${activeClass} font-normal `
+              : "text-[#737373] bg-transparent hover:bg-transparent border-0 font-normal box-border"
           }
           `}
         >
@@ -53,20 +53,20 @@ const SidebarLink = ({
             >
               {/* text-[] */}
               <span
-                className={`text-[1.1rem]   ${
-                  isActive ? "text-[#3972f7]" : "text-[#727f95]/90"
+                className={`text-[1rem]   ${
+                  isActive ? "text-[#B7A2FC]" : "text-[#737373]"
                 }`}
               >
                 {icon}
               </span>
 
-              <span className={`flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden   ${isItem?'text-[0.8rem]':'text-[0.870rem]'} truncate  `}>
+              <span className={`flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden   ${isItem?'text-[0.8rem]':'text-[0.850rem]'} truncate  `}>
                 {title}
               </span>
             </div>
             <span>
               {count > 0 && (
-                <div className=" text-[0.675rem]  rounded-full  flex items-center justify-center  text-[#d4d4d4]  font-medium">
+                <div className=" text-[0.675rem]  rounded-full  flex items-center justify-center  text-[#d4d4d4]  font-normal">
                   <span>{count}</span>
                 </div>
               )}
@@ -98,11 +98,11 @@ const SidebarLink = ({
           <div
             onMouseEnter={hoverToggle}
             onMouseLeave={hoverToggle}
-            className={`w-full cursor-pointer rounded-lg  h-[2.6rem] flex flex-col relative px-3.5   ${
+            className={`w-full cursor-pointer rounded-lg  h-[2.5rem] flex flex-col relative px-3.5   ${
               isActive
                 ? // bg-[#2c2c2c]/50
-                  `${activeClass} font-medium `
-                : "text-[#727f95]/90 bg-transparent hover:bg-transparent border-0 box-border font-medium "
+                  `${activeClass} font-normal `
+                : "text-[#737373] bg-transparent hover:bg-transparent border-0 box-border font-normal "
             }
           `}
           >
@@ -111,20 +111,20 @@ const SidebarLink = ({
                 className={`flex justify-start items-center   h-full    w-full capitalize gap-2.5 `}
               >
                 <span
-                  className={`text-[1.1rem]   ${
-                    isActive ? "text-[#3972f7]" : "text-[#727f95]/90"
+                  className={`text-[1rem]   ${
+                    isActive ? "text-[#B7A2FC]" : "text-[#737373]"
                   }`}
                 >
                   {icon}
                 </span>
 
-                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.870rem]  truncate  ">
+                <span className="flex  items-center mt-0.5 text-start w-full h-fit overflow-x-hidden text-[0.850rem]  truncate  ">
                   {title}
                 </span>
               </div>
 
                  {item && (
-                <span className="text-[0.870rem] text-[#727f95]/90/70  ">
+                <span className="text-[0.8rem] text-[#737373]/70  ">
                   <PiCaretDownBold
                     className={`${!activeState && "-rotate-90"}`}
                   />

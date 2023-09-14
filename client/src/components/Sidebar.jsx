@@ -31,7 +31,7 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      className={`w-fit whitespace-nowrap relative z-10 border-dark-right h-screen  flex bg-white pl-0  items-center justify-start  flex-shrink-0`}
+      className={`w-fit whitespace-nowrap relative z-10 h-screen  flex bg-[#262626] pl-0  items-center justify-start  flex-shrink-0`}
     >
       {/* <div className="w-16 flex-shrink-0 h-full bg-[#1c1e1f] flex flex-col items-center justify-end"></div> */}
       <div className="h-full w-[16rem] pt-[2rem] pb-[2rem] flex flex-col">
@@ -50,7 +50,7 @@ const Sidebar = () => {
                   className="input input-bordered  h-10 placeholder:text-[#8d909c]  text-[0.865rem] border-dark placeholder:text-[0.8rem] w-full max-w-xs"
                 />
               </div> */}
-              <span className=" px-1  w-full  text-left  text-[0.70rem] text-[#8d909c]/80 tracking-widest  font-medium uppercase ">
+              <span className=" px-1  w-full  text-left  text-[0.70rem] text-[#A3A3A3] tracking-widest  font-medium uppercase ">
                 Menu
               </span>
 
@@ -60,19 +60,19 @@ const Sidebar = () => {
                     path: "/dashboard",
                     title: "dashboard",
                     icon: <MdOutlineSpaceDashboard />,
-                    activeClass: ` text-inherit bg-[#f5f5f5]/70 hover:bg-[#f5f5f5]/70`,
+                    activeClass: ` text-[#EEEEEE] bg-[#2e2e2e] hover:bg-[#2e2e2e]`,
                   },
                   // {
                   //   path: "/time-sheet",
                   //   title: "time sheet",
                   //   icon: <PiCalendarCheckBold />,
-                  //   activeClass: ` text-inherit bg-[#f5f5f5]/70 hover:bg-[#f5f5f5]/70`,
+                  //   activeClass: ` text-[#EEEEEE] bg-[#2e2e2e] hover:bg-[#2e2e2e]`,
                   // },
                   // {
                   //   path: "/pay-summary",
                   //   title: "pay summary",
                   //   icon: <FiCreditCard />,
-                  //   activeClass: ` text-inherit bg-[#f5f5f5]/70 hover:bg-[#f5f5f5]/70`,
+                  //   activeClass: ` text-[#EEEEEE] bg-[#2e2e2e] hover:bg-[#2e2e2e]`,
                   // },
                 ].map((item, id) => (
                   <SidebarLink
@@ -89,7 +89,7 @@ const Sidebar = () => {
                 ))}
               </div>
               <div className="justify-center  w-full flex-col mt-2 items-center">
-                <span className=" px-1  w-full  text-left  text-[0.70rem] text-[#8d909c]/80 tracking-widest font-medium uppercase ">
+                <span className=" px-1  w-full  text-left  text-[0.70rem] text-[#A3A3A3] tracking-widest font-medium uppercase ">
                   Tools
                 </span>
 
@@ -99,7 +99,7 @@ const Sidebar = () => {
                       path: "/collections",
                       title: "collections ",
                       icon: <MdFolderOpen />,
-                      activeClass: `text-inherit `,
+                      activeClass: `text-[#EEEEEE] `,
                       initialState: true,
                       attr: "dropdown",
                       items: [
@@ -115,7 +115,7 @@ const Sidebar = () => {
                           title={item?.title}
                           path={`/collections/${item?.title}`}
                           key={id}
-                          activeClass={`text-inherit bg-[#f5f5f5]/70 hover:bg-[#f5f5f5]/70  `}
+                          activeClass={`text-[#EEEEEE] bg-[#2e2e2e] hover:bg-[#2e2e2e] `}
                           count={item.count}
                           icon={item?.icon}
                           loading={item?.loading}
@@ -127,7 +127,8 @@ const Sidebar = () => {
                       path: "/channels",
                       title: "Channels ",
                       icon: <FiHash />,
-                      activeClass: `text-inherit `,
+                      activeClass: `text-[#EEEEEE]  bg-[#2e2e2e] hover:bg-[#2e2e2e]`,
+                      
                       initialState: true,
                       // attr: "dropdown",
                       // items: [{}, {}].map((item, id) => (
@@ -135,7 +136,7 @@ const Sidebar = () => {
                       //     title={item?.title}
                       //     path={`/collections/${item?.title}`}
                       //     key={id}
-                      //     activeClass={`text-inherit bg-[#f5f5f5]/70 hover:bg-[#f5f5f5]/70  `}
+                      //     activeClass={`text-[#EEEEEE] bg-[#2e2e2e] hover:bg-[#2e2e2e]  `}
                       //     count={item.count}
                       //     icon={item?.icon}
                       //     loading={item?.loading}
@@ -158,7 +159,7 @@ const Sidebar = () => {
                   ))}
                 </div>
               </div>
-              <span className=" px-1  w-full  text-left  text-[0.70rem] text-[#8d909c]/80 tracking-widest font-medium uppercase ">
+              <span className=" px-1  w-full  text-left  text-[0.70rem] text-[#A3A3A3] tracking-widest font-medium uppercase ">
                 Settings
               </span>
 
@@ -167,7 +168,7 @@ const Sidebar = () => {
                   path="/settings"
                   title="Settings"
                   icon={<FiSettings />}
-                  activeClass={`text-inherit bg-[#f5f5f5]/70 hover:bg-[#f5f5f5]/70 `}
+                  activeClass={`text-[#EEEEEE] bg-[#2e2e2e] hover:bg-[#2e2e2e] `}
                 />
               </div>
             </div>
