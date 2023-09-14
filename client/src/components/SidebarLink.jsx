@@ -43,7 +43,7 @@ const SidebarLink = ({
           className={`w-full  rounded-lg   ${isItem?'h-[2.35rem] ':'h-[2.5rem]'} box-border flex flex-col  relative px-3.5  ${
             isActive
               ? `${activeClass} font-normal `
-              : "text-[#737373] bg-transparent hover:bg-transparent border-0 font-normal box-border"
+              : "text-[#737373] bg-transparent hover:bg-[#212121] border-0 font-normal box-border"
           }
           `}
         >
@@ -115,8 +115,8 @@ const SidebarLink = ({
             className={`w-full cursor-pointer rounded-lg  h-[2.5rem] flex flex-col relative px-3.5   ${
               isActive
                 ? // bg-[#2c2c2c]/50
-                  `${activeClass} font-normal `
-                : "text-[#737373] bg-transparent hover:bg-transparent border-0 box-border font-normal "
+                  `text-[#EEEEEE]  font-normal bg-[#2e2e2e] `
+                : "text-[#737373] bg-transparent  hover:bg-[#2e2e2e] border-0 box-border font-normal "
             }
           `}
           >
@@ -138,7 +138,7 @@ const SidebarLink = ({
               </div>
 
               {item && (
-                <span className="text-[0.8rem] text-[#737373]/70  ">
+                <span className="text-[0.675rem] text-[#737373]/70  ">
                   <PiCaretDownBold
                     className={`${!activeState && "-rotate-90"}`}
                   />

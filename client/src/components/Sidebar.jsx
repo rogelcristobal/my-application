@@ -115,7 +115,7 @@ const Sidebar = () => {
                           title={item?.title}
                           path={`/collections/${item?.title}`}
                           key={id}
-                          activeClass={`text-[#EEEEEE] bg-[#2e2e2e] hover:bg-[#2e2e2e] `}
+                          activeClass={` bg-[#2e2e2e] hover:bg-[#2e2e2e] `}
                           count={item.count}
                           icon={item?.icon}
                           loading={item?.loading}
