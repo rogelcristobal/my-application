@@ -1,7 +1,5 @@
-import {
- MdOutlineSpaceDashboard,MdFolderOpen
-} from "react-icons/md";
-import {FcFolder} from 'react-icons/fc'
+import { MdOutlineSpaceDashboard, MdFolderOpen } from "react-icons/md";
+import { FcFolder } from "react-icons/fc";
 import {
   FiGrid,
   FiCreditCard,
@@ -50,45 +48,47 @@ const Sidebar = () => {
                   className="input input-bordered  h-10 placeholder:text-[#8d909c]  text-[0.865rem] border-dark placeholder:text-[0.8rem] w-full max-w-xs"
                 />
               </div> */}
-              <span className=" px-1  w-full  text-left  text-[0.70rem] text-[#A3A3A3] tracking-widest  font-medium uppercase ">
-                Menu
-              </span>
+              <div className="justify-center  mt-1  w-full flex-col items-center">
+                <span className=" px-1  w-full  text-left  text-[0.70rem] text-[#A3A3A3] tracking-widest  font-medium uppercase ">
+                  Menu
+                </span>
 
-              <div className="w-full h-fit  flex flex-col space-y-0 mt-1  py-2">
-                {[
-                  {
-                    path: "/dashboard",
-                    title: "dashboard",
-                    icon: <MdOutlineSpaceDashboard />,
-                    activeClass: ` text-[#EEEEEE] bg-[#2e2e2e] hover:bg-[#2e2e2e]`,
-                  },
-                  // {
-                  //   path: "/time-sheet",
-                  //   title: "time sheet",
-                  //   icon: <PiCalendarCheckBold />,
-                  //   activeClass: ` text-[#EEEEEE] bg-[#2e2e2e] hover:bg-[#2e2e2e]`,
-                  // },
-                  // {
-                  //   path: "/pay-summary",
-                  //   title: "pay summary",
-                  //   icon: <FiCreditCard />,
-                  //   activeClass: ` text-[#EEEEEE] bg-[#2e2e2e] hover:bg-[#2e2e2e]`,
-                  // },
-                ].map((item, id) => (
-                  <SidebarLink
-                    key={id}
-                    path={item.path}
-                    title={item.title}
-                    icon={item.icon}
-                    count={item?.count}
-                    item={item?.items}
-                    activeClass={item.activeClass}
-                    initialState={item?.initialState}
-                    loading={item?.loading}
-                  />
-                ))}
+                <div className="w-full h-fit  flex flex-col space-y-0   py-2">
+                  {[
+                    {
+                      path: "/dashboard",
+                      title: "dashboard",
+                      icon: <MdOutlineSpaceDashboard />,
+                      activeClass: ` text-[#EEEEEE] bg-[#2e2e2e] hover:bg-[#2e2e2e]`,
+                    },
+                    // {
+                    //   path: "/time-sheet",
+                    //   title: "time sheet",
+                    //   icon: <PiCalendarCheckBold />,
+                    //   activeClass: ` text-[#EEEEEE] bg-[#2e2e2e] hover:bg-[#2e2e2e]`,
+                    // },
+                    // {
+                    //   path: "/pay-summary",
+                    //   title: "pay summary",
+                    //   icon: <FiCreditCard />,
+                    //   activeClass: ` text-[#EEEEEE] bg-[#2e2e2e] hover:bg-[#2e2e2e]`,
+                    // },
+                  ].map((item, id) => (
+                    <SidebarLink
+                      key={id}
+                      path={item.path}
+                      title={item.title}
+                      icon={item.icon}
+                      count={item?.count}
+                      item={item?.items}
+                      activeClass={item.activeClass}
+                      initialState={item?.initialState}
+                      loading={item?.loading}
+                    />
+                  ))}
+                </div>
               </div>
-              <div className="justify-center  w-full flex-col mt-2 items-center">
+              <div className="justify-center  mt-1  w-full flex-col items-center">
                 <span className=" px-1  w-full  text-left  text-[0.70rem] text-[#A3A3A3] tracking-widest font-medium uppercase ">
                   Tools
                 </span>
@@ -128,7 +128,7 @@ const Sidebar = () => {
                       title: "Channels ",
                       icon: <FiHash />,
                       activeClass: `text-[#EEEEEE]  bg-[#2e2e2e] hover:bg-[#2e2e2e]`,
-                      
+
                       initialState: true,
                       // attr: "dropdown",
                       // items: [{}, {}].map((item, id) => (
@@ -159,24 +159,23 @@ const Sidebar = () => {
                   ))}
                 </div>
               </div>
-              <span className=" px-1  w-full  text-left  text-[0.70rem] text-[#A3A3A3] tracking-widest font-medium uppercase ">
-                Settings
-              </span>
+              <div className="justify-center mt-1  w-full flex-col items-center">
+                <span className=" px-1 w-full  text-left  text-[0.70rem] text-[#A3A3A3] tracking-widest font-medium uppercase ">
+                  Settings
+                </span>
 
-              <div className="w-full h-fit flex flex-col space-y-0  mt-0 py-2">
-                <SidebarLink
-                  path="/settings"
-                  title="Settings"
-                  icon={<FiSettings />}
-                  activeClass={`text-[#EEEEEE] bg-[#2e2e2e] hover:bg-[#2e2e2e] `}
-                />
+                <div className="w-full h-fit flex flex-col space-y-0  mt-0 py-2">
+                  <SidebarLink
+                    path="/settings"
+                    title="Settings"
+                    icon={<FiSettings />}
+                    activeClass={`text-[#EEEEEE] bg-[#2e2e2e] hover:bg-[#2e2e2e] `}
+                  />
+                </div>
               </div>
             </div>
 
-            <div className="justify-center w-full px-[1.2rem] flex-col items-center">
-              
-            </div>
-
+            <div className="justify-center w-full px-[1.2rem] flex-col items-center"></div>
           </div>
         </div>
       </div>
