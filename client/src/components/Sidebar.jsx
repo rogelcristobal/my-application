@@ -53,12 +53,12 @@ const Sidebar = () => {
                   Menu
                 </span>
 
-                <div className="w-full h-fit  flex flex-col space-y-0   py-2">
+                <div className="w-full h-fit  flex flex-col space-y-2   py-2">
                   {[
                     {
                       path: "/dashboard",
                       title: "dashboard",
-                      icon: <MdOutlineSpaceDashboard />,
+                      icon: <FiGrid />,
                       activeClass: ` text-[#EEEEEE] bg-[#2e2e2e] hover:bg-[#2e2e2e]`,
                     },
                     // {
@@ -93,12 +93,12 @@ const Sidebar = () => {
                   Tools
                 </span>
 
-                <div className="w-full h-fit flex flex-col space-y-0  mt-0 py-2">
+                <div className="w-full h-fit flex flex-col space-y-2  mt-0 py-2">
                   {[
                     {
                       path: "/collections",
                       title: "collections ",
-                      icon: <MdFolderOpen />,
+                      icon: <FiFolder />,
                       activeClass: `text-[#EEEEEE] `,
                       initialState: true,
                       attr: "dropdown",
@@ -164,7 +164,7 @@ const Sidebar = () => {
                   Settings
                 </span>
 
-                <div className="w-full h-fit flex flex-col space-y-0  mt-0 py-2">
+                <div className="w-full h-fit flex flex-col space-y-2  mt-0 py-2">
                   <SidebarLink
                     path="/settings"
                     title="Settings"

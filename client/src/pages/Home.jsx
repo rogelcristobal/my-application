@@ -7,20 +7,20 @@ const Home = () => {
     <div className="h-full overflow-y-auto  font-inter w-full flex flex-col items-end justify-start relative">
       <div className=" h-full  pt-[3.5rem]  w-full">
         <div className=" container mx-auto   h-[150%]  ">
-          {/* <div className="flex items-center   px-8">
+          <div className="flex items-center   px-8">
             <div className="flex flex-col items-start mb-6 w-full">
-              <span className="text-[0.875rem] text-start capitalize  font-medium">
-                
+              <span className="text-[0.875rem] text-start capitalize text-[#7f858c]/70 font-medium">
+                Good morning
                
-                <p className="text-[1.55rem]   mt-1 font-semibold  capitalize">
-               {isLoaded && user.fullName} 
+                <p className="text-[1.55rem]  text-[#eeeeee] mt-1 font-medium  capitalize">
+               Welcome back {isLoaded && user.firstName} 
                 </p>
               </span>
-              <span className="tracking-normal text-[#7f858c]/70 mt-1 font-normal text-[0.8rem] ">
+              {/* <span className="tracking-normal text-[#7f858c]/70 mt-1 font-normal text-[0.8rem] ">
                 {isLoaded && user.primaryEmailAddress.emailAddress} 
-              </span>
+              </span> */}
             </div>
-          </div> */}
+          </div>
           <div className="px-6 pt-0  w-full h-full ">
             <div className=" flex gap-6 ">
               {/* <div className="min-w-[16rem] h-fit px-[18px] py-[18px] flex-col flex justify-between rounded-lg bg-[#191b1f]">

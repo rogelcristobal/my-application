@@ -34,13 +34,13 @@ const SidebarLink = ({
       <NavLink
         to={path}
         role="link"
-        className={`w-full  h-fit box-border relative   rounded-md`}
+        className={`w-full  h-fit box-border relative ${isItem&&'pr-[1rem] '}  rounded-md`}
         onClick={handleNavLinkClick}
       >
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full  rounded-lg  h-[2.5rem] box-border flex flex-col  relative px-3.5  ${
+          className={`w-full  rounded-lg   ${isItem?'h-[2.35rem] ':'h-[2.5rem]'} box-border flex flex-col  relative px-3.5  ${
             isActive
               ? `${activeClass} font-normal `
               : "text-[#737373] bg-transparent hover:bg-transparent border-0 font-normal box-border"
@@ -101,12 +101,12 @@ const SidebarLink = ({
       <NavLink
         to={path}
         role="link"
-        className={`${activeState && " rounded-md view"}`}
+        className={`${activeState && " rounded-md view"} `}
       >
         <div
           role="button"
           tabIndex={0}
-          className="w-full  h-fit box-border  rounded-md "
+          className={`w-full  h-fit box-border  rounded-md `}
           onClick={handleNavLinkClick}
         >
           <div
@@ -155,9 +155,9 @@ const SidebarLink = ({
             }}
             // 2.60 * 2 + "rem"
             animate={{
-              height: activeState ? 2.875 * 2 + "rem" : 0,
+              height: activeState ? 2.85 * 2 + "rem" : 0,
             }}
-            className={` pl-[1rem] relative  py-0  w-full items-end justify-center ${
+            className={` pl-[1rem] relative  mb-1.5  w-full items-start space-y-1 justify-center ${
               activeState && " "
             } flex flex-col px-0 overflow-hidden `}
           >
@@ -178,6 +178,7 @@ SidebarLink.propTypes = {
   path: PropTypes.string,
   item: PropTypes.node,
   activeClass: PropTypes.string,
+  isItem:PropTypes.bool
 };
 
 export default SidebarLink;
