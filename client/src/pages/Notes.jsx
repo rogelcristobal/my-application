@@ -124,8 +124,8 @@ const Notes = () => {
           <div className="flex items-center px-12  ">
             <div className="flex flex-col  container mx-auto">
               <span className="text-[0.8rem]  text-inherit  font-semibold">
-                <p className="text-[1.55rem] text-[#eeeeee]  flex items-center gap-2  mb-5 mt-1.5 font-medium capitalize">
-                  Collections <span className="text-[1.3rem] text-[#7f858c]/70 h-fit flex  ">&#x203A;</span> Notes
+                <p className="text-[1.55rem] text-[#eeeeee]  flex items-center gap-3  mb-5 mt-1.5 font-medium capitalize">
+                  <span className=" text-[#7f858c]/70  ">Collections</span> <span className=" text-[#7f858c]/70 h-fit flex  ">&#x203A;</span> Notes
                 </p>
               </span>
             </div>
