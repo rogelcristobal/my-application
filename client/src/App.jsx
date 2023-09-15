@@ -10,6 +10,8 @@ import Home from "./pages/Home";
 import AuthPage from "./pages/AuthPage";
 import User from "./components/User";
 import Settings from "./pages/Settings";
+import Notes from "./pages/Notes";
+import Todos from "./pages/Todos";
 function App() {
   const dispatch = useDispatch();
   const { isSignedIn, user, isLoaded } = useUser();
@@ -28,7 +30,6 @@ function App() {
   // }
   // console.log(userDataLoading);
 
-
   return (
     <div className="h-screen w-full  font-inter  bg-[#212121] text-[#eeeeee] tracking-tight relative">
       <Routes>
@@ -42,14 +43,14 @@ function App() {
                 <div className=" flex-shrink-0 items-center top-[0rem] right-0 justify-end flex    h-[3.5rem] fixed  z-50     w-full ">
                   <div className=" h-full  box-border w-[calc(100%-17rem)] px-12 items-center justify-end flex">
                     {/* <PiMagnifyingGlass className="text-[#b7b7b7]/50 text-[1.1rem]" /> */}
-                  <div className="items-center h-full justify-end flex ">
-                    <div className="w-fit h-full  justify-between  flex-shrink-0 flex gap-4 items-center">
-                      {/* <User></User> */}
-                      {/* <span className="text-[0.75rem] tracking-wide text-[#e8e8e8] capitalize">
+                    <div className="items-center h-full justify-end flex ">
+                      <div className="w-fit h-full  justify-between  flex-shrink-0 flex gap-4 items-center">
+                        {/* <User></User> */}
+                        {/* <span className="text-[0.75rem] tracking-wide text-[#e8e8e8] capitalize">
                         {isLoaded && user?.fullName}
                       </span> */}
+                      </div>
                     </div>
-                  </div>
                   </div>
                 </div>
                 <div className="flex items-start  justify-start w-full h-full">
@@ -64,7 +65,15 @@ function App() {
                       path="/collections/*"
                       element={<Collections />}
                     ></Route>
-                    <Route path="/settings" element={<Settings/>}></Route>
+                    <Route
+                      path="/collections/notes/*"
+                      element={<Notes />}
+                    ></Route>
+                    <Route
+                      path="/collections/todos/*"
+                      element={<Todos />}
+                    ></Route>
+                    <Route path="/settings" element={<Settings />}></Route>
                   </Routes>
                 </div>
               </div>

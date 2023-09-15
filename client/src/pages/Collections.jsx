@@ -128,7 +128,6 @@ const Collections = () => {
           <div className="flex items-center px-12  ">
             <div className="flex flex-col  container mx-auto">
               <span className="text-[0.8rem]  text-inherit  font-semibold">
-               
                 <p className="text-[1.55rem] text-[#eeeeee] mb-5 mt-1.5 font-medium capitalize">
                   
                 Collections

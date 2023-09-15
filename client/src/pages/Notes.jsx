@@ -9,7 +9,7 @@ import {
 } from "../features/user/currentUserSlice";
 import SocketContext from "../context/SocketContext";
 
-const Todos = () => {
+const Notes = () => {
   const { socket } = React.useContext(SocketContext);
   const currentUser = useSelector((state) => state.currentUser.data);
   const [addCollectionModalState, setAddCollectionModalState] =
@@ -125,7 +125,7 @@ const Todos = () => {
             <div className="flex flex-col  container mx-auto">
               <span className="text-[0.8rem]  text-inherit  font-semibold">
                 <p className="text-[1.55rem] text-[#eeeeee]  flex items-center gap-2  mb-5 mt-1.5 font-medium capitalize">
-                  Collections <span className="text-[1.3rem] text-[#7f858c]/70 h-fit flex  ">&#x203A;</span> Todos
+                  Collections <span className="text-[1.3rem] text-[#7f858c]/70 h-fit flex  ">&#x203A;</span> Notes
                 </p>
               </span>
             </div>
@@ -137,4 +137,4 @@ const Todos = () => {
   );
 };
 
-export default Todos;
+export default Notes;
