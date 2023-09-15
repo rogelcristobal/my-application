@@ -2,7 +2,7 @@ import { useUser } from "@clerk/clerk-react";
 import { PiCheckSquareOffsetBold, PiClockBold } from "react-icons/pi";
 const Home = () => {
   const { user, isLoaded } = useUser();
-// console.log(user)
+  // console.log(user)
   return (
     <div className="h-full overflow-y-auto  font-inter w-full flex flex-col items-end justify-start relative">
       <div className=" h-full  pt-[3.5rem]  w-full">
@@ -11,14 +11,10 @@ const Home = () => {
             <div className="flex flex-col items-start mb-6 w-full">
               <span className="text-[0.875rem] text-start capitalize text-[#7f858c]/70 font-medium">
                 Good morning
-               
                 <p className="text-[1.55rem]  text-[#eeeeee] mt-1 font-medium  capitalize">
-               Welcome back {isLoaded && user.firstName} 
+                  Welcome back {isLoaded && user.firstName}
                 </p>
               </span>
-              {/* <span className="tracking-normal text-[#7f858c]/70 mt-1 font-normal text-[0.8rem] ">
-                {isLoaded && user.primaryEmailAddress.emailAddress} 
-              </span> */}
             </div>
           </div>
           <div className="px-6 pt-0  w-full h-full ">
@@ -59,7 +55,6 @@ const Home = () => {
               </div>
 
                */}
-
             </div>
           </div>
         </div>
