@@ -73,8 +73,6 @@ const SearchBar = () => {
           state.hover ? "text-[#696e79]/70" : "text-[#696e79]/70"
         }`}
       />
-
-     
     </div>
   );
 };

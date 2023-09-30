@@ -43,7 +43,7 @@ const SidebarLink = ({
           className={`w-full  rounded-lg   ${isItem?'h-[2.35rem] ':'h-[2.5rem]'} box-border flex flex-col  relative px-3.5  ${
             isActive
               ? `${activeClass} font-normal `
-              : "text-[#737373] bg-transparent hover:bg-[#212121] border-0 font-normal box-border"
+              : "text-[#737373] bg-transparent hover:bg-[#2e2e2e]/30 border-0 font-normal box-border"
           }
           `}
         >
@@ -54,7 +54,7 @@ const SidebarLink = ({
               {/* text-[] */}
               <span
                 className={`text-[1rem]   ${
-                  isActive ? "text-[#B7A2FC]" : "text-[#737373]"
+                  isActive ? "text-[#0a77ff]" : "text-[#737373]"
                 }`}
               >
                 {icon}
@@ -85,13 +85,13 @@ const SidebarLink = ({
             )}
           </div>
         </div>
-        {isActive && (
+        {/* {isActive && (
           <div
             className={`absolute h-[50%] w-[3px] ${
-              isActive && "bg-[#B7A2FC]"
+              isActive && "bg-[#0a77ff]"
             } left-[0.1rem]  -translate-y-1/2 top-1/2 rounded-r-[15px]`}
           ></div>
-        )}
+        )} */}
       </NavLink>
     );
 
@@ -115,8 +115,8 @@ const SidebarLink = ({
             className={`w-full cursor-pointer rounded-lg  h-[2.5rem] flex flex-col relative px-3.5   ${
               isActive
                 ? // bg-[#2c2c2c]/50
-                  `text-[#EEEEEE]  font-normal bg-[#2e2e2e] `
-                : "text-[#737373] bg-transparent  hover:bg-[#2e2e2e] border-0 box-border font-normal "
+                  `text-[#EEEEEE]  font-normal bg-[#2e2e2e]/30 `
+                : "text-[#737373] bg-transparent  hover:bg-[#2e2e2e]/30 border-0 box-border font-normal "
             }
           `}
           >
@@ -126,7 +126,7 @@ const SidebarLink = ({
               >
                 <span
                   className={`text-[1rem]   ${
-                    isActive ? "text-[#B7A2FC]" : "text-[#737373]"
+                    isActive ? "text-[#0a77ff]" : "text-[#737373]"
                   }`}
                 >
                   {icon}

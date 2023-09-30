@@ -10,10 +10,11 @@ const Home = () => {
           <div className="flex items-center   px-8">
             <div className="flex flex-col items-start mb-6 w-full">
               <span className="text-[0.875rem] text-start capitalize text-[#7f858c]/70 font-medium">
-                Good morning
-                <p className="text-[1.55rem]  text-[#eeeeee] mt-1 font-medium  capitalize">
-                  Welcome back {isLoaded && user.firstName}
+                 Goodmorning
+                <p className="text-[1.55rem]  text-[#eeeeee] mt-1 font-medium  ">
+                 Welcome back, {isLoaded && user.firstName}!
                 </p>
+                
               </span>
             </div>
           </div>

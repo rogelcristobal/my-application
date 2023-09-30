@@ -29,7 +29,7 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      className={`w-fit whitespace-nowrap relative z-10 h-screen  flex bg-[#262626] pl-0  items-center justify-start  flex-shrink-0`}
+      className={`w-fit whitespace-nowrap relative z-10 h-screen  flex bg-[#15191f] pl-0  items-center justify-start  flex-shrink-0`}
     >
       {/* <div className="w-16 flex-shrink-0 h-full bg-[#1c1e1f] flex flex-col items-center justify-end"></div> */}
       <div className="h-full w-[16.5rem] pt-[2rem] pb-[2rem] flex flex-col">
@@ -59,19 +59,19 @@ const Sidebar = () => {
                       path: "/dashboard",
                       title: "dashboard",
                       icon: <FiGrid />,
-                      activeClass: ` text-[#EEEEEE] bg-[#2e2e2e] hover:bg-[#2e2e2e]`,
+                      activeClass: ` text-[#EEEEEE] bg-[#2e2e2e]/30 hover:bg-[#2e2e2e]/30`,
                     },
                     // {
                     //   path: "/time-sheet",
                     //   title: "time sheet",
                     //   icon: <PiCalendarCheckBold />,
-                    //   activeClass: ` text-[#EEEEEE] bg-[#2e2e2e] hover:bg-[#2e2e2e]`,
+                    //   activeClass: ` text-[#EEEEEE] bg-[#2e2e2e]/30 hover:bg-[#2e2e2e]/30`,
                     // },
                     // {
                     //   path: "/pay-summary",
                     //   title: "pay summary",
                     //   icon: <FiCreditCard />,
-                    //   activeClass: ` text-[#EEEEEE] bg-[#2e2e2e] hover:bg-[#2e2e2e]`,
+                    //   activeClass: ` text-[#EEEEEE] bg-[#2e2e2e]/30 hover:bg-[#2e2e2e]/30`,
                     // },
                   ].map((item, id) => (
                     <SidebarLink
@@ -115,7 +115,7 @@ const Sidebar = () => {
                           title={item?.title}
                           path={`/collections/${item?.title}`}
                           key={id}
-                          activeClass={` bg-[#2e2e2e] hover:bg-[#2e2e2e] `}
+                          activeClass={` bg-[#2e2e2e]/30 hover:bg-[#2e2e2e]/30 `}
                           count={item.count}
                           icon={item?.icon}
                           loading={item?.loading}
@@ -127,7 +127,7 @@ const Sidebar = () => {
                       path: "/channels",
                       title: "Channels ",
                       icon: <FiHash />,
-                      activeClass: `text-[#EEEEEE]  bg-[#2e2e2e] hover:bg-[#2e2e2e]`,
+                      activeClass: `text-[#EEEEEE]  bg-[#2e2e2e]/30 hover:bg-[#2e2e2e]/30`,
 
                       initialState: true,
                       // attr: "dropdown",
@@ -136,7 +136,7 @@ const Sidebar = () => {
                       //     title={item?.title}
                       //     path={`/collections/${item?.title}`}
                       //     key={id}
-                      //     activeClass={`text-[#EEEEEE] bg-[#2e2e2e] hover:bg-[#2e2e2e]  `}
+                      //     activeClass={`text-[#EEEEEE] bg-[#2e2e2e]/30 hover:bg-[#2e2e2e]/30  `}
                       //     count={item.count}
                       //     icon={item?.icon}
                       //     loading={item?.loading}
@@ -169,7 +169,7 @@ const Sidebar = () => {
                     path="/settings"
                     title="Settings"
                     icon={<FiSettings />}
-                    activeClass={`text-[#EEEEEE] bg-[#2e2e2e] hover:bg-[#2e2e2e] `}
+                    activeClass={`text-[#EEEEEE] bg-[#2e2e2e]/30 hover:bg-[#2e2e2e]/30 `}
                   />
                 </div>
               </div>

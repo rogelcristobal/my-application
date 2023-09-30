@@ -12,6 +12,7 @@ import User from "./components/User";
 import Settings from "./pages/Settings";
 import Notes from "./pages/Notes";
 import Todos from "./pages/Todos";
+import Channels from "./pages/Channels";
 function App() {
   const dispatch = useDispatch();
   const { isSignedIn, user, isLoaded } = useUser();
@@ -31,7 +32,7 @@ function App() {
   // console.log(userDataLoading);
 
   return (
-    <div className="h-screen w-full  font-inter  bg-[#212121] text-[#eeeeee] tracking-tight relative">
+    <div className="h-screen w-full  font-inter  bg-[#0d1218] text-[#eeeeee] tracking-tight relative">
       <Routes>
         <Route path="/auth/*" element={<AuthPage />}></Route>
 
@@ -73,6 +74,8 @@ function App() {
                       path="/collections/todos/*"
                       element={<Todos />}
                     ></Route>
+                    <Route
+                    path="/channels" element={<Channels/>}></Route>
                     <Route path="/settings" element={<Settings />}></Route>
                   </Routes>
                 </div>
