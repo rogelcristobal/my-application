@@ -30,13 +30,13 @@ const Collections = () => {
                   {
                     name: "todos",
                     collectionLength: currentUser.todoCollections.length,
-                    totalFiles: 1,
+                    totalFiles: currentUser.totalTodos,
                     path: "/collections/todos",
                   },
                   {
                     name: "notes",
                     collectionLength: currentUser.noteCollections.length,
-                    totalFiles: 3,
+                    totalFiles: currentUser.totalNotes,
                     path: "/collections/notes",
                   },
                 ].map((item, id) => (
@@ -56,7 +56,10 @@ const Collections = () => {
                             : `${item.collectionLength} collections`}
                         </span>
                         <span className="text-[0.7rem] text-[#737373]">
-                          {item.totalFiles > 1 ? `${item.totalFiles} files`: !item.totalFiles == 0 && `${item.totalFiles} file` }
+                          {item.totalFiles > 1
+                            ? `${item.totalFiles} files`
+                            : !item.totalFiles == 0 &&
+                              `${item.totalFiles} file`}
                         </span>
                       </div>
                     </div>
