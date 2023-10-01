@@ -26,21 +26,31 @@ const SidebarLink = ({
 
   const handleNavLinkClick = (e) => {
     e.stopPropagation;
+
     setActiveState(!activeState);
   };
+  React.useEffect(() => {
+    if (isActive) {
+      setActiveState(true);
+    }
+  }, [isActive]);
 
   if (!item) {
     return (
       <NavLink
         to={path}
         role="link"
-        className={`w-full  h-fit box-border relative ${isItem&&'pr-[1rem] '}  rounded-md`}
+        className={`w-full  h-fit box-border relative ${
+          isItem && "pr-[1rem] "
+        }  rounded-md`}
         onClick={handleNavLinkClick}
       >
         <div
           onMouseEnter={hoverToggle}
           onMouseLeave={hoverToggle}
-          className={`w-full  rounded-lg   ${isItem?'h-[2.35rem] ':'h-[2.5rem]'} box-border flex flex-col  relative px-3.5  ${
+          className={`w-full  rounded-lg   ${
+            isItem ? "h-[2.35rem] " : "h-[2.5rem]"
+          } box-border flex flex-col  relative px-3.5  ${
             isActive
               ? `${activeClass} font-normal `
               : "text-[#737373] bg-transparent hover:bg-[#2e2e2e]/30 border-0 font-normal box-border"
@@ -95,7 +105,7 @@ const SidebarLink = ({
       </NavLink>
     );
 
-    // if link has a children , therefore it renders a dropdown and not a link component
+    // if link has a children , therefore it renders a dropdown
   } else {
     return (
       <NavLink
@@ -114,8 +124,9 @@ const SidebarLink = ({
             onMouseLeave={hoverToggle}
             className={`w-full cursor-pointer rounded-lg  h-[2.5rem] flex flex-col relative px-3.5   ${
               isActive
-                ? // bg-[#2c2c2c]/50
-                  `text-[#EEEEEE]  font-normal bg-[#2e2e2e]/30 `
+                ? `text-[#EEEEEE]  font-normal ${
+                    !activeState && "bg-[#2e2e2e]/30 "
+                  }`
                 : "text-[#737373] bg-transparent  hover:bg-[#2e2e2e]/30 border-0 box-border font-normal "
             }
           `}
@@ -138,7 +149,11 @@ const SidebarLink = ({
               </div>
 
               {item && (
-                <span className="text-[0.675rem] text-[#737373]/70  ">
+                <span
+                  className={`text-[0.7rem] ${
+                    !isActive ? " text-[#737373]/70 " : "text-[#eeeeee]"
+                  }`}
+                >
                   <PiCaretDownBold
                     className={`${!activeState && "-rotate-90"}`}
                   />
@@ -153,11 +168,10 @@ const SidebarLink = ({
             initial={{
               height: 0,
             }}
-            // 2.60 * 2 + "rem"
             animate={{
-              height: activeState ? 2.85 * 2 + "rem" : 0,
+              height: activeState ? 2.625 * 2 + "rem" : 0,
             }}
-            className={` pl-[1rem] relative  mb-1.5  w-full items-start space-y-1 justify-center ${
+            className={` pl-[1rem] relative  mb-1.5  w-full items-center space-y-1 justify-end ${
               activeState && " "
             } flex flex-col px-0 overflow-hidden `}
           >
@@ -178,7 +192,7 @@ SidebarLink.propTypes = {
   path: PropTypes.string,
   item: PropTypes.node,
   activeClass: PropTypes.string,
-  isItem:PropTypes.bool
+  isItem: PropTypes.bool,
 };
 
 export default SidebarLink;

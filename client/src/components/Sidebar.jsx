@@ -100,7 +100,7 @@ const Sidebar = () => {
                       title: "collections ",
                       icon: <FiFolder />,
                       activeClass: `text-[#EEEEEE] `,
-                      initialState: true,
+                      initialState: false,
                       attr: "dropdown",
                       items: [
                         { title: "todos", isItem: true },
