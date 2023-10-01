@@ -5,7 +5,8 @@ const Collections = () => {
   const currentUserDataLoadingState = useSelector(
     (state) => state.currentUser.loading
   );
-
+  // console.log(currentUser.noteCollections.length)
+  console.log(currentUser);
   return (
     <div className="h-full overflow-y-auto  font-inter w-full flex flex-col items-end justify-start relative">
       <div className=" h-full  pt-[3.5rem]  w-full">
@@ -26,11 +27,21 @@ const Collections = () => {
                 <span>loading data...</span>
               ) : (
                 [
-                  { name: "todos", count: currentUser.todoCollections.length,path:'/collections/todos' },
-                  { name: "notes", count: currentUser.noteCollections.length,path:'/collections/notes'},
+                  {
+                    name: "todos",
+                    collectionLength: currentUser.todoCollections.length,
+                    totalFiles: 1,
+                    path: "/collections/todos",
+                  },
+                  {
+                    name: "notes",
+                    collectionLength: currentUser.noteCollections.length,
+                    totalFiles: 3,
+                    path: "/collections/notes",
+                  },
                 ].map((item, id) => (
                   <Link
-                  to={item.path}
+                    to={item.path}
                     key={id}
                     className="h-fit w-60 bg-[#15191f]  p-[1.25rem] flex items-end rounded-lg cursor-pointer"
                   >
@@ -38,9 +49,16 @@ const Collections = () => {
                       <span className="text-[0.925rem] font-medium">
                         {item.name}
                       </span>
-                      <span className="text-[0.75rem] text-[#737373]">
-                        {item?.count} files
-                      </span>
+                      <div className="mt-1 flex items-center justify-between">
+                        <span className="text-[0.7rem] text-[#737373]">
+                          {item.collectionLength <= 1
+                            ? `${item.collectionLength} collection`
+                            : `${item.collectionLength} collections`}
+                        </span>
+                        <span className="text-[0.7rem] text-[#737373]">
+                          {item.totalFiles > 1 ? `${item.totalFiles} files`: !item.totalFiles == 0 && `${item.totalFiles} file` }
+                        </span>
+                      </div>
                     </div>
                   </Link>
                 ))
