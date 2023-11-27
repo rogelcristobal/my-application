@@ -32,7 +32,7 @@ function App() {
   // console.log(userDataLoading);
 
   return (
-    <div className="h-screen w-full  font-inter  bg-[#0d1218] text-[#eeeeee] tracking-tight relative">
+    <div className="h-screen w-full  font-satoshi bg-white text-[#1b1b1b] .text-[#eeeeee] tracking-tight relative">
       <Routes>
         <Route path="/auth/*" element={<AuthPage />}></Route>
 
@@ -41,43 +41,38 @@ function App() {
           element={
             <ProtectedRoute>
               <div className="h-full   flex items-start flex-col justify-start relative">
-                <div className=" flex-shrink-0 items-center top-[0rem] right-0 justify-end flex    h-[3.5rem] fixed  z-50     w-full ">
-                  <div className=" h-full  box-border w-[calc(100%-17rem)] px-12 items-center justify-end flex">
-                    {/* <PiMagnifyingGlass className="text-[#b7b7b7]/50 text-[1.1rem]" /> */}
+                <div className=" flex-shrink-0 items-center top-[0rem] right-0 justify-end flex    h-[3.5rem] fixed  z-50  view .bg-[#323232]/70  w-full ">
+                  <div className=" h-full  box-border w-[calc(100%-17rem)] px-12  items-center justify-end flex">
                     <div className="items-center h-full justify-end flex ">
-                      <div className="w-fit h-full  justify-between  flex-shrink-0 flex gap-4 items-center">
-                        {/* <User></User> */}
-                        {/* <span className="text-[0.75rem] tracking-wide text-[#e8e8e8] capitalize">
-                        {isLoaded && user?.fullName}
-                      </span> */}
-                      </div>
+                      <div className="w-fit h-full  justify-between  flex-shrink-0 flex gap-4 items-center"></div>
                     </div>
                   </div>
                 </div>
-                <div className="flex items-start  justify-start w-full h-full">
+                <div className="flex items-start gap-12 justify-start w-full h-full">
                   <Sidebar></Sidebar>
-                  <Routes>
-                    <Route
-                      path="/"
-                      element={<Navigate to="/dashboard" />}
-                    ></Route>
-                    <Route path="/dashboard" element={<Home />}></Route>
-                    <Route
-                      path="/collections/*"
-                      element={<Collections />}
-                    ></Route>
-                    <Route
-                      path="/collections/notes/*"
-                      element={<Notes />}
-                    ></Route>
-                    <Route
-                      path="/collections/todos/*"
-                      element={<Todos />}
-                    ></Route>
-                    <Route
-                    path="/channels" element={<Channels/>}></Route>
-                    <Route path="/settings" element={<Settings />}></Route>
-                  </Routes>
+                  <div className="m-0 h-full  w-full p-0 pt-[2rem]">
+                    <Routes>
+                      <Route
+                        path="/"
+                        element={<Navigate to="/dashboard" />}
+                      ></Route>
+                      <Route path="/dashboard" element={<Home />}></Route>
+                      <Route
+                        path="/collections/*"
+                        element={<Collections />}
+                      ></Route>
+                      <Route
+                        path="/collections/notes/*"
+                        element={<Notes />}
+                      ></Route>
+                      <Route
+                        path="/collections/todos/*"
+                        element={<Todos />}
+                      ></Route>
+                      <Route path="/channels" element={<Channels />}></Route>
+                      <Route path="/settings" element={<Settings />}></Route>
+                    </Routes>
+                  </div>
                 </div>
               </div>
             </ProtectedRoute>

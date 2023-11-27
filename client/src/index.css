@@ -33,4 +33,17 @@
     .border-dark {
       @apply border-[1px] border-neutral-500/10;
     }
+
+    @font-face {
+      font-family: 'productBold';
+      src: url('./assets/fonts/GoogleSans-Bold.ttf');
+    }
+    @font-face {
+      font-family: 'product';
+      src: url('./assets/fonts/GoogleSans-Regular.ttf');
+    }
+    @font-face {
+      font-family: 'productSemiBold';
+      src: url('./assets/fonts/GoogleSans-Medium.ttf');
+    }
 }

@@ -28,6 +28,11 @@ export default {
         inter: ["Inter", "sans-serif"],
         plus: ["Plus Jakarta Sans", "sans-serif"],
         general: ["General Sans", "sans-serif"],
+        'satoshi': ['Satoshi', 'sans-serif'],
+        'product': ['product', 'sans-serif'],
+        'productBold': ['productBold', 'sans-serif'],
+        'productSemiBold': ['productSemiBold', 'sans-serif'],
+
       },
     },
   },

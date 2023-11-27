@@ -13,8 +13,8 @@ const Collections = () => {
         <div className=" container mx-auto   h-[150%]  ">
           <div className="flex items-center   px-8">
             <div className="flex flex-col items-start mb-6 w-full">
-              <span className="text-[0.875rem] text-start capitalize text-[#7f858c]/70 font-medium">
-                <p className="text-[1.4rem] text-[#eeeeee]  flex items-center gap-3  mb-5 mt-1.5 font-medium capitalize">
+              <span className="text-[0.875rem] text-start capitalize text-black font-medium">
+                <p className="text-[1.4rem] text-black  flex items-center gap-3  mb-5 mt-1.5 font-medium capitalize">
                   Collections
                 </p>
               </span>
@@ -43,10 +43,10 @@ const Collections = () => {
                   <Link
                     to={item.path}
                     key={id}
-                    className="h-fit w-60 bg-[#15191f]  p-[1.25rem] flex items-end rounded-lg cursor-pointer"
+                    className="h-fit w-60 bg-[#2e2e2e]/50 p-[1.25rem] flex items-end rounded-lg cursor-pointer"
                   >
                     <div className="w-full capitalize flex flex-col  justify-end">
-                      <span className="text-[0.925rem] font-medium">
+                      <span className="text-[0.9rem] font-normal">
                         {item.name}
                       </span>
                       <div className="mt-1 flex items-center justify-between">

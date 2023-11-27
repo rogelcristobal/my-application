@@ -1,4 +1,4 @@
-import { MdOutlineSpaceDashboard, MdFolderOpen } from "react-icons/md";
+import { BiGridAlt, BiHash, BiFolder, BiCog } from "react-icons/bi";
 import { FcFolder } from "react-icons/fc";
 import {
   FiGrid,
@@ -29,10 +29,10 @@ const Sidebar = () => {
   return (
     <motion.div
       animate={sidebarControl}
-      className={`w-fit whitespace-nowrap relative z-10 h-screen  flex bg-[#15191f] pl-0  items-center justify-start  flex-shrink-0`}
+      className={`w-fit whitespace-nowrap view relative z-10 h-screen flex bg-white .bg-[#1b1b1b] pl-0  pt-[2rem] items-center justify-start  flex-shrink-0`}
     >
       {/* <div className="w-16 flex-shrink-0 h-full bg-[#1c1e1f] flex flex-col items-center justify-end"></div> */}
-      <div className="h-full w-[16.5rem] pt-[2rem] pb-[2rem] flex flex-col">
+      <div className="h-full w-[16rem] pt-[2rem] pb-[2rem] flex flex-col">
         <div className="w-full h-full   flex flex-col justify-start pl-2 items-start">
           {/* <div className="w-full h-12 flex-shrink-0  flex items-center px-[2rem]">
             <span className="font-medium text-[1.1rem] w-full">NoteStack</span>
@@ -48,30 +48,30 @@ const Sidebar = () => {
                   className="input input-bordered  h-10 placeholder:text-[#8d909c]  text-[0.865rem] border-dark placeholder:text-[0.8rem] w-full max-w-xs"
                 />
               </div> */}
-              <div className="justify-center  mt-1  w-full flex-col items-center">
-                <span className=" px-1  w-full  text-left  text-[0.70rem] text-[#A3A3A3] tracking-widest  font-medium uppercase ">
+              <div className="justify-center    w-full flex-col items-center">
+                <span className=" px-1  w-full  text-left  text-[0.70rem] text-gray-400 tracking-wide  font-semibold  ">
                   Menu
                 </span>
 
-                <div className="w-full h-fit  flex flex-col space-y-2   py-2">
+                <div className="w-full h-fit  flex flex-col space-y-2 py-2">
                   {[
                     {
                       path: "/dashboard",
                       title: "dashboard",
-                      icon: <FiGrid />,
-                      activeClass: ` text-[#EEEEEE] bg-[#2e2e2e]/30 hover:bg-[#2e2e2e]/30`,
+                      icon: <BiGridAlt />,
+                      activeClass: ` text-black view .bg-[#2e2e2e]/30 `,
                     },
                     // {
                     //   path: "/time-sheet",
                     //   title: "time sheet",
                     //   icon: <PiCalendarCheckBold />,
-                    //   activeClass: ` text-[#EEEEEE] bg-[#2e2e2e]/30 hover:bg-[#2e2e2e]/30`,
+                    //   activeClass: ` text-black view .bg-[#2e2e2e]/30 `,
                     // },
                     // {
                     //   path: "/pay-summary",
                     //   title: "pay summary",
                     //   icon: <FiCreditCard />,
-                    //   activeClass: ` text-[#EEEEEE] bg-[#2e2e2e]/30 hover:bg-[#2e2e2e]/30`,
+                    //   activeClass: ` text-black view .bg-[#2e2e2e]/30 `,
                     // },
                   ].map((item, id) => (
                     <SidebarLink
@@ -88,18 +88,18 @@ const Sidebar = () => {
                   ))}
                 </div>
               </div>
-              <div className="justify-center  mt-1  w-full flex-col items-center">
-                <span className=" px-1  w-full  text-left  text-[0.70rem] text-[#A3A3A3] tracking-widest font-medium uppercase ">
+              <div className="justify-center    w-full flex-col items-center">
+                <span className=" px-1  w-full  text-left  text-[0.70rem] text-gray-400 tracking-wide  font-semibold">
                   Tools
                 </span>
 
-                <div className="w-full h-fit flex flex-col space-y-2  mt-0 py-2">
+                <div className="w-full h-fit flex flex-col space-y-2   py-2">
                   {[
                     {
                       path: "/collections",
                       title: "collections ",
-                      icon: <FiFolder />,
-                      activeClass: `text-[#EEEEEE] `,
+                      icon: <BiFolder />,
+                      activeClass: `text-black `,
                       initialState: false,
                       attr: "dropdown",
                       items: [
@@ -115,7 +115,7 @@ const Sidebar = () => {
                           title={item?.title}
                           path={`/collections/${item?.title}`}
                           key={id}
-                          activeClass={` bg-[#2e2e2e]/30 hover:bg-[#2e2e2e]/30 `}
+                          activeClass={` view .bg-[#2e2e2e]/30  `}
                           count={item.count}
                           icon={item?.icon}
                           loading={item?.loading}
@@ -126,8 +126,8 @@ const Sidebar = () => {
                     {
                       path: "/channels",
                       title: "Channels ",
-                      icon: <FiHash />,
-                      activeClass: `text-[#EEEEEE]  bg-[#2e2e2e]/30 hover:bg-[#2e2e2e]/30`,
+                      icon: <BiHash />,
+                      activeClass: `text-black  view .bg-[#2e2e2e]/30 `,
 
                       initialState: true,
                       // attr: "dropdown",
@@ -136,7 +136,7 @@ const Sidebar = () => {
                       //     title={item?.title}
                       //     path={`/collections/${item?.title}`}
                       //     key={id}
-                      //     activeClass={`text-[#EEEEEE] bg-[#2e2e2e]/30 hover:bg-[#2e2e2e]/30  `}
+                      //     activeClass={`text-black view .bg-[#2e2e2e]/30   `}
                       //     count={item.count}
                       //     icon={item?.icon}
                       //     loading={item?.loading}
@@ -159,8 +159,8 @@ const Sidebar = () => {
                   ))}
                 </div>
               </div>
-              <div className="justify-center mt-1  w-full flex-col items-center">
-                <span className=" px-1 w-full  text-left  text-[0.70rem] text-[#A3A3A3] tracking-widest font-medium uppercase ">
+              <div className="justify-center   w-full flex-col items-center">
+                <span className=" px-1  w-full  text-left  text-[0.70rem] text-gray-400 tracking-wide  font-semibold">
                   Settings
                 </span>
 
@@ -168,8 +168,8 @@ const Sidebar = () => {
                   <SidebarLink
                     path="/settings"
                     title="Settings"
-                    icon={<FiSettings />}
-                    activeClass={`text-[#EEEEEE] bg-[#2e2e2e]/30 hover:bg-[#2e2e2e]/30 `}
+                    icon={<BiCog />}
+                    activeClass={`text-black view .bg-[#2e2e2e]/30  `}
                   />
                 </div>
               </div>
